@@ -8548,11 +8548,12 @@
 
       const handleScroll = () => {
         const y = window.scrollY;
-        if (hero && second) {
-          const start = hero.offsetTop + hero.offsetHeight * 0.44;
-          const end = second.offsetTop + second.offsetHeight * 0.56;
-          const progress = Math.max(0, Math.min(1, (y - start) / Math.max(1, end - start)));
-          const beamOpacity = progress > 0 && progress < 0.92 ? Math.sin(progress * Math.PI) * 0.92 : 0;
+        if (second) {
+          const rect = second.getBoundingClientRect();
+          const active = rect.top < window.innerHeight * 0.9 && rect.bottom > window.innerHeight * 0.1;
+          const rawProgress = (window.innerHeight * 0.76 - rect.top) / Math.max(1, rect.height + window.innerHeight * 0.2);
+          const progress = active ? Math.max(0, Math.min(1, rawProgress)) : 0;
+          const beamOpacity = active && progress > 0.04 && progress < 0.94 ? Math.sin(progress * Math.PI) * 0.92 : 0;
           document.documentElement.style.setProperty('--handoff', progress.toFixed(3));
           document.documentElement.style.setProperty('--handoff-inv', (1 - progress).toFixed(3));
           document.documentElement.style.setProperty('--beam-opacity', beamOpacity.toFixed(3));
