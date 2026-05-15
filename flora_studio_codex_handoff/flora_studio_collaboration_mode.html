@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flora Studio｜轻量化协作模式</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+        body {
+            background-color: #f8fafc;
+            color: #334155;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .bg-grid {
+            background-image:
+                linear-gradient(to right, rgba(15, 23, 42, 0.035) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(15, 23, 42, 0.035) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+
+        .shadow-soft {
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.045), 0 1px 3px rgba(15, 23, 42, 0.03);
+        }
+
+        .shadow-hover {
+            transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .shadow-hover:hover {
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08), 0 2px 5px rgba(15, 23, 42, 0.04);
+            transform: translateY(-2px);
+        }
+
+        .network-stage {
+            position: relative;
+            height: 320px;
+            width: 100%;
+            max-width: 920px;
+            margin: 0 auto;
+        }
+
+        .svg-lines {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .path-static {
+            stroke: #cbd5e1;
+            stroke-width: 2;
+            fill: none;
+            stroke-dasharray: 4 4;
+        }
+
+        .path-active {
+            stroke: #10b981;
+            stroke-width: 3;
+            fill: none;
+            stroke-dasharray: 10 15;
+            animation: dataFlow 1.5s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .path-active.show { opacity: 1; }
+
+        @keyframes dataFlow {
+            to { stroke-dashoffset: -25; }
+        }
+
+        .node-btn {
+            position: absolute;
+            z-index: 10;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 18px 22px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 2px 10px rgba(15, 23, 42, 0.035);
+            width: 190px;
+            min-height: 122px;
+            text-align: center;
+        }
+
+        .node-btn:hover { border-color: #94a3b8; }
+
+        .node-btn.active {
+            border-color: #10b981;
+            border-width: 2px;
+            box-shadow: 0 6px 24px rgba(16, 185, 129, 0.16);
+        }
+
+        .node-center {
+            position: absolute;
+            z-index: 10;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #10b981;
+            color: white;
+            border-radius: 999px;
+            padding: 18px 38px;
+            font-weight: 800;
+            font-size: 18px;
+            box-shadow: 0 14px 34px rgba(16, 185, 129, 0.32);
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+        .content-panel {
+            display: none;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.35s ease;
+        }
+
+        .content-panel.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .compare-box {
+            display: flex;
+            flex-direction: column;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            background: #fff;
+        }
+
+        @media (min-width: 768px) {
+            .compare-box { flex-direction: row; }
+        }
+
+        .compare-old {
+            flex: 1;
+            padding: 32px;
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .compare-new {
+            flex: 1.45;
+            padding: 32px;
+            background: #ffffff;
+            border-top: 3px solid #10b981;
+            position: relative;
+        }
+
+        @media (min-width: 768px) {
+            .compare-old {
+                border-bottom: none;
+                border-right: 1px solid #e2e8f0;
+            }
+            .compare-new {
+                border-top: none;
+                border-left: 3px solid #10b981;
+            }
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .tag-red { background: #fee2e2; color: #dc2626; }
+        .tag-green { background: #ecfdf5; color: #059669; }
+        .tag-blue { background: #eff6ff; color: #2563eb; }
+
+        .note-card {
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            background: #f8fafc;
+            padding: 18px;
+        }
+
+        @media (max-width: 767px) {
+            .network-stage {
+                height: auto;
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .svg-lines,
+            .node-center {
+                display: none;
+            }
+            .node-btn {
+                position: relative;
+                top: auto !important;
+                left: auto !important;
+                transform: none;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body class="bg-grid">
+
+    <div class="max-w-6xl mx-auto px-6 py-16">
+
+        <header class="text-center mb-16">
+            <div class="inline-flex items-center justify-center px-4 py-2 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-700 text-sm font-bold mb-6">
+                Collaboration System
+            </div>
+            <h1 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-6">
+                Flora Studio 的 <span class="text-emerald-500">轻量化协作模式</span>
+            </h1>
+            <p class="text-slate-500 text-lg max-w-3xl mx-auto leading-relaxed">
+                Flora Studio 不从零制造所有硬件，而是连接成熟零件、动作预览和创作者模板，让花店能更轻松地完成动态花艺创作。
+            </p>
+        </header>
+
+        <section class="network-stage mb-12">
+            <svg class="svg-lines" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 320" preserveAspectRatio="none">
+                <path d="M 460 160 C 320 160, 220 160, 120 160" class="path-static"/>
+                <path d="M 460 160 C 320 160, 220 160, 120 160" class="path-active" id="path-hardware"/>
+
+                <path d="M 460 160 C 460 110, 460 70, 460 48" class="path-static"/>
+                <path d="M 460 160 C 460 110, 460 70, 460 48" class="path-active" id="path-software"/>
+
+                <path d="M 460 160 C 600 160, 700 160, 800 160" class="path-static"/>
+                <path d="M 460 160 C 600 160, 700 160, 800 160" class="path-active" id="path-content"/>
+            </svg>
+
+            <div class="node-center">
+                <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+                Flora Studio
+            </div>
+
+            <button class="node-btn active shadow-hover" style="top: 50%; left: 9%;" onclick="switchTab('hardware')" id="btn-hardware">
+                <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center mb-3">
+                    <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
+                    </svg>
+                </div>
+                <span class="text-sm font-extrabold text-slate-800 mb-1">成熟零件供应</span>
+                <span class="text-[11px] text-slate-500 uppercase tracking-wide">Motors / Magnets / Connectors</span>
+            </button>
+
+            <button class="node-btn shadow-hover" style="top: 15%; left: 50%;" onclick="switchTab('software')" id="btn-software">
+                <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center mb-3">
+                    <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                    </svg>
+                </div>
+                <span class="text-sm font-extrabold text-slate-800 mb-1">轻量动作预览</span>
+                <span class="text-[11px] text-slate-500 uppercase tracking-wide">Web Preview / Motion Guide</span>
+            </button>
+
+            <button class="node-btn shadow-hover" style="top: 50%; left: 91%;" onclick="switchTab('content')" id="btn-content">
+                <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center mb-3">
+                    <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                    </svg>
+                </div>
+                <span class="text-sm font-extrabold text-slate-800 mb-1">创作者模板库</span>
+                <span class="text-[11px] text-slate-500 uppercase tracking-wide">Licensed Model Library</span>
+            </button>
+        </section>
+
+        <section class="max-w-4xl mx-auto shadow-soft rounded-3xl bg-white overflow-hidden">
+
+            <div id="content-hardware" class="content-panel active">
+                <div class="p-8 border-b border-slate-100">
+                    <div class="tag tag-blue">01｜硬件层</div>
+                    <h2 class="text-2xl font-extrabold text-slate-900">不从零造硬件，而是把成熟零件变成花艺套件</h2>
+                    <p class="text-slate-500 mt-2 leading-relaxed">核心不是重新发明电机和磁铁，而是定义它们在动态花艺里的使用方式。</p>
+                </div>
+
+                <div class="compare-box">
+                    <div class="compare-old">
+                        <div class="tag tag-red"><span class="mr-1">❌</span> 如果走重资产路线</div>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            团队如果什么都自己做，就需要开模、找工厂、准备大量非标零件，还要处理库存和维护问题。对于一个面向花店的新工具来说，这会让落地过程变得很重。
+                        </p>
+                    </div>
+                    <div class="compare-new">
+                        <div class="tag tag-green"><span class="mr-1">✅</span> Flora 的轻量做法</div>
+                        <p class="text-slate-800 text-base leading-relaxed mb-4 font-medium">
+                            Flora Studio 优先采用成熟通用零件，例如标准电机、轴承、磁吸件、软管和卡扣，再把它们组合成适合花艺使用的 CyberBrick 套件。
+                        </p>
+                        <p class="text-slate-500 text-sm leading-relaxed">
+                            Flora Studio 负责定义接口标准、套件组合和使用指引。花店可以按需采购，也可以小批量备货，让不同零件、不同花材和不同制作流程更容易衔接起来。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="p-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="note-card">
+                        <h4 class="font-bold text-slate-900 mb-2">花店得到什么？</h4>
+                        <p class="text-sm text-slate-500 leading-relaxed">一套可直接装进花艺作品的动力盒和连接件。</p>
+                    </div>
+                    <div class="note-card">
+                        <h4 class="font-bold text-slate-900 mb-2">平台做什么？</h4>
+                        <p class="text-sm text-slate-500 leading-relaxed">把通用零件整理成花艺师看得懂、用得上的套件。</p>
+                    </div>
+                    <div class="note-card">
+                        <h4 class="font-bold text-slate-900 mb-2">协作价值是什么？</h4>
+                        <p class="text-sm text-slate-500 leading-relaxed">让硬件供应、花艺制作和现场装配之间更容易配合。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="content-software" class="content-panel">
+                <div class="p-8 border-b border-slate-100">
+                    <div class="tag tag-blue">02｜软件层</div>
+                    <h2 class="text-2xl font-extrabold text-slate-900">不做复杂工业仿真，而是让花艺师提前看懂“花会怎么动”</h2>
+                    <p class="text-slate-500 mt-2 leading-relaxed">软件的重点不是炫技，而是帮助花艺师做出更安全、更自然的动作选择。</p>
+                </div>
+
+                <div class="compare-box">
+                    <div class="compare-old">
+                        <div class="tag tag-red"><span class="mr-1">❌</span> 如果走专业软件路线</div>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            花艺师需要学习复杂的 3D 软件和动画工具，才能预览作品效果。这会让动态花艺又回到“只有技术人员会做”的困境。
+                        </p>
+                    </div>
+
+                    <div class="compare-new">
+                        <div class="tag tag-green"><span class="mr-1">✅</span> Flora 的轻量做法</div>
+                        <p class="text-slate-800 text-base leading-relaxed mb-4 font-medium">
+                            Flora Studio 提供简单的动作预览界面。花艺师选择花材、动作和节奏后，就能看到大致的摆动幅度、开合速度和视觉效果。
+                        </p>
+                        <p class="text-slate-500 text-sm leading-relaxed">
+                            系统在后台给出动力盒、连接件和安全范围建议，比如“这个动作太大，可能会破坏花型”或“当前花材更适合轻微颤动”。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="p-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="note-card">
+                        <h4 class="font-bold text-slate-900 mb-2">花艺师看到什么？</h4>
+                        <p class="text-sm text-slate-500 leading-relaxed">花朵大概如何摆动、开合、呼吸，而不是一堆技术参数。</p>
+                    </div>
+                    <div class="note-card">
+                        <h4 class="font-bold text-slate-900 mb-2">系统提醒什么？</h4>
+                        <p class="text-sm text-slate-500 leading-relaxed">动作幅度、花材承重、连接位置是否合适。</p>
+                    </div>
+                    <div class="note-card">
+                        <h4 class="font-bold text-slate-900 mb-2">避免什么问题？</h4>
+                        <p class="text-sm text-slate-500 leading-relaxed">避免动作太硬、太剧烈，或装上后破坏原本花艺造型。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="content-content" class="content-panel">
+                <div class="p-8 border-b border-slate-100">
+                    <div class="tag tag-blue">03｜内容层</div>
+                    <h2 class="text-2xl font-extrabold text-slate-900">不只靠官方设计，而是逐步形成动态花艺模板库</h2>
+                    <p class="text-slate-500 mt-2 leading-relaxed">让花艺师、建模师和装置创作者都能贡献结构模板，但必须经过授权与审核。</p>
+                </div>
+
+                <div class="compare-box">
+                    <div class="compare-old">
+                        <div class="tag tag-red"><span class="mr-1">❌</span> 如果只靠官方产出</div>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            所有动态花材、连接结构和装饰件都由官方团队设计，内容更新速度会很慢，也很难覆盖不同花店、不同风格和不同场景的需求。
+                        </p>
+                    </div>
+
+                    <div class="compare-new">
+                        <div class="tag tag-green"><span class="mr-1">✅</span> Flora 的协作做法</div>
+                        <p class="text-slate-800 text-base leading-relaxed mb-4 font-medium">
+                            Flora Studio 可以建立“动态花艺模板库”。创作者上传符合接口标准的连接件、仿生叶片、动态装饰结构和动作方案，花店根据不同场景选择使用。
+                        </p>
+                        <p class="text-slate-500 text-sm leading-relaxed">
+                            平台负责模板审核、使用授权、接口测试和安全规范，避免侵权模型或不稳定结构进入真实订单。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="p-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="note-card">
+                        <h4 class="font-bold text-slate-900 mb-2">谁来贡献？</h4>
+                        <p class="text-sm text-slate-500 leading-relaxed">花艺师、3D 建模师、装置艺术创作者和高校设计团队。</p>
+                    </div>
+                    <div class="note-card">
+                        <h4 class="font-bold text-slate-900 mb-2">花店怎么用？</h4>
+                        <p class="text-sm text-slate-500 leading-relaxed">按场景搜索模板，确认授权后直接打印、装配和改造。</p>
+                    </div>
+                    <div class="note-card">
+                        <h4 class="font-bold text-slate-900 mb-2">平台管什么？</h4>
+                        <p class="text-sm text-slate-500 leading-relaxed">原创审核、接口标准、安全测试和使用授权规则。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="max-w-4xl mx-auto mt-10 text-center">
+            <div class="bg-slate-900 text-white rounded-3xl p-8 shadow-soft">
+                <p class="text-lg md:text-xl font-extrabold leading-relaxed">
+                    Flora Studio 的协作价值，不是把所有技术重新发明一遍，<br class="hidden md:block">
+                    而是让成熟技术、创作者和花艺师在同一套工具语言里协同起来。
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function switchTab(tabName) {
+            document.querySelectorAll('.node-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById(`btn-${tabName}`).classList.add('active');
+
+            document.querySelectorAll('.path-active').forEach(path => {
+                path.classList.remove('show');
+            });
+            document.getElementById(`path-${tabName}`).classList.add('show');
+
+            document.querySelectorAll('.content-panel').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            setTimeout(() => {
+                document.getElementById(`content-${tabName}`).classList.add('active');
+            }, 50);
+        }
+
+        window.onload = () => {
+            document.getElementById('path-hardware').classList.add('show');
+        };
+    </script>
+</body>
+</html>

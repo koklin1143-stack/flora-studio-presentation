@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flora Studio | 服务蓝图 (Google Style)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f8f9fa; /* Google 底色：极浅灰 */
+            color: #202124; /* Google 正文黑 */
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* 核心卡片质感 (Material Design 3) */
+        .g-card {
+            background-color: #ffffff;
+            border-radius: 24px;
+            border: 1px solid #e8eaed;
+            box-shadow: 0 1px 2px 0 rgba(60,64,67,0.1), 0 1px 3px 1px rgba(60,64,67,0.15);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .g-card:hover {
+            box-shadow: 0 1px 3px 0 rgba(60,64,67,0.15), 0 4px 8px 3px rgba(60,64,67,0.15);
+            transform: translateY(-2px);
+        }
+
+        /* 标签药丸 (Pills) */
+        .g-pill {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 6px 16px; border-radius: 999px;
+            font-size: 13px; font-weight: 600; letter-spacing: 0.5px;
+        }
+        .pill-black { background-color: #202124; color: #ffffff; }
+        .pill-green { background-color: #e6f4ea; color: #137333; border: 1px solid #ceead6; }
+        .pill-gray { background-color: #f1f3f4; color: #5f6368; border: 1px solid #e8eaed; }
+
+        /* 垂直引导主线 */
+        .main-axis {
+            position: absolute; left: 50%; top: 0; bottom: 0;
+            width: 2px; background-color: #e8eaed;
+            transform: translateX(-50%); z-index: 0;
+        }
+
+        /* 强调文字色 */
+        .text-google-green { color: #137333; }
+        .bg-google-green { background-color: #188038; }
+
+        /* 平滑滚动条 */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f8f9fa; }
+        ::-webkit-scrollbar-thumb { background: #dadce0; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #bdc1c6; }
+    </style>
+</head>
+<body class="py-16 px-4 md:px-8 relative">
+
+    <div class="main-axis hidden md:block"></div>
+
+    <div class="max-w-5xl mx-auto relative z-10">
+        
+        <div class="text-center mb-20 bg-white/80 backdrop-blur-md py-10 rounded-[2rem] border border-gray-200 shadow-sm relative z-20">
+            <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-emerald-100 text-emerald-700 mb-6">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900 mb-5">
+                Flora Studio 服务蓝图
+            </h1>
+            <p class="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+                破解“无打印机”与“漫长等待”，实行具商业可行性的 <span class="text-google-green font-bold">双轨制并行工作流</span>
+            </p>
+        </div>
+
+        <div class="flex flex-col items-center mb-16 relative">
+            <div class="g-pill pill-black mb-4 z-20">Phase 01</div>
+            <div class="g-card p-8 w-full max-w-lg text-center relative z-10">
+                <h3 class="text-xl font-bold text-gray-900 mb-3">灵感构思 & 软件配置</h3>
+                <p class="text-sm text-gray-600 leading-relaxed">
+                    花艺师确认客户需求，在 Flora Studio 界面中拉动滑块，一键完成机电物理参数的配置
+                </p>
+            </div>
+            <div class="w-0.5 h-16 bg-gray-300 md:hidden"></div> </div>
+
+        <div class="mb-20 relative">
+            <div class="flex justify-center mb-6">
+                <div class="g-pill pill-black z-20">Phase 02 : 智能物理分流 (Dual-Track)</div>
+            </div>
+            
+            <div class="text-center mb-10 bg-white py-3 px-6 rounded-full inline-block mx-auto border border-gray-200 shadow-sm relative left-1/2 -translate-x-1/2 z-10">
+                <span class="text-sm font-semibold text-gray-800">系统判定：门店是否拥有 3D 打印机？</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <div class="g-card p-8 border-t-4 border-t-emerald-500 relative">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-xl font-bold text-gray-900">模式 A：极客自造店</h3>
+                        <div class="g-pill pill-green">面向高端定制</div>
+                    </div>
+                    <ul class="space-y-5">
+                        <li class="flex items-start">
+                            <div class="mt-1 mr-4 w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center shrink-0">
+                                <span class="w-2 h-2 rounded-full bg-gray-400"></span>
+                            </div>
+                            <div>
+                                <strong class="text-gray-900 block mb-1">系统直输</strong>
+                                <p class="text-sm text-gray-600">后台自动解算并输出精准 G-code 文件</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="mt-1 mr-4 w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center shrink-0">
+                                <span class="w-2 h-2 rounded-full bg-gray-400"></span>
+                            </div>
+                            <div>
+                                <strong class="text-gray-900 block mb-1">就地打印</strong>
+                                <p class="text-sm text-gray-600">花店自有设备（如 Bambu Lab）立即响应启动</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="mt-1 mr-4 w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
+                                <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <div>
+                                <strong class="text-gray-900 block mb-1">100% 非标定制</strong>
+                                <p class="text-sm text-gray-600">完全匹配异形花器，实现尺寸与形态的极致自由</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="g-card p-8 border-t-4 border-t-gray-800 relative">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-xl font-bold text-gray-900">模式 B：标品云仓库</h3>
+                        <div class="g-pill pill-gray">面向 95% 普通花店</div>
+                    </div>
+                    
+                    <div class="space-y-5">
+                        <div class="bg-gray-50 p-5 rounded-2xl border border-gray-200">
+                            <strong class="text-gray-900 flex items-center mb-2">
+                                <svg class="w-5 h-5 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                                提前备货 (Stock)
+                            </strong>
+                            <p class="text-sm text-gray-600 leading-relaxed">
+                                Flora Studio 提供高度标准化的“基础套件”（S/M/L 软管、通用底座），花店可一键采购批量标品备用
+                            </p>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-5 rounded-2xl border border-gray-200">
+                            <strong class="text-gray-900 flex items-center mb-2">
+                                <svg class="w-5 h-5 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                智能降级匹配
+                            </strong>
+                            <p class="text-sm text-gray-600 leading-relaxed">
+                                系统停止生成 3D 模型，直接提示花艺师：<span class="text-gray-900 font-semibold bg-white px-1 py-0.5 rounded border shadow-sm">“当前承重 15g，推荐取出 M号标品套件”</span>
+                            </p>
+                        </div>
+
+                        <div class="bg-gray-50 p-5 rounded-2xl border border-gray-200">
+                            <strong class="text-gray-900 flex items-center mb-2">
+                                <svg class="w-5 h-5 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path></svg>
+                                云端同城打 (Cloud Print)
+                            </strong>
+                            <p class="text-sm text-gray-600 leading-relaxed">
+                                遇极特殊非标件，一键发送至同城 3D 打印农场，闪送 1 小时内送达
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="w-0.5 h-16 bg-gray-300 md:hidden mx-auto mt-8"></div> </div>
+
+        <div class="mb-20 relative">
+            
+            <div class="flex justify-center mb-6">
+                <div class="g-pill pill-black z-20">Phase 03 : 45分钟完美并行 (Parallel Workflow)</div>
+            </div>
+
+            <div class="bg-[#f2fcf5] border border-[#c6f0d4] rounded-[2rem] p-6 md:p-12 relative z-10 overflow-hidden">
+                
+                <div class="text-center mb-10">
+                    <p class="text-gray-600 text-sm md:text-base font-medium">
+                        将繁琐的机电生产，完美隐匿于传统花艺制作的时间缝隙中，<strong class="text-google-green text-lg">零额外等待成本</strong>。
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 relative">
+                    
+                    <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm flex flex-col items-center text-center">
+                        <div class="w-14 h-14 rounded-full bg-gray-100 flex items-center justify-center mb-4">
+                            <svg class="w-7 h-7 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        </div>
+                        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">并行轨 1 : 系统 / 机器</h4>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">后台嗡嗡执行 3D 打印</h3>
+                        <p class="text-sm text-gray-500">（或同城骑手正在快马加鞭派送标品）</p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-8 border-2 border-emerald-500 shadow-[0_8px_30px_rgba(16,185,129,0.1)] flex flex-col items-center text-center relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-emerald-500"></div>
+                        <div class="w-14 h-14 rounded-full bg-emerald-50 flex items-center justify-center mb-4">
+                            <svg class="w-7 h-7 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243 4.243 3 3 0 004.243-4.243zm0-5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z"></path></svg>
+                        </div>
+                        <h4 class="text-xs font-bold text-emerald-600 uppercase tracking-widest mb-3">并行轨 2 : 创作者</h4>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">全神贯注于传统插花艺术</h3>
+                        <p class="text-sm text-gray-500">不被打断，从容完成醒花、修剪、打底与静态美学构建</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="w-0.5 h-16 bg-gray-300 md:hidden mx-auto mt-8"></div>
+        </div>
+
+        <div class="flex flex-col items-center mb-16 relative">
+            <div class="g-pill pill-black mb-4 z-20">Phase 04 : 物理交汇 (Assembly)</div>
+            
+            <div class="g-card p-8 w-full max-w-3xl text-center relative z-10 bg-white">
+                <h3 class="text-2xl font-bold text-gray-900 mb-8">最后 2 分钟：极速无损组装</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                        <div class="text-gray-300 font-black text-4xl mb-2">1</div>
+                        <p class="text-sm font-semibold text-gray-800">将智能盒挂靠花器外壁</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                        <div class="text-gray-300 font-black text-4xl mb-2">2</div>
+                        <p class="text-sm font-semibold text-gray-800">隐形花杆深深插入花泥</p>
+                    </div>
+                    <div class="bg-emerald-50 p-6 rounded-2xl border border-emerald-100">
+                        <div class="text-emerald-200 font-black text-4xl mb-2">3</div>
+                        <p class="text-sm font-semibold text-emerald-800">“咔哒”磁吸动态主花材</p>
+                    </div>
+                </div>
+            </div>
+            <div class="w-0.5 h-16 bg-gray-300 md:hidden"></div>
+        </div>
+
+        <div class="flex flex-col items-center relative pb-10">
+            <div class="bg-gray-900 rounded-[2rem] p-10 w-full max-w-md text-center shadow-xl relative z-10 overflow-hidden card-hover">
+                <div class="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 rounded-full bg-emerald-500 blur-3xl opacity-20 pointer-events-none"></div>
+                
+                <div class="g-pill pill-green mb-4 border-none bg-emerald-900 text-emerald-300">Final Phase</div>
+                <h3 class="text-3xl font-black text-white mb-3 tracking-tight">最终交付</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">
+                    将动态花艺作品，无缝且震撼地送达客户手中
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
