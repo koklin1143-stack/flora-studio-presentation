@@ -63,13 +63,13 @@
     }
 
     .nav-inner {
-      width: min(1180px, calc(100% - 40px));
+      width: min(1320px, calc(100% - 32px));
       height: 64px;
       margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      gap: 14px;
     }
 
     .brand {
@@ -79,6 +79,7 @@
       font-weight: 900;
       color: #0f172a;
       font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      flex: 0 0 auto;
     }
 
     .brand-mark {
@@ -95,15 +96,20 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 2px;
       color: #111;
-      font-size: 14px;
+      font-size: clamp(12px, 0.76vw, 14px);
       font-weight: 750;
       font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      white-space: nowrap;
+      overflow-x: auto;
+      scrollbar-width: none;
     }
 
+    .nav-links::-webkit-scrollbar { display: none; }
+
     .nav-links a {
-      padding: 8px 10px;
+      padding: 8px 7px;
       border-radius: 0;
     }
 
@@ -6859,13 +6865,15 @@
     <div class="nav-inner">
       <a class="brand" href="#top"><span class="brand-mark">F</span><span>Flora Studio / CyberBrick</span></a>
       <div class="nav-links">
-        <a href="#inspiration">灵感</a>
-        <a href="#lab-system">系统页</a>
-        <a href="#value">价值</a>
-        <a href="#system">系统</a>
-        <a href="#blueprint">服务蓝图</a>
-        <a href="#collaboration">协作模式</a>
+        <a href="#inspiration">项目缘起</a>
+        <a href="#feedback">用户反馈</a>
+        <a href="#system">项目定位</a>
+        <a href="#why-system">系统逻辑</a>
         <a href="#seraph">六翼案例</a>
+        <a href="#emotional-scenarios">应用场景</a>
+        <a href="#value">价值模型</a>
+        <a href="#lab-system">落地路径</a>
+        <a href="#closing">结语</a>
       </div>
     </div>
   </nav>
@@ -7012,14 +7020,669 @@
 
       <div class="labs-social" aria-label="quick links">
         <a href="#value">价值</a>
-        <a href="#system">系统</a>
-        <a href="#seraph">3D</a>
+        <a href="#why-system">逻辑</a>
+        <a href="#seraph">案例</a>
       </div>
     </div>
   </header>
 
+  <section class="section program-inspiration" id="inspiration">
+    <div class="kicker">01 Inspiration</div>
+    <div class="program-mini-video">
+      <svg viewBox="0 0 220 140" aria-hidden="true">
+        <path d="M34 92 C54 50 86 54 104 88 C124 54 160 50 184 92"/>
+        <path d="M56 82 C74 70 92 70 108 86 M112 86 C128 70 150 70 166 82"/>
+        <path d="M38 100 H182 M70 100 V118 M150 100 V118"/>
+        <circle cx="110" cy="88" r="8" fill="#00ae42" stroke="#111"/>
+      </svg>
+    </div>
+    <div class="program-heading">
+      <h2>INSPIRATION</h2>
+    </div>
+
+    <div class="program-left">
+      <div class="program-claim">
+        <h3>▪ 从想法到落地的阻力</h3>
+        <p>一个动态花艺创意，往往会卡在制作环节</p>
+      </div>
+      <div class="program-card-grid">
+        <div class="program-card">
+          <span class="num">01</span>
+          <svg viewBox="0 0 180 150" aria-hidden="true">
+            <path d="M46 104 L90 128 L134 104 L90 80 Z"/>
+            <path d="M46 80 L90 104 L134 80 L90 56 Z"/>
+            <path d="M46 80 V104 M134 80 V104 M90 104 V128" fill="none"/>
+            <path d="M66 72 L90 85 L114 72 M66 96 L90 109 L114 96" fill="none" opacity=".65"/>
+            <circle cx="90" cy="84" r="7" fill="#00ae42"/>
+          </svg>
+          <h4>试错成本高</h4>
+        </div>
+        <div class="program-card">
+          <span class="num">02</span>
+          <svg viewBox="0 0 180 150" aria-hidden="true">
+            <rect x="62" y="78" width="56" height="44" rx="10"/>
+            <path d="M90 78 V38 M74 50 H106 M58 98 H42 M122 98 H138" fill="none"/>
+            <circle cx="90" cy="38" r="20"/>
+            <path d="M78 38 H102 M90 26 V50 M70 98 H110" fill="none" opacity=".65"/>
+            <circle cx="90" cy="78" r="7" fill="#00ae42"/>
+          </svg>
+          <h4>机电隐藏难</h4>
+        </div>
+      </div>
+      <div class="program-nav"><span>‹</span><span>›</span><i></i></div>
+    </div>
+
+    <div class="program-machine" aria-hidden="true">
+      <span class="machine-frame"></span>
+      <video src="assets/inspiration.mp4" muted playsinline autoplay loop></video>
+      <span class="video-core-mark"></span>
+    </div>
+
+    <div class="program-right">
+      <div class="program-right-head">
+        <h3>▪ 为什么需要系统化工具</h3>
+        <div class="sub">不再让花艺师独自承担机电试错</div>
+      </div>
+      <div class="program-right-body">
+        <p>正常做法会把花艺师拖进结构、电机、控制、供电和隐藏问题里。Flora Studio 要把这些重试错前置成预览、套件和模板</p>
+      </div>
+      <a class="program-cta" href="#feedback">查看真实反馈</a>
+    </div>
+  </section>
+
+  <section class="section portfolio-feedback" id="feedback">
+    <div class="kicker">02 User Feedback</div>
+
+    <div class="portfolio-title-panel">
+      <p>▪ 真实评论证据</p>
+      <h2><span>USER</span><span>VOICE</span></h2>
+      <div class="cn-note">来自仿生翅膀评论区的真实反馈：大家不是没有兴趣，而是担心动作控制、尺寸适配、价格和交付复杂度。</div>
+    </div>
+
+    <div class="portfolio-network" aria-hidden="true">
+      <svg viewBox="0 0 980 620" role="img" aria-label="animated floral wing motion system white model">
+        <defs>
+          <linearGradient id="floralTube" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#ffffff" stop-opacity=".72"/>
+            <stop offset=".48" stop-color="#eeeeec" stop-opacity=".42"/>
+            <stop offset="1" stop-color="#bdbdb9" stop-opacity=".32"/>
+          </linearGradient>
+          <radialGradient id="orangeCore" cx="42%" cy="40%" r="70%">
+            <stop offset="0" stop-color="#b8f7c9"/>
+            <stop offset=".42" stop-color="#00ae42"/>
+            <stop offset="1" stop-color="#f04b18"/>
+          </radialGradient>
+          <filter id="portfolioBlur" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="1.8"/>
+            <feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#000" flood-opacity=".12"/>
+          </filter>
+          <filter id="fineModelShadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="20" stdDeviation="12" flood-color="#000" flood-opacity=".10"/>
+          </filter>
+        </defs>
+
+        <g class="servo-stem" filter="url(#portfolioBlur)">
+          <path d="M492 292 C486 360 496 426 490 512" fill="none" stroke="url(#floralTube)" stroke-width="28" stroke-linecap="round"/>
+          <path d="M342 502 H638" fill="none" stroke="url(#floralTube)" stroke-width="28" stroke-linecap="round"/>
+        </g>
+
+        <g class="floral-wing-left" filter="url(#fineModelShadow)" opacity=".94">
+          <path d="M492 318 C382 190 226 166 102 246 C230 320 356 354 492 318 Z" fill="#f8f8f6" stroke="#c8c8c4"/>
+          <path d="M456 320 C340 254 216 246 112 278" fill="none" stroke="#dededa" stroke-width="7" stroke-linecap="round"/>
+          <path d="M414 310 C330 226 238 200 150 226" fill="none" stroke="#d9d9d5" stroke-width="5" stroke-linecap="round"/>
+          <path d="M354 294 C278 246 218 240 162 254" fill="none" stroke="#d3d3cf" stroke-width="4" stroke-linecap="round"/>
+          <path class="motion-arc" d="M118 214 C246 128 388 178 492 318" fill="none" stroke="#00ae42" stroke-opacity=".28" stroke-width="2"/>
+        </g>
+
+        <g class="floral-wing-right" filter="url(#fineModelShadow)" opacity=".94">
+          <path d="M488 318 C598 190 754 166 878 246 C750 320 624 354 488 318 Z" fill="#f8f8f6" stroke="#c8c8c4"/>
+          <path d="M524 320 C640 254 764 246 868 278" fill="none" stroke="#dededa" stroke-width="7" stroke-linecap="round"/>
+          <path d="M566 310 C650 226 742 200 830 226" fill="none" stroke="#d9d9d5" stroke-width="5" stroke-linecap="round"/>
+          <path d="M626 294 C702 246 762 240 818 254" fill="none" stroke="#d3d3cf" stroke-width="4" stroke-linecap="round"/>
+          <path class="motion-arc" d="M862 214 C734 128 592 178 488 318" fill="none" stroke="#00ae42" stroke-opacity=".28" stroke-width="2"/>
+        </g>
+
+        <g class="floral-wing-low-left" filter="url(#fineModelShadow)" opacity=".9">
+          <path d="M496 354 C382 300 276 310 190 392 C316 430 416 416 496 354 Z" fill="#f2f2f0" stroke="#c8c8c4"/>
+          <path d="M452 354 C354 338 274 356 208 402" fill="none" stroke="#d9d9d5" stroke-width="6" stroke-linecap="round"/>
+          <path d="M398 366 C324 366 270 380 226 408" fill="none" stroke="#d3d3cf" stroke-width="4" stroke-linecap="round"/>
+        </g>
+
+        <g class="floral-wing-low-right" filter="url(#fineModelShadow)" opacity=".9">
+          <path d="M484 354 C598 300 704 310 790 392 C664 430 564 416 484 354 Z" fill="#f2f2f0" stroke="#c8c8c4"/>
+          <path d="M528 354 C626 338 706 356 772 402" fill="none" stroke="#d9d9d5" stroke-width="6" stroke-linecap="round"/>
+          <path d="M582 366 C656 366 710 380 754 408" fill="none" stroke="#d3d3cf" stroke-width="4" stroke-linecap="round"/>
+        </g>
+
+        <g class="petal-shell" filter="url(#fineModelShadow)">
+          <ellipse cx="490" cy="324" rx="82" ry="52" fill="#f7f7f5" stroke="#c7c7c3"/>
+          <ellipse cx="444" cy="326" rx="34" ry="50" fill="#f3f3f1" stroke="#d0d0cc" transform="rotate(-28 444 326)"/>
+          <ellipse cx="536" cy="326" rx="34" ry="50" fill="#f3f3f1" stroke="#d0d0cc" transform="rotate(28 536 326)"/>
+          <ellipse cx="490" cy="290" rx="32" ry="52" fill="#f9f9f7" stroke="#d0d0cc"/>
+          <ellipse cx="490" cy="358" rx="38" ry="45" fill="#f0f0ee" stroke="#d0d0cc"/>
+        </g>
+
+        <g filter="url(#fineModelShadow)">
+          <rect x="430" y="454" width="120" height="96" rx="28" fill="#f7f7f5" stroke="#c7c7c3"/>
+          <rect x="456" y="478" width="68" height="48" rx="12" fill="#e6e6e2" stroke="#c4c4c0"/>
+          <path d="M456 494 H524 M456 510 H524 M474 478 V526 M506 478 V526" stroke="#b8b8b4" stroke-opacity=".42"/>
+          <rect x="350" y="522" width="280" height="56" rx="18" fill="#f7f7f5" stroke="#c7c7c3"/>
+          <path d="M388 548 H592" stroke="#c4c4c0"/>
+        </g>
+
+        <circle class="drive-core" cx="490" cy="340" r="24" fill="url(#orangeCore)"/>
+        <circle class="orange-node" cx="342" cy="502" r="13" fill="url(#orangeCore)"/>
+        <circle class="orange-node" cx="638" cy="502" r="13" fill="url(#orangeCore)"/>
+        <circle cx="476" cy="502" r="8" fill="#fff"/>
+        <circle cx="506" cy="502" r="8" fill="#fff"/>
+      </svg>
+    </div>
+
+    <div class="portfolio-count">
+      <span>评论样本</span>
+      <strong>65</strong>
+      <p>仿生翅膀原型反馈</p>
+    </div>
+
+    <div class="portfolio-cards evidence-layout">
+      <article class="portfolio-card">
+        <div class="portfolio-tab">评论截图</div>
+        <div class="portfolio-shot"><img class="zoomable" src="assets/wing-comment-1.jpg" alt="仿生翅膀评论截图一"></div>
+        <div class="portfolio-metrics">
+          <div class="portfolio-metric"><strong>复杂</strong><span>电机控制</span></div>
+          <div class="portfolio-metric"><strong>三对</strong><span>翅膀摆动</span></div>
+          <div class="portfolio-arrow">➜</div>
+        </div>
+      </article>
+      <article class="portfolio-card">
+        <div class="portfolio-tab">评论截图</div>
+        <div class="portfolio-shot"><img class="zoomable" src="assets/wing-comment-2.jpg" alt="仿生翅膀评论截图二"></div>
+        <div class="portfolio-metrics">
+          <div class="portfolio-metric"><strong>单调</strong><span>运动语言</span></div>
+          <div class="portfolio-metric"><strong>价格</strong><span>交付门槛</span></div>
+          <div class="portfolio-arrow">➜</div>
+        </div>
+      </article>
+      <article class="portfolio-card">
+        <div class="portfolio-tab">洞察</div>
+        <div class="portfolio-card-body">
+          <h3>动作不是“能动”</h3>
+          <p>用户能感受到挥舞是否刻意。动态花艺要解决的是动作语言，不只是把电机装进去</p>
+        </div>
+        <div class="portfolio-metrics">
+          <div class="portfolio-metric"><strong>节奏</strong><span>呼吸/开合</span></div>
+          <div class="portfolio-metric"><strong>层次</strong><span>多轴控制</span></div>
+          <div class="portfolio-arrow">➜</div>
+        </div>
+      </article>
+      <article class="portfolio-card">
+        <div class="portfolio-tab">洞察</div>
+        <div class="portfolio-card-body">
+          <h3>需求存在，但落地太重</h3>
+          <p>尺寸、价格、购买方式和结构适配都在阻碍采用。系统化套件把重工程变成可复制流程</p>
+        </div>
+        <div class="portfolio-metrics">
+          <div class="portfolio-metric"><strong>尺寸</strong><span>花束适配</span></div>
+          <div class="portfolio-metric"><strong>流程</strong><span>可交付</span></div>
+          <div class="portfolio-arrow">➜</div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="system">
+    <div class="kicker">03 Positioning</div>
+    <h2>项目定位：面向花艺师的动态花艺创作工具系统</h2>
+    <div class="grid-2">
+      <div class="card green">
+        <h3>CyberBrick 可以理解为动态花艺的“数字花泥”</h3>
+        <p class="muted" style="margin-top:16px;">传统花泥负责固定花材；CyberBrick 负责给花艺作品加入动作和生命感。它不是单独被炫耀的机器，而是嵌入花艺流程、服务花艺表达的工具</p>
+      </div>
+      <div class="card">
+        <h3>表达边界</h3>
+        <div class="bullet-list">
+          <div class="bullet"><span class="dot">×</span><span>不要讲成纯硬件产品</span></div>
+          <div class="bullet"><span class="dot">×</span><span>不要讲成纯软件平台</span></div>
+          <div class="bullet"><span class="dot">×</span><span>不要强调零成本、零库存、工业级仿真或平台变现</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section why-system-faq" id="why-system">
+    <div class="kicker">04 Why System</div>
+    <div class="faq-hero">
+      <div class="faq-title-block">
+        <h2>为什么要做成系统，而不是单个动态装置？</h2>
+      </div>
+      <div class="faq-model-tile" aria-hidden="true">
+        <div class="faq-model-object">
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+          <div class="faq-model-core"></div>
+        </div>
+      </div>
+      <div class="faq-subcopy">
+        <b>把一次惊喜，变成可复用的创作能力</b>
+        <span>系统化不是把花艺变工业，而是把最容易卡住的结构、动作和验证前置，让花艺师更敢创作</span>
+      </div>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary><span class="faq-index">01</span><span>为什么不能只做一个动态装置？</span><span class="faq-toggle" aria-hidden="true"></span></summary>
+        <div class="faq-answer"><p>单个装置每次都要重新匹配结构、电机、控制和花材，试错成本会压到花艺师身上，创意越复杂，执行风险越高</p></div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="faq-index">02</span><span>系统化后，真正被标准化的是什么？</span><span class="faq-toggle" aria-hidden="true"></span></summary>
+        <div class="faq-answer"><p>被标准化的不是花艺风格，而是隐藏机电、连接方式、动作参数、磁吸结构和预览流程，作品仍然可以保持手工创作的差异</p></div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="faq-index">03</span><span>花艺师拿到的是机器，还是创作工具？</span><span class="faq-toggle" aria-hidden="true"></span></summary>
+        <div class="faq-answer"><p>花艺师拿到的是一套可装配、可预览、可调整的动态花艺工具，机器退到背后，前台呈现的是花材、情绪和场景表达</p></div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="faq-index">04</span><span>为什么要把动作判断前置到预览阶段？</span><span class="faq-toggle" aria-hidden="true"></span></summary>
+        <div class="faq-answer"><p>因为动态是否自然、幅度是否合适、节奏是否贴合场景，往往做完才知道。预览可以在消耗真实花材前先筛掉不合适的方案</p></div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="faq-index">05</span><span>系统化会不会限制花艺师的创作？</span><span class="faq-toggle" aria-hidden="true"></span></summary>
+        <div class="faq-answer"><p>相反，它把复杂机电拆成可控模块，让花艺师把注意力放回造型、情绪和场景，而不是被线路、供电和结构稳定性拖住</p></div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="faq-index">06</span><span>最终沉淀下来的价值是什么？</span><span class="faq-toggle" aria-hidden="true"></span></summary>
+        <div class="faq-answer"><p>一次作品可以沉淀成模板、案例、动作参数和交付流程，下一次不再从零开始，创作经验也能被复制和协作</p></div>
+      </details>
+    </div>
+  </section>
+
+  <section class="dark-section" id="seraph">
+    <div class="seraph-section">
+      <div id="webgl-container"></div>
+      <div id="ui-layer">
+        <div class="glass-panel">
+          <div style="margin-bottom:28px;">
+            <div class="kicker dark">05 Seraph Case</div>
+            <h2>机电隐形构造范例</h2>
+            <p>彻底隐匿工业痕迹。用鼠标拖拽 360° 检视六翼天使装置是如何无损嫁接于花艺之中的</p>
+          </div>
+
+          <div class="step-item active" id="step-1" onclick="focusOn(1)">
+            <div class="step-number">1</div>
+            <div class="step-title">干湿分离控制环外挂智能盒 (Smart Box)</div>
+            <div class="step-desc">像个小背包一样卡在花瓶外侧背面，碰不到水。深空灰外壳在正面完全隐形。</div>
+          </div>
+
+          <div class="step-item" id="step-2" onclick="focusOn(2)">
+            <div class="step-number">2</div>
+            <div class="step-title">AMS 隐形仿生花杆 (Flexi-Stem)</div>
+            <div class="step-desc">特制仿生绿质感。像植物真茎一样可以随意弯曲、裁剪，带着电线隐匿于花丛最深处。</div>
+          </div>
+
+          <div class="step-item" id="step-3" onclick="focusOn(3)">
+            <div class="step-number">3</div>
+            <div class="step-title">磁吸秒拆六翼翅膀 (Magic Snap)</div>
+            <div class="step-desc">“咔哒”一下，庞大的装饰翅膀就能精准吸附在马达上，拔下来也绝不伤花。</div>
+          </div>
+        </div>
+      </div>
+      <div class="interaction-hint">DRAG TO ROTATE & ZOOM 3D SPACE</div>
+    </div>
+  </section>
+
+  <section class="section emotion-review" id="emotional-scenarios">
+    <div class="kicker">06 Emotional Scenarios</div>
+    <div class="emotion-title">
+      <h2>情绪场景</h2>
+    </div>
+    <div class="emotion-copy">
+      <p>▪ 让动作成为花艺的情绪语言</p>
+      <div class="emotion-preview" aria-hidden="true">
+        <svg viewBox="0 0 120 120">
+          <path class="mini-stem" d="M60 92 C60 74 60 58 60 38" stroke="#f4f4f2" stroke-width="5" stroke-linecap="round"/>
+          <g class="mini-wing-left">
+            <path d="M58 48 C38 30 18 32 12 52 C28 45 42 48 58 58 Z" fill="#f7f7f5" opacity=".94"/>
+            <path d="M58 60 C36 52 20 60 15 80 C31 69 45 70 59 66 Z" fill="#eeeeec" opacity=".88"/>
+          </g>
+          <g class="mini-wing-right">
+            <path d="M62 48 C82 30 102 32 108 52 C92 45 78 48 62 58 Z" fill="#f7f7f5" opacity=".94"/>
+            <path d="M62 60 C84 52 100 60 105 80 C89 69 75 70 61 66 Z" fill="#eeeeec" opacity=".88"/>
+          </g>
+          <circle class="mini-core" cx="60" cy="60" r="8" fill="#00ae42"/>
+          <path d="M47 72 C55 80 66 80 74 72" stroke="#f7f7f5" stroke-width="4" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="emotion-cards">
+      <article class="emotion-card">
+        <div class="emotion-card-main">
+          <div class="emotion-persona">
+            <div class="emotion-avatar" aria-hidden="true">
+              <svg viewBox="0 0 100 100">
+                <path d="M20 62 C30 36 70 36 80 62"/>
+                <path d="M30 62 C42 48 58 48 70 62"/>
+                <circle class="accent" cx="50" cy="62" r="7"/>
+                <path d="M34 72 H66"/>
+              </svg>
+            </div>
+            <div><h3>婚礼仪式</h3><span>Wedding Ritual</span></div>
+          </div>
+          <p>缓慢开合的翅膀或花瓣，让主桌、入场区和誓言瞬间多一层仪式感。动作不抢戏，而是强化“被见证”的庄重情绪</p>
+          <div class="emotion-motion">
+            <div><strong>Slow</strong><span>缓慢开合</span></div>
+            <div><strong>Sacred</strong><span>仪式氛围</span></div>
+          </div>
+        </div>
+        <div class="emotion-side">01</div>
+      </article>
+
+      <article class="emotion-card">
+        <div class="emotion-card-main">
+          <div class="emotion-persona">
+            <div class="emotion-avatar" aria-hidden="true">
+              <svg viewBox="0 0 100 100">
+                <rect x="20" y="22" width="60" height="54"/>
+                <path d="M28 62 C42 46 58 46 72 62"/>
+                <path d="M34 54 L50 38 L66 54"/>
+                <circle class="accent" cx="50" cy="54" r="7"/>
+              </svg>
+            </div>
+            <div><h3>橱窗陈列</h3><span>Retail Window</span></div>
+          </div>
+          <p>大幅摇曳、周期展开和灯光联动，适合远距离吸引路人停留。动态花艺在橱窗里承担“第一眼注意力”的角色</p>
+          <div class="emotion-motion">
+            <div><strong>Wave</strong><span>大幅摇曳</span></div>
+            <div><strong>Stop</strong><span>吸引驻足</span></div>
+          </div>
+        </div>
+        <div class="emotion-side">02</div>
+      </article>
+
+      <article class="emotion-card">
+        <div class="emotion-card-main">
+          <div class="emotion-persona">
+            <div class="emotion-avatar" aria-hidden="true">
+              <svg viewBox="0 0 100 100">
+                <path d="M24 64 H76 V80 H24 Z"/>
+                <path d="M30 64 C30 45 70 45 70 64"/>
+                <path d="M50 26 V44"/>
+                <circle class="accent" cx="50" cy="22" r="7"/>
+                <path d="M40 36 H60"/>
+              </svg>
+            </div>
+            <div><h3>生日礼物</h3><span>Birthday Gift</span></div>
+          </div>
+          <p>轻轻呼吸、微微点头，像收到礼物后的持续回应。它不是一次性的惊喜，而是可以放在身边的陪伴感</p>
+          <div class="emotion-motion">
+            <div><strong>Breath</strong><span>轻轻呼吸</span></div>
+            <div><strong>Companion</strong><span>陪伴惊喜</span></div>
+          </div>
+        </div>
+        <div class="emotion-side">03</div>
+      </article>
+
+      <article class="emotion-card">
+        <div class="emotion-card-main">
+          <div class="emotion-persona">
+            <div class="emotion-avatar" aria-hidden="true">
+              <svg viewBox="0 0 100 100">
+                <path d="M32 40 C24 22 46 22 48 42"/>
+                <path d="M68 40 C76 22 54 22 52 42"/>
+                <path d="M26 60 C26 42 74 42 74 60 C74 80 26 80 26 60 Z"/>
+                <circle cx="42" cy="58" r="3" fill="#111"/>
+                <circle cx="58" cy="58" r="3" fill="#111"/>
+                <circle class="accent" cx="50" cy="66" r="5"/>
+              </svg>
+            </div>
+            <div><h3>宠物拟真花礼</h3><span>Pet Floral Object</span></div>
+          </div>
+          <p>把花卉做成宠物形象，再加入耳朵轻动、身体呼吸的细节。适合生日、纪念和疗愈礼物，让花变成有表情的对象</p>
+          <div class="emotion-motion">
+            <div><strong>Alive</strong><span>拟真生命感</span></div>
+            <div><strong>Healing</strong><span>疗愈记忆</span></div>
+          </div>
+        </div>
+        <div class="emotion-side">04</div>
+      </article>
+
+      <article class="emotion-card">
+        <div class="emotion-card-main">
+          <div class="emotion-persona">
+            <div class="emotion-avatar" aria-hidden="true">
+              <svg viewBox="0 0 100 100">
+                <circle cx="28" cy="52" r="9"/>
+                <circle cx="50" cy="35" r="9"/>
+                <circle cx="72" cy="52" r="9"/>
+                <circle class="accent" cx="50" cy="64" r="8"/>
+                <path d="M36 50 L44 39 M56 39 L64 50 M50 44 V56"/>
+              </svg>
+            </div>
+            <div><h3>展览装置</h3><span>Installation</span></div>
+          </div>
+          <p>多组动态模块协同开合、错位呼吸，形成可远观也可近看的节奏。它把花艺从商品变成空间里的动态叙事</p>
+          <div class="emotion-motion">
+            <div><strong>Sync</strong><span>多组联动</span></div>
+            <div><strong>Art</strong><span>艺术表达</span></div>
+          </div>
+        </div>
+        <div class="emotion-side">05</div>
+      </article>
+
+      <article class="emotion-card">
+        <div class="emotion-card-main">
+          <div class="emotion-persona">
+            <div class="emotion-avatar" aria-hidden="true">
+              <svg viewBox="0 0 100 100">
+                <path d="M50 22 C66 38 74 50 74 64 C74 78 62 84 50 84 C38 84 26 78 26 64 C26 50 34 38 50 22 Z"/>
+                <circle class="accent" cx="50" cy="58" r="7"/>
+                <path d="M38 70 C45 76 55 76 62 70"/>
+              </svg>
+            </div>
+            <div><h3>纪念场景</h3><span>Memorial Moment</span></div>
+          </div>
+          <p>低频、安静、克制的动态，适合纪念、告别和长期陪伴。这里的动作越轻，情绪越有余韵</p>
+          <div class="emotion-motion">
+            <div><strong>Quiet</strong><span>低频克制</span></div>
+            <div><strong>Memory</strong><span>情感寄托</span></div>
+          </div>
+        </div>
+        <div class="emotion-side">06</div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section value-review" id="value">
+    <div class="kicker">07 Value Stack</div>
+    <div class="value-review-title">
+      <h2>VALUE STACK</h2>
+    </div>
+    <div class="value-review-copy">
+      <p>▪ Don't take a single function for the whole product value</p>
+      <div class="value-preview" aria-hidden="true">
+        <svg viewBox="0 0 120 120">
+          <defs>
+            <linearGradient id="valueWhite" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#ffffff"/>
+              <stop offset="1" stop-color="#bdbdb9"/>
+            </linearGradient>
+          </defs>
+          <g fill="url(#valueWhite)" stroke="#d8d8d4" stroke-width="1.2">
+            <rect x="49" y="12" width="22" height="96" rx="11" transform="rotate(0 60 60)"/>
+            <rect x="49" y="12" width="22" height="96" rx="11" transform="rotate(60 60 60)"/>
+            <rect x="49" y="12" width="22" height="96" rx="11" transform="rotate(120 60 60)"/>
+            <circle cx="60" cy="60" r="16" fill="#f3f3f1"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <div class="value-review-cards">
+      <article class="value-testimonial">
+        <div class="value-testimonial-main">
+          <div class="value-persona">
+            <div class="value-avatar" aria-hidden="true">
+              <svg viewBox="0 0 100 100">
+                <rect x="26" y="38" width="48" height="34" rx="8"/>
+                <path d="M34 38 V28 H66 V38 M38 52 H62 M42 62 H58" fill="none"/>
+                <circle cx="34" cy="52" r="3"/>
+                <circle cx="66" cy="52" r="3"/>
+              </svg>
+            </div>
+            <div><h3>功能价值</h3><span>Functional Value</span></div>
+          </div>
+          <blockquote>CyberBrick 把动力盒、连接套件、动作预览整合进花艺流程，让花艺师不用从零研究机电结构</blockquote>
+          <div class="value-testimonial-metric">
+            <div><strong>Kit</strong><span>可装配套件</span></div>
+            <div><strong>Preview</strong><span>前置预览</span></div>
+          </div>
+        </div>
+        <div class="value-x-panel">X</div>
+      </article>
+
+      <article class="value-testimonial">
+        <div class="value-testimonial-main">
+          <div class="value-persona">
+            <div class="value-avatar" aria-hidden="true">
+              <svg viewBox="0 0 100 100">
+                <path d="M50 28 C34 18 20 30 24 48 C28 68 50 78 50 78 C50 78 72 68 76 48 C80 30 66 18 50 28 Z"/>
+                <path d="M34 48 C42 44 46 44 50 50 C54 44 58 44 66 48" fill="none"/>
+                <circle cx="50" cy="50" r="5" fill="#00ae42" stroke="#111"/>
+              </svg>
+            </div>
+            <div><h3>情绪价值</h3><span>Emotional Value</span></div>
+          </div>
+          <blockquote>呼吸、颤动、摇曳、开合，让作品从“好看”变成“有生命感”，承载惊喜、治愈和陪伴</blockquote>
+          <div class="value-testimonial-metric">
+            <div><strong>Life</strong><span>生命感</span></div>
+            <div><strong>Joy</strong><span>惊喜陪伴</span></div>
+          </div>
+        </div>
+        <div class="value-x-panel">X</div>
+      </article>
+
+      <article class="value-testimonial">
+        <div class="value-testimonial-main">
+          <div class="value-persona">
+            <div class="value-avatar" aria-hidden="true">
+              <svg viewBox="0 0 100 100">
+                <path d="M24 62 L50 76 L76 62 L50 48 Z"/>
+                <path d="M24 48 L50 62 L76 48 L50 34 Z"/>
+                <path d="M24 34 L50 48 L76 34 L50 20 Z"/>
+                <path d="M24 48 V62 M76 48 V62 M50 62 V76" fill="none"/>
+              </svg>
+            </div>
+            <div><h3>资产价值</h3><span>Asset Value</span></div>
+          </div>
+          <blockquote>模板库、标准接口和案例经验，让花店不是每次重新试错，而是持续沉淀动态花艺能力</blockquote>
+          <div class="value-testimonial-metric">
+            <div><strong>Library</strong><span>模板库</span></div>
+            <div><strong>Repeat</strong><span>可复用</span></div>
+          </div>
+        </div>
+        <div class="value-x-panel">X</div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section evidence-value-bridge" aria-label="从用户反馈过渡到价值组合">
+    <div class="bridge-copy">
+      <span>▪ 08 Landing Transition</span>
+      <h2>把“想做”<em>变成可交付</em></h2>
+      <p>用户已经被动态花艺吸引；花艺师需要的是低试错、可预览、可装配的系统</p>
+    </div>
+    <div class="bridge-model" aria-hidden="true">
+      <canvas class="bridge-model-canvas" id="bridge-model-3d"></canvas>
+      <svg viewBox="0 0 620 380">
+        <defs>
+          <linearGradient id="bridgeWhite" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#fff"/>
+            <stop offset=".48" stop-color="#eeeeeb"/>
+            <stop offset="1" stop-color="#bebeba"/>
+          </linearGradient>
+          <linearGradient id="bridgeGlass" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#ffffff" stop-opacity=".92"/>
+            <stop offset="1" stop-color="#d9d9d5" stop-opacity=".48"/>
+          </linearGradient>
+          <linearGradient id="bridgeBasket" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#f2eadb"/>
+            <stop offset="1" stop-color="#b9ad97"/>
+          </linearGradient>
+          <radialGradient id="bridgeCoreGradient" cx="45%" cy="42%" r="70%">
+            <stop offset="0" stop-color="#ffffff"/>
+            <stop offset=".56" stop-color="#d8d8d4"/>
+            <stop offset="1" stop-color="#a8a8a2"/>
+          </radialGradient>
+        </defs>
+        <path class="bridge-path" d="M72 284 C160 214 242 206 310 218 C384 232 452 174 542 82" fill="none" stroke="#b8b8b2" stroke-opacity=".55" stroke-width="2.8"/>
+
+        <g class="bridge-wing-left" fill="url(#bridgeWhite)" stroke="#aaa9a4" stroke-width="1.1">
+          <path d="M300 158 C244 92 156 78 94 124 C178 120 238 144 304 182 Z"/>
+          <path d="M286 174 C222 140 152 150 96 204 C180 180 232 184 294 204 Z" opacity=".92"/>
+          <path d="M286 195 C232 190 174 214 130 260 C198 232 242 224 300 222 Z" opacity=".82"/>
+          <path d="M124 128 C156 126 188 136 224 156 M106 158 C152 154 198 166 252 188 M128 208 C176 194 222 200 276 212" fill="none" stroke="#d7d7d3" stroke-width="2.1"/>
+        </g>
+
+        <g class="bridge-wing-right" fill="url(#bridgeWhite)" stroke="#aaa9a4" stroke-width="1.1">
+          <path d="M320 158 C376 92 464 78 526 124 C442 120 382 144 316 182 Z"/>
+          <path d="M334 174 C398 140 468 150 524 204 C440 180 388 184 326 204 Z" opacity=".92"/>
+          <path d="M334 195 C388 190 446 214 490 260 C422 232 378 224 320 222 Z" opacity=".82"/>
+          <path d="M496 128 C464 126 432 136 396 156 M514 158 C468 154 422 166 368 188 M492 208 C444 194 398 200 344 212" fill="none" stroke="#d7d7d3" stroke-width="2.1"/>
+        </g>
+
+        <g class="bridge-stem" fill="none" stroke-linecap="round">
+          <path d="M310 254 C306 222 302 192 310 154" stroke="#ececea" stroke-width="13" opacity=".72"/>
+          <path class="bridge-hidden-wire" d="M304 256 C302 224 300 194 310 154" stroke="#9f9f98" stroke-width="3" stroke-opacity=".62"/>
+        </g>
+
+        <g fill="url(#bridgeWhite)" stroke="#9f9f9b" stroke-width="1.2">
+          <rect x="285" y="132" width="50" height="34" rx="13"/>
+          <ellipse cx="310" cy="132" rx="24" ry="7" fill="#f9f9f7"/>
+          <rect x="293" y="116" width="34" height="22" rx="8" fill="#d9d9d5"/>
+          <circle class="bridge-core" cx="310" cy="148" r="10" fill="url(#bridgeCoreGradient)"/>
+        </g>
+
+        <g class="bridge-bouquet">
+          <path d="M220 284 C228 230 392 230 402 284 C384 318 240 318 220 284 Z" fill="url(#bridgeGlass)" stroke="#c7c7c2" stroke-width="1.2"/>
+          <g fill="#fff" stroke="#d7d7d2" stroke-width="1">
+            <circle cx="246" cy="244" r="22"/>
+            <circle cx="276" cy="230" r="25"/>
+            <circle cx="312" cy="234" r="27"/>
+            <circle cx="348" cy="232" r="24"/>
+            <circle cx="376" cy="250" r="21"/>
+            <circle cx="294" cy="260" r="24"/>
+            <circle cx="334" cy="263" r="24"/>
+          </g>
+          <g fill="#e8e8e4" stroke="#b9b9b3" stroke-width=".9" opacity=".9">
+            <circle cx="268" cy="250" r="10"/>
+            <circle cx="304" cy="222" r="9"/>
+            <circle cx="354" cy="250" r="10"/>
+            <circle cx="324" cy="276" r="8"/>
+          </g>
+          <circle class="bridge-core" cx="310" cy="252" r="15" fill="url(#bridgeCoreGradient)" opacity=".9"/>
+        </g>
+
+        <g fill="url(#bridgeBasket)" stroke="#9f927c" stroke-width="1.2">
+          <path d="M252 290 H368 L350 350 H270 Z"/>
+          <path d="M262 305 H358 M258 320 H362 M266 335 H354" fill="none"/>
+          <path d="M270 294 C290 310 330 310 350 294 M270 318 C294 330 326 330 350 318" fill="none" opacity=".55"/>
+        </g>
+
+        <g class="bridge-smartbox" fill="url(#bridgeWhite)" stroke="#9f9f9b" stroke-width="1.2">
+          <rect x="96" y="270" width="92" height="58" rx="18"/>
+          <rect x="118" y="284" width="50" height="25" rx="8" fill="#111"/>
+          <path d="M118 296 H168 M135 284 V309 M152 284 V309" stroke="#fff" stroke-opacity=".13"/>
+          <circle cx="136" cy="296" r="5.6" fill="#fff"/>
+          <circle cx="153" cy="296" r="5.6" fill="#fff"/>
+          <circle class="bridge-core" cx="188" cy="284" r="9" fill="url(#bridgeCoreGradient)"/>
+        </g>
+
+        <path class="bridge-hidden-wire" d="M188 284 C226 270 254 258 304 256" fill="none" stroke="#a8a8a2" stroke-width="2.6" stroke-opacity=".62"/>
+        <circle class="bridge-core" cx="96" cy="300" r="9" fill="url(#bridgeCoreGradient)"/>
+      </svg>
+    </div>
+  </section>
+
   <section class="section labs-second" id="lab-system">
-    <div class="kicker">02 System Transition</div>
+    <div class="kicker">08 Landing Simulation</div>
     <h2 class="labs-second-title">从一个想法，到可落地的动态花艺系统</h2>
     <div class="labs-second-copy">
       <p>Flora Studio 把花艺师脑中的动态构想，转译成可预览、可装配、可复用的创作系统，让复杂机电不再阻碍表达</p>
@@ -7203,584 +7866,8 @@
     </div>
   </section>
 
-  <section class="section program-inspiration" id="inspiration">
-    <div class="kicker">01 Inspiration</div>
-    <div class="program-mini-video">
-      <svg viewBox="0 0 220 140" aria-hidden="true">
-        <path d="M34 92 C54 50 86 54 104 88 C124 54 160 50 184 92"/>
-        <path d="M56 82 C74 70 92 70 108 86 M112 86 C128 70 150 70 166 82"/>
-        <path d="M38 100 H182 M70 100 V118 M150 100 V118"/>
-        <circle cx="110" cy="88" r="8" fill="#00ae42" stroke="#111"/>
-      </svg>
-    </div>
-    <div class="program-heading">
-      <h2>INSPIRATION</h2>
-    </div>
-
-    <div class="program-left">
-      <div class="program-claim">
-        <h3>▪ 从想法到落地的阻力</h3>
-        <p>一个动态花艺创意，往往会卡在制作环节</p>
-      </div>
-      <div class="program-card-grid">
-        <div class="program-card">
-          <span class="num">01</span>
-          <svg viewBox="0 0 180 150" aria-hidden="true">
-            <path d="M46 104 L90 128 L134 104 L90 80 Z"/>
-            <path d="M46 80 L90 104 L134 80 L90 56 Z"/>
-            <path d="M46 80 V104 M134 80 V104 M90 104 V128" fill="none"/>
-            <path d="M66 72 L90 85 L114 72 M66 96 L90 109 L114 96" fill="none" opacity=".65"/>
-            <circle cx="90" cy="84" r="7" fill="#00ae42"/>
-          </svg>
-          <h4>试错成本高</h4>
-        </div>
-        <div class="program-card">
-          <span class="num">02</span>
-          <svg viewBox="0 0 180 150" aria-hidden="true">
-            <rect x="62" y="78" width="56" height="44" rx="10"/>
-            <path d="M90 78 V38 M74 50 H106 M58 98 H42 M122 98 H138" fill="none"/>
-            <circle cx="90" cy="38" r="20"/>
-            <path d="M78 38 H102 M90 26 V50 M70 98 H110" fill="none" opacity=".65"/>
-            <circle cx="90" cy="78" r="7" fill="#00ae42"/>
-          </svg>
-          <h4>机电隐藏难</h4>
-        </div>
-      </div>
-      <div class="program-nav"><span>‹</span><span>›</span><i></i></div>
-    </div>
-
-    <div class="program-machine" aria-hidden="true">
-      <span class="machine-frame"></span>
-      <video src="assets/inspiration.mp4" muted playsinline autoplay loop></video>
-      <span class="video-core-mark"></span>
-    </div>
-
-    <div class="program-right">
-      <div class="program-right-head">
-        <h3>▪ 为什么需要系统化工具</h3>
-        <div class="sub">不再让花艺师独自承担机电试错</div>
-      </div>
-      <div class="program-right-body">
-        <p>正常做法会把花艺师拖进结构、电机、控制、供电和隐藏问题里。Flora Studio 要把这些重试错前置成预览、套件和模板</p>
-      </div>
-      <a class="program-cta" href="#feedback">查看真实反馈</a>
-    </div>
-  </section>
-
-  <section class="section portfolio-feedback" id="feedback">
-    <div class="kicker">02 Portfolio Evidence</div>
-
-    <div class="portfolio-title-panel">
-      <p>▪ 真实评论证据</p>
-      <h2><span>USER</span><span>VOICE</span></h2>
-      <div class="cn-note">来自仿生翅膀评论区的真实反馈：大家不是没有兴趣，而是担心动作控制、尺寸适配、价格和交付复杂度。</div>
-    </div>
-
-    <div class="portfolio-network" aria-hidden="true">
-      <svg viewBox="0 0 980 620" role="img" aria-label="animated floral wing motion system white model">
-        <defs>
-          <linearGradient id="floralTube" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#ffffff" stop-opacity=".72"/>
-            <stop offset=".48" stop-color="#eeeeec" stop-opacity=".42"/>
-            <stop offset="1" stop-color="#bdbdb9" stop-opacity=".32"/>
-          </linearGradient>
-          <radialGradient id="orangeCore" cx="42%" cy="40%" r="70%">
-            <stop offset="0" stop-color="#b8f7c9"/>
-            <stop offset=".42" stop-color="#00ae42"/>
-            <stop offset="1" stop-color="#f04b18"/>
-          </radialGradient>
-          <filter id="portfolioBlur" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="1.8"/>
-            <feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#000" flood-opacity=".12"/>
-          </filter>
-          <filter id="fineModelShadow" x="-20%" y="-20%" width="140%" height="140%">
-            <feDropShadow dx="0" dy="20" stdDeviation="12" flood-color="#000" flood-opacity=".10"/>
-          </filter>
-        </defs>
-
-        <g class="servo-stem" filter="url(#portfolioBlur)">
-          <path d="M492 292 C486 360 496 426 490 512" fill="none" stroke="url(#floralTube)" stroke-width="28" stroke-linecap="round"/>
-          <path d="M342 502 H638" fill="none" stroke="url(#floralTube)" stroke-width="28" stroke-linecap="round"/>
-        </g>
-
-        <g class="floral-wing-left" filter="url(#fineModelShadow)" opacity=".94">
-          <path d="M492 318 C382 190 226 166 102 246 C230 320 356 354 492 318 Z" fill="#f8f8f6" stroke="#c8c8c4"/>
-          <path d="M456 320 C340 254 216 246 112 278" fill="none" stroke="#dededa" stroke-width="7" stroke-linecap="round"/>
-          <path d="M414 310 C330 226 238 200 150 226" fill="none" stroke="#d9d9d5" stroke-width="5" stroke-linecap="round"/>
-          <path d="M354 294 C278 246 218 240 162 254" fill="none" stroke="#d3d3cf" stroke-width="4" stroke-linecap="round"/>
-          <path class="motion-arc" d="M118 214 C246 128 388 178 492 318" fill="none" stroke="#00ae42" stroke-opacity=".28" stroke-width="2"/>
-        </g>
-
-        <g class="floral-wing-right" filter="url(#fineModelShadow)" opacity=".94">
-          <path d="M488 318 C598 190 754 166 878 246 C750 320 624 354 488 318 Z" fill="#f8f8f6" stroke="#c8c8c4"/>
-          <path d="M524 320 C640 254 764 246 868 278" fill="none" stroke="#dededa" stroke-width="7" stroke-linecap="round"/>
-          <path d="M566 310 C650 226 742 200 830 226" fill="none" stroke="#d9d9d5" stroke-width="5" stroke-linecap="round"/>
-          <path d="M626 294 C702 246 762 240 818 254" fill="none" stroke="#d3d3cf" stroke-width="4" stroke-linecap="round"/>
-          <path class="motion-arc" d="M862 214 C734 128 592 178 488 318" fill="none" stroke="#00ae42" stroke-opacity=".28" stroke-width="2"/>
-        </g>
-
-        <g class="floral-wing-low-left" filter="url(#fineModelShadow)" opacity=".9">
-          <path d="M496 354 C382 300 276 310 190 392 C316 430 416 416 496 354 Z" fill="#f2f2f0" stroke="#c8c8c4"/>
-          <path d="M452 354 C354 338 274 356 208 402" fill="none" stroke="#d9d9d5" stroke-width="6" stroke-linecap="round"/>
-          <path d="M398 366 C324 366 270 380 226 408" fill="none" stroke="#d3d3cf" stroke-width="4" stroke-linecap="round"/>
-        </g>
-
-        <g class="floral-wing-low-right" filter="url(#fineModelShadow)" opacity=".9">
-          <path d="M484 354 C598 300 704 310 790 392 C664 430 564 416 484 354 Z" fill="#f2f2f0" stroke="#c8c8c4"/>
-          <path d="M528 354 C626 338 706 356 772 402" fill="none" stroke="#d9d9d5" stroke-width="6" stroke-linecap="round"/>
-          <path d="M582 366 C656 366 710 380 754 408" fill="none" stroke="#d3d3cf" stroke-width="4" stroke-linecap="round"/>
-        </g>
-
-        <g class="petal-shell" filter="url(#fineModelShadow)">
-          <ellipse cx="490" cy="324" rx="82" ry="52" fill="#f7f7f5" stroke="#c7c7c3"/>
-          <ellipse cx="444" cy="326" rx="34" ry="50" fill="#f3f3f1" stroke="#d0d0cc" transform="rotate(-28 444 326)"/>
-          <ellipse cx="536" cy="326" rx="34" ry="50" fill="#f3f3f1" stroke="#d0d0cc" transform="rotate(28 536 326)"/>
-          <ellipse cx="490" cy="290" rx="32" ry="52" fill="#f9f9f7" stroke="#d0d0cc"/>
-          <ellipse cx="490" cy="358" rx="38" ry="45" fill="#f0f0ee" stroke="#d0d0cc"/>
-        </g>
-
-        <g filter="url(#fineModelShadow)">
-          <rect x="430" y="454" width="120" height="96" rx="28" fill="#f7f7f5" stroke="#c7c7c3"/>
-          <rect x="456" y="478" width="68" height="48" rx="12" fill="#e6e6e2" stroke="#c4c4c0"/>
-          <path d="M456 494 H524 M456 510 H524 M474 478 V526 M506 478 V526" stroke="#b8b8b4" stroke-opacity=".42"/>
-          <rect x="350" y="522" width="280" height="56" rx="18" fill="#f7f7f5" stroke="#c7c7c3"/>
-          <path d="M388 548 H592" stroke="#c4c4c0"/>
-        </g>
-
-        <circle class="drive-core" cx="490" cy="340" r="24" fill="url(#orangeCore)"/>
-        <circle class="orange-node" cx="342" cy="502" r="13" fill="url(#orangeCore)"/>
-        <circle class="orange-node" cx="638" cy="502" r="13" fill="url(#orangeCore)"/>
-        <circle cx="476" cy="502" r="8" fill="#fff"/>
-        <circle cx="506" cy="502" r="8" fill="#fff"/>
-      </svg>
-    </div>
-
-    <div class="portfolio-count">
-      <span>评论样本</span>
-      <strong>65</strong>
-      <p>仿生翅膀原型反馈</p>
-    </div>
-
-    <div class="portfolio-cards evidence-layout">
-      <article class="portfolio-card">
-        <div class="portfolio-tab">评论截图</div>
-        <div class="portfolio-shot"><img class="zoomable" src="assets/wing-comment-1.jpg" alt="仿生翅膀评论截图一"></div>
-        <div class="portfolio-metrics">
-          <div class="portfolio-metric"><strong>复杂</strong><span>电机控制</span></div>
-          <div class="portfolio-metric"><strong>三对</strong><span>翅膀摆动</span></div>
-          <div class="portfolio-arrow">➜</div>
-        </div>
-      </article>
-      <article class="portfolio-card">
-        <div class="portfolio-tab">评论截图</div>
-        <div class="portfolio-shot"><img class="zoomable" src="assets/wing-comment-2.jpg" alt="仿生翅膀评论截图二"></div>
-        <div class="portfolio-metrics">
-          <div class="portfolio-metric"><strong>单调</strong><span>运动语言</span></div>
-          <div class="portfolio-metric"><strong>价格</strong><span>交付门槛</span></div>
-          <div class="portfolio-arrow">➜</div>
-        </div>
-      </article>
-      <article class="portfolio-card">
-        <div class="portfolio-tab">洞察</div>
-        <div class="portfolio-card-body">
-          <h3>动作不是“能动”</h3>
-          <p>用户能感受到挥舞是否刻意。动态花艺要解决的是动作语言，不只是把电机装进去</p>
-        </div>
-        <div class="portfolio-metrics">
-          <div class="portfolio-metric"><strong>节奏</strong><span>呼吸/开合</span></div>
-          <div class="portfolio-metric"><strong>层次</strong><span>多轴控制</span></div>
-          <div class="portfolio-arrow">➜</div>
-        </div>
-      </article>
-      <article class="portfolio-card">
-        <div class="portfolio-tab">洞察</div>
-        <div class="portfolio-card-body">
-          <h3>需求存在，但落地太重</h3>
-          <p>尺寸、价格、购买方式和结构适配都在阻碍采用。系统化套件把重工程变成可复制流程</p>
-        </div>
-        <div class="portfolio-metrics">
-          <div class="portfolio-metric"><strong>尺寸</strong><span>花束适配</span></div>
-          <div class="portfolio-metric"><strong>流程</strong><span>可交付</span></div>
-          <div class="portfolio-arrow">➜</div>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section class="section evidence-value-bridge" aria-label="从用户反馈过渡到价值组合">
-    <div class="bridge-copy">
-      <span>▪ 从真实需求到产品化路径</span>
-      <h2>把“想做”<em>变成可交付</em></h2>
-      <p>用户已经被动态花艺吸引；花艺师需要的是低试错、可预览、可装配的系统</p>
-    </div>
-    <div class="bridge-model" aria-hidden="true">
-      <canvas class="bridge-model-canvas" id="bridge-model-3d"></canvas>
-      <svg viewBox="0 0 620 380">
-        <defs>
-          <linearGradient id="bridgeWhite" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#fff"/>
-            <stop offset=".48" stop-color="#eeeeeb"/>
-            <stop offset="1" stop-color="#bebeba"/>
-          </linearGradient>
-          <linearGradient id="bridgeGlass" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#ffffff" stop-opacity=".92"/>
-            <stop offset="1" stop-color="#d9d9d5" stop-opacity=".48"/>
-          </linearGradient>
-          <linearGradient id="bridgeBasket" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#f2eadb"/>
-            <stop offset="1" stop-color="#b9ad97"/>
-          </linearGradient>
-          <radialGradient id="bridgeCoreGradient" cx="45%" cy="42%" r="70%">
-            <stop offset="0" stop-color="#ffffff"/>
-            <stop offset=".56" stop-color="#d8d8d4"/>
-            <stop offset="1" stop-color="#a8a8a2"/>
-          </radialGradient>
-        </defs>
-        <path class="bridge-path" d="M72 284 C160 214 242 206 310 218 C384 232 452 174 542 82" fill="none" stroke="#b8b8b2" stroke-opacity=".55" stroke-width="2.8"/>
-
-        <g class="bridge-wing-left" fill="url(#bridgeWhite)" stroke="#aaa9a4" stroke-width="1.1">
-          <path d="M300 158 C244 92 156 78 94 124 C178 120 238 144 304 182 Z"/>
-          <path d="M286 174 C222 140 152 150 96 204 C180 180 232 184 294 204 Z" opacity=".92"/>
-          <path d="M286 195 C232 190 174 214 130 260 C198 232 242 224 300 222 Z" opacity=".82"/>
-          <path d="M124 128 C156 126 188 136 224 156 M106 158 C152 154 198 166 252 188 M128 208 C176 194 222 200 276 212" fill="none" stroke="#d7d7d3" stroke-width="2.1"/>
-        </g>
-
-        <g class="bridge-wing-right" fill="url(#bridgeWhite)" stroke="#aaa9a4" stroke-width="1.1">
-          <path d="M320 158 C376 92 464 78 526 124 C442 120 382 144 316 182 Z"/>
-          <path d="M334 174 C398 140 468 150 524 204 C440 180 388 184 326 204 Z" opacity=".92"/>
-          <path d="M334 195 C388 190 446 214 490 260 C422 232 378 224 320 222 Z" opacity=".82"/>
-          <path d="M496 128 C464 126 432 136 396 156 M514 158 C468 154 422 166 368 188 M492 208 C444 194 398 200 344 212" fill="none" stroke="#d7d7d3" stroke-width="2.1"/>
-        </g>
-
-        <g class="bridge-stem" fill="none" stroke-linecap="round">
-          <path d="M310 254 C306 222 302 192 310 154" stroke="#ececea" stroke-width="13" opacity=".72"/>
-          <path class="bridge-hidden-wire" d="M304 256 C302 224 300 194 310 154" stroke="#9f9f98" stroke-width="3" stroke-opacity=".62"/>
-        </g>
-
-        <g fill="url(#bridgeWhite)" stroke="#9f9f9b" stroke-width="1.2">
-          <rect x="285" y="132" width="50" height="34" rx="13"/>
-          <ellipse cx="310" cy="132" rx="24" ry="7" fill="#f9f9f7"/>
-          <rect x="293" y="116" width="34" height="22" rx="8" fill="#d9d9d5"/>
-          <circle class="bridge-core" cx="310" cy="148" r="10" fill="url(#bridgeCoreGradient)"/>
-        </g>
-
-        <g class="bridge-bouquet">
-          <path d="M220 284 C228 230 392 230 402 284 C384 318 240 318 220 284 Z" fill="url(#bridgeGlass)" stroke="#c7c7c2" stroke-width="1.2"/>
-          <g fill="#fff" stroke="#d7d7d2" stroke-width="1">
-            <circle cx="246" cy="244" r="22"/>
-            <circle cx="276" cy="230" r="25"/>
-            <circle cx="312" cy="234" r="27"/>
-            <circle cx="348" cy="232" r="24"/>
-            <circle cx="376" cy="250" r="21"/>
-            <circle cx="294" cy="260" r="24"/>
-            <circle cx="334" cy="263" r="24"/>
-          </g>
-          <g fill="#e8e8e4" stroke="#b9b9b3" stroke-width=".9" opacity=".9">
-            <circle cx="268" cy="250" r="10"/>
-            <circle cx="304" cy="222" r="9"/>
-            <circle cx="354" cy="250" r="10"/>
-            <circle cx="324" cy="276" r="8"/>
-          </g>
-          <circle class="bridge-core" cx="310" cy="252" r="15" fill="url(#bridgeCoreGradient)" opacity=".9"/>
-        </g>
-
-        <g fill="url(#bridgeBasket)" stroke="#9f927c" stroke-width="1.2">
-          <path d="M252 290 H368 L350 350 H270 Z"/>
-          <path d="M262 305 H358 M258 320 H362 M266 335 H354" fill="none"/>
-          <path d="M270 294 C290 310 330 310 350 294 M270 318 C294 330 326 330 350 318" fill="none" opacity=".55"/>
-        </g>
-
-        <g class="bridge-smartbox" fill="url(#bridgeWhite)" stroke="#9f9f9b" stroke-width="1.2">
-          <rect x="96" y="270" width="92" height="58" rx="18"/>
-          <rect x="118" y="284" width="50" height="25" rx="8" fill="#111"/>
-          <path d="M118 296 H168 M135 284 V309 M152 284 V309" stroke="#fff" stroke-opacity=".13"/>
-          <circle cx="136" cy="296" r="5.6" fill="#fff"/>
-          <circle cx="153" cy="296" r="5.6" fill="#fff"/>
-          <circle class="bridge-core" cx="188" cy="284" r="9" fill="url(#bridgeCoreGradient)"/>
-        </g>
-
-        <path class="bridge-hidden-wire" d="M188 284 C226 270 254 258 304 256" fill="none" stroke="#a8a8a2" stroke-width="2.6" stroke-opacity=".62"/>
-        <circle class="bridge-core" cx="96" cy="300" r="9" fill="url(#bridgeCoreGradient)"/>
-      </svg>
-    </div>
-  </section>
-
-  <section class="section value-review" id="value">
-    <div class="kicker">03 Value Reviews</div>
-    <div class="value-review-title">
-      <h2>VALUE STACK</h2>
-    </div>
-    <div class="value-review-copy">
-      <p>▪ Don't take a single function for the whole product value</p>
-      <div class="value-preview" aria-hidden="true">
-        <svg viewBox="0 0 120 120">
-          <defs>
-            <linearGradient id="valueWhite" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#ffffff"/>
-              <stop offset="1" stop-color="#bdbdb9"/>
-            </linearGradient>
-          </defs>
-          <g fill="url(#valueWhite)" stroke="#d8d8d4" stroke-width="1.2">
-            <rect x="49" y="12" width="22" height="96" rx="11" transform="rotate(0 60 60)"/>
-            <rect x="49" y="12" width="22" height="96" rx="11" transform="rotate(60 60 60)"/>
-            <rect x="49" y="12" width="22" height="96" rx="11" transform="rotate(120 60 60)"/>
-            <circle cx="60" cy="60" r="16" fill="#f3f3f1"/>
-          </g>
-        </svg>
-      </div>
-    </div>
-
-    <div class="value-review-cards">
-      <article class="value-testimonial">
-        <div class="value-testimonial-main">
-          <div class="value-persona">
-            <div class="value-avatar" aria-hidden="true">
-              <svg viewBox="0 0 100 100">
-                <rect x="26" y="38" width="48" height="34" rx="8"/>
-                <path d="M34 38 V28 H66 V38 M38 52 H62 M42 62 H58" fill="none"/>
-                <circle cx="34" cy="52" r="3"/>
-                <circle cx="66" cy="52" r="3"/>
-              </svg>
-            </div>
-            <div><h3>功能价值</h3><span>Functional Value</span></div>
-          </div>
-          <blockquote>CyberBrick 把动力盒、连接套件、动作预览整合进花艺流程，让花艺师不用从零研究机电结构</blockquote>
-          <div class="value-testimonial-metric">
-            <div><strong>Kit</strong><span>可装配套件</span></div>
-            <div><strong>Preview</strong><span>前置预览</span></div>
-          </div>
-        </div>
-        <div class="value-x-panel">X</div>
-      </article>
-
-      <article class="value-testimonial">
-        <div class="value-testimonial-main">
-          <div class="value-persona">
-            <div class="value-avatar" aria-hidden="true">
-              <svg viewBox="0 0 100 100">
-                <path d="M50 28 C34 18 20 30 24 48 C28 68 50 78 50 78 C50 78 72 68 76 48 C80 30 66 18 50 28 Z"/>
-                <path d="M34 48 C42 44 46 44 50 50 C54 44 58 44 66 48" fill="none"/>
-                <circle cx="50" cy="50" r="5" fill="#00ae42" stroke="#111"/>
-              </svg>
-            </div>
-            <div><h3>情绪价值</h3><span>Emotional Value</span></div>
-          </div>
-          <blockquote>呼吸、颤动、摇曳、开合，让作品从“好看”变成“有生命感”，承载惊喜、治愈和陪伴</blockquote>
-          <div class="value-testimonial-metric">
-            <div><strong>Life</strong><span>生命感</span></div>
-            <div><strong>Joy</strong><span>惊喜陪伴</span></div>
-          </div>
-        </div>
-        <div class="value-x-panel">X</div>
-      </article>
-
-      <article class="value-testimonial">
-        <div class="value-testimonial-main">
-          <div class="value-persona">
-            <div class="value-avatar" aria-hidden="true">
-              <svg viewBox="0 0 100 100">
-                <path d="M24 62 L50 76 L76 62 L50 48 Z"/>
-                <path d="M24 48 L50 62 L76 48 L50 34 Z"/>
-                <path d="M24 34 L50 48 L76 34 L50 20 Z"/>
-                <path d="M24 48 V62 M76 48 V62 M50 62 V76" fill="none"/>
-              </svg>
-            </div>
-            <div><h3>资产价值</h3><span>Asset Value</span></div>
-          </div>
-          <blockquote>模板库、标准接口和案例经验，让花店不是每次重新试错，而是持续沉淀动态花艺能力</blockquote>
-          <div class="value-testimonial-metric">
-            <div><strong>Library</strong><span>模板库</span></div>
-            <div><strong>Repeat</strong><span>可复用</span></div>
-          </div>
-        </div>
-        <div class="value-x-panel">X</div>
-      </article>
-    </div>
-  </section>
-
-  <section class="section emotion-review" id="emotional-scenarios">
-    <div class="kicker">04 Emotional Scenarios</div>
-    <div class="emotion-title">
-      <h2>情绪场景</h2>
-    </div>
-    <div class="emotion-copy">
-      <p>▪ 让动作成为花艺的情绪语言</p>
-      <div class="emotion-preview" aria-hidden="true">
-        <svg viewBox="0 0 120 120">
-          <path class="mini-stem" d="M60 92 C60 74 60 58 60 38" stroke="#f4f4f2" stroke-width="5" stroke-linecap="round"/>
-          <g class="mini-wing-left">
-            <path d="M58 48 C38 30 18 32 12 52 C28 45 42 48 58 58 Z" fill="#f7f7f5" opacity=".94"/>
-            <path d="M58 60 C36 52 20 60 15 80 C31 69 45 70 59 66 Z" fill="#eeeeec" opacity=".88"/>
-          </g>
-          <g class="mini-wing-right">
-            <path d="M62 48 C82 30 102 32 108 52 C92 45 78 48 62 58 Z" fill="#f7f7f5" opacity=".94"/>
-            <path d="M62 60 C84 52 100 60 105 80 C89 69 75 70 61 66 Z" fill="#eeeeec" opacity=".88"/>
-          </g>
-          <circle class="mini-core" cx="60" cy="60" r="8" fill="#00ae42"/>
-          <path d="M47 72 C55 80 66 80 74 72" stroke="#f7f7f5" stroke-width="4" fill="none" stroke-linecap="round"/>
-        </svg>
-      </div>
-    </div>
-
-    <div class="emotion-cards">
-      <article class="emotion-card">
-        <div class="emotion-card-main">
-          <div class="emotion-persona">
-            <div class="emotion-avatar" aria-hidden="true">
-              <svg viewBox="0 0 100 100">
-                <path d="M20 62 C30 36 70 36 80 62"/>
-                <path d="M30 62 C42 48 58 48 70 62"/>
-                <circle class="accent" cx="50" cy="62" r="7"/>
-                <path d="M34 72 H66"/>
-              </svg>
-            </div>
-            <div><h3>婚礼仪式</h3><span>Wedding Ritual</span></div>
-          </div>
-          <p>缓慢开合的翅膀或花瓣，让主桌、入场区和誓言瞬间多一层仪式感。动作不抢戏，而是强化“被见证”的庄重情绪</p>
-          <div class="emotion-motion">
-            <div><strong>Slow</strong><span>缓慢开合</span></div>
-            <div><strong>Sacred</strong><span>仪式氛围</span></div>
-          </div>
-        </div>
-        <div class="emotion-side">01</div>
-      </article>
-
-      <article class="emotion-card">
-        <div class="emotion-card-main">
-          <div class="emotion-persona">
-            <div class="emotion-avatar" aria-hidden="true">
-              <svg viewBox="0 0 100 100">
-                <rect x="20" y="22" width="60" height="54"/>
-                <path d="M28 62 C42 46 58 46 72 62"/>
-                <path d="M34 54 L50 38 L66 54"/>
-                <circle class="accent" cx="50" cy="54" r="7"/>
-              </svg>
-            </div>
-            <div><h3>橱窗陈列</h3><span>Retail Window</span></div>
-          </div>
-          <p>大幅摇曳、周期展开和灯光联动，适合远距离吸引路人停留。动态花艺在橱窗里承担“第一眼注意力”的角色</p>
-          <div class="emotion-motion">
-            <div><strong>Wave</strong><span>大幅摇曳</span></div>
-            <div><strong>Stop</strong><span>吸引驻足</span></div>
-          </div>
-        </div>
-        <div class="emotion-side">02</div>
-      </article>
-
-      <article class="emotion-card">
-        <div class="emotion-card-main">
-          <div class="emotion-persona">
-            <div class="emotion-avatar" aria-hidden="true">
-              <svg viewBox="0 0 100 100">
-                <path d="M24 64 H76 V80 H24 Z"/>
-                <path d="M30 64 C30 45 70 45 70 64"/>
-                <path d="M50 26 V44"/>
-                <circle class="accent" cx="50" cy="22" r="7"/>
-                <path d="M40 36 H60"/>
-              </svg>
-            </div>
-            <div><h3>生日礼物</h3><span>Birthday Gift</span></div>
-          </div>
-          <p>轻轻呼吸、微微点头，像收到礼物后的持续回应。它不是一次性的惊喜，而是可以放在身边的陪伴感</p>
-          <div class="emotion-motion">
-            <div><strong>Breath</strong><span>轻轻呼吸</span></div>
-            <div><strong>Companion</strong><span>陪伴惊喜</span></div>
-          </div>
-        </div>
-        <div class="emotion-side">03</div>
-      </article>
-
-      <article class="emotion-card">
-        <div class="emotion-card-main">
-          <div class="emotion-persona">
-            <div class="emotion-avatar" aria-hidden="true">
-              <svg viewBox="0 0 100 100">
-                <path d="M32 40 C24 22 46 22 48 42"/>
-                <path d="M68 40 C76 22 54 22 52 42"/>
-                <path d="M26 60 C26 42 74 42 74 60 C74 80 26 80 26 60 Z"/>
-                <circle cx="42" cy="58" r="3" fill="#111"/>
-                <circle cx="58" cy="58" r="3" fill="#111"/>
-                <circle class="accent" cx="50" cy="66" r="5"/>
-              </svg>
-            </div>
-            <div><h3>宠物拟真花礼</h3><span>Pet Floral Object</span></div>
-          </div>
-          <p>把花卉做成宠物形象，再加入耳朵轻动、身体呼吸的细节。适合生日、纪念和疗愈礼物，让花变成有表情的对象</p>
-          <div class="emotion-motion">
-            <div><strong>Alive</strong><span>拟真生命感</span></div>
-            <div><strong>Healing</strong><span>疗愈记忆</span></div>
-          </div>
-        </div>
-        <div class="emotion-side">04</div>
-      </article>
-
-      <article class="emotion-card">
-        <div class="emotion-card-main">
-          <div class="emotion-persona">
-            <div class="emotion-avatar" aria-hidden="true">
-              <svg viewBox="0 0 100 100">
-                <circle cx="28" cy="52" r="9"/>
-                <circle cx="50" cy="35" r="9"/>
-                <circle cx="72" cy="52" r="9"/>
-                <circle class="accent" cx="50" cy="64" r="8"/>
-                <path d="M36 50 L44 39 M56 39 L64 50 M50 44 V56"/>
-              </svg>
-            </div>
-            <div><h3>展览装置</h3><span>Installation</span></div>
-          </div>
-          <p>多组动态模块协同开合、错位呼吸，形成可远观也可近看的节奏。它把花艺从商品变成空间里的动态叙事</p>
-          <div class="emotion-motion">
-            <div><strong>Sync</strong><span>多组联动</span></div>
-            <div><strong>Art</strong><span>艺术表达</span></div>
-          </div>
-        </div>
-        <div class="emotion-side">05</div>
-      </article>
-
-      <article class="emotion-card">
-        <div class="emotion-card-main">
-          <div class="emotion-persona">
-            <div class="emotion-avatar" aria-hidden="true">
-              <svg viewBox="0 0 100 100">
-                <path d="M50 22 C66 38 74 50 74 64 C74 78 62 84 50 84 C38 84 26 78 26 64 C26 50 34 38 50 22 Z"/>
-                <circle class="accent" cx="50" cy="58" r="7"/>
-                <path d="M38 70 C45 76 55 76 62 70"/>
-              </svg>
-            </div>
-            <div><h3>纪念场景</h3><span>Memorial Moment</span></div>
-          </div>
-          <p>低频、安静、克制的动态，适合纪念、告别和长期陪伴。这里的动作越轻，情绪越有余韵</p>
-          <div class="emotion-motion">
-            <div><strong>Quiet</strong><span>低频克制</span></div>
-            <div><strong>Memory</strong><span>情感寄托</span></div>
-          </div>
-        </div>
-        <div class="emotion-side">06</div>
-      </article>
-    </div>
-  </section>
-
-  <section class="section" id="system">
-    <div class="kicker">05 Positioning</div>
-    <h2>项目定位：面向花艺师的动态花艺创作工具系统</h2>
-    <div class="grid-2">
-      <div class="card green">
-        <h3>CyberBrick 可以理解为动态花艺的“数字花泥”</h3>
-        <p class="muted" style="margin-top:16px;">传统花泥负责固定花材；CyberBrick 负责给花艺作品加入动作和生命感。它不是单独被炫耀的机器，而是嵌入花艺流程、服务花艺表达的工具</p>
-      </div>
-      <div class="card">
-        <h3>表达边界</h3>
-        <div class="bullet-list">
-          <div class="bullet"><span class="dot">×</span><span>不要讲成纯硬件产品</span></div>
-          <div class="bullet"><span class="dot">×</span><span>不要讲成纯软件平台</span></div>
-          <div class="bullet"><span class="dot">×</span><span>不要强调零成本、零库存、工业级仿真或平台变现</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section class="section" id="blueprint">
-    <div class="kicker">06 Service Blueprint</div>
+    <div class="kicker">08A Service Blueprint</div>
     <h2>服务蓝图：动态花艺如何进入真实花店订单</h2>
     <div class="embed-shell">
       <div class="embed-note">
@@ -7792,7 +7879,7 @@
   </section>
 
   <section class="section" id="collaboration">
-    <div class="kicker">07 Collaboration System</div>
+    <div class="kicker">08B Collaboration System</div>
     <h2>轻量化协作模式：不重新发明技术，而是让资源协同</h2>
     <div class="embed-shell">
       <div class="embed-note">
@@ -7802,86 +7889,7 @@
       <iframe class="embedded-page" src="flora_studio_codex_handoff/flora_studio_collaboration_mode.html" title="Flora Studio 轻量化协作模式"></iframe>
     </div>
   </section>
-  <section class="dark-section" id="seraph">
-    <div class="seraph-section">
-      <div id="webgl-container"></div>
-      <div id="ui-layer">
-        <div class="glass-panel">
-          <div style="margin-bottom:28px;">
-            <div class="kicker dark">Example of Electromechanical Invisible Structure</div>
-            <h2>机电隐形构造范例</h2>
-            <p>彻底隐匿工业痕迹。用鼠标拖拽 360° 检视六翼天使装置是如何无损嫁接于花艺之中的</p>
-          </div>
-
-          <div class="step-item active" id="step-1" onclick="focusOn(1)">
-            <div class="step-number">1</div>
-            <div class="step-title">干湿分离控制环外挂智能盒 (Smart Box)</div>
-            <div class="step-desc">像个小背包一样卡在花瓶外侧背面，碰不到水。深空灰外壳在正面完全隐形。</div>
-          </div>
-
-          <div class="step-item" id="step-2" onclick="focusOn(2)">
-            <div class="step-number">2</div>
-            <div class="step-title">AMS 隐形仿生花杆 (Flexi-Stem)</div>
-            <div class="step-desc">特制仿生绿质感。像植物真茎一样可以随意弯曲、裁剪，带着电线隐匿于花丛最深处。</div>
-          </div>
-
-          <div class="step-item" id="step-3" onclick="focusOn(3)">
-            <div class="step-number">3</div>
-            <div class="step-title">磁吸秒拆六翼翅膀 (Magic Snap)</div>
-            <div class="step-desc">“咔哒”一下，庞大的装饰翅膀就能精准吸附在马达上，拔下来也绝不伤花。</div>
-          </div>
-        </div>
-      </div>
-      <div class="interaction-hint">DRAG TO ROTATE & ZOOM 3D SPACE</div>
-    </div>
-  </section>
-
-  <section class="section why-system-faq" id="why-system">
-    <div class="kicker">08 Why System</div>
-    <div class="faq-hero">
-      <div class="faq-title-block">
-        <h2>为什么要做成系统，而不是单个动态装置？</h2>
-      </div>
-      <div class="faq-model-tile" aria-hidden="true">
-        <div class="faq-model-object">
-          <span></span><span></span><span></span><span></span><span></span><span></span>
-          <div class="faq-model-core"></div>
-        </div>
-      </div>
-      <div class="faq-subcopy">
-        <b>把一次惊喜，变成可复用的创作能力</b>
-        <span>系统化不是把花艺变工业，而是把最容易卡住的结构、动作和验证前置，让花艺师更敢创作</span>
-      </div>
-    </div>
-    <div class="faq-list">
-      <details class="faq-item" open>
-        <summary><span class="faq-index">01</span><span>为什么不能只做一个动态装置？</span><span class="faq-toggle" aria-hidden="true"></span></summary>
-        <div class="faq-answer"><p>单个装置每次都要重新匹配结构、电机、控制和花材，试错成本会压到花艺师身上，创意越复杂，执行风险越高</p></div>
-      </details>
-      <details class="faq-item">
-        <summary><span class="faq-index">02</span><span>系统化后，真正被标准化的是什么？</span><span class="faq-toggle" aria-hidden="true"></span></summary>
-        <div class="faq-answer"><p>被标准化的不是花艺风格，而是隐藏机电、连接方式、动作参数、磁吸结构和预览流程，作品仍然可以保持手工创作的差异</p></div>
-      </details>
-      <details class="faq-item">
-        <summary><span class="faq-index">03</span><span>花艺师拿到的是机器，还是创作工具？</span><span class="faq-toggle" aria-hidden="true"></span></summary>
-        <div class="faq-answer"><p>花艺师拿到的是一套可装配、可预览、可调整的动态花艺工具，机器退到背后，前台呈现的是花材、情绪和场景表达</p></div>
-      </details>
-      <details class="faq-item">
-        <summary><span class="faq-index">04</span><span>为什么要把动作判断前置到预览阶段？</span><span class="faq-toggle" aria-hidden="true"></span></summary>
-        <div class="faq-answer"><p>因为动态是否自然、幅度是否合适、节奏是否贴合场景，往往做完才知道。预览可以在消耗真实花材前先筛掉不合适的方案</p></div>
-      </details>
-      <details class="faq-item">
-        <summary><span class="faq-index">05</span><span>系统化会不会限制花艺师的创作？</span><span class="faq-toggle" aria-hidden="true"></span></summary>
-        <div class="faq-answer"><p>相反，它把复杂机电拆成可控模块，让花艺师把注意力放回造型、情绪和场景，而不是被线路、供电和结构稳定性拖住</p></div>
-      </details>
-      <details class="faq-item">
-        <summary><span class="faq-index">06</span><span>最终沉淀下来的价值是什么？</span><span class="faq-toggle" aria-hidden="true"></span></summary>
-        <div class="faq-answer"><p>一次作品可以沉淀成模板、案例、动作参数和交付流程，下一次不再从零开始，创作经验也能被复制和协作</p></div>
-      </details>
-    </div>
-  </section>
-
-  <footer class="closing">
+  <footer class="closing" id="closing">
     <section class="closing-final" aria-label="结论">
       <div class="kicker">Conclusion</div>
       <div class="closing-title">
@@ -8870,6 +8878,7 @@
 </html>
       left: clamp(22px, 3.2vw, 58px);
       transform: none;
+
 
 
 
