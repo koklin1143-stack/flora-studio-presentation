@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Flora Studio / CyberBrick 长文展示</title>
+  <title>Flora Studio / CyberBloom 长文展示</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -5060,13 +5060,7 @@
     }
 
     .labs-marquee-track .word::after {
-      top: 0.43em;
-      left: 0.02em;
-      right: 0.04em;
-      height: 0.05em;
-      clip-path: polygon(0 0, 18% 0, 18% 100%, 29% 100%, 29% 0, 47% 0, 47% 100%, 61% 100%, 61% 0, 82% 0, 82% 100%, 100% 100%, 100% 0);
-      transform: skewX(9deg);
-      opacity: 0.92;
+      display: none;
     }
 
     .labs-marquee-track .word {
@@ -6935,17 +6929,17 @@
 <body>
   <nav class="nav">
     <div class="nav-inner">
-      <a class="brand" href="#top"><span class="brand-mark">F</span><span>Flora Studio / CyberBrick</span></a>
+      <a class="brand" href="#top"><span class="brand-mark">F</span><span>Flora Studio / CyberBloom</span></a>
       <div class="nav-links">
         <a href="#inspiration">项目缘起</a>
-        <a href="#feedback">用户反馈</a>
+        <a href="#feedback">用户洞察</a>
         <a href="#system">项目定位</a>
         <a href="#why-system">系统逻辑</a>
         <a href="#seraph">六翼案例</a>
         <a href="#emotional-scenarios">应用场景</a>
         <a href="#value">价值模型</a>
         <a href="#lab-system">落地路径</a>
-        <a href="#closing">结语</a>
+        <a href="#closing">总结</a>
       </div>
     </div>
   </nav>
@@ -6959,8 +6953,8 @@
     <div class="labs-stage">
       <div class="labs-marquee">
         <div class="labs-marquee-track">
-          <span class="word">FLORA STUDIO</span><span class="sep">.</span><span class="word">CYBERBRICK</span><span class="sep">.</span><span class="word">3D PRINTER</span><span class="sep">.</span><span class="word">INNOVATION</span>
-          <span class="word">FLORA STUDIO</span><span class="sep">.</span><span class="word">CYBERBRICK</span><span class="sep">.</span><span class="word">3D PRINTER</span><span class="sep">.</span><span class="word">INNOVATION</span>
+          <span class="word">FLORA STUDIO</span><span class="sep">.</span><span class="word">CYBERBLOOM</span><span class="sep">.</span><span class="word">3D PRINTER</span><span class="sep">.</span><span class="word">INNOVATION</span>
+          <span class="word">FLORA STUDIO</span><span class="sep">.</span><span class="word">CYBERBLOOM</span><span class="sep">.</span><span class="word">3D PRINTER</span><span class="sep">.</span><span class="word">INNOVATION</span>
         </div>
       </div>
 
@@ -6973,7 +6967,7 @@
       <div class="labs-visual" aria-hidden="true">
         <div class="printer-model pro-printer">
           <canvas class="hero-printer-canvas" id="hero-printer-3d"></canvas>
-          <svg class="pro-svg side-printer-svg" viewBox="0 0 760 760" role="img" aria-label="CyberBrick enclosed 3D printer micro side view white model">
+          <svg class="pro-svg side-printer-svg" viewBox="0 0 760 760" role="img" aria-label="CyberBloom enclosed 3D printer micro side view white model">
             <defs>
               <linearGradient id="whiteBody" x1="0" y1="0" x2="1" y2="1">
                 <stop offset="0" stop-color="#ffffff"/>
@@ -7016,7 +7010,7 @@
 
                 <g class="side-detail">
                   <path d="M584 156 L654 130 L654 504 L584 528 Z" fill="#ededeb" opacity=".46" stroke="#8f8f8c" stroke-opacity=".18"/>
-                  <text class="cyber-engrave" x="598" y="238" transform="skewY(-11)">CYBERBRICK</text>
+                  <text class="cyber-engrave" x="598" y="238" transform="skewY(-11)">CYBERBLOOM</text>
                   <path d="M608 302 L646 288 M608 326 L646 312 M608 350 L646 336" stroke="#8a8a86" stroke-opacity=".28" stroke-width="2"/>
                   <circle class="status-pulse" cx="633" cy="454" r="8" fill="url(#cyberOrange)"/>
                 </g>
@@ -8219,10 +8213,10 @@
       ctx.fillStyle = 'rgba(17,17,17,0.40)';
       ctx.font = '700 82px Arial Black, sans-serif';
       ctx.letterSpacing = '8px';
-      ctx.fillText('CYBERBRICK', 58, 152);
+      ctx.fillText('CYBERBLOOM', 58, 152);
       ctx.strokeStyle = 'rgba(255,255,255,0.45)';
       ctx.lineWidth = 3;
-      ctx.strokeText('CYBERBRICK', 58, 152);
+      ctx.strokeText('CYBERBLOOM', 58, 152);
       const sideTexture = new THREE.CanvasTexture(sideTextureCanvas);
       const engraveMat = new THREE.MeshBasicMaterial({ map: sideTexture, transparent: true, opacity: 0.88 });
       const engrave = new THREE.Mesh(new THREE.PlaneGeometry(1.62, 0.38), engraveMat);
