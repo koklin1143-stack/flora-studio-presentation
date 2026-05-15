@@ -5017,14 +5017,14 @@
       gap: 0;
       font-family: "Tektur", "Arial Black", "Helvetica Neue", Arial, sans-serif;
       font-size: clamp(78px, 10.8vw, 178px);
-      font-weight: 600;
+      font-weight: 580;
       line-height: 0.82;
-      letter-spacing: 0.045em;
+      letter-spacing: 0.052em;
       word-spacing: 0;
       color: #101010;
       text-rendering: geometricPrecision;
       font-synthesis: none;
-      -webkit-text-stroke: 0.006em #101010;
+      -webkit-text-stroke: 0.004em #101010;
       filter: contrast(1.12);
       animation-duration: 96s;
     }
@@ -5032,7 +5032,7 @@
     .labs-marquee-track span {
       display: inline-block;
       position: relative;
-      transform: skewX(-0.25deg) scaleX(1.06);
+      transform: skewX(-0.8deg) scaleX(1.08);
       transform-origin: center;
       margin-right: 0;
       text-shadow: none;
@@ -5047,26 +5047,67 @@
       z-index: 2;
       pointer-events: none;
       background: #e7e7e4;
-      opacity: 0;
+      opacity: 1;
     }
 
     .labs-marquee-track .word::before {
-      top: 0.16em;
-      left: 0.06em;
-      right: 0.10em;
-      height: 0.045em;
-      clip-path: polygon(0 0, 38% 0, 38% 100%, 50% 100%, 50% 0, 100% 0, 100% 100%, 63% 100%, 63% 0, 53% 0, 53% 100%, 0 100%);
-      transform: skewX(-14deg);
+      top: 0.08em;
+      left: 0.34em;
+      right: auto;
+      width: 0.18em;
+      height: 0.085em;
+      box-shadow:
+        0.72em 0.38em 0 #e7e7e4,
+        1.36em 0.02em 0 #e7e7e4,
+        2.04em 0.39em 0 #e7e7e4,
+        2.88em 0.02em 0 #e7e7e4,
+        3.62em 0.40em 0 #e7e7e4,
+        4.32em 0.02em 0 #e7e7e4,
+        5.08em 0.38em 0 #e7e7e4,
+        5.86em 0.02em 0 #e7e7e4;
+      transform: skewX(-10deg);
     }
 
     .labs-marquee-track .word::after {
-      display: none;
+      top: 0.26em;
+      left: 0.58em;
+      right: auto;
+      width: 0.105em;
+      height: 0.23em;
+      box-shadow:
+        0.98em -0.18em 0 #e7e7e4,
+        1.78em 0.20em 0 #e7e7e4,
+        2.58em -0.17em 0 #e7e7e4,
+        3.38em 0.19em 0 #e7e7e4,
+        4.18em -0.17em 0 #e7e7e4,
+        4.98em 0.20em 0 #e7e7e4,
+        5.78em -0.17em 0 #e7e7e4;
+      transform: skewX(7deg);
     }
 
     .labs-marquee-track .word {
-      --notch: 0.045em;
+      --notch: 0.052em;
       margin-right: 0.72em;
-      clip-path: polygon(var(--notch) 0, 100% 0, calc(100% - var(--notch)) 18%, 100% 18%, 100% 100%, 0 100%, 0 82%, var(--notch) 82%);
+      clip-path: polygon(
+        var(--notch) 0,
+        20% 0,
+        20% 8%,
+        30% 8%,
+        30% 0,
+        100% 0,
+        calc(100% - var(--notch)) 16%,
+        100% 16%,
+        100% 84%,
+        calc(100% - var(--notch)) 84%,
+        100% 100%,
+        66% 100%,
+        66% 92%,
+        56% 92%,
+        56% 100%,
+        0 100%,
+        0 82%,
+        var(--notch) 82%
+      );
     }
 
     .labs-marquee-track .sep {
