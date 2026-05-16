@@ -4,388 +4,574 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Flora Studio Platform Demo</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d1d1f'/%3E%3Cpath d='M22 46V18h21v7H31v5h10v7H31v9z' fill='white'/%3E%3C/svg%3E">
 <style>
 :root {
-  --canvas: #f4f7f2;
-  --paper: #ffffff;
-  --paper-soft: #f8faf6;
-  --ink: #101412;
-  --ink-2: #3f4741;
-  --muted: #6f7a72;
-  --faint: #aeb8b0;
-  --line: #dfe5dc;
-  --line-strong: #c4cec5;
-  --green: #04a857;
-  --green-2: #097a44;
-  --green-soft: #e7f7ee;
-  --leaf: #cfe6d6;
-  --rose: #e8b7bf;
-  --rose-soft: #fff1f3;
-  --amber: #cf7b43;
-  --amber-soft: #fff0e8;
-  --blue: #416f9d;
-  --blue-soft: #eef5fb;
-  --red: #b84d42;
+  --bg: #f5f6f8;
+  --surface: #ffffff;
+  --surface-2: #fafbfc;
+  --surface-3: #f0f3f6;
+  --ink: #1d1d1f;
+  --text: #3d4249;
+  --muted: #717780;
+  --faint: #9aa1aa;
+  --line: #dde1e7;
+  --line-strong: #c9d0d8;
+  --blue: #0a84ff;
+  --blue-soft: #e8f2ff;
+  --green: #12a150;
+  --green-soft: #e7f6ee;
+  --rose: #c95f73;
+  --rose-soft: #fff0f3;
+  --amber: #b56a25;
+  --amber-soft: #fff3e6;
+  --red: #c34235;
   --red-soft: #fff0ee;
-  --shadow: 0 18px 46px rgba(31, 45, 36, 0.10);
-  --shadow-soft: 0 10px 26px rgba(31, 45, 36, 0.07);
+  --shadow-1: 0 1px 2px rgba(29, 29, 31, 0.06);
+  --shadow-2: 0 16px 48px rgba(29, 29, 31, 0.10);
   --radius: 8px;
-  --radius-sm: 6px;
+  --sans: Inter, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif;
   --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-  --sans: Inter, "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif;
 }
 
 * { box-sizing: border-box; }
-html { min-height: 100%; background: var(--canvas); color: var(--ink); }
+html {
+  min-height: 100%;
+  color: var(--ink);
+  background: var(--bg);
+}
+
 body {
   margin: 0;
   min-height: 100vh;
   font-family: var(--sans);
   font-size: 14px;
-  line-height: 1.45;
+  line-height: 1.5;
   background:
-    linear-gradient(rgba(16,20,18,0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(16,20,18,0.028) 1px, transparent 1px),
-    linear-gradient(135deg, #f7faf4 0%, #edf3ee 58%, #f8f6f1 100%);
-  background-size: 112px 112px, 112px 112px, auto;
+    linear-gradient(rgba(29,29,31,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(29,29,31,0.03) 1px, transparent 1px),
+    var(--bg);
+  background-size: 96px 96px, 96px 96px, auto;
 }
-button, input, textarea, select { font: inherit; }
-button { cursor: pointer; }
-button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
-  outline: 2px solid var(--green);
-  outline-offset: 3px;
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
 }
 
 .app {
   min-height: 100vh;
   display: grid;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: 64px 1fr;
 }
 
 .topbar {
   position: sticky;
   top: 0;
-  z-index: 20;
-  min-height: 72px;
+  z-index: 30;
+  height: 64px;
   display: grid;
-  grid-template-columns: minmax(230px, 310px) 1fr auto;
-  gap: 22px;
+  grid-template-columns: 260px 1fr auto;
+  gap: 20px;
   align-items: center;
-  padding: 14px 24px;
-  border-bottom: 1px solid rgba(223,229,220,0.76);
-  background: rgba(250, 252, 248, 0.82);
-  backdrop-filter: blur(24px) saturate(150%);
+  padding: 0 24px;
+  border-bottom: 1px solid rgba(221,225,231,0.86);
+  background: rgba(255,255,255,0.82);
+  backdrop-filter: blur(22px) saturate(1.55);
 }
 
 .brand {
+  min-width: 0;
   display: flex;
   align-items: center;
   gap: 12px;
-  min-width: 0;
 }
 
 .brand-mark {
-  width: 42px;
-  height: 42px;
-  border-radius: 8px;
-  background: var(--ink);
-  color: #fff;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius);
   display: grid;
   place-items: center;
-  font-weight: 900;
-  box-shadow: inset 0 -10px 18px rgba(255,255,255,0.08);
+  color: #fff;
+  background: var(--ink);
+  font-weight: 800;
 }
 
 .brand-title {
-  font-size: 17px;
-  font-weight: 900;
-  letter-spacing: -0.03em;
+  font-size: 15px;
+  font-weight: 760;
 }
 
 .brand-sub {
-  margin-top: 2px;
   color: var(--muted);
   font-size: 12px;
 }
 
-.journey {
+.project-search {
+  height: 40px;
+  width: min(560px, 100%);
+  justify-self: center;
   display: grid;
-  grid-template-columns: repeat(4, minmax(104px, 1fr));
-  gap: 8px;
-}
-
-.journey-step {
-  min-height: 44px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: rgba(255,255,255,0.62);
-  display: grid;
-  grid-template-columns: 26px 1fr;
-  gap: 8px;
+  grid-template-columns: 20px 1fr auto;
+  gap: 10px;
   align-items: center;
-  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(250,251,252,0.84);
+  padding: 0 12px;
   color: var(--muted);
 }
 
-.journey-step.active {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: #fff;
+.project-search strong {
+  color: var(--ink);
+  font-weight: 650;
 }
-
-.journey-step.done {
-  background: var(--green-soft);
-  border-color: rgba(4,168,87,0.28);
-  color: var(--green-2);
-}
-
-.journey-num {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 900;
-  background: rgba(16,20,18,0.08);
-}
-
-.journey-step.active .journey-num { background: rgba(255,255,255,0.16); }
-.journey-title { font-size: 12px; font-weight: 900; letter-spacing: -0.01em; }
-.journey-copy { margin-top: 1px; font-size: 10px; opacity: 0.72; }
 
 .top-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
-.mode-toggle {
-  min-height: 42px;
-  padding: 0 13px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: rgba(255,255,255,0.76);
-  color: var(--ink);
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  font-weight: 850;
-  font-size: 12px;
-}
-
-.switch {
-  width: 38px;
-  height: 22px;
-  border-radius: 999px;
-  background: var(--green);
-  position: relative;
-  transition: background 180ms ease;
-}
-
-.switch::after {
-  content: "";
-  position: absolute;
-  top: 3px;
-  right: 3px;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+.icon {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  flex: 0 0 18px;
 }
 
 .btn {
-  min-height: 42px;
-  padding: 0 15px;
+  min-height: 40px;
+  min-width: 40px;
   border: 1px solid var(--line);
-  border-radius: 8px;
-  background: rgba(255,255,255,0.84);
+  border-radius: var(--radius);
+  background: var(--surface);
   color: var(--ink);
-  font-weight: 900;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+  padding: 0 12px;
+  font-weight: 650;
+  transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
 }
 
-.btn:hover { transform: translateY(-1px); border-color: var(--line-strong); }
+.btn:hover {
+  background: var(--surface-2);
+  border-color: var(--line-strong);
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
 .btn.primary {
-  background: var(--green);
-  border-color: var(--green);
+  border-color: var(--blue);
+  background: var(--blue);
   color: #fff;
-  box-shadow: 0 12px 28px rgba(4,168,87,0.24);
+  box-shadow: 0 10px 26px rgba(10,132,255,0.22);
 }
-.btn.dark {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: #fff;
+
+.btn.ghost {
+  background: transparent;
 }
-.btn.soft { background: var(--paper-soft); }
+
 .btn.small {
   min-height: 34px;
-  border-radius: 6px;
-  padding: 0 11px;
+  padding: 0 10px;
   font-size: 12px;
 }
 
-.workspace-shell {
-  width: min(1520px, calc(100% - 40px));
-  margin: 22px auto 34px;
+.shell {
   display: grid;
-  grid-template-columns: minmax(280px, 320px) minmax(500px, 1fr) minmax(300px, 350px);
-  gap: 14px;
-  align-items: start;
+  grid-template-columns: 76px 1fr;
+  min-height: calc(100vh - 64px);
 }
 
-.panel {
-  border: 1px solid rgba(223,229,220,0.94);
+.rail {
+  position: sticky;
+  top: 64px;
+  height: calc(100vh - 64px);
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  padding: 16px 10px;
+  border-right: 1px solid rgba(221,225,231,0.9);
+  background: rgba(255,255,255,0.68);
+  backdrop-filter: blur(18px);
+}
+
+.rail-item {
+  width: 56px;
+  min-height: 56px;
+  border: 1px solid transparent;
   border-radius: var(--radius);
-  background: rgba(255,255,255,0.76);
-  box-shadow: var(--shadow-soft);
+  background: transparent;
+  color: var(--muted);
+  display: grid;
+  place-items: center;
+  gap: 3px;
+  padding: 6px;
+}
+
+.rail-item svg {
+  width: 20px;
+  height: 20px;
+}
+
+.rail-item span {
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.rail-item.active {
+  background: var(--ink);
+  color: #fff;
+}
+
+.content {
+  width: min(1480px, calc(100vw - 108px));
+  margin: 0 auto;
+  padding: 24px 24px 34px;
+  display: grid;
+  gap: 16px;
+}
+
+.project-bar {
+  min-height: 86px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  align-items: center;
+  border: 1px solid rgba(221,225,231,0.92);
+  border-radius: var(--radius);
+  background: rgba(255,255,255,0.82);
+  box-shadow: var(--shadow-1);
+  padding: 18px;
+}
+
+.eyebrow {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 650;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h1 {
+  margin-top: 2px;
+  font-size: 28px;
+  line-height: 1.14;
+  font-weight: 760;
+}
+
+.project-meta {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pill {
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  padding: 0 10px;
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.pill.green {
+  border-color: rgba(18,161,80,0.22);
+  background: var(--green-soft);
+  color: #08763b;
+}
+
+.pill.blue {
+  border-color: rgba(10,132,255,0.20);
+  background: var(--blue-soft);
+  color: #075db5;
+}
+
+.pill.amber {
+  border-color: rgba(181,106,37,0.22);
+  background: var(--amber-soft);
+  color: #8a4d16;
+}
+
+.summary-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(86px, 1fr));
+  gap: 8px;
+  min-width: min(520px, 48vw);
+}
+
+.summary-metric {
+  border-left: 1px solid var(--line);
+  padding-left: 14px;
+}
+
+.summary-metric span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.summary-metric strong {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--mono);
+  font-size: 19px;
+  font-weight: 760;
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(470px, 0.88fr) minmax(520px, 1.12fr);
+  gap: 16px;
+  align-items: stretch;
+}
+
+.surface {
+  border: 1px solid rgba(221,225,231,0.92);
+  border-radius: var(--radius);
+  background: rgba(255,255,255,0.88);
+  box-shadow: var(--shadow-1);
   overflow: hidden;
 }
 
-.left-panel,
-.right-panel {
-  position: sticky;
-  top: 94px;
-  max-height: calc(100vh - 116px);
-  overflow: auto;
-}
-
-.panel-head {
-  min-height: 66px;
-  padding: 17px 18px;
-  border-bottom: 1px solid var(--line);
+.surface-head {
+  min-height: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 14px;
-  background: rgba(255,255,255,0.68);
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line);
 }
 
-.panel-title {
+.surface-title {
   font-size: 16px;
-  font-weight: 950;
-  letter-spacing: -0.03em;
+  font-weight: 760;
 }
 
-.panel-note {
+.surface-sub {
   margin-top: 2px;
-  font-family: var(--mono);
-  color: var(--faint);
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  color: var(--muted);
+  font-size: 12px;
 }
 
-.panel-body {
+.surface-body {
   padding: 16px;
   display: grid;
-  gap: 14px;
+  gap: 16px;
 }
 
-.section-block {
-  border-top: 1px solid rgba(223,229,220,0.9);
-  padding-top: 14px;
+.step-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+}
+
+.step-button {
+  min-height: 40px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-weight: 650;
+}
+
+.step-button.active {
+  border-color: var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow-1);
+}
+
+.flow-view {
+  display: none;
+  gap: 16px;
+}
+
+.flow-view.active {
+  display: grid;
+}
+
+.form-section {
   display: grid;
   gap: 12px;
 }
 
-.section-block:first-child {
-  border-top: 0;
-  padding-top: 0;
-}
-
-.block-head {
+.section-title {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: baseline;
   gap: 12px;
 }
 
-.block-title {
-  font-size: 13px;
-  font-weight: 950;
+.section-title h2 {
+  font-size: 15px;
+  font-weight: 760;
 }
 
-.block-code {
-  color: var(--faint);
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.section-title span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.source-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.source-card {
+  min-height: 92px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 12px;
+  text-align: left;
+  display: grid;
+  align-content: start;
+  gap: 6px;
+}
+
+.source-card.active {
+  border-color: var(--blue);
+  background: var(--blue-soft);
+}
+
+.source-card strong {
+  display: block;
+  font-size: 13px;
+}
+
+.source-card span {
+  color: var(--muted);
+  font-size: 12px;
 }
 
 .field {
   display: grid;
-  gap: 8px;
+  gap: 7px;
 }
 
 .field label {
-  color: var(--muted);
+  color: var(--text);
   font-size: 12px;
-  font-weight: 850;
+  font-weight: 650;
 }
 
-.upload {
-  min-height: 118px;
+.input,
+.textarea,
+.select {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink);
+  padding: 11px 12px;
+}
+
+.textarea {
+  min-height: 116px;
+  resize: vertical;
+}
+
+.input,
+.select {
+  min-height: 42px;
+}
+
+.drop {
+  min-height: 112px;
   border: 1px dashed var(--line-strong);
-  border-radius: 8px;
-  background: rgba(255,255,255,0.72);
+  border-radius: var(--radius);
+  background: var(--surface-2);
   display: grid;
-  place-items: center;
+  grid-template-columns: 44px 1fr;
+  gap: 12px;
+  align-items: center;
+  padding: 14px;
   position: relative;
   overflow: hidden;
 }
 
-.upload input {
+.drop input {
   position: absolute;
   inset: 0;
   opacity: 0;
   cursor: pointer;
 }
 
-.upload-copy {
-  text-align: center;
-  padding: 18px;
-  color: var(--muted);
+.drop-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius);
+  display: grid;
+  place-items: center;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--blue);
 }
 
-.upload-copy strong {
+.drop strong {
   display: block;
-  color: var(--ink);
-  margin-bottom: 4px;
+  font-weight: 700;
 }
 
-.upload img {
+.drop span {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.drop img {
   display: none;
   width: 100%;
-  height: 190px;
+  height: 170px;
   object-fit: cover;
+  grid-column: 1 / -1;
+  border-radius: 6px;
 }
 
-.textarea,
-.input {
-  width: 100%;
-  border: 1px solid var(--line);
-  background: rgba(255,255,255,0.88);
-  color: var(--ink);
-  border-radius: 8px;
-  padding: 12px;
-}
-
-.textarea {
-  min-height: 112px;
-  resize: vertical;
-}
-
-.input { min-height: 42px; }
-
-.chip-grid {
+.chip-row {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -393,122 +579,166 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
 
 .chip {
   min-height: 36px;
-  padding: 0 12px;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: rgba(255,255,255,0.86);
-  color: var(--ink-2);
+  background: var(--surface);
+  color: var(--text);
+  padding: 0 12px;
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 650;
 }
 
 .chip[aria-pressed="true"] {
-  background: var(--ink);
   border-color: var(--ink);
+  background: var(--ink);
   color: #fff;
+}
+
+.control-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
 }
 
 .segmented {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 6px;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
 }
 
 .segmented button {
-  min-height: 38px;
-  border: 1px solid var(--line);
+  min-height: 34px;
+  border: 1px solid transparent;
   border-radius: 6px;
-  background: rgba(255,255,255,0.74);
-  color: var(--ink-2);
-  font-weight: 900;
+  background: transparent;
+  color: var(--muted);
   font-size: 12px;
+  font-weight: 650;
 }
 
 .segmented button.active {
-  background: var(--green-soft);
-  border-color: rgba(4,168,87,0.34);
-  color: var(--green-2);
+  border-color: var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow-1);
 }
 
-.material-list {
-  display: grid;
-  gap: 8px;
+.toggle-row {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+}
+
+.toggle-row strong {
+  display: block;
+  font-size: 13px;
+}
+
+.toggle-row span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.switch {
+  width: 42px;
+  height: 24px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--green);
+  position: relative;
+  padding: 0;
+}
+
+.switch::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: var(--shadow-1);
+}
+
+.switch[aria-pressed="false"] {
+  background: var(--line-strong);
+}
+
+.switch[aria-pressed="false"]::after {
+  right: auto;
+  left: 3px;
+}
+
+.material-table {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
 }
 
 .material-row {
-  min-height: 54px;
+  min-height: 58px;
   display: grid;
-  grid-template-columns: 1fr 106px;
-  gap: 10px;
+  grid-template-columns: 1fr 124px;
+  gap: 12px;
   align-items: center;
-  border: 1px solid rgba(223,229,220,0.86);
-  border-radius: 8px;
-  background: rgba(255,255,255,0.7);
-  padding: 8px 8px 8px 12px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.material-row:last-child {
+  border-bottom: 0;
 }
 
 .material-name {
-  font-weight: 950;
+  font-weight: 700;
 }
 
 .material-meta {
   margin-top: 2px;
-  color: var(--faint);
-  font-family: var(--mono);
-  font-size: 10px;
+  color: var(--muted);
+  font-size: 12px;
 }
 
 .stepper {
   display: grid;
-  grid-template-columns: 30px 1fr 30px;
-  align-items: center;
+  grid-template-columns: 34px 1fr 34px;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 6px;
-  background: #fff;
+  background: var(--surface);
 }
 
 .stepper button {
   height: 34px;
   border: 0;
-  background: var(--paper-soft);
-  font-weight: 950;
+  background: var(--surface-2);
+  color: var(--ink);
+  font-size: 16px;
 }
 
 .stepper output {
-  text-align: center;
+  display: grid;
+  place-items: center;
   font-family: var(--mono);
-  font-weight: 900;
   font-size: 12px;
+  font-weight: 760;
 }
 
-.canvas-panel {
-  min-height: calc(100vh - 116px);
+.preview-surface {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.88), rgba(244,247,242,0.72));
-}
-
-.canvas-head {
-  padding: 16px 18px;
-  border-bottom: 1px solid var(--line);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-}
-
-.canvas-title {
-  font-size: 17px;
-  font-weight: 950;
-  letter-spacing: -0.03em;
-}
-
-.canvas-sub {
-  margin-top: 3px;
-  color: var(--muted);
-  font-size: 12px;
+  min-height: 680px;
 }
 
 .canvas-toolbar {
@@ -519,23 +749,39 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
   justify-content: flex-end;
 }
 
-.canvas-stage {
+.canvas {
   position: relative;
-  min-height: 600px;
+  min-height: 520px;
   display: grid;
   place-items: center;
   overflow: hidden;
   background:
-    linear-gradient(rgba(16,20,18,0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(16,20,18,0.035) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(4,168,87,0.08), transparent 42%),
-    #fbfcf8;
-  background-size: 96px 96px, 96px 96px, auto, auto;
+    linear-gradient(rgba(29,29,31,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(29,29,31,0.04) 1px, transparent 1px),
+    #fbfcfd;
+  background-size: 72px 72px;
 }
 
-.stage-card {
+.frame-label {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.86);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.preview-wrap {
   position: relative;
-  width: min(650px, 82%);
+  width: min(620px, 82%);
   aspect-ratio: 1 / 1;
   display: grid;
   place-items: center;
@@ -544,421 +790,536 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
 .bouquet-svg {
   width: 100%;
   height: 100%;
-  filter: drop-shadow(0 34px 34px rgba(31,45,36,0.14));
-}
-
-.motion-breath .petal-wing { animation: breath 4.8s ease-in-out infinite; }
-.motion-sway .petal-wing { animation: sway 5.4s ease-in-out infinite; }
-.motion-bloom .left-wing { animation: openLeft 5s ease-in-out infinite; transform-box: fill-box; transform-origin: 90% 50%; }
-.motion-bloom .right-wing { animation: openRight 5s ease-in-out infinite; transform-box: fill-box; transform-origin: 10% 50%; }
-.motion-blessing .petal-wing { animation: blessing 6.8s ease-in-out infinite; }
-
-@keyframes breath {
-  0%,100% { transform: scale(0.985); opacity: 0.88; }
-  50% { transform: scale(1.035); opacity: 1; }
-}
-@keyframes sway {
-  0%,100% { transform: rotate(-1.8deg) translateY(0); }
-  50% { transform: rotate(2.2deg) translateY(-8px); }
-}
-@keyframes openLeft {
-  0%,100% { transform: rotate(-3deg) translateX(0); }
-  50% { transform: rotate(9deg) translateX(-8px); }
-}
-@keyframes openRight {
-  0%,100% { transform: rotate(3deg) translateX(0); }
-  50% { transform: rotate(-9deg) translateX(8px); }
-}
-@keyframes blessing {
-  0%,100% { transform: translateY(0) scale(1); opacity: 0.86; }
-  38% { transform: translateY(-7px) scale(1.025); opacity: 1; }
-  68% { transform: translateY(3px) scale(0.992); opacity: 0.9; }
+  filter: drop-shadow(0 28px 26px rgba(29,29,31,0.14));
 }
 
 .zone {
   position: absolute;
-  border: 1px solid rgba(4,168,87,0.76);
-  background: rgba(4,168,87,0.10);
-  color: var(--green-2);
-  border-radius: 8px;
-  min-width: 72px;
+  min-width: 64px;
+  min-height: 30px;
+  border: 1px solid rgba(18,161,80,0.72);
+  border-radius: 999px;
+  background: rgba(231,246,238,0.82);
+  color: #08763b;
   display: grid;
   place-items: center;
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 950;
-  letter-spacing: 0.04em;
-  transition: transform 160ms ease, background 160ms ease;
+  padding: 0 10px;
+  font-size: 11px;
+  font-weight: 700;
 }
 
-.zone:hover { transform: scale(1.025); }
-.zone[data-zone="left"] { left: 13%; top: 29%; width: 24%; height: 22%; }
-.zone[data-zone="right"] { right: 13%; top: 29%; width: 24%; height: 22%; }
-.zone[data-zone="top"] { left: 38%; top: 14%; width: 24%; height: 18%; }
-.zone[data-zone="center"] { left: 39%; top: 42%; width: 22%; height: 22%; }
-.zone[data-zone="base"] {
-  left: 36%;
+.zone.left { left: 9%; top: 31%; }
+.zone.right { right: 9%; top: 31%; }
+.zone.top { left: 40%; top: 13%; }
+.zone.core {
+  left: 41%;
+  top: 45%;
+  border-color: rgba(201,95,115,0.70);
+  background: var(--rose-soft);
+  color: #9d4252;
+}
+.zone.base {
+  left: 39%;
   bottom: 9%;
-  width: 28%;
-  height: 17%;
-  border-color: rgba(65,111,157,0.82);
-  background: rgba(65,111,157,0.10);
-  color: var(--blue);
-}
-.zone.locked {
-  border-color: rgba(184,77,66,0.88);
-  background: rgba(184,77,66,0.10);
-  color: var(--red);
+  border-color: rgba(10,132,255,0.50);
+  background: var(--blue-soft);
+  color: #075db5;
 }
 
-.floating-summary {
-  position: absolute;
-  left: 18px;
-  bottom: 18px;
+.motion-breath .wing { animation: breath 4.6s ease-in-out infinite; }
+.motion-sway .wing { animation: sway 5.4s ease-in-out infinite; }
+.motion-bloom .left-wing { animation: open-left 5s ease-in-out infinite; transform-box: fill-box; transform-origin: 92% 50%; }
+.motion-bloom .right-wing { animation: open-right 5s ease-in-out infinite; transform-box: fill-box; transform-origin: 8% 50%; }
+.motion-blessing .wing { animation: blessing 6.2s ease-in-out infinite; }
+
+@keyframes breath {
+  0%, 100% { transform: scale(0.99); opacity: 0.9; }
+  50% { transform: scale(1.03); opacity: 1; }
+}
+
+@keyframes sway {
+  0%, 100% { transform: rotate(-1.4deg) translateY(0); }
+  50% { transform: rotate(1.8deg) translateY(-7px); }
+}
+
+@keyframes open-left {
+  0%, 100% { transform: rotate(-2deg) translateX(0); }
+  50% { transform: rotate(9deg) translateX(-8px); }
+}
+
+@keyframes open-right {
+  0%, 100% { transform: rotate(2deg) translateX(0); }
+  50% { transform: rotate(-9deg) translateX(8px); }
+}
+
+@keyframes blessing {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.9; }
+  44% { transform: translateY(-7px) scale(1.02); opacity: 1; }
+  72% { transform: translateY(2px) scale(0.99); }
+}
+
+.preview-footer {
+  min-height: 78px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: center;
+  padding: 14px 16px;
+  border-top: 1px solid var(--line);
+}
+
+.motion-timeline {
+  display: grid;
+  gap: 8px;
+}
+
+.timeline-track {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--surface-3);
+  overflow: hidden;
+}
+
+.timeline-track span {
+  display: block;
+  height: 100%;
+  width: 58%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--blue), var(--green), var(--rose));
+  transform-origin: left center;
+  animation: timeline 5.2s ease-in-out infinite;
+}
+
+@keyframes timeline {
+  0%, 100% { transform: scaleX(0.36); }
+  50% { transform: scaleX(1); }
+}
+
+.timeline-meta {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  max-width: calc(100% - 36px);
-}
-
-.summary-pill {
-  min-height: 34px;
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 0 11px;
-  border: 1px solid rgba(223,229,220,0.84);
-  border-radius: 999px;
-  background: rgba(255,255,255,0.82);
-  backdrop-filter: blur(14px);
-  font-size: 12px;
-  font-weight: 900;
-}
-
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--green);
-}
-.dot.warn { background: var(--amber); }
-.dot.blue { background: var(--blue); }
-
-.canvas-foot {
-  padding: 15px 18px;
-  border-top: 1px solid var(--line);
-  background: rgba(255,255,255,0.66);
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 12px;
-  align-items: center;
-}
-
-.system-line {
   color: var(--muted);
   font-size: 12px;
 }
 
-.system-line strong {
-  color: var(--ink);
+.result-board {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 16px;
 }
 
-.badge {
-  display: inline-flex;
-  align-items: center;
-  min-height: 26px;
-  padding: 0 9px;
-  border-radius: 999px;
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 950;
-  white-space: nowrap;
-}
-
-.badge.green { background: var(--green-soft); color: var(--green-2); }
-.badge.amber { background: var(--amber-soft); color: #9c542b; }
-.badge.blue { background: var(--blue-soft); color: var(--blue); }
-.badge.red { background: var(--red-soft); color: var(--red); }
-
-.decision-card {
-  border-radius: 8px;
-  padding: 17px;
-  background: rgba(231,247,238,0.82);
-  border: 1px solid rgba(4,168,87,0.28);
+.decision-panel {
   display: grid;
   gap: 14px;
-}
-
-.decision-kicker {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--green-2);
-  font-weight: 950;
+  padding: 16px;
 }
 
 .decision-title {
-  font-size: 28px;
-  line-height: 1.02;
-  letter-spacing: -0.055em;
-  font-weight: 950;
-}
-
-.decision-copy {
-  color: var(--ink-2);
-  font-size: 13px;
-}
-
-.decision-actions {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-}
-
-.metrics {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 9px;
-}
-
-.metric {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: rgba(255,255,255,0.7);
-  padding: 12px;
-}
-
-.metric-label {
-  color: var(--muted);
-  font-size: 11px;
-  font-weight: 850;
-}
-
-.metric-value {
-  margin-top: 4px;
-  font-family: var(--mono);
-  font-size: 19px;
-  font-weight: 950;
-}
-
-.metric small {
-  display: block;
-  margin-top: 3px;
-  color: var(--faint);
-  font-size: 10px;
-}
-
-.kit-list {
-  display: grid;
-  gap: 10px;
-}
-
-.kit-card {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: rgba(255,255,255,0.76);
-  padding: 13px;
-  display: grid;
-  gap: 11px;
-}
-
-.kit-card.recommended {
-  border-color: rgba(4,168,87,0.52);
-  box-shadow: inset 4px 0 0 var(--green);
-}
-
-.kit-head {
   display: flex;
   justify-content: space-between;
-  gap: 12px;
+  gap: 14px;
   align-items: flex-start;
 }
 
-.kit-name {
-  font-weight: 950;
-  letter-spacing: -0.02em;
+.decision-title h2 {
+  font-size: 23px;
+  line-height: 1.16;
+  font-weight: 760;
 }
 
-.kit-desc {
-  margin-top: 3px;
-  color: var(--muted);
-  font-size: 12px;
+.decision-title p {
+  margin-top: 6px;
+  color: var(--text);
 }
 
-.bars {
+.kit-score {
+  min-width: 82px;
+  min-height: 82px;
+  border-radius: 50%;
   display: grid;
-  gap: 7px;
-}
-
-.bar-row {
-  display: grid;
-  grid-template-columns: 62px 1fr 38px;
-  align-items: center;
-  gap: 8px;
-  color: var(--muted);
-  font-size: 11px;
-  font-weight: 850;
-}
-
-.bar {
-  height: 7px;
-  border-radius: 999px;
-  overflow: hidden;
-  background: rgba(16,20,18,0.08);
-}
-
-.bar span {
-  display: block;
-  height: 100%;
-  width: 0%;
-  background: var(--green);
-}
-
-.bar.warn span { background: var(--amber); }
-.bar.red span { background: var(--red); }
-
-.parts {
-  border-top: 1px solid var(--line);
-  padding-top: 10px;
-  display: grid;
-  gap: 7px;
-}
-
-.part-row {
-  display: grid;
-  grid-template-columns: 1fr auto auto;
-  gap: 8px;
-  align-items: center;
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.part-row strong { color: var(--ink); }
-.part-row .need,
-.part-row .stock {
+  place-items: center;
+  border: 8px solid var(--green-soft);
+  color: #08763b;
+  background: var(--surface);
   font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 900;
+  font-weight: 760;
+  font-size: 20px;
 }
-.part-row.missing .stock { color: var(--red); }
 
-.procurement {
+.insight-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.insight {
   border: 1px solid var(--line);
-  border-radius: 8px;
-  background: rgba(255,255,255,0.78);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  padding: 12px;
+}
+
+.insight span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.insight strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 15px;
+}
+
+.table-panel {
   overflow: hidden;
 }
 
-.proc-row {
-  display: grid;
-  grid-template-columns: 1fr auto;
+.table-head {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 12px;
-  padding: 12px 13px;
+  padding: 0 16px;
   border-bottom: 1px solid var(--line);
 }
 
-.proc-row:last-child { border-bottom: 0; }
-.proc-name { font-weight: 950; }
-.proc-reason {
+.table-head h2 {
+  font-size: 15px;
+  font-weight: 760;
+}
+
+.kit-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.kit-table th,
+.kit-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.kit-table th {
+  color: var(--muted);
+  background: var(--surface-2);
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.kit-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.kit-name {
+  font-weight: 700;
+}
+
+.kit-note {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.progress {
+  width: 96px;
+  height: 7px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--surface-3);
+  margin-top: 6px;
+}
+
+.progress span {
+  display: block;
+  height: 100%;
+  background: var(--green);
+  width: var(--value, 50%);
+}
+
+.progress.warn span {
+  background: var(--amber);
+}
+
+.task-list {
+  border-top: 1px solid var(--line);
+  display: grid;
+}
+
+.task-row {
+  min-height: 56px;
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.task-row:last-child {
+  border-bottom: 0;
+}
+
+.task-index {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--blue);
+  background: var(--blue-soft);
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 760;
+}
+
+.task-title {
+  font-weight: 700;
+}
+
+.task-meta {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.status {
+  display: inline-flex;
+  min-height: 26px;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0 9px;
+  background: var(--surface-3);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.status.green {
+  background: var(--green-soft);
+  color: #08763b;
+}
+
+.status.amber {
+  background: var(--amber-soft);
+  color: #8a4d16;
+}
+
+.status.blue {
+  background: var(--blue-soft);
+  color: #075db5;
+}
+
+.parameters {
+  display: none;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  padding: 14px 16px 16px;
+  border-top: 1px solid var(--line);
+  background: var(--surface-2);
+}
+
+.parameters.open {
+  display: grid;
+}
+
+.param {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 10px;
+}
+
+.param span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.param strong {
+  display: block;
+  margin-top: 4px;
+}
+
+.toast {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 60;
+  min-width: 280px;
+  max-width: min(420px, calc(100vw - 48px));
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255,255,255,0.96);
+  box-shadow: var(--shadow-2);
+  padding: 14px 16px;
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast strong {
+  display: block;
+}
+
+.toast span {
+  display: block;
   margin-top: 3px;
   color: var(--muted);
   font-size: 12px;
 }
-.proc-price {
-  font-family: var(--mono);
-  font-weight: 950;
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
-.professional {
-  border-top: 1px solid var(--line);
-  padding-top: 12px;
-  margin-top: 2px;
-}
-
-.tech-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 9px;
-}
-
-.tech-item {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: rgba(248,250,246,0.78);
-  padding: 10px;
-}
-
-.tech-item span {
-  display: block;
-  color: var(--faint);
-  font-family: var(--mono);
-  font-size: 10px;
-}
-
-.tech-item strong {
-  display: block;
-  margin-top: 5px;
-}
-
-.hidden { display: none !important; }
-
-@media (max-width: 1240px) {
+@media (max-width: 1280px) {
   .topbar {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 220px 1fr auto;
   }
-  .journey { display: none; }
-  .workspace-shell {
-    grid-template-columns: minmax(280px, 340px) 1fr;
-  }
-  .right-panel {
-    grid-column: 1 / -1;
-    position: static;
-    max-height: none;
-  }
-}
 
-@media (max-width: 860px) {
-  .workspace-shell {
-    width: min(720px, calc(100% - 28px));
+  .workspace,
+  .result-board {
     grid-template-columns: 1fr;
   }
-  .left-panel {
-    position: static;
-    max-height: none;
+
+  .preview-surface {
+    min-height: auto;
   }
-  .canvas-panel { min-height: auto; }
-  .canvas-stage { min-height: 520px; }
 }
 
-@media (max-width: 620px) {
+@media (max-width: 900px) {
+  .app {
+    grid-template-rows: auto 1fr;
+  }
+
   .topbar {
+    height: auto;
     grid-template-columns: 1fr;
-    padding: 13px 14px;
+    padding: 12px 16px;
   }
-  .top-actions { flex-wrap: wrap; }
-  .canvas-head,
-  .canvas-foot {
-    grid-template-columns: 1fr;
-    align-items: start;
-  }
-  .canvas-toolbar,
-  .canvas-foot .btn {
+
+  .project-search {
+    justify-self: stretch;
     width: 100%;
   }
-  .canvas-toolbar .btn {
+
+  .top-actions {
+    justify-content: stretch;
+  }
+
+  .top-actions .btn {
     flex: 1;
   }
-  .stage-card {
+
+  .shell {
+    grid-template-columns: 1fr;
+  }
+
+  .rail {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    height: auto;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    padding: 8px;
+  }
+
+  .rail-item {
+    width: auto;
+    min-height: 48px;
+  }
+
+  .content {
+    width: 100%;
+    padding: 16px;
+  }
+
+  .project-bar {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-metrics {
+    min-width: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .summary-metric {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    padding: 10px 0 0;
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    font-size: 16px;
+  }
+
+  .brand-sub,
+  .project-search small {
+    display: none;
+  }
+
+  .source-grid,
+  .control-grid,
+  .step-strip,
+  .insight-grid,
+  .parameters {
+    grid-template-columns: 1fr;
+  }
+
+  .canvas {
+    min-height: 390px;
+  }
+
+  .preview-wrap {
     width: 96%;
   }
-  .metrics,
-  .tech-grid,
-  .decision-actions {
+
+  .preview-footer {
     grid-template-columns: 1fr;
   }
-  .segmented {
+
+  .material-row {
     grid-template-columns: 1fr;
+  }
+
+  .kit-table {
+    min-width: 620px;
+  }
+
+  .table-panel {
+    overflow-x: auto;
+  }
+
+  .task-row {
+    grid-template-columns: 28px 1fr;
+  }
+
+  .task-row .status {
+    grid-column: 2;
+    justify-self: start;
   }
 }
 </style>
@@ -970,307 +1331,336 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
       <div class="brand-mark">F</div>
       <div>
         <div class="brand-title">Flora Studio</div>
-        <div class="brand-sub">动态花艺创作台</div>
+        <div class="brand-sub">CyberBloom Dynamic Workspace</div>
       </div>
     </div>
-    <nav class="journey" aria-label="平台流程">
-      <div class="journey-step done" data-flow="1"><div class="journey-num">1</div><div><div class="journey-title">输入想法</div><div class="journey-copy">设计图 / 文字</div></div></div>
-      <div class="journey-step done" data-flow="2"><div class="journey-num">2</div><div><div class="journey-title">标记结构</div><div class="journey-copy">可动 / 固定</div></div></div>
-      <div class="journey-step active" data-flow="3"><div class="journey-num">3</div><div><div class="journey-title">套件匹配</div><div class="journey-copy">重量 / 库存</div></div></div>
-      <div class="journey-step" data-flow="4"><div class="journey-num">4</div><div><div class="journey-title">系统代办</div><div class="journey-copy">采购 / 装配</div></div></div>
-    </nav>
+    <div class="project-search" role="status" aria-live="polite">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5v14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <div><strong id="projectSummary">婚礼主桌 · 开合套件</strong> <small id="projectSub">库存覆盖 82%</small></div>
+      <span class="status green" id="topStatus">可落地</span>
+    </div>
     <div class="top-actions">
-      <button class="mode-toggle" id="safeMode" type="button" aria-pressed="true"><span class="switch" aria-hidden="true"></span>新手安全模式</button>
-      <button class="btn soft small" id="resetBtn" type="button">重置</button>
-      <button class="btn dark small" id="exportBtn" type="button">生成方案</button>
+      <button class="btn ghost small" type="button" id="resetBtn" aria-label="重置方案">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7v5h5M20 17a8 8 0 0 1-13.5-5.8L4 12m16 5v-5h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        重置
+      </button>
+      <button class="btn primary small" type="button" id="exportBtn">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        生成方案
+      </button>
     </div>
   </header>
 
-  <main class="workspace-shell">
-    <aside class="panel left-panel" aria-labelledby="inputTitle">
-      <div class="panel-head">
+  <div class="shell">
+    <nav class="rail" aria-label="工作区">
+      <button class="rail-item active" type="button" data-jump="brief" aria-label="项目">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10a2 2 0 0 1 2 2v14H5V6a2 2 0 0 1 2-2Zm2 5h6M9 13h6M9 17h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span>项目</span>
+      </button>
+      <button class="rail-item" type="button" data-jump="preview" aria-label="预览">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12s3-6 8-6 8 6 8 6-3 6-8 6-8-6-8-6Zm8 3a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        <span>预览</span>
+      </button>
+      <button class="rail-item" type="button" data-jump="materials" aria-label="花材">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21V9m0 0C8 8 6 5 6 3c3 0 6 2 6 6Zm0 0c4-1 6-4 6-6-3 0-6 2-6 6ZM5 17c3 0 5-2 7-5 2 3 4 5 7 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>花材</span>
+      </button>
+      <button class="rail-item" type="button" data-jump="system" aria-label="代办">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span>代办</span>
+      </button>
+    </nav>
+
+    <main class="content">
+      <section class="project-bar" id="brief">
         <div>
-          <div class="panel-title" id="inputTitle">创作输入</div>
-          <div class="panel-note">idea and constraints</div>
-        </div>
-        <span class="badge green" id="intentBadge">已理解</span>
-      </div>
-      <div class="panel-body">
-        <section class="section-block">
-          <div class="block-head"><div class="block-title">创意来源</div><div class="block-code">start</div></div>
-          <div class="field">
-            <label for="designFile">已有设计</label>
-            <div class="upload" id="uploadBox">
-              <input id="designFile" type="file" accept="image/*" aria-label="上传设计图或实物图">
-              <img id="uploadPreview" alt="上传的设计参考">
-              <div class="upload-copy" id="uploadCopy"><strong>上传设计图 / 实物图</strong><span>草图、现场照片、客户参考图</span></div>
-            </div>
-          </div>
-          <div class="field">
-            <label for="ideaText">想法描述</label>
-            <textarea class="textarea" id="ideaText">婚礼主桌花艺，希望像被祝福一样缓慢展开，动作要克制，不要太机械，机电尽量藏在花瓶背后。</textarea>
-          </div>
-        </section>
-
-        <section class="section-block">
-          <div class="block-head"><div class="block-title">创作选择</div><div class="block-code">guide</div></div>
-          <div class="field">
-            <label>场景</label>
-            <div class="chip-grid" data-group="scene">
-              <button class="chip" type="button" data-value="wedding" aria-pressed="true">婚礼主桌</button>
-              <button class="chip" type="button" data-value="window" aria-pressed="false">橱窗陈列</button>
-              <button class="chip" type="button" data-value="gift" aria-pressed="false">礼物花束</button>
-              <button class="chip" type="button" data-value="exhibition" aria-pressed="false">展览装置</button>
-              <button class="chip" type="button" data-value="retail" aria-pressed="false">商业空间</button>
-            </div>
-          </div>
-          <div class="field">
-            <label>动感</label>
-            <div class="chip-grid" data-group="motion">
-              <button class="chip" type="button" data-value="breath" aria-pressed="true">呼吸</button>
-              <button class="chip" type="button" data-value="sway" aria-pressed="false">摇曳</button>
-              <button class="chip" type="button" data-value="bloom" aria-pressed="true">开合</button>
-              <button class="chip" type="button" data-value="blessing" aria-pressed="true">祝福感</button>
-              <button class="chip" type="button" data-value="light" aria-pressed="false">轻盈</button>
-            </div>
-          </div>
-        </section>
-
-        <section class="section-block">
-          <div class="block-head"><div class="block-title">落地边界</div><div class="block-code">limits</div></div>
-          <div class="field">
-            <label>动作强度</label>
-            <div class="segmented" data-segment="intensity">
-              <button type="button" data-value="soft" class="active">克制</button>
-              <button type="button" data-value="clear">明显</button>
-              <button type="button" data-value="stage">舞台感</button>
-            </div>
-          </div>
-          <div class="field">
-            <label>优先级</label>
-            <div class="segmented" data-segment="priority">
-              <button type="button" data-value="safe" class="active">稳定优先</button>
-              <button type="button" data-value="stock">库存优先</button>
-              <button type="button" data-value="effect">效果优先</button>
-            </div>
-          </div>
-          <div class="field">
-            <label for="sizeInput">尺寸</label>
-            <input class="input" id="sizeInput" value="宽 60cm，高 45cm，桌面主视觉">
-          </div>
-          <div class="field">
-            <label for="hidePlace">隐藏位置</label>
-            <select class="input" id="hidePlace">
-              <option value="back">花瓶背后</option>
-              <option value="base">底座内部</option>
-              <option value="center">花丛中心</option>
-              <option value="branch">枝条后方</option>
-            </select>
-          </div>
-        </section>
-
-        <section class="section-block">
-          <div class="block-head"><div class="block-title">花材数量</div><div class="block-code">weight</div></div>
-          <div class="material-list" id="materialList"></div>
-        </section>
-      </div>
-    </aside>
-
-    <section class="panel canvas-panel" aria-labelledby="previewTitle">
-      <div class="canvas-head">
-        <div>
-          <div class="canvas-title" id="previewTitle">动态预览画布</div>
-          <div class="canvas-sub">动作区域 3 可动 · 1 固定 · 1 隐藏</div>
-        </div>
-        <div class="canvas-toolbar">
-          <span class="badge green" id="canvasBadge">实时可实现</span>
-          <button class="btn soft small" id="professionalBtn" type="button" aria-pressed="false">参数</button>
-        </div>
-      </div>
-      <div class="canvas-stage">
-        <div class="stage-card" id="bouquetWrap">
-          <svg class="bouquet-svg" viewBox="0 0 600 600" role="img" aria-label="动态花艺预览">
-            <defs>
-              <linearGradient id="stemGrad" x1="0" x2="1">
-                <stop offset="0" stop-color="#9fa493"/>
-                <stop offset="1" stop-color="#5e6957"/>
-              </linearGradient>
-              <radialGradient id="flowerGlow" cx="50%" cy="45%" r="65%">
-                <stop offset="0" stop-color="#ffffff"/>
-                <stop offset="0.7" stop-color="#f2d6d9"/>
-                <stop offset="1" stop-color="#d9a8ae"/>
-              </radialGradient>
-            </defs>
-            <g opacity="0.34" stroke="#6f7667" stroke-width="8" fill="none">
-              <path d="M300 502 C292 410 304 320 292 230"/>
-              <path d="M300 498 C250 420 190 370 130 322"/>
-              <path d="M302 496 C358 420 420 365 480 315"/>
-              <path d="M296 500 C270 418 245 340 225 260"/>
-              <path d="M306 498 C335 415 360 335 384 252"/>
-            </g>
-            <g class="petal-wing left-wing" fill="#ffffff" stroke="#cfd0c8" stroke-width="3">
-              <path d="M292 232 C198 120 118 112 68 196 C148 212 216 230 292 232Z"/>
-              <path d="M286 286 C188 244 110 255 58 326 C142 346 216 330 286 286Z"/>
-              <path d="M286 338 C196 342 136 396 112 472 C190 450 246 406 286 338Z"/>
-            </g>
-            <g class="petal-wing right-wing" fill="#ffffff" stroke="#cfd0c8" stroke-width="3">
-              <path d="M308 232 C402 120 482 112 532 196 C452 212 384 230 308 232Z"/>
-              <path d="M314 286 C412 244 490 255 542 326 C458 346 384 330 314 286Z"/>
-              <path d="M314 338 C404 342 464 396 488 472 C410 450 354 406 314 338Z"/>
-            </g>
-            <g fill="url(#flowerGlow)" stroke="#e4b6bc" stroke-width="3">
-              <ellipse cx="300" cy="266" rx="46" ry="78"/>
-              <ellipse cx="258" cy="318" rx="48" ry="76" transform="rotate(-28 258 318)"/>
-              <ellipse cx="342" cy="318" rx="48" ry="76" transform="rotate(28 342 318)"/>
-              <ellipse cx="300" cy="362" rx="54" ry="82"/>
-            </g>
-            <circle cx="300" cy="326" r="34" fill="#04a857" opacity="0.88"/>
-            <circle cx="300" cy="326" r="20" fill="#b8efce"/>
-            <path d="M236 528 H364 C389 528 406 546 406 568 V584 H194 V568 C194 546 211 528 236 528Z" fill="#fbfbf7" stroke="#c8c7be" stroke-width="3"/>
-            <path d="M248 566 H352" stroke="#d5d4cc" stroke-width="4" stroke-linecap="round"/>
-            <path d="M280 508 V474 H320 V508" stroke="url(#stemGrad)" stroke-width="18" stroke-linecap="round"/>
-          </svg>
-          <button class="zone" data-zone="left" type="button">可动</button>
-          <button class="zone" data-zone="right" type="button">可动</button>
-          <button class="zone" data-zone="top" type="button">可动</button>
-          <button class="zone locked" data-zone="center" type="button">固定</button>
-          <button class="zone" data-zone="base" type="button">隐藏</button>
-          <div class="floating-summary">
-            <div class="summary-pill"><span class="dot"></span><span id="motionSummary">呼吸 + 开合 + 祝福感</span></div>
-            <div class="summary-pill"><span class="dot warn"></span><span id="weightSummary">估算 0g</span></div>
-            <div class="summary-pill"><span class="dot blue"></span><span id="zoneSummary">3 个可动区</span></div>
+          <div class="eyebrow">Flora Studio / Creator Mode</div>
+          <h1>把花艺师的想法转成可预览、可采购、可装配的动态方案</h1>
+          <div class="project-meta">
+            <span class="pill blue" id="scenePill">婚礼主桌</span>
+            <span class="pill green" id="motionPill">呼吸 + 开合 + 祝福感</span>
+            <span class="pill amber" id="riskPill">需补货</span>
           </div>
         </div>
-      </div>
-      <div class="canvas-foot">
-        <div class="system-line"><strong id="systemLineLead">开合套件</strong> 正在根据花材重量、可动区域和库存自动匹配。</div>
-        <button class="btn primary" id="prepareBtn" type="button">准备系统代办</button>
-      </div>
-    </section>
-
-    <aside class="panel right-panel" aria-labelledby="resultTitle">
-      <div class="panel-head">
-        <div>
-          <div class="panel-title" id="resultTitle">系统整理</div>
-          <div class="panel-note">kit, inventory, purchase</div>
+        <div class="summary-metrics">
+          <div class="summary-metric"><span>花材总重</span><strong id="metricTotal">0g</strong></div>
+          <div class="summary-metric"><span>可动重量</span><strong id="metricMoving">0g</strong></div>
+          <div class="summary-metric"><span>库存覆盖</span><strong id="metricStock">0%</strong></div>
+          <div class="summary-metric"><span>装配时间</span><strong id="metricTime">45m</strong></div>
         </div>
-        <span class="badge amber" id="riskBadge">需补货</span>
-      </div>
-      <div class="panel-body">
-        <section class="decision-card">
-          <div class="decision-kicker">system decision</div>
-          <div class="decision-title" id="decisionTitle">开合套件</div>
-          <div class="decision-copy" id="decisionCopy">适合左右对称、六翼、花瓣层次展开；当前库存会自动生成补货清单。</div>
-          <div class="decision-actions">
-            <button class="btn primary small" id="decisionPrepareBtn" type="button">准备代办</button>
-            <button class="btn soft small" id="decisionDetailBtn" type="button">查看参数</button>
+      </section>
+
+      <section class="workspace">
+        <section class="surface" aria-labelledby="flowTitle">
+          <div class="surface-head">
+            <div>
+              <div class="surface-title" id="flowTitle">创作流程</div>
+              <div class="surface-sub">自由输入和明确选项并行</div>
+            </div>
+            <span class="status blue" id="flowStatus">正在匹配</span>
+          </div>
+          <div class="surface-body">
+            <div class="step-strip" role="tablist" aria-label="创作流程">
+              <button class="step-button active" type="button" role="tab" data-step="intent" aria-selected="true">意图</button>
+              <button class="step-button" type="button" role="tab" data-step="motion" aria-selected="false">动作</button>
+              <button class="step-button" type="button" role="tab" data-step="material" aria-selected="false">花材</button>
+              <button class="step-button" type="button" role="tab" data-step="handoff" aria-selected="false">输出</button>
+            </div>
+
+            <div class="flow-view active" data-view="intent">
+              <div class="form-section">
+                <div class="section-title"><h2>创意来源</h2><span>可空白开始</span></div>
+                <div class="source-grid" data-group="source">
+                  <button class="source-card active" type="button" data-value="design">
+                    <strong>已有设计图</strong><span>从草图、照片或客户参考开始</span>
+                  </button>
+                  <button class="source-card" type="button" data-value="scene">
+                    <strong>只有场景</strong><span>从用途和情绪生成结构</span>
+                  </button>
+                  <button class="source-card" type="button" data-value="stock">
+                    <strong>按库存创作</strong><span>优先使用现有花材和套件</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="drop">
+                <input id="designFile" type="file" accept="image/*" aria-label="上传设计图或实物图">
+                <div class="drop-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14m7-7H5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+                <div id="uploadCopy"><strong>上传设计图 / 实物照片</strong><span>PNG、JPG、手绘草图、现场照片</span></div>
+                <img id="uploadPreview" alt="上传的设计参考">
+              </div>
+
+              <div class="field">
+                <label for="ideaText">想法描述</label>
+                <textarea class="textarea" id="ideaText">婚礼主桌花艺，希望像被祝福一样缓慢展开，动作要克制，不要太机械，机电尽量藏在花瓶背后。</textarea>
+              </div>
+
+              <div class="form-section">
+                <div class="section-title"><h2>场景</h2><span>单选</span></div>
+                <div class="chip-row" data-group="scene">
+                  <button class="chip" type="button" data-value="wedding" aria-pressed="true">婚礼主桌</button>
+                  <button class="chip" type="button" data-value="window" aria-pressed="false">橱窗陈列</button>
+                  <button class="chip" type="button" data-value="gift" aria-pressed="false">礼物花束</button>
+                  <button class="chip" type="button" data-value="exhibition" aria-pressed="false">展览装置</button>
+                  <button class="chip" type="button" data-value="retail" aria-pressed="false">商业空间</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="flow-view" data-view="motion">
+              <div class="form-section">
+                <div class="section-title"><h2>动感选择</h2><span>可多选</span></div>
+                <div class="chip-row" data-group="motion">
+                  <button class="chip" type="button" data-value="breath" aria-pressed="true">呼吸</button>
+                  <button class="chip" type="button" data-value="sway" aria-pressed="false">摇曳</button>
+                  <button class="chip" type="button" data-value="bloom" aria-pressed="true">开合</button>
+                  <button class="chip" type="button" data-value="blessing" aria-pressed="true">祝福感</button>
+                  <button class="chip" type="button" data-value="light" aria-pressed="false">轻盈</button>
+                </div>
+              </div>
+
+              <div class="control-grid">
+                <div class="field">
+                  <label>动作强度</label>
+                  <div class="segmented" data-segment="intensity">
+                    <button type="button" data-value="soft" class="active">克制</button>
+                    <button type="button" data-value="clear">明显</button>
+                    <button type="button" data-value="stage">舞台</button>
+                  </div>
+                </div>
+                <div class="field">
+                  <label>系统优先级</label>
+                  <div class="segmented" data-segment="priority">
+                    <button type="button" data-value="safe" class="active">稳定</button>
+                    <button type="button" data-value="stock">库存</button>
+                    <button type="button" data-value="effect">效果</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="control-grid">
+                <div class="field">
+                  <label for="sizeInput">作品尺寸</label>
+                  <input class="input" id="sizeInput" value="宽 60cm，高 45cm，桌面主视觉">
+                </div>
+                <div class="field">
+                  <label for="hidePlace">机电隐藏</label>
+                  <select class="select" id="hidePlace">
+                    <option value="back">花瓶背后</option>
+                    <option value="base">底座内部</option>
+                    <option value="center">花丛中心</option>
+                    <option value="branch">枝条后方</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="toggle-row">
+                <div><strong>新手安全模式</strong><span>限制过大幅度和高负载动作</span></div>
+                <button class="switch" type="button" id="safeSwitch" aria-label="新手安全模式" aria-pressed="true"></button>
+              </div>
+            </div>
+
+            <div class="flow-view" data-view="material" id="materials">
+              <div class="form-section">
+                <div class="section-title"><h2>花材数量</h2><span id="materialSummary">自动估重</span></div>
+                <div class="material-table" id="materialTable"></div>
+              </div>
+            </div>
+
+            <div class="flow-view" data-view="handoff">
+              <div class="form-section">
+                <div class="section-title"><h2>系统输出</h2><span>套件、库存、补货、装配</span></div>
+                <div class="task-list" id="miniTasks"></div>
+              </div>
+              <button class="btn primary" type="button" id="prepareBtn">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                进入下单前流程
+              </button>
+            </div>
           </div>
         </section>
 
-        <section class="metrics">
-          <div class="metric"><div class="metric-label">花材总重</div><div class="metric-value" id="totalWeight">0g</div><small>含装配余量</small></div>
-          <div class="metric"><div class="metric-label">可动重量</div><div class="metric-value" id="movingWeight">0g</div><small>用于套件匹配</small></div>
-          <div class="metric"><div class="metric-label">库存覆盖</div><div class="metric-value" id="stockCover">0%</div><small id="stockHint">正在计算</small></div>
-        </section>
-
-        <section class="kit-list" id="kitList"></section>
-        <section class="procurement" id="procurementBox"></section>
-
-        <section class="professional hidden" id="professionalPanel">
-          <div class="tech-grid">
-            <div class="tech-item"><span>动作周期</span><strong id="techCycle">6.8s</strong></div>
-            <div class="tech-item"><span>建议幅度</span><strong id="techAngle">18°</strong></div>
-            <div class="tech-item"><span>隐藏位置</span><strong id="techHide">花瓶背后</strong></div>
-            <div class="tech-item"><span>装配时间</span><strong id="techTime">45 min</strong></div>
+        <section class="surface preview-surface" id="preview" aria-labelledby="previewTitle">
+          <div class="surface-head">
+            <div>
+              <div class="surface-title" id="previewTitle">动态预览</div>
+              <div class="surface-sub" id="previewSub">3 个可动区 · 1 个固定区 · 1 个隐藏区</div>
+            </div>
+            <div class="canvas-toolbar">
+              <span class="status green" id="previewStatus">实时更新</span>
+              <button class="btn small" id="paramBtn" type="button" aria-expanded="false">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M4 17h16M18 7h2M4 12h3m4 0h9M14 12h-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                参数
+              </button>
+            </div>
+          </div>
+          <div class="canvas">
+            <div class="frame-label" id="frameLabel">婚礼主桌 / 开合套件</div>
+            <div class="preview-wrap motion-bloom" id="previewWrap">
+              <svg class="bouquet-svg" viewBox="0 0 600 600" role="img" aria-label="动态花艺预览">
+                <defs>
+                  <linearGradient id="stemGradient" x1="0" x2="1">
+                    <stop offset="0" stop-color="#9ba48e"/>
+                    <stop offset="1" stop-color="#5c6657"/>
+                  </linearGradient>
+                  <radialGradient id="petalGradient" cx="50%" cy="48%" r="62%">
+                    <stop offset="0" stop-color="#ffffff"/>
+                    <stop offset="0.72" stop-color="#f5d7dd"/>
+                    <stop offset="1" stop-color="#d99aaa"/>
+                  </radialGradient>
+                </defs>
+                <g opacity="0.36" stroke="#657065" stroke-width="8" fill="none">
+                  <path d="M300 510 C294 410 304 334 294 228"/>
+                  <path d="M302 508 C246 426 190 372 128 320"/>
+                  <path d="M302 508 C360 426 420 368 484 316"/>
+                  <path d="M296 510 C272 424 248 344 222 258"/>
+                  <path d="M306 508 C334 421 360 340 386 254"/>
+                </g>
+                <g class="wing left-wing" fill="#fff" stroke="#cdd2ca" stroke-width="3">
+                  <path d="M292 234 C201 124 118 113 68 198 C150 214 216 230 292 234Z"/>
+                  <path d="M286 286 C188 244 110 255 58 326 C142 346 216 330 286 286Z"/>
+                  <path d="M286 338 C196 342 136 396 112 472 C190 450 246 406 286 338Z"/>
+                </g>
+                <g class="wing right-wing" fill="#fff" stroke="#cdd2ca" stroke-width="3">
+                  <path d="M308 234 C399 124 482 113 532 198 C450 214 384 230 308 234Z"/>
+                  <path d="M314 286 C412 244 490 255 542 326 C458 346 384 330 314 286Z"/>
+                  <path d="M314 338 C404 342 464 396 488 472 C410 450 354 406 314 338Z"/>
+                </g>
+                <g fill="url(#petalGradient)" stroke="#e2aebb" stroke-width="3">
+                  <ellipse cx="300" cy="268" rx="47" ry="78"/>
+                  <ellipse cx="257" cy="318" rx="50" ry="78" transform="rotate(-28 257 318)"/>
+                  <ellipse cx="343" cy="318" rx="50" ry="78" transform="rotate(28 343 318)"/>
+                  <ellipse cx="300" cy="362" rx="54" ry="82"/>
+                </g>
+                <circle cx="300" cy="326" r="34" fill="#12a150" opacity="0.90"/>
+                <circle cx="300" cy="326" r="19" fill="#b8efce"/>
+                <path d="M236 528 H364 C390 528 408 546 408 568 V584 H192 V568 C192 546 210 528 236 528Z" fill="#ffffff" stroke="#c7cbd0" stroke-width="3"/>
+                <path d="M248 566 H352" stroke="#d2d7dc" stroke-width="4" stroke-linecap="round"/>
+                <path d="M280 510 V474 H320 V510" stroke="url(#stemGradient)" stroke-width="18" stroke-linecap="round"/>
+              </svg>
+              <span class="zone left">左翼</span>
+              <span class="zone right">右翼</span>
+              <span class="zone top">顶部</span>
+              <span class="zone core">固定</span>
+              <span class="zone base">隐藏</span>
+            </div>
+          </div>
+          <div class="preview-footer">
+            <div class="motion-timeline">
+              <div class="timeline-track"><span></span></div>
+              <div class="timeline-meta">
+                <span id="timelineMotion">呼吸 + 开合 + 祝福感</span>
+                <span id="timelineCycle">周期 6.8s</span>
+                <span id="timelineAngle">幅度 18°</span>
+              </div>
+            </div>
+            <button class="btn primary" type="button" id="previewCta">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7L8 5Z" fill="currentColor"/></svg>
+              生成匹配
+            </button>
           </div>
         </section>
-      </div>
-    </aside>
-  </main>
+      </section>
+
+      <section class="result-board" id="system">
+        <section class="surface decision-panel">
+          <div class="decision-title">
+            <div>
+              <h2 id="decisionTitle">推荐开合套件</h2>
+              <p id="decisionCopy">适合左右对称、六翼、花瓣层次展开；当前库存会自动生成补货清单。</p>
+            </div>
+            <div class="kit-score" id="kitScore">92</div>
+          </div>
+          <div class="insight-grid">
+            <div class="insight"><span>结构判断</span><strong id="insightStructure">左右展开 + 底座隐藏</strong></div>
+            <div class="insight"><span>重量判断</span><strong id="insightWeight">可动重量 190g</strong></div>
+            <div class="insight"><span>库存判断</span><strong id="insightStock">需补 2 类零件</strong></div>
+            <div class="insight"><span>新手判断</span><strong id="insightSafety">低速、限幅、模板装配</strong></div>
+          </div>
+          <button class="btn primary" type="button" id="orderBtn">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6h15l-2 8H8L6 6Zm0 0H3m6 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm9 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            打开下单前流程
+          </button>
+        </section>
+
+        <section class="surface table-panel">
+          <div class="table-head">
+            <h2>套件与库存</h2>
+            <span class="status amber" id="stockStatus">库存不足</span>
+          </div>
+          <table class="kit-table">
+            <thead>
+              <tr>
+                <th>方案</th>
+                <th>适配度</th>
+                <th>库存</th>
+                <th>动作</th>
+              </tr>
+            </thead>
+            <tbody id="kitRows"></tbody>
+          </table>
+          <div class="task-list" id="taskRows"></div>
+          <div class="parameters" id="parameters">
+            <div class="param"><span>动作周期</span><strong id="paramCycle">6.8s</strong></div>
+            <div class="param"><span>建议幅度</span><strong id="paramAngle">18°</strong></div>
+            <div class="param"><span>隐藏位置</span><strong id="paramHide">花瓶背后</strong></div>
+            <div class="param"><span>装配时间</span><strong id="paramTime">45 min</strong></div>
+          </div>
+        </section>
+      </section>
+    </main>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <strong id="toastTitle">已更新方案</strong>
+  <span id="toastCopy">系统已重新匹配套件、库存和代办。</span>
 </div>
 
 <script>
-const state = {
-  safeMode: true,
-  scene: 'wedding',
-  motions: new Set(['breath', 'bloom', 'blessing']),
-  intensity: 'soft',
-  priority: 'safe',
-  hidePlace: 'back',
-  zones: {
-    left: 'move',
-    right: 'move',
-    top: 'move',
-    center: 'fixed',
-    base: 'hide'
-  },
-  materials: [
-    { id: 'rose', name: '玫瑰', type: '主花', weight: 28, qty: 6 },
-    { id: 'hydrangea', name: '绣球', type: '主花', weight: 320, qty: 1 },
-    { id: 'eucalyptus', name: '尤加利', type: '叶材', weight: 15, qty: 8 },
-    { id: 'babysbreath', name: '满天星', type: '配花', weight: 8, qty: 10 },
-    { id: 'peony', name: '芍药', type: '主花', weight: 45, qty: 0 },
-    { id: 'willow', name: '雪柳', type: '枝条', weight: 22, qty: 0 }
-  ],
-  inventory: {
-    core: 2,
-    miniServo: 2,
-    servo: 4,
-    flexStem: 8,
-    magicSnap: 4,
-    smartBox: 0,
-    powerPack: 1
-  }
-};
-
-const partsName = {
-  core: 'CyberBrick Core',
-  miniServo: '微型电机',
-  servo: '伺服电机',
-  flexStem: 'Flexi-Stem',
-  magicSnap: 'Magic Snap',
-  smartBox: 'Smart Box',
-  powerPack: '外接电源'
-};
-
-const prices = {
-  core: 248,
-  miniServo: 46,
-  servo: 58,
-  flexStem: 18,
-  magicSnap: 58,
-  smartBox: 168,
-  powerPack: 128
-};
-
-const kits = {
-  micro: {
-    name: '微动套件',
-    level: '简单',
-    desc: '适合单枝、叶片、小装饰的轻微摆动。',
-    req: { core: 1, miniServo: 1, flexStem: 2, magicSnap: 1 },
-    maxMoving: 180,
-    baseScore: 78,
-    minutes: 25
-  },
-  bloom: {
-    name: '开合套件',
-    level: '推荐',
-    desc: '适合左右对称、六翼、花瓣层次展开。',
-    req: { core: 1, servo: 3, flexStem: 6, magicSnap: 6, smartBox: 1 },
-    maxMoving: 520,
-    baseScore: 86,
-    minutes: 45
-  },
-  scene: {
-    name: '场景套件',
-    level: '专业',
-    desc: '适合橱窗、展览、大型装置的多节点联动。',
-    req: { core: 1, servo: 6, flexStem: 10, magicSnap: 10, smartBox: 1, powerPack: 1 },
-    maxMoving: 980,
-    baseScore: 82,
-    minutes: 90
-  }
+const svgIcon = {
+  check: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 13 4 4L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  arrow: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 };
 
 const sceneLabels = {
@@ -1296,343 +1686,396 @@ const hideLabels = {
   branch: '枝条后方'
 };
 
-function clamp(value, min, max) {
-  return Math.min(max, Math.max(min, value));
-}
+const intensity = {
+  soft: { label: '克制', ratio: 0.24, cycle: '6.8s', angle: '18°' },
+  clear: { label: '明显', ratio: 0.31, cycle: '5.4s', angle: '24°' },
+  stage: { label: '舞台', ratio: 0.38, cycle: '4.8s', angle: '32°' }
+};
 
-function renderMaterials() {
-  const list = document.getElementById('materialList');
-  list.innerHTML = state.materials.map((item) => `
-    <div class="material-row">
-      <div>
-        <div class="material-name">${item.name}</div>
-        <div class="material-meta">${item.type} · ${item.weight}g / 支</div>
-      </div>
-      <div class="stepper" data-id="${item.id}">
-        <button type="button" data-action="minus" aria-label="减少 ${item.name}">-</button>
-        <output>${item.qty}</output>
-        <button type="button" data-action="plus" aria-label="增加 ${item.name}">+</button>
-      </div>
-    </div>
-  `).join('');
-  list.querySelectorAll('.stepper button').forEach((button) => {
-    button.addEventListener('click', () => {
-      const id = button.closest('.stepper').dataset.id;
-      const material = state.materials.find((entry) => entry.id === id);
-      const delta = button.dataset.action === 'plus' ? 1 : -1;
-      material.qty = clamp(material.qty + delta, 0, 99);
-      renderMaterials();
-      update();
-    });
-  });
+const materials = [
+  { key: 'hydrangea', name: '绣球', grams: 42, count: 7 },
+  { key: 'rose', name: '玫瑰', grams: 18, count: 12 },
+  { key: 'eustoma', name: '洋桔梗', grams: 12, count: 9 },
+  { key: 'greenery', name: '叶材', grams: 8, count: 16 },
+  { key: 'feather', name: '仿生翅片', grams: 14, count: 6 }
+];
+
+const kits = [
+  {
+    key: 'bloom',
+    name: 'CyberBrick 开合套件',
+    note: '对称展开、花瓣开合、祝福感',
+    capacity: 360,
+    motion: ['bloom', 'blessing', 'breath'],
+    time: 45,
+    parts: [
+      { name: 'Servo Leaf', need: 2, stock: 3, price: 96 },
+      { name: 'Magic Snap', need: 6, stock: 4, price: 38 },
+      { name: 'Smart Box', need: 1, stock: 0, price: 208 }
+    ]
+  },
+  {
+    key: 'sway',
+    name: 'CyberBrick 摇曳套件',
+    note: '枝条摆动、橱窗循环、轻量花束',
+    capacity: 280,
+    motion: ['sway', 'breath', 'light'],
+    time: 35,
+    parts: [
+      { name: 'Micro Servo', need: 2, stock: 5, price: 72 },
+      { name: 'Flex Stem', need: 4, stock: 5, price: 28 },
+      { name: 'Smart Box', need: 1, stock: 0, price: 208 }
+    ]
+  },
+  {
+    key: 'breath',
+    name: 'CyberBrick 呼吸套件',
+    note: '低速起伏、礼物花束、稳定优先',
+    capacity: 220,
+    motion: ['breath', 'light'],
+    time: 28,
+    parts: [
+      { name: 'Pulse Motor', need: 1, stock: 2, price: 84 },
+      { name: 'Soft Link', need: 5, stock: 7, price: 18 },
+      { name: 'Mini Box', need: 1, stock: 2, price: 138 }
+    ]
+  }
+];
+
+const state = {
+  source: 'design',
+  scene: 'wedding',
+  motions: new Set(['breath', 'bloom', 'blessing']),
+  intensity: 'soft',
+  priority: 'safe',
+  hidePlace: 'back',
+  safeMode: true,
+  step: 'intent'
+};
+
+function byId(id) {
+  return document.getElementById(id);
 }
 
 function getWeights() {
-  const raw = state.materials.reduce((sum, item) => sum + item.qty * item.weight, 0);
-  const total = Math.round(raw * 1.15);
-  const moveZones = Object.values(state.zones).filter((value) => value === 'move').length;
-  const intensityFactor = state.intensity === 'soft' ? 0.24 : state.intensity === 'clear' ? 0.34 : 0.46;
-  const moving = Math.round(total * intensityFactor * clamp(moveZones / 3, 0.35, 1.35));
-  return { raw, total, moving, moveZones };
+  const raw = materials.reduce((sum, item) => sum + item.grams * item.count, 0);
+  const total = Math.round(raw * 1.18);
+  const moving = Math.round(total * intensity[state.intensity].ratio);
+  return { raw, total, moving };
 }
 
-function getSelectedKitKey(weights) {
-  const hasBloom = state.motions.has('bloom') || state.motions.has('blessing');
-  const bigScene = state.scene === 'exhibition' || state.scene === 'window' || state.intensity === 'stage';
-  if (bigScene || weights.total > 1600 || weights.moving > 520) return 'scene';
-  if (hasBloom || weights.moving > 180) return 'bloom';
-  return 'micro';
+function getMissingParts(kit) {
+  return kit.parts
+    .filter(part => part.stock < part.need)
+    .map(part => ({ ...part, missing: part.need - part.stock }));
 }
 
-function scoreKit(key, weights) {
-  const kit = kits[key];
-  const reqEntries = Object.entries(kit.req);
-  const need = reqEntries.reduce((sum, [, qty]) => sum + qty, 0);
-  const have = reqEntries.reduce((sum, [part, qty]) => sum + Math.min(state.inventory[part] || 0, qty), 0);
-  const coverage = Math.round((have / need) * 100);
-  const load = Math.round((weights.moving / kit.maxMoving) * 100);
-  const loadPenalty = weights.moving > kit.maxMoving ? 28 : Math.max(0, load - 72) * 0.35;
-  const stockBonus = state.priority === 'stock' ? coverage * 0.12 : coverage * 0.07;
-  const effectBonus = state.priority === 'effect' && key !== 'micro' ? 8 : 0;
-  const safeBonus = state.priority === 'safe' && load < 82 ? 8 : 0;
-  const score = clamp(Math.round(kit.baseScore + stockBonus + effectBonus + safeBonus - loadPenalty), 38, 98);
-  return { score, coverage, load, need, have };
+function scoreKit(kit) {
+  const { moving } = getWeights();
+  const motionScore = [...state.motions].reduce((score, motion) => score + (kit.motion.includes(motion) ? 16 : 0), 34);
+  const loadPenalty = moving > kit.capacity ? Math.round((moving - kit.capacity) / 4) : 0;
+  const missingPenalty = getMissingParts(kit).length * (state.priority === 'stock' ? 12 : 7);
+  const effectBonus = state.priority === 'effect' && kit.key === 'bloom' ? 10 : 0;
+  const safeBonus = state.safeMode && moving <= kit.capacity ? 8 : 0;
+  return Math.max(42, Math.min(98, motionScore + effectBonus + safeBonus - loadPenalty - missingPenalty));
 }
 
-function getKitCards(weights, recommendedKey) {
-  const keys = ['micro', 'bloom', 'scene'];
-  return keys.map((key) => ({ key, ...scoreKit(key, weights) })).sort((a, b) => {
-    if (a.key === recommendedKey) return -1;
-    if (b.key === recommendedKey) return 1;
-    return b.score - a.score;
-  });
+function getSortedKits() {
+  return kits.map(kit => ({ ...kit, score: scoreKit(kit), missing: getMissingParts(kit) }))
+    .sort((a, b) => b.score - a.score);
 }
 
-function getMissing(req) {
-  return Object.entries(req)
-    .map(([part, qty]) => ({ part, qty, have: state.inventory[part] || 0, missing: Math.max(0, qty - (state.inventory[part] || 0)) }))
-    .filter((item) => item.missing > 0);
+function getSelectedKit() {
+  return getSortedKits()[0];
 }
 
-function renderKitList(weights, recommendedKey) {
-  const cards = getKitCards(weights, recommendedKey);
-  const kitList = document.getElementById('kitList');
-  kitList.innerHTML = cards.map((card) => {
-    const kit = kits[card.key];
-    const missing = getMissing(kit.req);
-    const loadClass = card.load > 100 ? 'red' : card.load > 82 ? 'warn' : '';
-    const stockClass = card.coverage < 70 ? 'red' : card.coverage < 100 ? 'warn' : '';
+function getStockCover(kit) {
+  const need = kit.parts.reduce((sum, part) => sum + part.need, 0);
+  const covered = kit.parts.reduce((sum, part) => sum + Math.min(part.need, part.stock), 0);
+  return Math.round((covered / need) * 100);
+}
+
+function showToast(title, copy) {
+  const toast = byId('toast');
+  byId('toastTitle').textContent = title;
+  byId('toastCopy').textContent = copy;
+  toast.classList.add('show');
+  window.clearTimeout(showToast.timer);
+  showToast.timer = window.setTimeout(() => toast.classList.remove('show'), 2600);
+}
+
+function renderMaterials() {
+  byId('materialTable').innerHTML = materials.map(item => `
+    <div class="material-row">
+      <div>
+        <div class="material-name">${item.name}</div>
+        <div class="material-meta">${item.grams}g / 支 · ${item.grams * item.count}g</div>
+      </div>
+      <div class="stepper" aria-label="${item.name}数量">
+        <button type="button" data-material="${item.key}" data-delta="-1" aria-label="减少${item.name}">−</button>
+        <output>${item.count}</output>
+        <button type="button" data-material="${item.key}" data-delta="1" aria-label="增加${item.name}">+</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderKitRows() {
+  const rows = getSortedKits();
+  byId('kitRows').innerHTML = rows.map((kit, index) => {
+    const stock = getStockCover(kit);
+    const status = kit.missing.length ? '需补货' : '库存齐';
+    const statusClass = kit.missing.length ? 'amber' : 'green';
+    const progressClass = stock < 90 ? 'warn' : '';
     return `
-      <article class="kit-card ${card.key === recommendedKey ? 'recommended' : ''}">
-        <div class="kit-head">
-          <div>
-            <div class="kit-name">${kit.name}</div>
-            <div class="kit-desc">${kit.desc}</div>
-          </div>
-          <span class="badge ${card.key === recommendedKey ? 'green' : 'blue'}">${card.key === recommendedKey ? '当前推荐' : kit.level}</span>
-        </div>
-        <div class="bars">
-          <div class="bar-row"><span>适配</span><div class="bar"><span style="width:${card.score}%"></span></div><strong>${card.score}</strong></div>
-          <div class="bar-row"><span>负载</span><div class="bar ${loadClass}"><span style="width:${clamp(card.load, 0, 100)}%"></span></div><strong>${card.load}%</strong></div>
-          <div class="bar-row"><span>库存</span><div class="bar ${stockClass}"><span style="width:${card.coverage}%"></span></div><strong>${card.coverage}%</strong></div>
-        </div>
-        <div class="parts">
-          ${Object.entries(kit.req).map(([part, qty]) => {
-            const stock = state.inventory[part] || 0;
-            return `<div class="part-row ${stock < qty ? 'missing' : ''}"><strong>${partsName[part]}</strong><span class="need">× ${qty}</span><span class="stock">库存 ${stock}</span></div>`;
-          }).join('')}
-        </div>
-        ${missing.length ? `<button class="btn small soft" type="button" data-procure="${card.key}">生成补货清单</button>` : `<button class="btn small primary" type="button" data-confirm="${card.key}">确认此方案</button>`}
-      </article>
+      <tr>
+        <td>
+          <div class="kit-name">${index === 0 ? svgIcon.check : ''}${kit.name}</div>
+          <div class="kit-note">${kit.note}</div>
+        </td>
+        <td>
+          <strong>${kit.score}</strong>
+          <div class="progress" style="--value:${kit.score}%"><span></span></div>
+        </td>
+        <td>
+          <span class="status ${statusClass}">${status}</span>
+          <div class="progress ${progressClass}" style="--value:${stock}%"><span></span></div>
+        </td>
+        <td>${index === 0 ? '<span class="status blue">推荐</span>' : '<span class="status">备选</span>'}</td>
+      </tr>
     `;
   }).join('');
-
-  kitList.querySelectorAll('[data-procure]').forEach((button) => {
-    button.addEventListener('click', () => renderProcurement(button.dataset.procure, true, true));
-  });
-  kitList.querySelectorAll('[data-confirm]').forEach((button) => {
-    button.addEventListener('click', () => renderProcurement(button.dataset.confirm, false, true));
-  });
 }
 
-function renderProcurement(kitKey, forceOpen = false, advanceFlow = false) {
-  const box = document.getElementById('procurementBox');
-  const kit = kits[kitKey];
-  const missing = getMissing(kit.req);
-  if (!missing.length && !forceOpen) {
-    box.innerHTML = `
-      <div class="proc-row">
-        <div>
-          <div class="proc-name">${kit.name}可直接装配</div>
-          <div class="proc-reason">库存已覆盖，下一步生成装配指南和客户预览。</div>
-        </div>
-        <div class="proc-price">¥0</div>
-      </div>
-    `;
-    if (advanceFlow) updateFlow(4);
-    return;
-  }
+function buildTasks(kit) {
+  const missing = kit.missing;
+  const procurement = missing.length
+    ? missing.map(part => ({
+      title: `${part.name} × ${part.missing}`,
+      meta: `预计 ¥${part.missing * part.price} · 进入订单确认前`,
+      status: '待确认'
+    }))
+    : [{ title: '库存已满足', meta: '可直接进入装配清单', status: '完成' }];
+  return [
+    { title: `${kit.name} 装配模板`, meta: `${kit.time} min · ${hideLabels[state.hidePlace]}`, status: '已生成' },
+    { title: '动作预览参数', meta: `${intensity[state.intensity].cycle} · ${intensity[state.intensity].angle}`, status: '已同步' },
+    ...procurement
+  ];
+}
 
-  const total = missing.reduce((sum, item) => sum + item.missing * (prices[item.part] || 0), 0);
-  box.innerHTML = `
-    ${missing.map((item) => `
-      <div class="proc-row">
-        <div>
-          <div class="proc-name">${partsName[item.part]} × ${item.missing}</div>
-          <div class="proc-reason">用于${kit.name}，当前库存 ${item.have}，需求 ${item.qty}。</div>
-        </div>
-        <div class="proc-price">¥${item.missing * prices[item.part]}</div>
-      </div>
-    `).join('')}
-    <div class="proc-row">
+function renderTasks() {
+  const kit = getSelectedKit();
+  const tasks = buildTasks(kit);
+  const html = tasks.map((task, index) => `
+    <div class="task-row">
+      <div class="task-index">${String(index + 1).padStart(2, '0')}</div>
       <div>
-        <div class="proc-name">下单前确认</div>
-        <div class="proc-reason">到货后自动加入工具箱，不直接支付。</div>
+        <div class="task-title">${task.title}</div>
+        <div class="task-meta">${task.meta}</div>
       </div>
-      <div class="proc-price">¥${total}</div>
+      <span class="status ${task.status === '待确认' ? 'amber' : 'green'}">${task.status}</span>
     </div>
-  `;
-  if (advanceFlow) updateFlow(4);
+  `).join('');
+  byId('taskRows').innerHTML = html;
+  byId('miniTasks').innerHTML = html;
 }
 
-function updatePreviewClass() {
-  const wrap = document.getElementById('bouquetWrap');
-  wrap.className = 'stage-card';
-  if (state.motions.has('bloom')) wrap.classList.add('motion-bloom');
-  else if (state.motions.has('sway')) wrap.classList.add('motion-sway');
-  else if (state.motions.has('blessing')) wrap.classList.add('motion-blessing');
-  else wrap.classList.add('motion-breath');
+function updatePreviewMotion() {
+  const wrap = byId('previewWrap');
+  wrap.className = 'preview-wrap';
+  const order = ['bloom', 'sway', 'breath', 'blessing'];
+  const selected = order.find(motion => state.motions.has(motion)) || 'breath';
+  wrap.classList.add(`motion-${selected}`);
 }
 
-function updateZones() {
-  document.querySelectorAll('.zone').forEach((zone) => {
-    const value = state.zones[zone.dataset.zone];
-    zone.classList.toggle('locked', value === 'fixed');
-    zone.textContent = value === 'move' ? '可动' : value === 'hide' ? '隐藏' : '固定';
+function updateStep(step) {
+  state.step = step;
+  document.querySelectorAll('.step-button').forEach(button => {
+    const active = button.dataset.step === step;
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-selected', String(active));
   });
-}
-
-function updateFlow(active = 3) {
-  document.querySelectorAll('.journey-step').forEach((step) => {
-    const index = Number(step.dataset.flow);
-    step.classList.toggle('active', index === active);
-    step.classList.toggle('done', index < active);
+  document.querySelectorAll('.flow-view').forEach(view => {
+    const active = view.dataset.view === step;
+    view.classList.toggle('active', active);
   });
 }
 
 function update() {
-  const weights = getWeights();
-  const recommendedKey = getSelectedKitKey(weights);
-  const recommended = scoreKit(recommendedKey, weights);
-  const recommendedKit = kits[recommendedKey];
-  const motionText = Array.from(state.motions).map((key) => motionLabels[key]).slice(0, 3).join(' + ') || '呼吸';
+  const { total, moving } = getWeights();
+  const kit = getSelectedKit();
+  const stock = getStockCover(kit);
+  const missing = kit.missing;
+  const motions = [...state.motions].map(motion => motionLabels[motion]).join(' + ') || '呼吸';
+  const riskText = missing.length ? `需补 ${missing.length} 类零件` : '库存齐备';
+  const riskClass = missing.length ? 'amber' : 'green';
 
-  updatePreviewClass();
-  updateZones();
-  updateFlow(3);
+  byId('projectSummary').textContent = `${sceneLabels[state.scene]} · ${kit.name.replace('CyberBrick ', '')}`;
+  byId('projectSub').textContent = `库存覆盖 ${stock}%`;
+  byId('topStatus').textContent = stock >= 90 ? '可落地' : '待补货';
+  byId('topStatus').className = `status ${stock >= 90 ? 'green' : 'amber'}`;
+  byId('scenePill').textContent = sceneLabels[state.scene];
+  byId('motionPill').textContent = motions;
+  byId('riskPill').textContent = riskText;
+  byId('riskPill').className = `pill ${riskClass}`;
 
-  document.getElementById('motionSummary').textContent = motionText;
-  document.getElementById('weightSummary').textContent = `估算 ${weights.total}g`;
-  document.getElementById('zoneSummary').textContent = `${weights.moveZones} 个可动区`;
-  document.getElementById('totalWeight').textContent = `${weights.total}g`;
-  document.getElementById('movingWeight').textContent = `${weights.moving}g`;
-  document.getElementById('stockCover').textContent = `${recommended.coverage}%`;
-  document.getElementById('stockHint').textContent = recommended.coverage >= 100 ? '库存已覆盖' : `缺 ${getMissing(recommendedKit.req).reduce((sum, item) => sum + item.missing, 0)} 件`;
-  document.getElementById('riskBadge').textContent = recommended.load > 100 ? '需降负载' : recommended.coverage < 100 ? '需补货' : '可落地';
-  document.getElementById('riskBadge').className = `badge ${recommended.load > 100 ? 'red' : recommended.coverage < 100 ? 'amber' : 'green'}`;
-  document.getElementById('intentBadge').textContent = `${sceneLabels[state.scene]} · ${motionText}`;
-  document.getElementById('canvasBadge').textContent = recommended.load > 100 ? '需调整负载' : '实时可实现';
-  document.getElementById('canvasBadge').className = `badge ${recommended.load > 100 ? 'red' : 'green'}`;
-  document.getElementById('decisionTitle').textContent = recommendedKit.name;
-  document.getElementById('decisionCopy').textContent = recommended.coverage < 100
-    ? `${recommendedKit.desc} 当前库存覆盖 ${recommended.coverage}%，系统会先生成下单前确认清单。`
-    : `${recommendedKit.desc} 当前库存已覆盖，可以继续生成装配指南和客户预览。`;
-  document.getElementById('systemLineLead').textContent = recommendedKit.name;
-  document.getElementById('techCycle').textContent = state.intensity === 'soft' ? '6.8s' : state.intensity === 'clear' ? '5.2s' : '3.8s';
-  document.getElementById('techAngle').textContent = state.intensity === 'soft' ? '18°' : state.intensity === 'clear' ? '28°' : '42°';
-  document.getElementById('techHide').textContent = hideLabels[state.hidePlace];
-  document.getElementById('techTime').textContent = `${recommendedKit.minutes} min`;
+  byId('metricTotal').textContent = `${total}g`;
+  byId('metricMoving').textContent = `${moving}g`;
+  byId('metricStock').textContent = `${stock}%`;
+  byId('metricTime').textContent = `${kit.time}m`;
+  byId('materialSummary').textContent = `估算 ${total}g / 可动 ${moving}g`;
 
-  renderKitList(weights, recommendedKey);
-  renderProcurement(recommendedKey, false, false);
+  byId('frameLabel').textContent = `${sceneLabels[state.scene]} / ${kit.name.replace('CyberBrick ', '')}`;
+  byId('previewSub').textContent = `${motions} · ${hideLabels[state.hidePlace]}`;
+  byId('timelineMotion').textContent = motions;
+  byId('timelineCycle').textContent = `周期 ${intensity[state.intensity].cycle}`;
+  byId('timelineAngle').textContent = `幅度 ${intensity[state.intensity].angle}`;
+
+  byId('decisionTitle').textContent = `推荐${kit.name.replace('CyberBrick ', '')}`;
+  byId('decisionCopy').textContent = `${kit.note}；${missing.length ? '当前库存会自动生成补货清单。' : '当前库存可直接进入装配。'}`;
+  byId('kitScore').textContent = kit.score;
+  byId('insightStructure').textContent = `${state.scene === 'gift' ? '小体量' : '多层结构'} + ${hideLabels[state.hidePlace]}`;
+  byId('insightWeight').textContent = `可动重量 ${moving}g`;
+  byId('insightStock').textContent = missing.length ? `需补 ${missing.length} 类零件` : '库存满足';
+  byId('insightSafety').textContent = state.safeMode ? '低速、限幅、模板装配' : '开放参数、手动校准';
+  byId('stockStatus').textContent = missing.length ? '库存不足' : '库存齐备';
+  byId('stockStatus').className = `status ${missing.length ? 'amber' : 'green'}`;
+
+  byId('paramCycle').textContent = intensity[state.intensity].cycle;
+  byId('paramAngle').textContent = intensity[state.intensity].angle;
+  byId('paramHide').textContent = hideLabels[state.hidePlace];
+  byId('paramTime').textContent = `${kit.time} min`;
+
+  renderMaterials();
+  renderKitRows();
+  renderTasks();
+  updatePreviewMotion();
 }
 
-function bindInputs() {
-  document.querySelectorAll('.chip-grid').forEach((group) => {
-    group.querySelectorAll('.chip').forEach((chip) => {
-      chip.addEventListener('click', () => {
-        const groupName = group.dataset.group;
-        if (groupName === 'scene') {
-          group.querySelectorAll('.chip').forEach((item) => item.setAttribute('aria-pressed', 'false'));
-          chip.setAttribute('aria-pressed', 'true');
-          state.scene = chip.dataset.value;
-        } else if (groupName === 'motion') {
-          const active = chip.getAttribute('aria-pressed') === 'true';
-          if (active && state.motions.size > 1) {
-            chip.setAttribute('aria-pressed', 'false');
-            state.motions.delete(chip.dataset.value);
-          } else if (!active) {
-            chip.setAttribute('aria-pressed', 'true');
-            state.motions.add(chip.dataset.value);
-          }
-        }
-        update();
-      });
+function bindEvents() {
+  document.querySelectorAll('.rail-item').forEach(button => {
+    button.addEventListener('click', () => {
+      document.querySelectorAll('.rail-item').forEach(item => item.classList.remove('active'));
+      button.classList.add('active');
+      byId(button.dataset.jump).scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
 
-  document.querySelectorAll('.segmented').forEach((segment) => {
-    segment.querySelectorAll('button').forEach((button) => {
-      button.addEventListener('click', () => {
-        if (state.safeMode && segment.dataset.segment === 'intensity' && button.dataset.value === 'stage') return;
-        segment.querySelectorAll('button').forEach((item) => item.classList.remove('active'));
-        button.classList.add('active');
-        state[segment.dataset.segment] = button.dataset.value;
-        update();
-      });
+  document.querySelectorAll('.step-button').forEach(button => {
+    button.addEventListener('click', () => updateStep(button.dataset.step));
+  });
+
+  document.querySelectorAll('.source-card').forEach(button => {
+    button.addEventListener('click', () => {
+      state.source = button.dataset.value;
+      document.querySelectorAll('.source-card').forEach(item => item.classList.toggle('active', item === button));
+      showToast('创意来源已更新', '系统会按新的起点重新组织输入项。');
     });
   });
 
-  document.getElementById('hidePlace').addEventListener('change', (event) => {
-    state.hidePlace = event.target.value;
-    update();
-  });
-
-  document.querySelectorAll('.zone').forEach((zone) => {
-    zone.addEventListener('click', () => {
-      const key = zone.dataset.zone;
-      const next = state.zones[key] === 'move' ? 'fixed' : state.zones[key] === 'fixed' ? 'hide' : 'move';
-      state.zones[key] = next;
+  document.querySelectorAll('[data-group="scene"] .chip').forEach(button => {
+    button.addEventListener('click', () => {
+      state.scene = button.dataset.value;
+      document.querySelectorAll('[data-group="scene"] .chip').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
       update();
     });
   });
 
-  document.getElementById('professionalBtn').addEventListener('click', (event) => {
-    const panel = document.getElementById('professionalPanel');
-    const open = panel.classList.toggle('hidden') === false;
-    event.currentTarget.setAttribute('aria-pressed', String(open));
-    event.currentTarget.textContent = open ? '收起参数' : '参数';
+  document.querySelectorAll('[data-group="motion"] .chip').forEach(button => {
+    button.addEventListener('click', () => {
+      const value = button.dataset.value;
+      if (state.motions.has(value) && state.motions.size > 1) {
+        state.motions.delete(value);
+      } else {
+        state.motions.add(value);
+      }
+      button.setAttribute('aria-pressed', String(state.motions.has(value)));
+      update();
+    });
   });
 
-  document.getElementById('safeMode').addEventListener('click', (event) => {
+  document.querySelectorAll('[data-segment]').forEach(group => {
+    group.querySelectorAll('button').forEach(button => {
+      button.addEventListener('click', () => {
+        group.querySelectorAll('button').forEach(item => item.classList.toggle('active', item === button));
+        state[group.dataset.segment] = button.dataset.value;
+        update();
+      });
+    });
+  });
+
+  byId('hidePlace').addEventListener('change', event => {
+    state.hidePlace = event.target.value;
+    update();
+  });
+
+  byId('safeSwitch').addEventListener('click', event => {
     state.safeMode = !state.safeMode;
     event.currentTarget.setAttribute('aria-pressed', String(state.safeMode));
-    event.currentTarget.querySelector('.switch').style.background = state.safeMode ? 'var(--green)' : 'var(--line-strong)';
-    if (state.safeMode && state.intensity === 'stage') {
-      state.intensity = 'clear';
-      document.querySelectorAll('[data-segment="intensity"] button').forEach((button) => {
-        button.classList.toggle('active', button.dataset.value === 'clear');
-      });
-    }
     update();
   });
 
-  document.getElementById('prepareBtn').addEventListener('click', () => {
-    const weights = getWeights();
-    renderProcurement(getSelectedKitKey(weights), true, true);
-  });
-
-  document.getElementById('decisionPrepareBtn').addEventListener('click', () => {
-    const weights = getWeights();
-    renderProcurement(getSelectedKitKey(weights), true, true);
-  });
-
-  document.getElementById('decisionDetailBtn').addEventListener('click', () => {
-    const button = document.getElementById('professionalBtn');
-    if (document.getElementById('professionalPanel').classList.contains('hidden')) button.click();
-    document.getElementById('professionalPanel').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  });
-
-  document.getElementById('exportBtn').addEventListener('click', () => {
-    const weights = getWeights();
-    const kitKey = getSelectedKitKey(weights);
-    renderProcurement(kitKey, getMissing(kits[kitKey].req).length > 0, true);
-  });
-
-  document.getElementById('resetBtn').addEventListener('click', () => {
-    state.materials.forEach((item) => {
-      item.qty = item.id === 'rose' ? 6 : item.id === 'hydrangea' ? 1 : item.id === 'eucalyptus' ? 8 : item.id === 'babysbreath' ? 10 : 0;
-    });
-    renderMaterials();
+  byId('materialTable').addEventListener('click', event => {
+    const button = event.target.closest('button[data-material]');
+    if (!button) return;
+    const item = materials.find(material => material.key === button.dataset.material);
+    item.count = Math.max(0, item.count + Number(button.dataset.delta));
     update();
   });
 
-  document.getElementById('designFile').addEventListener('change', (event) => {
+  byId('designFile').addEventListener('change', event => {
     const file = event.target.files && event.target.files[0];
     if (!file) return;
-    const reader = new FileReader();
-    reader.onload = () => {
-      const img = document.getElementById('uploadPreview');
-      img.src = reader.result;
-      img.style.display = 'block';
-      document.getElementById('uploadCopy').style.display = 'none';
-    };
-    reader.readAsDataURL(file);
+    const preview = byId('uploadPreview');
+    preview.src = URL.createObjectURL(file);
+    preview.style.display = 'block';
+    byId('uploadCopy').style.display = 'none';
+    showToast('设计图已接入', '系统会把实物图作为结构和遮挡参考。');
+  });
+
+  byId('paramBtn').addEventListener('click', event => {
+    const panel = byId('parameters');
+    const open = !panel.classList.contains('open');
+    panel.classList.toggle('open', open);
+    event.currentTarget.setAttribute('aria-expanded', String(open));
+  });
+
+  ['prepareBtn', 'previewCta', 'orderBtn', 'exportBtn'].forEach(id => {
+    byId(id).addEventListener('click', () => {
+      updateStep('handoff');
+      byId('system').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      showToast('已生成下单前流程', '补货清单、套件参数和装配模板已整理。');
+    });
+  });
+
+  byId('resetBtn').addEventListener('click', () => {
+    state.source = 'design';
+    state.scene = 'wedding';
+    state.motions = new Set(['breath', 'bloom', 'blessing']);
+    state.intensity = 'soft';
+    state.priority = 'safe';
+    state.hidePlace = 'back';
+    state.safeMode = true;
+    materials[0].count = 7;
+    materials[1].count = 12;
+    materials[2].count = 9;
+    materials[3].count = 16;
+    materials[4].count = 6;
+    byId('hidePlace').value = 'back';
+    byId('safeSwitch').setAttribute('aria-pressed', 'true');
+    document.querySelectorAll('.source-card').forEach(item => item.classList.toggle('active', item.dataset.value === 'design'));
+    document.querySelectorAll('[data-group="scene"] .chip').forEach(item => item.setAttribute('aria-pressed', String(item.dataset.value === 'wedding')));
+    document.querySelectorAll('[data-group="motion"] .chip').forEach(item => item.setAttribute('aria-pressed', String(state.motions.has(item.dataset.value))));
+    document.querySelectorAll('[data-segment="intensity"] button').forEach(item => item.classList.toggle('active', item.dataset.value === 'soft'));
+    document.querySelectorAll('[data-segment="priority"] button').forEach(item => item.classList.toggle('active', item.dataset.value === 'safe'));
+    updateStep('intent');
+    update();
+    showToast('方案已重置', '已恢复为婚礼主桌默认样例。');
   });
 }
 
 renderMaterials();
-bindInputs();
+bindEvents();
 update();
 </script>
 </body>
