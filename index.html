@@ -5086,6 +5086,7 @@
     }
 
     .program-inspiration {
+      --evidence-progress: 0;
       width: min(1360px, calc(100% - 72px)) !important;
       min-height: calc(100vh - 64px) !important;
       padding: 0 !important;
@@ -5459,6 +5460,7 @@
     }
 
     .portfolio-feedback {
+      --evidence-progress: 0;
       width: min(1360px, calc(100% - 72px)) !important;
       min-height: calc(100vh - 64px) !important;
       padding: 0 !important;
@@ -5471,6 +5473,50 @@
         linear-gradient(90deg, #a8a8a8 1px, transparent 1px),
         #e7e7e4;
       background-size: 25% 112px;
+    }
+
+    .program-inspiration.bridge-handoff .program-machine,
+    .program-inspiration.bridge-handoff .program-machine video,
+    .program-inspiration.bridge-handoff .program-left,
+    .program-inspiration.bridge-handoff .program-right,
+    .portfolio-feedback.bridge-handoff .portfolio-network,
+    .portfolio-feedback.bridge-handoff .portfolio-title-panel,
+    .portfolio-feedback.bridge-handoff .portfolio-count,
+    .portfolio-feedback.bridge-handoff .portfolio-cards,
+    .portfolio-feedback.bridge-handoff .portfolio-card {
+      will-change: transform, opacity, filter, clip-path;
+    }
+
+    .evidence-transition-line {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 52px;
+      height: 2px;
+      z-index: 8;
+      overflow: hidden;
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    .evidence-transition-line span {
+      display: block;
+      width: 42%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, #00ae42 22%, #111 50%, #00ae42 78%, transparent);
+      box-shadow: 0 0 20px rgba(0,174,66,0.42);
+      transform: translateX(-120%);
+    }
+
+    .evidence-transition-line::after {
+      content: "";
+      position: absolute;
+      right: 24px;
+      top: -5px;
+      width: 12px;
+      height: 12px;
+      background: #00ae42;
+      opacity: 0.82;
     }
 
     .portfolio-feedback > .kicker {
@@ -5578,6 +5624,7 @@
       line-height: 0.92;
       font-weight: 400;
       color: #111;
+      min-width: 4.1ch;
     }
 
     .portfolio-count p {
@@ -6773,6 +6820,23 @@
         gap: 18px;
       }
 
+      .portfolio-cards.evidence-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .evidence-layout .portfolio-card {
+        min-height: 0;
+      }
+
+      .evidence-layout .portfolio-shot {
+        padding: 24px 16px 14px;
+      }
+
+      .evidence-layout .portfolio-shot img {
+        width: auto;
+        height: min(220px, 58vw);
+      }
+
       .value-review {
         width: calc(100% - 28px) !important;
         grid-template-columns: 1fr;
@@ -7159,6 +7223,7 @@
 
   <section class="section portfolio-feedback" id="feedback">
     <div class="kicker">02 User Feedback</div>
+    <div class="evidence-transition-line" aria-hidden="true"><span></span></div>
 
     <div class="portfolio-title-panel">
       <p>▪ 真实评论证据</p>
@@ -7247,7 +7312,7 @@
 
     <div class="portfolio-count">
       <span>评论样本</span>
-      <strong>1639</strong>
+      <strong data-count="1639">1639</strong>
       <p>仿生翅膀原型反馈</p>
     </div>
 
@@ -8656,6 +8721,125 @@
       };
       window.addEventListener('scroll', handleScroll, { passive: true });
       handleScroll();
+    })();
+
+    (function initEvidenceBridgeMotion() {
+      const source = document.querySelector('.program-inspiration');
+      const target = document.querySelector('.portfolio-feedback');
+      const motionOK = window.matchMedia('(min-width: 901px) and (prefers-reduced-motion: no-preference)').matches;
+      if (!source || !target || !motionOK) return;
+
+      const machine = source.querySelector('.program-machine');
+      const machineVideo = source.querySelector('.program-machine video');
+      const leftPanel = source.querySelector('.program-left');
+      const rightPanel = source.querySelector('.program-right');
+      const network = target.querySelector('.portfolio-network');
+      const titlePanel = target.querySelector('.portfolio-title-panel');
+      const countPanel = target.querySelector('.portfolio-count');
+      const countValue = target.querySelector('.portfolio-count strong');
+      const cards = Array.from(target.querySelectorAll('.portfolio-card'));
+      const cardTrack = target.querySelector('.portfolio-cards');
+      const scanLine = target.querySelector('.evidence-transition-line');
+      const scanBeam = target.querySelector('.evidence-transition-line span');
+      const countTarget = countValue ? Number(countValue.dataset.count || countValue.textContent) || 1639 : 1639;
+
+      source.classList.add('bridge-handoff');
+      target.classList.add('bridge-handoff');
+
+      const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
+      const mix = (from, to, progress) => from + (to - from) * progress;
+      const ease = (value) => 1 - Math.pow(1 - clamp(value), 3);
+
+      function setStyle(element, styles) {
+        if (!element) return;
+        Object.entries(styles).forEach(([key, value]) => {
+          element.style[key] = value;
+        });
+      }
+
+      function updateEvidenceBridge() {
+        const rect = target.getBoundingClientRect();
+        const vh = Math.max(1, window.innerHeight);
+        const start = vh * 0.96;
+        const end = vh * 0.16;
+        const progress = clamp((start - rect.top) / Math.max(1, start - end));
+        const eased = ease(progress);
+        const late = clamp((progress - 0.38) / 0.48);
+        const evidence = clamp((progress - 0.34) / 0.54);
+
+        source.style.setProperty('--evidence-progress', progress.toFixed(3));
+        target.style.setProperty('--evidence-progress', progress.toFixed(3));
+
+        setStyle(machine, {
+          transform: `translate3d(0, ${mix(0, vh * 0.22, eased)}px, 0) scale(${mix(1, 0.72, eased)})`,
+          opacity: String(mix(1, 0.16, late)),
+          filter: `blur(${mix(0, 5, late)}px) saturate(${mix(1, 0.28, late)}) contrast(${mix(1, 1.28, late)})`
+        });
+        setStyle(machineVideo, {
+          clipPath: `inset(${mix(0, 17, evidence)}% ${mix(0, 27, evidence)}% ${mix(0, 17, evidence)}% ${mix(0, 27, evidence)}%)`
+        });
+        setStyle(leftPanel, {
+          transform: `translate3d(${-mix(0, 56, late)}px, ${mix(0, -24, late)}px, 0)`,
+          opacity: String(mix(1, 0.28, late))
+        });
+        setStyle(rightPanel, {
+          transform: `translate3d(${mix(0, 72, late)}px, ${mix(0, -20, late)}px, 0)`,
+          opacity: String(mix(1, 0.24, late))
+        });
+
+        setStyle(network, {
+          transform: `translate3d(0, ${mix(-96, 0, eased)}px, 0) scale(${mix(0.72, 1, eased)})`,
+          opacity: String(mix(0.18, 0.96, eased)),
+          filter: `blur(${mix(10, 0, eased)}px)`
+        });
+        setStyle(titlePanel, {
+          transform: `translate3d(${-mix(90, 0, eased)}px, 0, 0)`,
+          opacity: String(mix(0.08, 1, eased)),
+          filter: `blur(${mix(7, 0, eased)}px)`
+        });
+        setStyle(countPanel, {
+          transform: `translate3d(0, ${mix(-70, 0, eased)}px, 0) scale(${mix(0.82, 1, eased)})`,
+          opacity: String(mix(0.08, 1, eased)),
+          filter: `blur(${mix(8, 0, eased)}px)`
+        });
+        setStyle(cardTrack, {
+          transform: `translate3d(0, ${mix(84, 0, eased)}px, 0)`,
+          opacity: String(mix(0.1, 1, eased))
+        });
+        cards.forEach((card, index) => {
+          const cardProgress = ease(clamp((progress - 0.50 - index * 0.045) / 0.28));
+          setStyle(card, {
+            transform: `translate3d(0, ${mix(86, 0, cardProgress)}px, 0) rotateX(${mix(-8, 0, cardProgress)}deg)`,
+            opacity: String(mix(0, 1, cardProgress))
+          });
+        });
+
+        setStyle(scanLine, {
+          opacity: String(Math.sin(progress * Math.PI) * 0.82)
+        });
+        setStyle(scanBeam, {
+          transform: `translateX(${mix(-120, 245, progress)}%)`
+        });
+
+        if (countValue) {
+          const countProgress = ease(clamp((progress - 0.46) / 0.38));
+          countValue.textContent = String(Math.round(countTarget * countProgress));
+        }
+      }
+
+      let ticking = false;
+      function requestBridgeUpdate() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          ticking = false;
+          updateEvidenceBridge();
+        });
+      }
+
+      window.addEventListener('scroll', requestBridgeUpdate, { passive: true });
+      window.addEventListener('resize', requestBridgeUpdate);
+      requestBridgeUpdate();
     })();
 
     (function initSeraphDemo() {
