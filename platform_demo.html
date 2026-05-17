@@ -4,44 +4,45 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Flora Studio Platform Demo</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d1d1f'/%3E%3Cpath d='M22 46V18h21v7H31v5h10v7H31v9z' fill='white'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231f2328'/%3E%3Cpath d='M21 46V18h22v7H30v5h11v7H30v9z' fill='white'/%3E%3C/svg%3E">
 <style>
 :root {
-  --bg: #f5f5f7;
+  --app: #f6f7f9;
   --surface: #ffffff;
-  --surface-soft: #fafafa;
-  --ink: #1d1d1f;
-  --text: #3c4043;
-  --muted: #6e737a;
-  --faint: #a0a6ad;
-  --line: #dfe3e8;
-  --line-strong: #c8ced6;
-  --blue: #0a84ff;
-  --blue-soft: #e8f2ff;
-  --green: #12a150;
+  --surface-2: #f9fafb;
+  --surface-3: #f1f3f5;
+  --ink: #1f2328;
+  --text: #3f454d;
+  --muted: #68707a;
+  --faint: #9aa3ad;
+  --line: #dde2e8;
+  --line-strong: #c8d0d9;
+  --blue: #0b6ffb;
+  --blue-soft: #eaf2ff;
+  --green: #148c4a;
   --green-soft: #e8f6ee;
-  --rose: #c55b72;
+  --amber: #a35f18;
+  --amber-soft: #fff2df;
+  --rose: #b85a70;
   --rose-soft: #fff1f4;
-  --amber: #ad681f;
-  --amber-soft: #fff3e4;
-  --red: #c34235;
+  --red: #c24134;
   --red-soft: #fff0ee;
-  --shadow: 0 14px 40px rgba(29,29,31,0.08);
-  --shadow-soft: 0 1px 2px rgba(29,29,31,0.06);
+  --shadow: 0 1px 2px rgba(31,35,40,0.06), 0 12px 30px rgba(31,35,40,0.08);
+  --shadow-soft: 0 1px 2px rgba(31,35,40,0.06);
   --radius: 8px;
   --sans: Inter, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif;
   --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 }
 
 * { box-sizing: border-box; }
-html { min-height: 100%; background: var(--bg); color: var(--ink); }
+html { min-height: 100%; background: var(--app); color: var(--ink); }
 body {
   margin: 0;
   min-height: 100vh;
   font-family: var(--sans);
-  font-size: 15px;
-  line-height: 1.5;
-  background: var(--bg);
+  font-size: 14px;
+  line-height: 1.48;
+  background: var(--app);
 }
 
 button,
@@ -64,33 +65,35 @@ summary:focus-visible {
 
 .app {
   min-height: 100vh;
+  display: grid;
+  grid-template-rows: 58px 1fr;
 }
 
 .topbar {
   position: sticky;
   top: 0;
   z-index: 30;
-  height: 64px;
-  display: flex;
+  height: 58px;
+  display: grid;
+  grid-template-columns: 280px 1fr auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  padding: 0 28px;
-  border-bottom: 1px solid rgba(223,227,232,0.86);
-  background: rgba(255,255,255,0.86);
-  backdrop-filter: blur(22px) saturate(1.5);
+  gap: 16px;
+  padding: 0 18px;
+  border-bottom: 1px solid rgba(221,226,232,0.92);
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(22px) saturate(1.45);
 }
 
 .brand {
+  min-width: 0;
   display: flex;
   align-items: center;
-  gap: 12px;
-  min-width: 0;
+  gap: 10px;
 }
 
 .brand-mark {
-  width: 38px;
-  height: 38px;
+  width: 34px;
+  height: 34px;
   border-radius: var(--radius);
   display: grid;
   place-items: center;
@@ -100,18 +103,52 @@ summary:focus-visible {
 }
 
 .brand-title {
-  font-size: 16px;
-  font-weight: 750;
+  font-size: 15px;
+  font-weight: 760;
 }
 
 .brand-sub {
+  margin-top: 1px;
   color: var(--muted);
+  font-size: 12px;
+}
+
+.project-center {
+  min-width: 0;
+  justify-self: center;
+  width: min(620px, 100%);
+  height: 40px;
+  display: grid;
+  grid-template-columns: 22px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  padding: 0 12px;
+}
+
+.project-center strong {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+}
+
+.project-center span {
+  display: block;
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-size: 12px;
 }
 
 .top-actions {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 8px;
 }
 
@@ -123,8 +160,8 @@ summary:focus-visible {
 }
 
 .btn {
-  min-height: 42px;
-  min-width: 42px;
+  min-height: 38px;
+  min-width: 38px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--surface);
@@ -133,25 +170,23 @@ summary:focus-visible {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 0 14px;
+  padding: 0 12px;
   font-weight: 680;
-  transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
+  transition: background 160ms ease, border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
 }
 
 .btn:hover {
-  background: var(--surface-soft);
+  background: var(--surface-2);
   border-color: var(--line-strong);
 }
 
-.btn:active {
-  transform: scale(0.985);
-}
+.btn:active { transform: scale(0.985); }
 
 .btn.primary {
   border-color: var(--blue);
   background: var(--blue);
   color: #fff;
-  box-shadow: 0 10px 24px rgba(10,132,255,0.22);
+  box-shadow: 0 8px 22px rgba(11,111,251,0.22);
 }
 
 .btn.ghost {
@@ -159,153 +194,85 @@ summary:focus-visible {
 }
 
 .btn.small {
-  min-height: 36px;
-  padding: 0 11px;
-  font-size: 13px;
-}
-
-.page {
-  width: min(1280px, calc(100% - 48px));
-  margin: 0 auto;
-  padding: 28px 0 42px;
-  display: grid;
-  gap: 18px;
-}
-
-.hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 18px;
-  align-items: end;
-  padding: 4px 2px 2px;
-}
-
-.eyebrow {
-  color: var(--muted);
-  font-size: 13px;
-  font-weight: 680;
-}
-
-h1,
-h2,
-h3,
-p {
-  margin: 0;
-}
-
-h1 {
-  margin-top: 4px;
-  max-width: 760px;
-  font-size: clamp(30px, 4vw, 52px);
-  line-height: 1.08;
-  font-weight: 760;
-}
-
-.hero-copy {
-  margin-top: 10px;
-  max-width: 680px;
-  color: var(--text);
-  font-size: 17px;
-}
-
-.hero-status {
-  min-width: 300px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--surface);
-  padding: 14px;
-  box-shadow: var(--shadow-soft);
-}
-
-.status-title {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  color: var(--muted);
+  min-height: 34px;
+  padding: 0 10px;
   font-size: 12px;
-  font-weight: 680;
-}
-
-.status-main {
-  margin-top: 8px;
-  font-size: 18px;
-  font-weight: 760;
-}
-
-.status-sub {
-  margin-top: 4px;
-  color: var(--muted);
-  font-size: 13px;
 }
 
 .badge {
-  min-height: 28px;
+  min-height: 26px;
   display: inline-flex;
   align-items: center;
   gap: 6px;
   border-radius: 999px;
-  padding: 0 10px;
+  padding: 0 9px;
   font-size: 12px;
   font-weight: 680;
   white-space: nowrap;
 }
 
-.badge.blue { background: var(--blue-soft); color: #075db5; }
-.badge.green { background: var(--green-soft); color: #08763b; }
-.badge.amber { background: var(--amber-soft); color: #814a13; }
+.badge.blue { background: var(--blue-soft); color: #075ab8; }
+.badge.green { background: var(--green-soft); color: #0b6d37; }
+.badge.amber { background: var(--amber-soft); color: #78450f; }
 .badge.red { background: var(--red-soft); color: var(--red); }
-.badge.neutral { background: #eef0f3; color: var(--text); }
+.badge.neutral { background: #eceff3; color: var(--text); }
 
 .workspace {
+  min-height: calc(100vh - 58px);
   display: grid;
-  grid-template-columns: minmax(500px, 0.98fr) minmax(460px, 1.02fr);
-  gap: 18px;
-  align-items: start;
+  grid-template-columns: 340px minmax(520px, 1fr) 360px;
+  gap: 12px;
+  padding: 12px;
 }
 
-.card {
+.panel {
+  min-width: 0;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: rgba(255,255,255,0.92);
+  background: var(--surface);
   box-shadow: var(--shadow-soft);
   overflow: hidden;
 }
 
-.card-head {
-  min-height: 64px;
+.panel-head {
+  min-height: 58px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 14px;
-  padding: 16px 18px;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 14px;
   border-bottom: 1px solid var(--line);
+  background: rgba(255,255,255,0.86);
 }
 
-.card-title {
-  font-size: 18px;
+.panel-title {
+  font-size: 15px;
   font-weight: 760;
 }
 
-.card-sub {
+.panel-sub {
   margin-top: 2px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 12px;
 }
 
-.creator-card {
+.sidebar {
   display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  max-height: calc(100vh - 82px);
+  position: sticky;
+  top: 70px;
 }
 
-.progress {
+.step-list {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 8px;
-  padding: 14px 18px;
+  gap: 6px;
+  padding: 10px;
   border-bottom: 1px solid var(--line);
-  background: var(--surface-soft);
+  background: var(--surface-2);
 }
 
-.progress-step {
+.step-item {
   min-height: 48px;
   border: 1px solid transparent;
   border-radius: var(--radius);
@@ -313,45 +280,55 @@ h1 {
   color: var(--muted);
   display: grid;
   grid-template-columns: 28px 1fr;
-  gap: 8px;
   align-items: center;
+  gap: 9px;
   padding: 8px;
   text-align: left;
 }
 
-.progress-step.active {
+.step-item.active {
   border-color: var(--line);
   background: var(--surface);
   color: var(--ink);
   box-shadow: var(--shadow-soft);
 }
 
-.progress-num {
+.step-num {
   width: 28px;
   height: 28px;
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: #eef0f3;
+  background: #eceff3;
   font-family: var(--mono);
   font-size: 12px;
   font-weight: 760;
 }
 
-.progress-step.active .progress-num {
+.step-item.active .step-num {
   background: var(--blue);
   color: #fff;
 }
 
-.progress-label {
-  font-size: 13px;
+.step-label {
   font-weight: 720;
+  font-size: 13px;
+}
+
+.step-copy {
+  margin-top: 1px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.form-wrap {
+  overflow: auto;
+  padding: 14px;
 }
 
 .step-panel {
   display: none;
-  padding: 18px;
-  gap: 18px;
+  gap: 14px;
 }
 
 .step-panel.active {
@@ -360,87 +337,90 @@ h1 {
 
 .section {
   display: grid;
-  gap: 12px;
+  gap: 10px;
 }
 
 .section-head {
   display: flex;
   justify-content: space-between;
-  gap: 12px;
   align-items: baseline;
+  gap: 10px;
 }
 
 .section-head h2 {
-  font-size: 16px;
+  margin: 0;
+  font-size: 14px;
   font-weight: 760;
 }
 
 .section-head span {
   color: var(--muted);
-  font-size: 13px;
+  font-size: 12px;
 }
 
-.choice-grid {
+.choice-grid,
+.motion-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
+  gap: 8px;
 }
 
 .choice-card,
 .motion-card {
-  min-height: 108px;
+  min-height: 78px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--surface);
-  padding: 14px;
   color: var(--ink);
-  text-align: left;
   display: grid;
-  align-content: start;
-  gap: 8px;
+  grid-template-columns: 36px 1fr;
+  gap: 10px;
+  align-items: center;
+  padding: 10px;
+  text-align: left;
 }
 
 .choice-card.active,
 .motion-card[aria-pressed="true"] {
-  border-color: var(--blue);
+  border-color: rgba(11,111,251,0.72);
   background: var(--blue-soft);
 }
 
 .choice-icon,
 .motion-icon {
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--blue);
   display: grid;
   place-items: center;
-  background: var(--surface-soft);
-  border: 1px solid var(--line);
-  color: var(--blue);
 }
 
 .choice-card strong,
 .motion-card strong {
   display: block;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .choice-card span,
 .motion-card span {
   display: block;
+  margin-top: 2px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .drop {
-  min-height: 112px;
+  min-height: 92px;
   border: 1px dashed var(--line-strong);
   border-radius: var(--radius);
-  background: var(--surface-soft);
+  background: var(--surface-2);
   display: grid;
-  grid-template-columns: 46px 1fr;
-  gap: 12px;
+  grid-template-columns: 42px 1fr;
+  gap: 10px;
   align-items: center;
-  padding: 14px;
+  padding: 12px;
   position: relative;
   overflow: hidden;
 }
@@ -453,8 +433,8 @@ h1 {
 }
 
 .drop-icon {
-  width: 46px;
-  height: 46px;
+  width: 42px;
+  height: 42px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   display: grid;
@@ -471,26 +451,26 @@ h1 {
   display: block;
   margin-top: 2px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .drop img {
   display: none;
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
   grid-column: 1 / -1;
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
   border-radius: 6px;
 }
 
 .field {
   display: grid;
-  gap: 8px;
+  gap: 7px;
 }
 
 .field label {
   color: var(--text);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 680;
 }
 
@@ -502,33 +482,33 @@ h1 {
   border-radius: var(--radius);
   background: var(--surface);
   color: var(--ink);
-  padding: 12px;
+  padding: 10px 11px;
 }
 
 .textarea {
-  min-height: 126px;
+  min-height: 112px;
   resize: vertical;
 }
 
 .input,
 .select {
-  min-height: 44px;
+  min-height: 40px;
 }
 
 .chip-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 7px;
 }
 
 .chip {
-  min-height: 38px;
+  min-height: 34px;
   border: 1px solid var(--line);
   border-radius: 999px;
   background: var(--surface);
   color: var(--text);
-  padding: 0 13px;
-  font-size: 13px;
+  padding: 0 11px;
+  font-size: 12px;
   font-weight: 680;
 }
 
@@ -538,35 +518,29 @@ h1 {
   color: #fff;
 }
 
-.motion-grid {
+.control-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
 }
 
-.control-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-
 .segmented {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 6px;
+  gap: 5px;
   padding: 4px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: var(--surface-soft);
+  background: var(--surface-2);
 }
 
 .segmented button {
-  min-height: 36px;
+  min-height: 34px;
   border: 1px solid transparent;
   border-radius: 6px;
   background: transparent;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 680;
 }
 
@@ -578,30 +552,31 @@ h1 {
 }
 
 .safe-row {
-  min-height: 58px;
+  min-height: 52px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 12px;
+  justify-content: space-between;
+  gap: 10px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 12px 14px;
   background: var(--surface);
+  padding: 10px 12px;
 }
 
 .safe-row strong {
   display: block;
+  font-size: 13px;
 }
 
 .safe-row span {
   display: block;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .switch {
-  width: 44px;
-  height: 26px;
+  width: 42px;
+  height: 24px;
   border: 0;
   border-radius: 999px;
   background: var(--green);
@@ -614,8 +589,8 @@ h1 {
   position: absolute;
   top: 3px;
   right: 3px;
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   background: #fff;
   box-shadow: var(--shadow-soft);
@@ -637,12 +612,12 @@ h1 {
 }
 
 .material-row {
-  min-height: 62px;
+  min-height: 58px;
   display: grid;
-  grid-template-columns: 1fr 132px;
-  gap: 12px;
+  grid-template-columns: 1fr 116px;
+  gap: 10px;
   align-items: center;
-  padding: 12px 14px;
+  padding: 10px 12px;
   border-bottom: 1px solid var(--line);
   background: var(--surface);
 }
@@ -658,12 +633,12 @@ h1 {
 .material-meta {
   margin-top: 2px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .stepper {
   display: grid;
-  grid-template-columns: 38px 1fr 38px;
+  grid-template-columns: 34px 1fr 34px;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 6px;
@@ -671,9 +646,9 @@ h1 {
 }
 
 .stepper button {
-  height: 38px;
+  height: 34px;
   border: 0;
-  background: var(--surface-soft);
+  background: var(--surface-2);
   color: var(--ink);
   font-size: 16px;
 }
@@ -683,61 +658,79 @@ h1 {
   place-items: center;
   font-family: var(--mono);
   font-weight: 760;
+  font-size: 12px;
 }
 
-.step-actions {
+.side-footer {
+  border-top: 1px solid var(--line);
+  padding: 10px;
+  display: grid;
+  gap: 8px;
+  background: var(--surface-2);
+}
+
+.side-footer .btn {
+  width: 100%;
+}
+
+.canvas-panel {
+  min-height: calc(100vh - 82px);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.canvas-toolbar {
+  min-height: 58px;
   display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  padding-top: 4px;
-}
-
-.step-actions .btn.primary {
-  margin-left: auto;
-}
-
-.preview-card {
-  position: sticky;
-  top: 82px;
-}
-
-.preview-top {
-  min-height: 66px;
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 14px;
-  padding: 16px 18px;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
   border-bottom: 1px solid var(--line);
 }
 
-.preview-title {
-  font-size: 18px;
+.canvas-title {
+  font-size: 16px;
   font-weight: 760;
 }
 
-.preview-sub {
+.canvas-sub {
   margin-top: 2px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 12px;
+}
+
+.canvas-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .canvas {
   position: relative;
-  min-height: 520px;
+  min-height: 580px;
   display: grid;
   place-items: center;
   overflow: hidden;
   background:
-    linear-gradient(rgba(29,29,31,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(29,29,31,0.04) 1px, transparent 1px),
+    linear-gradient(rgba(31,35,40,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(31,35,40,0.035) 1px, transparent 1px),
     #fbfcfd;
   background-size: 72px 72px;
 }
 
+.stage-ruler {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
 .preview-wrap {
   position: relative;
-  width: min(590px, 84%);
+  width: min(620px, 78%);
   aspect-ratio: 1 / 1;
   display: grid;
   place-items: center;
@@ -746,17 +739,17 @@ h1 {
 .bouquet-svg {
   width: 100%;
   height: 100%;
-  filter: drop-shadow(0 26px 26px rgba(29,29,31,0.14));
+  filter: drop-shadow(0 28px 28px rgba(31,35,40,0.14));
 }
 
 .zone {
   position: absolute;
   min-width: 66px;
   min-height: 30px;
-  border: 1px solid rgba(18,161,80,0.72);
+  border: 1px solid rgba(20,140,74,0.72);
   border-radius: 999px;
   background: rgba(232,246,238,0.86);
-  color: #08763b;
+  color: #0b6d37;
   display: grid;
   place-items: center;
   padding: 0 10px;
@@ -770,16 +763,16 @@ h1 {
 .zone.core {
   left: 41%;
   top: 45%;
-  border-color: rgba(197,91,114,0.68);
+  border-color: rgba(184,90,112,0.68);
   background: var(--rose-soft);
-  color: #9b4252;
+  color: #904052;
 }
 .zone.base {
   left: 39%;
   bottom: 9%;
-  border-color: rgba(10,132,255,0.50);
+  border-color: rgba(11,111,251,0.50);
   background: var(--blue-soft);
-  color: #075db5;
+  color: #075ab8;
 }
 
 .motion-breath .wing { animation: breath 4.6s ease-in-out infinite; }
@@ -814,131 +807,145 @@ h1 {
   72% { transform: translateY(2px) scale(0.99); }
 }
 
-.preview-summary {
+.canvas-summary {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   border-top: 1px solid var(--line);
 }
 
-.preview-metric {
-  padding: 14px 16px;
+.summary-cell {
+  min-height: 64px;
+  padding: 11px 13px;
   border-right: 1px solid var(--line);
 }
 
-.preview-metric:last-child {
+.summary-cell:last-child {
   border-right: 0;
 }
 
-.preview-metric span {
+.summary-cell span {
   display: block;
   color: var(--muted);
   font-size: 12px;
 }
 
-.preview-metric strong {
+.summary-cell strong {
   display: block;
-  margin-top: 3px;
-  font-size: 16px;
+  margin-top: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 15px;
 }
 
-.result-section {
+.inspector {
   display: grid;
-  grid-template-columns: 0.92fr 1.08fr;
-  gap: 18px;
+  grid-template-rows: auto 1fr;
+  max-height: calc(100vh - 82px);
+  position: sticky;
+  top: 70px;
 }
 
-.recommend-card {
-  padding: 18px;
+.inspector-body {
+  overflow: auto;
   display: grid;
-  gap: 14px;
+  align-content: start;
 }
 
-.recommend-head {
+.recommend-block {
+  padding: 14px;
+  display: grid;
+  gap: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.recommend-title {
   display: flex;
   justify-content: space-between;
-  gap: 14px;
+  gap: 12px;
   align-items: flex-start;
 }
 
-.recommend-head h2 {
-  font-size: 24px;
+.recommend-title h2 {
+  margin: 0;
+  font-size: 20px;
   line-height: 1.18;
   font-weight: 760;
 }
 
-.recommend-head p {
-  margin-top: 7px;
+.recommend-title p {
+  margin: 6px 0 0;
   color: var(--text);
 }
 
-.score-ring {
-  min-width: 82px;
-  min-height: 82px;
+.score {
+  min-width: 62px;
+  height: 62px;
   border-radius: 50%;
-  border: 8px solid var(--green-soft);
+  border: 7px solid var(--green-soft);
+  color: #0b6d37;
   display: grid;
   place-items: center;
-  color: #08763b;
   background: var(--surface);
   font-family: var(--mono);
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 760;
 }
 
-.plain-list {
+.reason-list {
   display: grid;
   gap: 8px;
 }
 
-.plain-item {
-  min-height: 48px;
+.reason-item {
   display: grid;
-  grid-template-columns: 28px 1fr;
-  gap: 10px;
-  align-items: start;
-  padding: 10px 0;
+  grid-template-columns: 26px 1fr;
+  gap: 9px;
+  padding-top: 10px;
   border-top: 1px solid var(--line);
 }
 
-.plain-dot {
-  width: 28px;
-  height: 28px;
+.reason-num {
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   display: grid;
   place-items: center;
   background: var(--blue-soft);
-  color: #075db5;
+  color: #075ab8;
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 760;
 }
 
-.plain-title {
+.reason-heading {
   font-weight: 720;
 }
 
-.plain-copy {
+.reason-copy {
   margin-top: 2px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 12px;
 }
 
-.system-card {
-  display: grid;
-}
-
-.system-head {
-  min-height: 58px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 14px 16px;
+.task-section {
   border-bottom: 1px solid var(--line);
 }
 
-.system-head h2 {
-  font-size: 18px;
+.section-bar {
+  min-height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0 14px;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface-2);
+}
+
+.section-bar h2 {
+  margin: 0;
+  font-size: 14px;
   font-weight: 760;
 }
 
@@ -947,12 +954,12 @@ h1 {
 }
 
 .task-row {
-  min-height: 62px;
+  min-height: 58px;
   display: grid;
-  grid-template-columns: 32px 1fr auto;
-  gap: 12px;
+  grid-template-columns: 30px 1fr auto;
+  gap: 10px;
   align-items: center;
-  padding: 12px 16px;
+  padding: 11px 14px;
   border-bottom: 1px solid var(--line);
 }
 
@@ -961,15 +968,15 @@ h1 {
 }
 
 .task-index {
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   display: grid;
   place-items: center;
   background: var(--blue-soft);
-  color: #075db5;
+  color: #075ab8;
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 760;
 }
 
@@ -980,20 +987,18 @@ h1 {
 .task-meta {
   margin-top: 2px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .details {
-  border-top: 1px solid var(--line);
-  background: var(--surface-soft);
+  background: var(--surface);
 }
 
 .details summary {
-  min-height: 52px;
+  min-height: 46px;
   display: flex;
   align-items: center;
-  padding: 0 16px;
-  color: var(--text);
+  padding: 0 14px;
   font-weight: 720;
   cursor: pointer;
 }
@@ -1004,14 +1009,13 @@ h1 {
 
 .kit-table {
   width: 100%;
-  min-width: 620px;
+  min-width: 560px;
   border-collapse: collapse;
-  background: var(--surface);
 }
 
 .kit-table th,
 .kit-table td {
-  padding: 12px 14px;
+  padding: 11px 12px;
   border-top: 1px solid var(--line);
   text-align: left;
   vertical-align: top;
@@ -1019,9 +1023,9 @@ h1 {
 
 .kit-table th {
   color: var(--muted);
+  background: var(--surface-2);
   font-size: 12px;
   font-weight: 680;
-  background: var(--surface-soft);
 }
 
 .kit-name {
@@ -1031,15 +1035,15 @@ h1 {
 .kit-note {
   margin-top: 2px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .bar {
-  width: 100px;
+  width: 94px;
   height: 7px;
   margin-top: 7px;
   border-radius: 999px;
-  background: #eceff2;
+  background: #eceff3;
   overflow: hidden;
 }
 
@@ -1056,15 +1060,15 @@ h1 {
 
 .toast {
   position: fixed;
-  right: 24px;
-  bottom: 24px;
+  right: 20px;
+  bottom: 20px;
   z-index: 70;
-  width: min(390px, calc(100vw - 48px));
+  width: min(380px, calc(100vw - 40px));
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: rgba(255,255,255,0.96);
   box-shadow: var(--shadow);
-  padding: 14px 16px;
+  padding: 13px 14px;
   opacity: 0;
   transform: translateY(12px);
   pointer-events: none;
@@ -1084,7 +1088,7 @@ h1 {
   display: block;
   margin-top: 3px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 12px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1098,81 +1102,138 @@ h1 {
   }
 }
 
-@media (max-width: 1120px) {
-  .hero,
-  .workspace,
-  .result-section {
-    grid-template-columns: 1fr;
+@media (max-width: 1280px) {
+  .topbar {
+    grid-template-columns: 240px 1fr auto;
   }
 
-  .hero-status {
-    min-width: 0;
+  .workspace {
+    grid-template-columns: 320px minmax(460px, 1fr);
   }
 
-  .preview-card {
+  .inspector {
+    grid-column: 1 / -1;
     position: static;
+    max-height: none;
+  }
+
+  .inspector-body {
+    overflow: visible;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .details {
+    grid-column: 1 / -1;
   }
 }
 
-@media (max-width: 760px) {
-  body {
-    font-size: 16px;
+@media (max-width: 900px) {
+  .app {
+    grid-template-rows: auto 1fr;
   }
 
   .topbar {
     height: auto;
-    padding: 12px 16px;
-    align-items: flex-start;
-    flex-direction: column;
+    grid-template-columns: 1fr;
+    padding: 12px 14px;
+  }
+
+  .project-center {
+    justify-self: stretch;
+    width: 100%;
   }
 
   .top-actions {
-    width: 100%;
+    justify-content: stretch;
   }
 
   .top-actions .btn {
     flex: 1;
   }
 
-  .page {
-    width: 100%;
-    padding: 18px 16px 32px;
-  }
-
-  .choice-grid,
-  .motion-grid,
-  .control-grid,
-  .preview-summary {
+  .workspace {
     grid-template-columns: 1fr;
-  }
-
-  .hero-status {
-    display: none;
-  }
-
-  .progress {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
     padding: 10px;
-    gap: 4px;
   }
 
-  .progress-step {
-    min-height: 46px;
+  .sidebar,
+  .inspector {
+    position: static;
+    max-height: none;
+  }
+
+  .form-wrap {
+    overflow: visible;
+  }
+
+  .step-list {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .step-item {
+    min-height: 52px;
     grid-template-columns: 1fr;
     justify-items: center;
     gap: 4px;
-    padding: 6px 3px;
+    padding: 7px 4px;
   }
 
-  .progress-num {
-    width: 24px;
-    height: 24px;
-    font-size: 11px;
+  .step-copy {
+    display: none;
   }
 
-  .progress-label {
-    font-size: 11px;
-    text-align: center;
+  .canvas-panel {
+    min-height: auto;
+  }
+
+  .canvas {
+    min-height: 500px;
+  }
+
+  .inspector-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  body {
+    font-size: 16px;
+  }
+
+  .brand-sub {
+    display: none;
+  }
+
+  .workspace {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .control-grid,
+  .canvas-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-cell {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .summary-cell:last-child {
+    border-bottom: 0;
+  }
+
+  .canvas-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .canvas-actions {
+    width: 100%;
+  }
+
+  .canvas-actions .btn {
+    flex: 1;
   }
 
   .canvas {
@@ -1180,30 +1241,15 @@ h1 {
   }
 
   .preview-wrap {
-    width: 98%;
+    width: 96%;
   }
 
   .material-row {
     grid-template-columns: 1fr;
   }
 
-  .step-actions {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-
-  .step-actions .btn,
-  .step-actions .btn.primary {
-    width: 100%;
-    margin-left: 0;
-  }
-
-  .recommend-head {
-    display: grid;
-  }
-
   .task-row {
-    grid-template-columns: 32px 1fr;
+    grid-template-columns: 30px 1fr;
   }
 
   .task-row .badge {
@@ -1223,80 +1269,81 @@ h1 {
         <div class="brand-sub">动态花艺方案台</div>
       </div>
     </div>
+
+    <div class="project-center" aria-live="polite">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14m7-7H5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <div>
+        <strong id="projectName">婚礼主桌动态方案</strong>
+        <span id="projectMeta">开合动作方案 · 库存 67%</span>
+      </div>
+      <span class="badge amber" id="projectState">待补货</span>
+    </div>
+
     <div class="top-actions">
-      <button class="btn ghost small" type="button" id="resetBtn" aria-label="重置">
+      <button class="btn ghost small" id="resetBtn" type="button">
         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7v5h5M20 17a8 8 0 0 1-13.5-5.8L4 12m16 5v-5h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         重置
       </button>
-      <button class="btn primary small" type="button" id="topRecommendBtn">
+      <button class="btn primary small" id="generateBtn" type="button">
         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        查看推荐
+        生成清单
       </button>
     </div>
   </header>
 
-  <main class="page">
-    <section class="hero">
-      <div>
-        <div class="eyebrow">给花艺师用的动态花艺工具</div>
-        <h1>先说作品想法，系统再把它变成可落地的动态方案。</h1>
-        <p class="hero-copy">从设计图、场景或现有花材开始，选择希望呈现的动感，马上看到作品预览和准备清单。</p>
+  <main class="workspace">
+    <aside class="panel sidebar" aria-labelledby="setupTitle">
+      <div class="panel-head">
+        <div>
+          <div class="panel-title" id="setupTitle">创作设置</div>
+          <div class="panel-sub" id="setupHint">先选作品来源</div>
+        </div>
+        <span class="badge blue" id="stepBadge">第 1 步</span>
       </div>
-      <aside class="hero-status" aria-live="polite">
-        <div class="status-title"><span>当前推荐</span><span class="badge amber" id="heroRisk">需补货</span></div>
-        <div class="status-main" id="heroKit">开合动作方案</div>
-        <div class="status-sub" id="heroSummary">婚礼主桌 · 呼吸 + 开合 + 祝福感</div>
-      </aside>
-    </section>
 
-    <section class="workspace">
-      <section class="card creator-card" aria-labelledby="creatorTitle">
-        <div class="card-head">
-          <div>
-            <div class="card-title" id="creatorTitle">创建动态花艺方案</div>
-            <div class="card-sub" id="creatorHint">从作品来源开始</div>
-          </div>
-          <span class="badge blue" id="stepBadge">第 1 步</span>
-        </div>
+      <nav class="step-list" aria-label="创建流程">
+        <button class="step-item active" type="button" data-step="idea" aria-label="作品想法">
+          <span class="step-num">1</span>
+          <span><span class="step-label">作品</span><span class="step-copy">来源与场景</span></span>
+        </button>
+        <button class="step-item" type="button" data-step="motion" aria-label="动感情绪">
+          <span class="step-num">2</span>
+          <span><span class="step-label">动感</span><span class="step-copy">动作与强度</span></span>
+        </button>
+        <button class="step-item" type="button" data-step="materials" aria-label="花材数量">
+          <span class="step-num">3</span>
+          <span><span class="step-label">花材</span><span class="step-copy">数量与重量</span></span>
+        </button>
+        <button class="step-item" type="button" data-step="review" aria-label="系统推荐">
+          <span class="step-num">4</span>
+          <span><span class="step-label">推荐</span><span class="step-copy">清单与装配</span></span>
+        </button>
+      </nav>
 
-        <div class="progress" role="tablist" aria-label="创建步骤">
-          <button class="progress-step active" type="button" role="tab" data-step="idea" aria-selected="true">
-            <span class="progress-num">1</span><span class="progress-label">作品想法</span>
-          </button>
-          <button class="progress-step" type="button" role="tab" data-step="motion" aria-selected="false">
-            <span class="progress-num">2</span><span class="progress-label">动感情绪</span>
-          </button>
-          <button class="progress-step" type="button" role="tab" data-step="materials" aria-selected="false">
-            <span class="progress-num">3</span><span class="progress-label">花材数量</span>
-          </button>
-          <button class="progress-step" type="button" role="tab" data-step="review" aria-selected="false">
-            <span class="progress-num">4</span><span class="progress-label">系统推荐</span>
-          </button>
-        </div>
-
+      <div class="form-wrap">
         <div class="step-panel active" data-panel="idea">
-          <div class="section">
+          <section class="section">
             <div class="section-head"><h2>从哪里开始</h2><span>选一个起点</span></div>
-            <div class="choice-grid" data-group="source">
-              <button class="choice-card active" type="button" data-value="design">
+            <div class="choice-grid">
+              <button class="choice-card active" type="button" data-source="design">
                 <span class="choice-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4zM8 13l2-2 3 3 2-2 3 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                <strong>我有设计图</strong><span>草图、照片、客户参考图</span>
+                <span><strong>我有设计图</strong><span>草图、照片、客户参考图</span></span>
               </button>
-              <button class="choice-card" type="button" data-value="scene">
+              <button class="choice-card" type="button" data-source="scene">
                 <span class="choice-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16M6 20V9l6-5 6 5v11M9 20v-6h6v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                <strong>我只有场景</strong><span>婚礼、橱窗、礼物、展览</span>
+                <span><strong>我只有场景</strong><span>婚礼、橱窗、礼物、展览</span></span>
               </button>
-              <button class="choice-card" type="button" data-value="stock">
+              <button class="choice-card" type="button" data-source="stock">
                 <span class="choice-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8 12 3 3 8l9 5 9-5ZM3 8v8l9 5 9-5V8M12 13v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
-                <strong>我想用现有库存</strong><span>先看手头花材和零件</span>
+                <span><strong>我想用库存</strong><span>优先用现有花材和零件</span></span>
               </button>
             </div>
-          </div>
+          </section>
 
           <div class="drop">
             <input id="designFile" type="file" accept="image/*" aria-label="上传设计图或实物图">
             <div class="drop-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14m7-7H5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
-            <div id="uploadCopy"><strong>上传设计图 / 实物照片</strong><span>没有图片也可以直接往下做</span></div>
+            <div id="uploadCopy"><strong>上传设计图 / 实物照片</strong><span>也可以直接填写描述</span></div>
             <img id="uploadPreview" alt="上传的设计参考">
           </div>
 
@@ -1305,7 +1352,7 @@ h1 {
             <textarea class="textarea" id="ideaText">婚礼主桌花艺，希望像被祝福一样缓慢展开，动作要克制，不要太机械，机电尽量藏在花瓶背后。</textarea>
           </div>
 
-          <div class="section">
+          <section class="section">
             <div class="section-head"><h2>使用场景</h2><span>单选</span></div>
             <div class="chip-row" data-group="scene">
               <button class="chip" type="button" data-value="wedding" aria-pressed="true">婚礼主桌</button>
@@ -1314,35 +1361,31 @@ h1 {
               <button class="chip" type="button" data-value="exhibition" aria-pressed="false">展览装置</button>
               <button class="chip" type="button" data-value="retail" aria-pressed="false">商业空间</button>
             </div>
-          </div>
-
-          <div class="step-actions">
-            <button class="btn primary" type="button" data-next="motion">下一步：选择动感</button>
-          </div>
+          </section>
         </div>
 
         <div class="step-panel" data-panel="motion">
-          <div class="section">
+          <section class="section">
             <div class="section-head"><h2>想让作品怎么动</h2><span>可多选</span></div>
-            <div class="motion-grid" data-group="motion">
-              <button class="motion-card" type="button" data-value="breath" aria-pressed="true">
+            <div class="motion-grid">
+              <button class="motion-card" type="button" data-motion="breath" aria-pressed="true">
                 <span class="motion-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12c3-5 6-5 8 0s5 5 8 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-                <strong>呼吸</strong><span>轻微起伏，不抢花艺造型</span>
+                <span><strong>呼吸</strong><span>轻微起伏，不抢造型</span></span>
               </button>
-              <button class="motion-card" type="button" data-value="sway" aria-pressed="false">
+              <button class="motion-card" type="button" data-motion="sway" aria-pressed="false">
                 <span class="motion-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21V4m0 0c-5 4-6 8-2 11m2-11c5 4 6 8 2 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-                <strong>摇曳</strong><span>枝条或叶片有自然摆动</span>
+                <span><strong>摇曳</strong><span>枝条或叶片自然摆动</span></span>
               </button>
-              <button class="motion-card" type="button" data-value="bloom" aria-pressed="true">
+              <button class="motion-card" type="button" data-motion="bloom" aria-pressed="true">
                 <span class="motion-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21V11m0 0C7 10 5 7 5 4c4 0 7 3 7 7Zm0 0c5-1 7-4 7-7-4 0-7 3-7 7Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                <strong>开合</strong><span>花瓣、翅片或层次缓慢展开</span>
+                <span><strong>开合</strong><span>花瓣或层次缓慢展开</span></span>
               </button>
-              <button class="motion-card" type="button" data-value="blessing" aria-pressed="true">
+              <button class="motion-card" type="button" data-motion="blessing" aria-pressed="true">
                 <span class="motion-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.4 5 5.6.8-4 3.9 1 5.5-5-2.6-5 2.6 1-5.5-4-3.9 5.6-.8L12 3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
-                <strong>祝福感</strong><span>慢展开、停顿、再收回</span>
+                <span><strong>祝福感</strong><span>慢展开、停顿、再收回</span></span>
               </button>
             </div>
-          </div>
+          </section>
 
           <div class="control-grid">
             <div class="field">
@@ -1354,7 +1397,7 @@ h1 {
               </div>
             </div>
             <div class="field">
-              <label for="hidePlace">机电藏在哪里</label>
+              <label for="hidePlace">机电隐藏</label>
               <select class="select" id="hidePlace">
                 <option value="back">花瓶背后</option>
                 <option value="base">底座内部</option>
@@ -1365,21 +1408,16 @@ h1 {
           </div>
 
           <div class="safe-row">
-            <div><strong>新手安全模式</strong><span>系统会优先选择低速、稳定、易装配方案</span></div>
+            <div><strong>新手安全模式</strong><span>优先低速、稳定、易装配</span></div>
             <button class="switch" type="button" id="safeSwitch" aria-label="新手安全模式" aria-pressed="true"></button>
-          </div>
-
-          <div class="step-actions">
-            <button class="btn" type="button" data-prev="idea">上一步</button>
-            <button class="btn primary" type="button" data-next="materials">下一步：填写花材</button>
           </div>
         </div>
 
-        <div class="step-panel" data-panel="materials" id="materials">
-          <div class="section">
-            <div class="section-head"><h2>这件作品用了哪些花</h2><span id="materialHint">系统按数量估重</span></div>
+        <div class="step-panel" data-panel="materials">
+          <section class="section">
+            <div class="section-head"><h2>花材数量</h2><span id="materialHint">系统按数量估重</span></div>
             <div class="material-list" id="materialList"></div>
-          </div>
+          </section>
 
           <div class="control-grid">
             <div class="field">
@@ -1395,112 +1433,135 @@ h1 {
               </div>
             </div>
           </div>
-
-          <div class="step-actions">
-            <button class="btn" type="button" data-prev="motion">上一步</button>
-            <button class="btn primary" type="button" data-next="review">查看系统推荐</button>
-          </div>
         </div>
 
         <div class="step-panel" data-panel="review">
-          <div class="section">
-            <div class="section-head"><h2>系统推荐</h2><span id="reviewHint">已根据场景、动作和花材估算</span></div>
-            <div class="plain-list" id="reviewList"></div>
-          </div>
+          <section class="section">
+            <div class="section-head"><h2>推荐摘要</h2><span>已按当前输入生成</span></div>
+            <div class="reason-list" id="reviewList"></div>
+          </section>
+        </div>
+      </div>
 
-          <div class="step-actions">
-            <button class="btn" type="button" data-prev="materials">上一步</button>
-            <button class="btn primary" type="button" id="goSystemBtn">查看下单前清单</button>
-          </div>
-        </div>
-      </section>
+      <div class="side-footer">
+        <button class="btn" type="button" id="prevBtn">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          上一步
+        </button>
+        <button class="btn primary" type="button" id="nextBtn">
+          下一步
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </aside>
 
-      <aside class="card preview-card" aria-labelledby="previewTitle">
-        <div class="preview-top">
-          <div>
-            <div class="preview-title" id="previewTitle">作品预览</div>
-            <div class="preview-sub" id="previewSub">婚礼主桌 · 开合动作方案</div>
-          </div>
-          <span class="badge green" id="previewBadge">可落地</span>
+    <section class="panel canvas-panel" aria-labelledby="canvasTitle">
+      <div class="canvas-toolbar">
+        <div>
+          <div class="canvas-title" id="canvasTitle">动态预览画布</div>
+          <div class="canvas-sub" id="canvasSub">婚礼主桌 · 开合动作方案</div>
         </div>
-        <div class="canvas">
-          <div class="preview-wrap motion-bloom" id="previewWrap">
-            <svg class="bouquet-svg" viewBox="0 0 600 600" role="img" aria-label="动态花艺预览">
-              <defs>
-                <linearGradient id="stemGradient" x1="0" x2="1">
-                  <stop offset="0" stop-color="#9ba48e"/>
-                  <stop offset="1" stop-color="#5c6657"/>
-                </linearGradient>
-                <radialGradient id="petalGradient" cx="50%" cy="48%" r="62%">
-                  <stop offset="0" stop-color="#ffffff"/>
-                  <stop offset="0.72" stop-color="#f5d7dd"/>
-                  <stop offset="1" stop-color="#d99aaa"/>
-                </radialGradient>
-              </defs>
-              <g opacity="0.36" stroke="#657065" stroke-width="8" fill="none">
-                <path d="M300 510 C294 410 304 334 294 228"/>
-                <path d="M302 508 C246 426 190 372 128 320"/>
-                <path d="M302 508 C360 426 420 368 484 316"/>
-                <path d="M296 510 C272 424 248 344 222 258"/>
-                <path d="M306 508 C334 421 360 340 386 254"/>
-              </g>
-              <g class="wing left-wing" fill="#fff" stroke="#cdd2ca" stroke-width="3">
-                <path d="M292 234 C201 124 118 113 68 198 C150 214 216 230 292 234Z"/>
-                <path d="M286 286 C188 244 110 255 58 326 C142 346 216 330 286 286Z"/>
-                <path d="M286 338 C196 342 136 396 112 472 C190 450 246 406 286 338Z"/>
-              </g>
-              <g class="wing right-wing" fill="#fff" stroke="#cdd2ca" stroke-width="3">
-                <path d="M308 234 C399 124 482 113 532 198 C450 214 384 230 308 234Z"/>
-                <path d="M314 286 C412 244 490 255 542 326 C458 346 384 330 314 286Z"/>
-                <path d="M314 338 C404 342 464 396 488 472 C410 450 354 406 314 338Z"/>
-              </g>
-              <g fill="url(#petalGradient)" stroke="#e2aebb" stroke-width="3">
-                <ellipse cx="300" cy="268" rx="47" ry="78"/>
-                <ellipse cx="257" cy="318" rx="50" ry="78" transform="rotate(-28 257 318)"/>
-                <ellipse cx="343" cy="318" rx="50" ry="78" transform="rotate(28 343 318)"/>
-                <ellipse cx="300" cy="362" rx="54" ry="82"/>
-              </g>
-              <circle cx="300" cy="326" r="34" fill="#12a150" opacity="0.90"/>
-              <circle cx="300" cy="326" r="19" fill="#b8efce"/>
-              <path d="M236 528 H364 C390 528 408 546 408 568 V584 H192 V568 C192 546 210 528 236 528Z" fill="#ffffff" stroke="#c7cbd0" stroke-width="3"/>
-              <path d="M248 566 H352" stroke="#d2d7dc" stroke-width="4" stroke-linecap="round"/>
-              <path d="M280 510 V474 H320 V510" stroke="url(#stemGradient)" stroke-width="18" stroke-linecap="round"/>
-            </svg>
-            <span class="zone left">左翼</span>
-            <span class="zone right">右翼</span>
-            <span class="zone top">顶部</span>
-            <span class="zone core">固定</span>
-            <span class="zone base">隐藏</span>
-          </div>
+        <div class="canvas-actions">
+          <span class="badge green" id="canvasState">可落地</span>
+          <button class="btn small" type="button" id="fitBtn">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M8 21H3v-5m13 5h5v-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            适配
+          </button>
         </div>
-        <div class="preview-summary">
-          <div class="preview-metric"><span>动感</span><strong id="metricMotion">呼吸 + 开合</strong></div>
-          <div class="preview-metric"><span>花材估重</span><strong id="metricWeight">0g</strong></div>
-          <div class="preview-metric"><span>库存</span><strong id="metricStock">0%</strong></div>
+      </div>
+      <div class="canvas">
+        <div class="stage-ruler">
+          <span class="badge neutral" id="stageMotion">呼吸 + 开合 + 祝福感</span>
+          <span class="badge neutral" id="stageHide">隐藏：花瓶背后</span>
         </div>
-      </aside>
+        <div class="preview-wrap motion-bloom" id="previewWrap">
+          <svg class="bouquet-svg" viewBox="0 0 600 600" role="img" aria-label="动态花艺预览">
+            <defs>
+              <linearGradient id="stemGradient" x1="0" x2="1">
+                <stop offset="0" stop-color="#9ba48e"/>
+                <stop offset="1" stop-color="#5c6657"/>
+              </linearGradient>
+              <radialGradient id="petalGradient" cx="50%" cy="48%" r="62%">
+                <stop offset="0" stop-color="#ffffff"/>
+                <stop offset="0.72" stop-color="#f5d7dd"/>
+                <stop offset="1" stop-color="#d99aaa"/>
+              </radialGradient>
+            </defs>
+            <g opacity="0.36" stroke="#657065" stroke-width="8" fill="none">
+              <path d="M300 510 C294 410 304 334 294 228"/>
+              <path d="M302 508 C246 426 190 372 128 320"/>
+              <path d="M302 508 C360 426 420 368 484 316"/>
+              <path d="M296 510 C272 424 248 344 222 258"/>
+              <path d="M306 508 C334 421 360 340 386 254"/>
+            </g>
+            <g class="wing left-wing" fill="#fff" stroke="#cdd2ca" stroke-width="3">
+              <path d="M292 234 C201 124 118 113 68 198 C150 214 216 230 292 234Z"/>
+              <path d="M286 286 C188 244 110 255 58 326 C142 346 216 330 286 286Z"/>
+              <path d="M286 338 C196 342 136 396 112 472 C190 450 246 406 286 338Z"/>
+            </g>
+            <g class="wing right-wing" fill="#fff" stroke="#cdd2ca" stroke-width="3">
+              <path d="M308 234 C399 124 482 113 532 198 C450 214 384 230 308 234Z"/>
+              <path d="M314 286 C412 244 490 255 542 326 C458 346 384 330 314 286Z"/>
+              <path d="M314 338 C404 342 464 396 488 472 C410 450 354 406 314 338Z"/>
+            </g>
+            <g fill="url(#petalGradient)" stroke="#e2aebb" stroke-width="3">
+              <ellipse cx="300" cy="268" rx="47" ry="78"/>
+              <ellipse cx="257" cy="318" rx="50" ry="78" transform="rotate(-28 257 318)"/>
+              <ellipse cx="343" cy="318" rx="50" ry="78" transform="rotate(28 343 318)"/>
+              <ellipse cx="300" cy="362" rx="54" ry="82"/>
+            </g>
+            <circle cx="300" cy="326" r="34" fill="#148c4a" opacity="0.90"/>
+            <circle cx="300" cy="326" r="19" fill="#b8efce"/>
+            <path d="M236 528 H364 C390 528 408 546 408 568 V584 H192 V568 C192 546 210 528 236 528Z" fill="#ffffff" stroke="#c7cbd0" stroke-width="3"/>
+            <path d="M248 566 H352" stroke="#d2d7dc" stroke-width="4" stroke-linecap="round"/>
+            <path d="M280 510 V474 H320 V510" stroke="url(#stemGradient)" stroke-width="18" stroke-linecap="round"/>
+          </svg>
+          <span class="zone left">左翼</span>
+          <span class="zone right">右翼</span>
+          <span class="zone top">顶部</span>
+          <span class="zone core">固定</span>
+          <span class="zone base">隐藏</span>
+        </div>
+      </div>
+      <div class="canvas-summary">
+        <div class="summary-cell"><span>动作</span><strong id="summaryMotion">呼吸 + 开合</strong></div>
+        <div class="summary-cell"><span>花材估重</span><strong id="summaryWeight">0g</strong></div>
+        <div class="summary-cell"><span>可动重量</span><strong id="summaryMoving">0g</strong></div>
+        <div class="summary-cell"><span>库存</span><strong id="summaryStock">0%</strong></div>
+      </div>
     </section>
 
-    <section class="result-section" id="systemResult">
-      <section class="card recommend-card">
-        <div class="recommend-head">
-          <div>
-            <h2 id="recommendTitle">推荐开合套件</h2>
-            <p id="recommendCopy">适合左右对称、六翼、花瓣层次展开；系统会把缺少的零件放进下单前清单。</p>
-          </div>
-          <div class="score-ring" id="scoreRing">92</div>
+    <aside class="panel inspector" aria-labelledby="recommendTitle">
+      <div class="panel-head">
+        <div>
+          <div class="panel-title" id="recommendTitle">系统推荐</div>
+          <div class="panel-sub">方案、库存、准备事项</div>
         </div>
-        <div class="plain-list" id="reasonList"></div>
-      </section>
+        <span class="badge amber" id="stockBadge">需补货</span>
+      </div>
 
-      <section class="card system-card">
-        <div class="system-head">
-          <h2>系统已整理</h2>
-          <span class="badge amber" id="stockBadge">需补货</span>
-        </div>
-        <div class="task-list" id="taskList"></div>
+      <div class="inspector-body">
+        <section class="recommend-block">
+          <div class="recommend-title">
+            <div>
+              <h2 id="kitTitle">开合动作方案</h2>
+              <p id="kitCopy">适合左右对称、六翼、花瓣层次展开；系统会把缺少的零件放进下单前清单。</p>
+            </div>
+            <div class="score" id="score">92</div>
+          </div>
+          <div class="reason-list" id="reasonList"></div>
+        </section>
+
+        <section class="task-section">
+          <div class="section-bar">
+            <h2>准备清单</h2>
+            <span class="badge blue" id="taskCount">4 项</span>
+          </div>
+          <div class="task-list" id="taskList"></div>
+        </section>
+
         <details class="details">
-          <summary>查看套件参数和备选方案</summary>
+          <summary>套件参数和备选方案</summary>
           <div class="kit-table-wrap">
             <table class="kit-table">
               <thead>
@@ -1515,8 +1576,8 @@ h1 {
             </table>
           </div>
         </details>
-      </section>
-    </section>
+      </div>
+    </aside>
   </main>
 </div>
 
@@ -1566,6 +1627,7 @@ const kits = [
   {
     key: 'bloom',
     name: '开合套件',
+    display: '开合动作方案',
     note: '花瓣层次展开、祝福感、婚礼主视觉',
     capacity: 360,
     time: 45,
@@ -1579,6 +1641,7 @@ const kits = [
   {
     key: 'sway',
     name: '摇曳套件',
+    display: '摇曳动作方案',
     note: '枝条摆动、橱窗循环、轻量花束',
     capacity: 280,
     time: 35,
@@ -1592,6 +1655,7 @@ const kits = [
   {
     key: 'breath',
     name: '呼吸套件',
+    display: '呼吸动作方案',
     note: '低速起伏、礼物花束、稳定优先',
     capacity: 220,
     time: 28,
@@ -1605,8 +1669,8 @@ const kits = [
 ];
 
 const state = {
-  source: 'design',
   step: 'idea',
+  source: 'design',
   scene: 'wedding',
   motions: new Set(['breath', 'bloom', 'blessing']),
   intensity: 'soft',
@@ -1616,11 +1680,11 @@ const state = {
 };
 
 const stepOrder = ['idea', 'motion', 'materials', 'review'];
-const stepLabels = {
-  idea: ['第 1 步', '从作品来源开始'],
-  motion: ['第 2 步', '选择作品动感'],
+const stepInfo = {
+  idea: ['第 1 步', '先选作品来源'],
+  motion: ['第 2 步', '选择动作与强度'],
   materials: ['第 3 步', '填写花材数量'],
-  review: ['第 4 步', '查看推荐结果']
+  review: ['第 4 步', '查看推荐摘要']
 };
 
 function byId(id) {
@@ -1683,16 +1747,19 @@ function showToast(title, copy) {
 
 function setStep(step) {
   state.step = step;
-  document.querySelectorAll('.progress-step').forEach(button => {
-    const active = button.dataset.step === step;
-    button.classList.toggle('active', active);
-    button.setAttribute('aria-selected', String(active));
+  document.querySelectorAll('.step-item').forEach(button => {
+    button.classList.toggle('active', button.dataset.step === step);
   });
   document.querySelectorAll('.step-panel').forEach(panel => {
     panel.classList.toggle('active', panel.dataset.panel === step);
   });
-  byId('stepBadge').textContent = stepLabels[step][0];
-  byId('creatorHint').textContent = stepLabels[step][1];
+  byId('stepBadge').textContent = stepInfo[step][0];
+  byId('setupHint').textContent = stepInfo[step][1];
+  const index = stepOrder.indexOf(step);
+  byId('prevBtn').disabled = index === 0;
+  byId('nextBtn').innerHTML = index === stepOrder.length - 1
+    ? '生成清单 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+    : '下一步 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 }
 
 function renderMaterials() {
@@ -1714,19 +1781,18 @@ function renderMaterials() {
 function renderReasons() {
   const kit = getKit();
   const { moving } = getWeights();
-  const missing = kit.missing;
   const reasons = [
-    { title: `适合${sceneLabels[state.scene]}的${motionText()}`, copy: `${kit.name}更适合当前动作组合，预览会按${intensityMap[state.intensity].label}强度生成。` },
+    { title: `适合${sceneLabels[state.scene]}的${motionText()}`, copy: `${kit.display}更符合当前动作组合，预览按${intensityMap[state.intensity].label}强度生成。` },
     { title: `可动重量约 ${moving}g`, copy: moving <= kit.capacity ? '在套件承载范围内。' : '重量偏高，建议减少可动花材或改用更强套件。' },
-    { title: missing.length ? `需要补 ${missing.length} 类零件` : '库存已满足', copy: missing.length ? missing.map(part => `${part.name} × ${part.missing}`).join('，') : '可以直接进入装配准备。' }
+    { title: kit.missing.length ? `需要补 ${kit.missing.length} 类零件` : '库存已满足', copy: kit.missing.length ? kit.missing.map(part => `${part.name} × ${part.missing}`).join('，') : '可以直接进入装配准备。' }
   ];
 
   const html = reasons.map((item, index) => `
-    <div class="plain-item">
-      <div class="plain-dot">${index + 1}</div>
+    <div class="reason-item">
+      <div class="reason-num">${index + 1}</div>
       <div>
-        <div class="plain-title">${item.title}</div>
-        <div class="plain-copy">${item.copy}</div>
+        <div class="reason-heading">${item.title}</div>
+        <div class="reason-copy">${item.copy}</div>
       </div>
     </div>
   `).join('');
@@ -1736,12 +1802,12 @@ function renderReasons() {
 
 function renderTasks() {
   const kit = getKit();
-  const missing = kit.missing;
   const tasks = [
     { title: `${kit.name}装配模板`, meta: `${kit.time} 分钟 · ${hideLabels[state.hidePlace]}`, status: '已准备', tone: 'green' },
-    { title: `动作参数`, meta: `${intensityMap[state.intensity].cycle} · ${intensityMap[state.intensity].angle} · ${intensityMap[state.intensity].label}`, status: '已同步', tone: 'blue' }
+    { title: '动作参数', meta: `${intensityMap[state.intensity].cycle} · ${intensityMap[state.intensity].angle} · ${intensityMap[state.intensity].label}`, status: '已同步', tone: 'blue' }
   ];
-  missing.forEach(part => {
+
+  kit.missing.forEach(part => {
     tasks.push({
       title: `${part.name} × ${part.missing}`,
       meta: `预计 ¥${part.missing * part.price} · 到订单确认前停止`,
@@ -1749,7 +1815,8 @@ function renderTasks() {
       tone: 'amber'
     });
   });
-  if (!missing.length) {
+
+  if (!kit.missing.length) {
     tasks.push({ title: '库存满足', meta: '无需补货，可进入装配准备。', status: '完成', tone: 'green' });
   }
 
@@ -1763,12 +1830,12 @@ function renderTasks() {
       <span class="badge ${task.tone}">${task.status}</span>
     </div>
   `).join('');
+  byId('taskCount').textContent = `${tasks.length} 项`;
 }
 
 function renderKits() {
   byId('kitRows').innerHTML = getSortedKits().map((kit, index) => {
     const stock = getStock(kit);
-    const stockTone = stock >= 90 ? 'green' : 'amber';
     return `
       <tr>
         <td>
@@ -1780,16 +1847,16 @@ function renderKits() {
           <div class="bar" style="--value:${kit.score}%"><span></span></div>
         </td>
         <td>
-          <span class="badge ${stockTone}">${stock}%</span>
+          <span class="badge ${stock >= 90 ? 'green' : 'amber'}">${stock}%</span>
           <div class="bar ${stock < 90 ? 'warn' : ''}" style="--value:${stock}%"><span></span></div>
         </td>
-        <td>${index === 0 ? '推荐方案' : '备选方案'}</td>
+        <td>${index === 0 ? '推荐' : '备选'}</td>
       </tr>
     `;
   }).join('');
 }
 
-function updatePreview() {
+function updatePreviewMotion() {
   const wrap = byId('previewWrap');
   wrap.className = 'preview-wrap';
   const selected = ['bloom', 'sway', 'breath', 'blessing'].find(motion => state.motions.has(motion)) || 'breath';
@@ -1799,57 +1866,48 @@ function updatePreview() {
 function update() {
   const kit = getKit();
   const stock = getStock(kit);
-  const missing = kit.missing;
   const { total, moving } = getWeights();
-  const riskText = missing.length ? '需补货' : '库存齐';
-  const riskTone = missing.length ? 'amber' : 'green';
-  const summary = `${sceneLabels[state.scene]} · ${motionText()}`;
+  const riskTone = kit.missing.length ? 'amber' : 'green';
+  const riskText = kit.missing.length ? '待补货' : '库存齐';
 
-  byId('heroKit').textContent = `${kit.name.replace('套件', '')}动作方案`;
-  byId('heroSummary').textContent = summary;
-  byId('heroRisk').textContent = riskText;
-  byId('heroRisk').className = `badge ${riskTone}`;
+  byId('projectName').textContent = `${sceneLabels[state.scene]}动态方案`;
+  byId('projectMeta').textContent = `${kit.display} · 库存 ${stock}%`;
+  byId('projectState').textContent = riskText;
+  byId('projectState').className = `badge ${riskTone}`;
 
-  byId('previewSub').textContent = `${sceneLabels[state.scene]} · ${kit.name.replace('套件', '')}动作方案`;
-  byId('previewBadge').textContent = stock >= 90 ? '库存齐' : '待补货';
-  byId('previewBadge').className = `badge ${stock >= 90 ? 'green' : 'amber'}`;
-  byId('metricMotion').textContent = motionText();
-  byId('metricWeight').textContent = `${total}g`;
-  byId('metricStock').textContent = `${stock}%`;
+  byId('canvasSub').textContent = `${sceneLabels[state.scene]} · ${kit.display}`;
+  byId('canvasState').textContent = riskText;
+  byId('canvasState').className = `badge ${riskTone}`;
+  byId('stageMotion').textContent = motionText();
+  byId('stageHide').textContent = `隐藏：${hideLabels[state.hidePlace]}`;
 
+  byId('summaryMotion').textContent = motionText();
+  byId('summaryWeight').textContent = `${total}g`;
+  byId('summaryMoving').textContent = `${moving}g`;
+  byId('summaryStock').textContent = `${stock}%`;
   byId('materialHint').textContent = `总重 ${total}g，可动约 ${moving}g`;
-  byId('recommendTitle').textContent = `推荐${kit.name}`;
-  byId('recommendCopy').textContent = `${kit.note}。${missing.length ? '系统会把缺少的零件放进下单前清单。' : '当前库存满足，可直接进入装配准备。'}`;
-  byId('scoreRing').textContent = kit.score;
-  byId('stockBadge').textContent = riskText;
+
+  byId('stockBadge').textContent = kit.missing.length ? '需补货' : '库存齐';
   byId('stockBadge').className = `badge ${riskTone}`;
+  byId('kitTitle').textContent = kit.display;
+  byId('kitCopy').textContent = `${kit.note}。${kit.missing.length ? '系统会把缺少的零件放进下单前清单。' : '当前库存满足，可直接进入装配准备。'}`;
+  byId('score').textContent = kit.score;
 
   renderMaterials();
   renderReasons();
   renderTasks();
   renderKits();
-  updatePreview();
+  updatePreviewMotion();
 }
 
 function bindEvents() {
-  document.querySelectorAll('.progress-step').forEach(button => {
+  document.querySelectorAll('.step-item').forEach(button => {
     button.addEventListener('click', () => setStep(button.dataset.step));
-  });
-
-  document.querySelectorAll('[data-next]').forEach(button => {
-    button.addEventListener('click', () => {
-      setStep(button.dataset.next);
-      showToast('已进入下一步', stepLabels[button.dataset.next][1]);
-    });
-  });
-
-  document.querySelectorAll('[data-prev]').forEach(button => {
-    button.addEventListener('click', () => setStep(button.dataset.prev));
   });
 
   document.querySelectorAll('.choice-card').forEach(button => {
     button.addEventListener('click', () => {
-      state.source = button.dataset.value;
+      state.source = button.dataset.source;
       document.querySelectorAll('.choice-card').forEach(item => item.classList.toggle('active', item === button));
     });
   });
@@ -1862,9 +1920,9 @@ function bindEvents() {
     });
   });
 
-  document.querySelectorAll('[data-group="motion"] .motion-card').forEach(button => {
+  document.querySelectorAll('.motion-card').forEach(button => {
     button.addEventListener('click', () => {
-      const value = button.dataset.value;
+      const value = button.dataset.motion;
       if (state.motions.has(value) && state.motions.size > 1) {
         state.motions.delete(value);
       } else {
@@ -1914,19 +1972,34 @@ function bindEvents() {
     showToast('图片已加入', '系统会把图片作为作品结构参考。');
   });
 
-  const goReview = () => {
-    setStep('review');
-    byId('systemResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
+  byId('prevBtn').addEventListener('click', () => {
+    const index = stepOrder.indexOf(state.step);
+    if (index > 0) setStep(stepOrder[index - 1]);
+  });
 
-  byId('topRecommendBtn').addEventListener('click', goReview);
-  byId('goSystemBtn').addEventListener('click', () => {
-    byId('systemResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  byId('nextBtn').addEventListener('click', () => {
+    const index = stepOrder.indexOf(state.step);
+    if (index < stepOrder.length - 1) {
+      setStep(stepOrder[index + 1]);
+    } else {
+      byId('taskList').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      showToast('清单已生成', '系统已整理套件、库存和装配准备。');
+    }
+  });
+
+  byId('generateBtn').addEventListener('click', () => {
+    setStep('review');
+    byId('taskList').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    showToast('清单已生成', '系统已整理套件、库存和装配准备。');
+  });
+
+  byId('fitBtn').addEventListener('click', () => {
+    showToast('预览已适配', '画布已按当前作品范围重新居中。');
   });
 
   byId('resetBtn').addEventListener('click', () => {
-    state.source = 'design';
     state.step = 'idea';
+    state.source = 'design';
     state.scene = 'wedding';
     state.motions = new Set(['breath', 'bloom', 'blessing']);
     state.intensity = 'soft';
@@ -1940,9 +2013,9 @@ function bindEvents() {
     materials[4].count = 6;
     byId('hidePlace').value = 'back';
     byId('safeSwitch').setAttribute('aria-pressed', 'true');
-    document.querySelectorAll('.choice-card').forEach(item => item.classList.toggle('active', item.dataset.value === 'design'));
+    document.querySelectorAll('.choice-card').forEach(item => item.classList.toggle('active', item.dataset.source === 'design'));
     document.querySelectorAll('[data-group="scene"] .chip').forEach(item => item.setAttribute('aria-pressed', String(item.dataset.value === 'wedding')));
-    document.querySelectorAll('[data-group="motion"] .motion-card').forEach(item => item.setAttribute('aria-pressed', String(state.motions.has(item.dataset.value))));
+    document.querySelectorAll('.motion-card').forEach(item => item.setAttribute('aria-pressed', String(state.motions.has(item.dataset.motion))));
     document.querySelectorAll('[data-segment="intensity"] button').forEach(item => item.classList.toggle('active', item.dataset.value === 'soft'));
     document.querySelectorAll('[data-segment="priority"] button').forEach(item => item.classList.toggle('active', item.dataset.value === 'safe'));
     setStep('idea');
@@ -1953,6 +2026,7 @@ function bindEvents() {
 
 renderMaterials();
 bindEvents();
+setStep('idea');
 update();
 </script>
 </body>
