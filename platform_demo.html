@@ -4,21 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Flora Studio Platform Demo</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231f2328'/%3E%3Cpath d='M21 46V18h22v7H30v5h11v7H30v9z' fill='white'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231e1f22'/%3E%3Cpath d='M21 46V18h22v7H30v6h11v7H30v8z' fill='white'/%3E%3C/svg%3E">
 <style>
 :root {
-  --app: #f6f7f9;
+  --app: #f4f5f7;
   --surface: #ffffff;
-  --surface-2: #f9fafb;
-  --surface-3: #f1f3f5;
-  --ink: #1f2328;
-  --text: #3f454d;
-  --muted: #68707a;
-  --faint: #9aa3ad;
-  --line: #dde2e8;
-  --line-strong: #c8d0d9;
+  --surface-2: #f8f9fb;
+  --surface-3: #eef1f5;
+  --ink: #1e1f22;
+  --text: #40454d;
+  --muted: #6e747c;
+  --faint: #a1a8b0;
+  --line: #dce2e8;
+  --line-strong: #c7d0da;
   --blue: #0b6ffb;
-  --blue-soft: #eaf2ff;
+  --blue-soft: #e9f2ff;
   --green: #148c4a;
   --green-soft: #e8f6ee;
   --amber: #a35f18;
@@ -27,8 +27,8 @@
   --rose-soft: #fff1f4;
   --red: #c24134;
   --red-soft: #fff0ee;
-  --shadow: 0 1px 2px rgba(31,35,40,0.06), 0 12px 30px rgba(31,35,40,0.08);
-  --shadow-soft: 0 1px 2px rgba(31,35,40,0.06);
+  --shadow: 0 1px 2px rgba(30,31,34,0.06), 0 18px 42px rgba(30,31,34,0.10);
+  --shadow-soft: 0 1px 2px rgba(30,31,34,0.06);
   --radius: 8px;
   --sans: Inter, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif;
   --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
@@ -41,22 +41,20 @@ body {
   min-height: 100vh;
   font-family: var(--sans);
   font-size: 14px;
-  line-height: 1.48;
+  line-height: 1.45;
   background: var(--app);
 }
 
 button,
-input,
 textarea,
-select {
-  font: inherit;
-}
+input,
+select { font: inherit; }
 
 button { cursor: pointer; }
 
 button:focus-visible,
-input:focus-visible,
 textarea:focus-visible,
+input:focus-visible,
 select:focus-visible,
 summary:focus-visible {
   outline: 2px solid var(--blue);
@@ -72,16 +70,16 @@ summary:focus-visible {
 .topbar {
   position: sticky;
   top: 0;
-  z-index: 30;
+  z-index: 50;
   height: 58px;
   display: grid;
-  grid-template-columns: 280px 1fr auto;
-  align-items: center;
+  grid-template-columns: 260px 1fr auto;
   gap: 16px;
+  align-items: center;
   padding: 0 18px;
-  border-bottom: 1px solid rgba(221,226,232,0.92);
-  background: rgba(255,255,255,0.88);
-  backdrop-filter: blur(22px) saturate(1.45);
+  border-bottom: 1px solid rgba(220,226,232,0.9);
+  background: rgba(255,255,255,0.86);
+  backdrop-filter: blur(24px) saturate(1.5);
 }
 
 .brand {
@@ -99,56 +97,53 @@ summary:focus-visible {
   place-items: center;
   color: #fff;
   background: var(--ink);
-  font-weight: 800;
+  font-weight: 820;
 }
 
 .brand-title {
-  font-size: 15px;
   font-weight: 760;
+  font-size: 15px;
 }
 
 .brand-sub {
-  margin-top: 1px;
   color: var(--muted);
   font-size: 12px;
 }
 
-.project-center {
-  min-width: 0;
+.project-pill {
   justify-self: center;
-  width: min(620px, 100%);
-  height: 40px;
+  width: min(560px, 100%);
+  height: 38px;
   display: grid;
-  grid-template-columns: 22px 1fr auto;
-  align-items: center;
+  grid-template-columns: 20px 1fr auto;
   gap: 10px;
+  align-items: center;
+  padding: 0 12px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--surface-2);
-  padding: 0 12px;
 }
 
-.project-center strong {
+.project-pill strong,
+.project-pill span {
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.project-pill strong {
   font-size: 13px;
 }
 
-.project-center span {
-  display: block;
+.project-pill span {
   color: var(--muted);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   font-size: 12px;
 }
 
 .top-actions {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
   gap: 8px;
 }
 
@@ -172,7 +167,7 @@ summary:focus-visible {
   gap: 8px;
   padding: 0 12px;
   font-weight: 680;
-  transition: background 160ms ease, border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+  transition: transform 160ms ease, background 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
 }
 
 .btn:hover {
@@ -189,10 +184,7 @@ summary:focus-visible {
   box-shadow: 0 8px 22px rgba(11,111,251,0.22);
 }
 
-.btn.ghost {
-  background: transparent;
-}
-
+.btn.ghost { background: transparent; }
 .btn.small {
   min-height: 34px;
   padding: 0 10px;
@@ -217,282 +209,173 @@ summary:focus-visible {
 .badge.red { background: var(--red-soft); color: var(--red); }
 .badge.neutral { background: #eceff3; color: var(--text); }
 
-.workspace {
+.studio {
+  position: relative;
   min-height: calc(100vh - 58px);
   display: grid;
-  grid-template-columns: 340px minmax(520px, 1fr) 360px;
-  gap: 12px;
-  padding: 12px;
-}
-
-.panel {
-  min-width: 0;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--surface);
-  box-shadow: var(--shadow-soft);
+  grid-template-columns: 1fr 346px;
   overflow: hidden;
 }
 
-.panel-head {
-  min-height: 58px;
+.stage {
+  position: relative;
+  min-width: 0;
+  min-height: calc(100vh - 58px);
+  display: grid;
+  grid-template-rows: 1fr auto;
+  background:
+    linear-gradient(rgba(30,31,34,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30,31,34,0.035) 1px, transparent 1px),
+    #fbfcfd;
+  background-size: 76px 76px;
+}
+
+.model-space {
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+}
+
+#modelCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.stage-hud {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 5;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 13px 14px;
-  border-bottom: 1px solid var(--line);
-  background: rgba(255,255,255,0.86);
-}
-
-.panel-title {
-  font-size: 15px;
-  font-weight: 760;
-}
-
-.panel-sub {
-  margin-top: 2px;
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.sidebar {
-  display: grid;
-  grid-template-rows: auto auto 1fr auto;
-  max-height: calc(100vh - 82px);
-  position: sticky;
-  top: 70px;
-}
-
-.step-list {
-  display: grid;
-  gap: 6px;
-  padding: 10px;
-  border-bottom: 1px solid var(--line);
-  background: var(--surface-2);
-}
-
-.step-item {
-  min-height: 48px;
-  border: 1px solid transparent;
-  border-radius: var(--radius);
-  background: transparent;
-  color: var(--muted);
-  display: grid;
-  grid-template-columns: 28px 1fr;
-  align-items: center;
-  gap: 9px;
-  padding: 8px;
-  text-align: left;
-}
-
-.step-item.active {
-  border-color: var(--line);
-  background: var(--surface);
-  color: var(--ink);
-  box-shadow: var(--shadow-soft);
-}
-
-.step-num {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: #eceff3;
-  font-family: var(--mono);
-  font-size: 12px;
-  font-weight: 760;
-}
-
-.step-item.active .step-num {
-  background: var(--blue);
-  color: #fff;
-}
-
-.step-label {
-  font-weight: 720;
-  font-size: 13px;
-}
-
-.step-copy {
-  margin-top: 1px;
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.form-wrap {
-  overflow: auto;
-  padding: 14px;
-}
-
-.step-panel {
-  display: none;
-  gap: 14px;
-}
-
-.step-panel.active {
-  display: grid;
-}
-
-.section {
-  display: grid;
-  gap: 10px;
-}
-
-.section-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 10px;
-}
-
-.section-head h2 {
-  margin: 0;
-  font-size: 14px;
-  font-weight: 760;
-}
-
-.section-head span {
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.choice-grid,
-.motion-grid {
-  display: grid;
+  flex-wrap: wrap;
   gap: 8px;
 }
 
-.choice-card,
-.motion-card {
-  min-height: 78px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--surface);
-  color: var(--ink);
-  display: grid;
-  grid-template-columns: 36px 1fr;
-  gap: 10px;
-  align-items: center;
-  padding: 10px;
-  text-align: left;
-}
-
-.choice-card.active,
-.motion-card[aria-pressed="true"] {
-  border-color: rgba(11,111,251,0.72);
-  background: var(--blue-soft);
-}
-
-.choice-icon,
-.motion-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: var(--radius);
-  border: 1px solid var(--line);
-  background: var(--surface);
-  color: var(--blue);
-  display: grid;
-  place-items: center;
-}
-
-.choice-card strong,
-.motion-card strong {
-  display: block;
-  font-size: 13px;
-}
-
-.choice-card span,
-.motion-card span {
-  display: block;
-  margin-top: 2px;
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.drop {
-  min-height: 92px;
-  border: 1px dashed var(--line-strong);
-  border-radius: var(--radius);
-  background: var(--surface-2);
-  display: grid;
-  grid-template-columns: 42px 1fr;
-  gap: 10px;
-  align-items: center;
-  padding: 12px;
-  position: relative;
-  overflow: hidden;
-}
-
-.drop input {
+.view-toggle {
   position: absolute;
-  inset: 0;
-  opacity: 0;
-  cursor: pointer;
-}
-
-.drop-icon {
-  width: 42px;
-  height: 42px;
+  top: 16px;
+  right: 16px;
+  z-index: 5;
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  display: grid;
-  place-items: center;
-  background: var(--surface);
-  color: var(--blue);
+  background: rgba(255,255,255,0.84);
+  backdrop-filter: blur(18px);
 }
 
-.drop strong {
-  display: block;
-}
-
-.drop span {
-  display: block;
-  margin-top: 2px;
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.drop img {
-  display: none;
-  grid-column: 1 / -1;
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
+.view-toggle button {
+  min-height: 30px;
+  border: 0;
   border-radius: 6px;
-}
-
-.field {
-  display: grid;
-  gap: 7px;
-}
-
-.field label {
-  color: var(--text);
+  background: transparent;
+  color: var(--muted);
+  padding: 0 10px;
   font-size: 12px;
   font-weight: 680;
 }
 
-.textarea,
-.input,
-.select {
-  width: 100%;
+.view-toggle button.active {
+  background: var(--ink);
+  color: #fff;
+}
+
+.focus-note {
+  position: absolute;
+  left: 16px;
+  bottom: 156px;
+  z-index: 4;
+  max-width: 360px;
+  border: 1px solid rgba(220,226,232,0.9);
+  border-radius: var(--radius);
+  background: rgba(255,255,255,0.82);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(18px);
+  padding: 12px 13px;
+}
+
+.focus-note strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.focus-note span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.composer {
+  z-index: 10;
+  margin: 0 16px 16px;
+  border: 1px solid rgba(220,226,232,0.92);
+  border-radius: var(--radius);
+  background: rgba(255,255,255,0.92);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.composer-main {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  padding: 13px;
+  border-bottom: 1px solid var(--line);
+}
+
+.prompt-box {
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  gap: 10px;
+  align-items: start;
+}
+
+.prompt-icon {
+  width: 38px;
+  height: 38px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: var(--surface);
+  display: grid;
+  place-items: center;
+  color: var(--blue);
+  background: var(--surface-2);
+}
+
+.prompt-input {
+  width: 100%;
+  min-height: 48px;
+  max-height: 110px;
+  border: 0;
+  resize: none;
+  outline: 0;
   color: var(--ink);
-  padding: 10px 11px;
+  background: transparent;
+  padding: 0;
 }
 
-.textarea {
-  min-height: 112px;
-  resize: vertical;
+.prompt-input::placeholder {
+  color: var(--faint);
 }
 
-.input,
-.select {
-  min-height: 40px;
+.composer-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quick-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 13px;
+}
+
+.quick-label {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 680;
 }
 
 .chip-row {
@@ -502,7 +385,7 @@ summary:focus-visible {
 }
 
 .chip {
-  min-height: 34px;
+  min-height: 32px;
   border: 1px solid var(--line);
   border-radius: 999px;
   background: var(--surface);
@@ -513,367 +396,69 @@ summary:focus-visible {
 }
 
 .chip[aria-pressed="true"] {
-  border-color: var(--ink);
   background: var(--ink);
+  border-color: var(--ink);
   color: #fff;
 }
 
-.control-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-}
-
-.segmented {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 5px;
-  padding: 4px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--surface-2);
-}
-
-.segmented button {
-  min-height: 34px;
-  border: 1px solid transparent;
-  border-radius: 6px;
-  background: transparent;
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: 680;
-}
-
-.segmented button.active {
-  border-color: var(--line);
-  background: var(--surface);
-  color: var(--ink);
-  box-shadow: var(--shadow-soft);
-}
-
-.safe-row {
-  min-height: 52px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--surface);
-  padding: 10px 12px;
-}
-
-.safe-row strong {
-  display: block;
-  font-size: 13px;
-}
-
-.safe-row span {
-  display: block;
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.switch {
-  width: 42px;
-  height: 24px;
-  border: 0;
-  border-radius: 999px;
-  background: var(--green);
-  position: relative;
-  padding: 0;
-}
-
-.switch::after {
-  content: "";
-  position: absolute;
-  top: 3px;
-  right: 3px;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: var(--shadow-soft);
-}
-
-.switch[aria-pressed="false"] {
-  background: var(--line-strong);
-}
-
-.switch[aria-pressed="false"]::after {
-  right: auto;
-  left: 3px;
-}
-
-.material-list {
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  overflow: hidden;
-}
-
-.material-row {
-  min-height: 58px;
-  display: grid;
-  grid-template-columns: 1fr 116px;
-  gap: 10px;
-  align-items: center;
-  padding: 10px 12px;
-  border-bottom: 1px solid var(--line);
-  background: var(--surface);
-}
-
-.material-row:last-child {
-  border-bottom: 0;
-}
-
-.material-name {
-  font-weight: 720;
-}
-
-.material-meta {
-  margin-top: 2px;
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.stepper {
-  display: grid;
-  grid-template-columns: 34px 1fr 34px;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  background: var(--surface);
-}
-
-.stepper button {
-  height: 34px;
-  border: 0;
-  background: var(--surface-2);
-  color: var(--ink);
-  font-size: 16px;
-}
-
-.stepper output {
-  display: grid;
-  place-items: center;
-  font-family: var(--mono);
-  font-weight: 760;
-  font-size: 12px;
-}
-
-.side-footer {
-  border-top: 1px solid var(--line);
-  padding: 10px;
-  display: grid;
-  gap: 8px;
-  background: var(--surface-2);
-}
-
-.side-footer .btn {
-  width: 100%;
-}
-
-.canvas-panel {
-  min-height: calc(100vh - 82px);
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-}
-
-.canvas-toolbar {
-  min-height: 58px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 12px 14px;
-  border-bottom: 1px solid var(--line);
-}
-
-.canvas-title {
-  font-size: 16px;
-  font-weight: 760;
-}
-
-.canvas-sub {
-  margin-top: 2px;
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.canvas-actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.canvas {
-  position: relative;
-  min-height: 580px;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  background:
-    linear-gradient(rgba(31,35,40,0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(31,35,40,0.035) 1px, transparent 1px),
-    #fbfcfd;
-  background-size: 72px 72px;
-}
-
-.stage-ruler {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.preview-wrap {
-  position: relative;
-  width: min(620px, 78%);
-  aspect-ratio: 1 / 1;
-  display: grid;
-  place-items: center;
-}
-
-.bouquet-svg {
-  width: 100%;
-  height: 100%;
-  filter: drop-shadow(0 28px 28px rgba(31,35,40,0.14));
-}
-
-.zone {
-  position: absolute;
-  min-width: 66px;
-  min-height: 30px;
-  border: 1px solid rgba(20,140,74,0.72);
-  border-radius: 999px;
-  background: rgba(232,246,238,0.86);
-  color: #0b6d37;
-  display: grid;
-  place-items: center;
-  padding: 0 10px;
-  font-size: 12px;
-  font-weight: 720;
-}
-
-.zone.left { left: 8%; top: 32%; }
-.zone.right { right: 8%; top: 32%; }
-.zone.top { left: 40%; top: 13%; }
-.zone.core {
-  left: 41%;
-  top: 45%;
-  border-color: rgba(184,90,112,0.68);
-  background: var(--rose-soft);
-  color: #904052;
-}
-.zone.base {
-  left: 39%;
-  bottom: 9%;
-  border-color: rgba(11,111,251,0.50);
+.chip.scene-active {
   background: var(--blue-soft);
+  border-color: rgba(11,111,251,0.5);
   color: #075ab8;
 }
 
-.motion-breath .wing { animation: breath 4.6s ease-in-out infinite; }
-.motion-sway .wing { animation: sway 5.4s ease-in-out infinite; }
-.motion-bloom .left-wing { animation: open-left 5s ease-in-out infinite; transform-box: fill-box; transform-origin: 92% 50%; }
-.motion-bloom .right-wing { animation: open-right 5s ease-in-out infinite; transform-box: fill-box; transform-origin: 8% 50%; }
-.motion-blessing .wing { animation: blessing 6.2s ease-in-out infinite; }
-
-@keyframes breath {
-  0%, 100% { transform: scale(0.99); opacity: 0.9; }
-  50% { transform: scale(1.03); opacity: 1; }
-}
-
-@keyframes sway {
-  0%, 100% { transform: rotate(-1.4deg) translateY(0); }
-  50% { transform: rotate(1.8deg) translateY(-7px); }
-}
-
-@keyframes open-left {
-  0%, 100% { transform: rotate(-2deg) translateX(0); }
-  50% { transform: rotate(9deg) translateX(-8px); }
-}
-
-@keyframes open-right {
-  0%, 100% { transform: rotate(2deg) translateX(0); }
-  50% { transform: rotate(-9deg) translateX(8px); }
-}
-
-@keyframes blessing {
-  0%, 100% { transform: translateY(0) scale(1); opacity: 0.9; }
-  44% { transform: translateY(-7px) scale(1.02); opacity: 1; }
-  72% { transform: translateY(2px) scale(0.99); }
-}
-
-.canvas-summary {
+.drawer {
+  position: relative;
+  z-index: 20;
+  border-left: 1px solid var(--line);
+  background: var(--surface);
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  border-top: 1px solid var(--line);
+  grid-template-rows: auto auto 1fr;
+  min-width: 0;
 }
 
-.summary-cell {
+.drawer-head {
   min-height: 64px;
-  padding: 11px 13px;
-  border-right: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px;
+  border-bottom: 1px solid var(--line);
 }
 
-.summary-cell:last-child {
-  border-right: 0;
+.drawer-title {
+  font-size: 15px;
+  font-weight: 760;
 }
 
-.summary-cell span {
-  display: block;
+.drawer-sub {
+  margin-top: 2px;
   color: var(--muted);
   font-size: 12px;
 }
 
-.summary-cell strong {
-  display: block;
-  margin-top: 4px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  font-size: 15px;
-}
-
-.inspector {
-  display: grid;
-  grid-template-rows: auto 1fr;
-  max-height: calc(100vh - 82px);
-  position: sticky;
-  top: 70px;
-}
-
-.inspector-body {
-  overflow: auto;
-  display: grid;
-  align-content: start;
-}
-
-.recommend-block {
+.result-hero {
   padding: 14px;
+  border-bottom: 1px solid var(--line);
   display: grid;
   gap: 12px;
-  border-bottom: 1px solid var(--line);
 }
 
-.recommend-title {
+.result-title {
   display: flex;
-  justify-content: space-between;
-  gap: 12px;
   align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
 }
 
-.recommend-title h2 {
+.result-title h2 {
   margin: 0;
-  font-size: 20px;
+  font-size: 22px;
   line-height: 1.18;
-  font-weight: 760;
 }
 
-.recommend-title p {
+.result-title p {
   margin: 6px 0 0;
   color: var(--text);
 }
@@ -883,49 +468,53 @@ summary:focus-visible {
   height: 62px;
   border-radius: 50%;
   border: 7px solid var(--green-soft);
-  color: #0b6d37;
   display: grid;
   place-items: center;
+  color: #0b6d37;
   background: var(--surface);
   font-family: var(--mono);
   font-size: 17px;
   font-weight: 760;
 }
 
-.reason-list {
+.plain-list {
   display: grid;
   gap: 8px;
 }
 
-.reason-item {
+.plain-item {
   display: grid;
-  grid-template-columns: 26px 1fr;
-  gap: 9px;
+  grid-template-columns: 28px 1fr;
+  gap: 10px;
   padding-top: 10px;
   border-top: 1px solid var(--line);
 }
 
-.reason-num {
-  width: 26px;
-  height: 26px;
+.plain-num {
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  display: grid;
-  place-items: center;
   background: var(--blue-soft);
   color: #075ab8;
+  display: grid;
+  place-items: center;
   font-family: var(--mono);
   font-size: 11px;
   font-weight: 760;
 }
 
-.reason-heading {
+.plain-title {
   font-weight: 720;
 }
 
-.reason-copy {
+.plain-copy {
   margin-top: 2px;
   color: var(--muted);
   font-size: 12px;
+}
+
+.drawer-scroll {
+  overflow: auto;
 }
 
 .task-section {
@@ -933,20 +522,18 @@ summary:focus-visible {
 }
 
 .section-bar {
-  min-height: 46px;
+  min-height: 44px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
   padding: 0 14px;
   border-bottom: 1px solid var(--line);
   background: var(--surface-2);
 }
 
-.section-bar h2 {
+.section-bar h3 {
   margin: 0;
   font-size: 14px;
-  font-weight: 760;
 }
 
 .task-list {
@@ -954,18 +541,16 @@ summary:focus-visible {
 }
 
 .task-row {
-  min-height: 58px;
+  min-height: 56px;
   display: grid;
   grid-template-columns: 30px 1fr auto;
   gap: 10px;
   align-items: center;
-  padding: 11px 14px;
+  padding: 10px 14px;
   border-bottom: 1px solid var(--line);
 }
 
-.task-row:last-child {
-  border-bottom: 0;
-}
+.task-row:last-child { border-bottom: 0; }
 
 .task-index {
   width: 30px;
@@ -1003,19 +588,120 @@ summary:focus-visible {
   cursor: pointer;
 }
 
-.kit-table-wrap {
-  overflow-x: auto;
+.detail-body {
+  display: grid;
+  gap: 10px;
+  padding: 0 14px 14px;
 }
 
+.material-compact {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.material-row {
+  min-height: 50px;
+  display: grid;
+  grid-template-columns: 1fr 110px;
+  gap: 10px;
+  align-items: center;
+  padding: 9px 11px;
+  border-bottom: 1px solid var(--line);
+}
+
+.material-row:last-child { border-bottom: 0; }
+
+.material-name { font-weight: 720; }
+.material-meta {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.stepper {
+  display: grid;
+  grid-template-columns: 32px 1fr 32px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.stepper button {
+  border: 0;
+  height: 32px;
+  background: var(--surface-2);
+}
+
+.stepper output {
+  display: grid;
+  place-items: center;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 760;
+}
+
+.control-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.field {
+  display: grid;
+  gap: 7px;
+}
+
+.field label {
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 680;
+}
+
+.select,
+.input {
+  min-height: 38px;
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 0 10px;
+}
+
+.segmented {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 5px;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+}
+
+.segmented button {
+  min-height: 32px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 680;
+}
+
+.segmented button.active {
+  background: var(--surface);
+  border-color: var(--line);
+  color: var(--ink);
+}
+
+.kit-table-wrap { overflow-x: auto; }
 .kit-table {
   width: 100%;
-  min-width: 560px;
+  min-width: 520px;
   border-collapse: collapse;
 }
 
 .kit-table th,
 .kit-table td {
-  padding: 11px 12px;
+  padding: 10px 11px;
   border-top: 1px solid var(--line);
   text-align: left;
   vertical-align: top;
@@ -1025,13 +711,9 @@ summary:focus-visible {
   color: var(--muted);
   background: var(--surface-2);
   font-size: 12px;
-  font-weight: 680;
 }
 
-.kit-name {
-  font-weight: 720;
-}
-
+.kit-name { font-weight: 720; }
 .kit-note {
   margin-top: 2px;
   color: var(--muted);
@@ -1039,30 +721,28 @@ summary:focus-visible {
 }
 
 .bar {
-  width: 94px;
+  width: 82px;
   height: 7px;
-  margin-top: 7px;
+  margin-top: 6px;
   border-radius: 999px;
-  background: #eceff3;
   overflow: hidden;
+  background: #eceff3;
 }
 
 .bar span {
   display: block;
-  height: 100%;
   width: var(--value, 50%);
+  height: 100%;
   background: var(--green);
 }
 
-.bar.warn span {
-  background: var(--amber);
-}
+.bar.warn span { background: var(--amber); }
 
 .toast {
   position: fixed;
+  z-index: 80;
   right: 20px;
   bottom: 20px;
-  z-index: 70;
   width: min(380px, calc(100vw - 40px));
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -1080,10 +760,7 @@ summary:focus-visible {
   transform: translateY(0);
 }
 
-.toast strong {
-  display: block;
-}
-
+.toast strong { display: block; }
 .toast span {
   display: block;
   margin-top: 3px;
@@ -1102,35 +779,26 @@ summary:focus-visible {
   }
 }
 
-@media (max-width: 1280px) {
-  .topbar {
-    grid-template-columns: 240px 1fr auto;
-  }
-
-  .workspace {
-    grid-template-columns: 320px minmax(460px, 1fr);
-  }
-
-  .inspector {
-    grid-column: 1 / -1;
-    position: static;
-    max-height: none;
-  }
-
-  .inspector-body {
+@media (max-width: 1160px) {
+  .studio {
+    grid-template-columns: 1fr;
     overflow: visible;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 
-  .details {
-    grid-column: 1 / -1;
+  .stage {
+    min-height: calc(100vh - 58px);
+  }
+
+  .drawer {
+    border-left: 0;
+    border-top: 1px solid var(--line);
   }
 }
 
-@media (max-width: 900px) {
-  .app {
-    grid-template-rows: auto 1fr;
-  }
+@media (max-width: 760px) {
+  body { font-size: 16px; }
+
+  .app { grid-template-rows: auto 1fr; }
 
   .topbar {
     height: auto;
@@ -1138,114 +806,62 @@ summary:focus-visible {
     padding: 12px 14px;
   }
 
-  .project-center {
-    justify-self: stretch;
+  .brand-sub { display: none; }
+
+  .project-pill {
     width: 100%;
+    justify-self: stretch;
   }
 
   .top-actions {
-    justify-content: stretch;
-  }
-
-  .top-actions .btn {
-    flex: 1;
-  }
-
-  .workspace {
-    grid-template-columns: 1fr;
-    padding: 10px;
-  }
-
-  .sidebar,
-  .inspector {
-    position: static;
-    max-height: none;
-  }
-
-  .form-wrap {
-    overflow: visible;
-  }
-
-  .step-list {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .step-item {
-    min-height: 52px;
-    grid-template-columns: 1fr;
-    justify-items: center;
-    gap: 4px;
-    padding: 7px 4px;
-  }
-
-  .step-copy {
-    display: none;
-  }
-
-  .canvas-panel {
-    min-height: auto;
-  }
-
-  .canvas {
-    min-height: 500px;
-  }
-
-  .inspector-body {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 620px) {
-  body {
-    font-size: 16px;
-  }
-
-  .brand-sub {
-    display: none;
-  }
-
-  .workspace {
-    padding: 8px;
-    gap: 8px;
-  }
-
-  .control-grid,
-  .canvas-summary {
-    grid-template-columns: 1fr;
-  }
-
-  .summary-cell {
-    border-right: 0;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .summary-cell:last-child {
-    border-bottom: 0;
-  }
-
-  .canvas-toolbar {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .canvas-actions {
     width: 100%;
   }
 
-  .canvas-actions .btn {
-    flex: 1;
+  .top-actions .btn { flex: 1; }
+
+  .stage {
+    min-height: 760px;
   }
 
-  .canvas {
-    min-height: 390px;
+  .model-space {
+    min-height: 430px;
   }
 
-  .preview-wrap {
-    width: 96%;
+  .stage-hud {
+    top: 10px;
+    left: 10px;
+    right: 10px;
   }
 
-  .material-row {
+  .view-toggle {
+    top: 74px;
+    right: 10px;
+    bottom: auto;
+  }
+
+  .focus-note {
+    display: none;
+  }
+
+  .composer {
+    margin: 0 10px 10px;
+  }
+
+  .composer-main {
     grid-template-columns: 1fr;
+  }
+
+  .composer-actions .btn {
+    width: 100%;
+  }
+
+  .quick-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .drawer {
+    min-height: auto;
   }
 
   .task-row {
@@ -1255,6 +871,10 @@ summary:focus-visible {
   .task-row .badge {
     grid-column: 2;
     justify-self: start;
+  }
+
+  .material-row {
+    grid-template-columns: 1fr;
   }
 }
 </style>
@@ -1266,15 +886,15 @@ summary:focus-visible {
       <div class="brand-mark">F</div>
       <div>
         <div class="brand-title">Flora Studio</div>
-        <div class="brand-sub">动态花艺方案台</div>
+        <div class="brand-sub">动态花艺建模工作台</div>
       </div>
     </div>
 
-    <div class="project-center" aria-live="polite">
+    <div class="project-pill" aria-live="polite">
       <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14m7-7H5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       <div>
         <strong id="projectName">婚礼主桌动态方案</strong>
-        <span id="projectMeta">开合动作方案 · 库存 67%</span>
+        <span id="projectMeta">开合动作 · 库存 67%</span>
       </div>
       <span class="badge amber" id="projectState">待补货</span>
     </div>
@@ -1291,103 +911,104 @@ summary:focus-visible {
     </div>
   </header>
 
-  <main class="workspace">
-    <aside class="panel sidebar" aria-labelledby="setupTitle">
-      <div class="panel-head">
-        <div>
-          <div class="panel-title" id="setupTitle">创作设置</div>
-          <div class="panel-sub" id="setupHint">先选作品来源</div>
+  <main class="studio">
+    <section class="stage" aria-label="动态花艺建模预览">
+      <div class="model-space">
+        <canvas id="modelCanvas" aria-label="建模感动态花艺预览"></canvas>
+        <div class="stage-hud">
+          <span class="badge neutral" id="stageScene">婚礼主桌</span>
+          <span class="badge neutral" id="stageMotion">呼吸 + 开合 + 祝福感</span>
+          <span class="badge neutral" id="stageWeight">979g</span>
         </div>
-        <span class="badge blue" id="stepBadge">第 1 步</span>
+        <div class="view-toggle" aria-label="视角切换">
+          <button class="active" type="button" data-view="front">正视</button>
+          <button type="button" data-view="left">侧视</button>
+          <button type="button" data-view="top">俯视</button>
+        </div>
+        <div class="focus-note">
+          <strong id="focusTitle">系统已生成开合动作方案</strong>
+          <span id="focusCopy">机电结构隐藏在花瓶背后，花艺师只需要确认动作情绪和准备清单。</span>
+        </div>
       </div>
 
-      <nav class="step-list" aria-label="创建流程">
-        <button class="step-item active" type="button" data-step="idea" aria-label="作品想法">
-          <span class="step-num">1</span>
-          <span><span class="step-label">作品</span><span class="step-copy">来源与场景</span></span>
-        </button>
-        <button class="step-item" type="button" data-step="motion" aria-label="动感情绪">
-          <span class="step-num">2</span>
-          <span><span class="step-label">动感</span><span class="step-copy">动作与强度</span></span>
-        </button>
-        <button class="step-item" type="button" data-step="materials" aria-label="花材数量">
-          <span class="step-num">3</span>
-          <span><span class="step-label">花材</span><span class="step-copy">数量与重量</span></span>
-        </button>
-        <button class="step-item" type="button" data-step="review" aria-label="系统推荐">
-          <span class="step-num">4</span>
-          <span><span class="step-label">推荐</span><span class="step-copy">清单与装配</span></span>
-        </button>
-      </nav>
-
-      <div class="form-wrap">
-        <div class="step-panel active" data-panel="idea">
-          <section class="section">
-            <div class="section-head"><h2>从哪里开始</h2><span>选一个起点</span></div>
-            <div class="choice-grid">
-              <button class="choice-card active" type="button" data-source="design">
-                <span class="choice-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4zM8 13l2-2 3 3 2-2 3 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                <span><strong>我有设计图</strong><span>草图、照片、客户参考图</span></span>
-              </button>
-              <button class="choice-card" type="button" data-source="scene">
-                <span class="choice-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16M6 20V9l6-5 6 5v11M9 20v-6h6v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                <span><strong>我只有场景</strong><span>婚礼、橱窗、礼物、展览</span></span>
-              </button>
-              <button class="choice-card" type="button" data-source="stock">
-                <span class="choice-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8 12 3 3 8l9 5 9-5ZM3 8v8l9 5 9-5V8M12 13v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
-                <span><strong>我想用库存</strong><span>优先用现有花材和零件</span></span>
-              </button>
-            </div>
-          </section>
-
-          <div class="drop">
-            <input id="designFile" type="file" accept="image/*" aria-label="上传设计图或实物图">
-            <div class="drop-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14m7-7H5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
-            <div id="uploadCopy"><strong>上传设计图 / 实物照片</strong><span>也可以直接填写描述</span></div>
-            <img id="uploadPreview" alt="上传的设计参考">
+      <section class="composer" aria-label="创作输入">
+        <div class="composer-main">
+          <div class="prompt-box">
+            <div class="prompt-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16M12 4v10m0-10c-4 2-6 5-6 8m6-8c4 2 6 5 6 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+            <textarea class="prompt-input" id="ideaText">婚礼主桌花艺，希望像被祝福一样缓慢展开，动作要克制，不要太机械，机电尽量藏在花瓶背后。</textarea>
           </div>
-
-          <div class="field">
-            <label for="ideaText">作品描述</label>
-            <textarea class="textarea" id="ideaText">婚礼主桌花艺，希望像被祝福一样缓慢展开，动作要克制，不要太机械，机电尽量藏在花瓶背后。</textarea>
+          <div class="composer-actions">
+            <button class="btn primary" id="previewBtn" type="button">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+              更新预览
+            </button>
           </div>
-
-          <section class="section">
-            <div class="section-head"><h2>使用场景</h2><span>单选</span></div>
-            <div class="chip-row" data-group="scene">
-              <button class="chip" type="button" data-value="wedding" aria-pressed="true">婚礼主桌</button>
-              <button class="chip" type="button" data-value="window" aria-pressed="false">橱窗陈列</button>
-              <button class="chip" type="button" data-value="gift" aria-pressed="false">礼物花束</button>
-              <button class="chip" type="button" data-value="exhibition" aria-pressed="false">展览装置</button>
-              <button class="chip" type="button" data-value="retail" aria-pressed="false">商业空间</button>
-            </div>
-          </section>
         </div>
 
-        <div class="step-panel" data-panel="motion">
-          <section class="section">
-            <div class="section-head"><h2>想让作品怎么动</h2><span>可多选</span></div>
-            <div class="motion-grid">
-              <button class="motion-card" type="button" data-motion="breath" aria-pressed="true">
-                <span class="motion-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12c3-5 6-5 8 0s5 5 8 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-                <span><strong>呼吸</strong><span>轻微起伏，不抢造型</span></span>
-              </button>
-              <button class="motion-card" type="button" data-motion="sway" aria-pressed="false">
-                <span class="motion-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21V4m0 0c-5 4-6 8-2 11m2-11c5 4 6 8 2 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-                <span><strong>摇曳</strong><span>枝条或叶片自然摆动</span></span>
-              </button>
-              <button class="motion-card" type="button" data-motion="bloom" aria-pressed="true">
-                <span class="motion-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21V11m0 0C7 10 5 7 5 4c4 0 7 3 7 7Zm0 0c5-1 7-4 7-7-4 0-7 3-7 7Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                <span><strong>开合</strong><span>花瓣或层次缓慢展开</span></span>
-              </button>
-              <button class="motion-card" type="button" data-motion="blessing" aria-pressed="true">
-                <span class="motion-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.4 5 5.6.8-4 3.9 1 5.5-5-2.6-5 2.6 1-5.5-4-3.9 5.6-.8L12 3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
-                <span><strong>祝福感</strong><span>慢展开、停顿、再收回</span></span>
-              </button>
-            </div>
-          </section>
+        <div class="quick-row">
+          <div class="quick-label">场景</div>
+          <div class="chip-row" data-group="scene">
+            <button class="chip scene-active" type="button" data-value="wedding" aria-pressed="true">婚礼主桌</button>
+            <button class="chip" type="button" data-value="window" aria-pressed="false">橱窗</button>
+            <button class="chip" type="button" data-value="gift" aria-pressed="false">礼物花束</button>
+            <button class="chip" type="button" data-value="exhibition" aria-pressed="false">展览</button>
+            <button class="chip" type="button" data-value="retail" aria-pressed="false">商业空间</button>
+          </div>
+        </div>
 
-          <div class="control-grid">
+        <div class="quick-row">
+          <div class="quick-label">动感</div>
+          <div class="chip-row" data-group="motion">
+            <button class="chip" type="button" data-value="breath" aria-pressed="true">呼吸</button>
+            <button class="chip" type="button" data-value="sway" aria-pressed="false">摇曳</button>
+            <button class="chip" type="button" data-value="bloom" aria-pressed="true">开合</button>
+            <button class="chip" type="button" data-value="blessing" aria-pressed="true">祝福感</button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <aside class="drawer" aria-label="系统结果">
+      <div class="drawer-head">
+        <div>
+          <div class="drawer-title">系统结果</div>
+          <div class="drawer-sub">只保留当前需要确认的内容</div>
+        </div>
+        <span class="badge amber" id="stockBadge">需补货</span>
+      </div>
+
+      <section class="result-hero">
+        <div class="result-title">
+          <div>
+            <h2 id="kitTitle">开合动作方案</h2>
+            <p id="kitCopy">适合左右对称、六翼、花瓣层次展开；缺少零件已放进下单前清单。</p>
+          </div>
+          <div class="score" id="score">92</div>
+        </div>
+        <div class="plain-list" id="reasonList"></div>
+      </section>
+
+      <div class="drawer-scroll">
+        <section class="task-section">
+          <div class="section-bar">
+            <h3>下单前清单</h3>
+            <span class="badge blue" id="taskCount">4 项</span>
+          </div>
+          <div class="task-list" id="taskList"></div>
+        </section>
+
+        <details class="details">
+          <summary>花材和动作设置</summary>
+          <div class="detail-body">
+            <div class="field">
+              <label for="hidePlace">机电隐藏位置</label>
+              <select class="select" id="hidePlace">
+                <option value="back">花瓶背后</option>
+                <option value="base">底座内部</option>
+                <option value="center">花丛中心</option>
+                <option value="branch">枝条后方</option>
+              </select>
+            </div>
             <div class="field">
               <label>动作强度</label>
               <div class="segmented" data-segment="intensity">
@@ -1396,169 +1017,9 @@ summary:focus-visible {
                 <button type="button" data-value="stage">舞台</button>
               </div>
             </div>
-            <div class="field">
-              <label for="hidePlace">机电隐藏</label>
-              <select class="select" id="hidePlace">
-                <option value="back">花瓶背后</option>
-                <option value="base">底座内部</option>
-                <option value="center">花丛中心</option>
-                <option value="branch">枝条后方</option>
-              </select>
-            </div>
+            <div class="material-compact" id="materialList"></div>
           </div>
-
-          <div class="safe-row">
-            <div><strong>新手安全模式</strong><span>优先低速、稳定、易装配</span></div>
-            <button class="switch" type="button" id="safeSwitch" aria-label="新手安全模式" aria-pressed="true"></button>
-          </div>
-        </div>
-
-        <div class="step-panel" data-panel="materials">
-          <section class="section">
-            <div class="section-head"><h2>花材数量</h2><span id="materialHint">系统按数量估重</span></div>
-            <div class="material-list" id="materialList"></div>
-          </section>
-
-          <div class="control-grid">
-            <div class="field">
-              <label for="sizeInput">作品尺寸</label>
-              <input class="input" id="sizeInput" value="宽 60cm，高 45cm，桌面主视觉">
-            </div>
-            <div class="field">
-              <label>系统优先级</label>
-              <div class="segmented" data-segment="priority">
-                <button type="button" data-value="safe" class="active">稳定</button>
-                <button type="button" data-value="stock">库存</button>
-                <button type="button" data-value="effect">效果</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="step-panel" data-panel="review">
-          <section class="section">
-            <div class="section-head"><h2>推荐摘要</h2><span>已按当前输入生成</span></div>
-            <div class="reason-list" id="reviewList"></div>
-          </section>
-        </div>
-      </div>
-
-      <div class="side-footer">
-        <button class="btn" type="button" id="prevBtn">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          上一步
-        </button>
-        <button class="btn primary" type="button" id="nextBtn">
-          下一步
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-      </div>
-    </aside>
-
-    <section class="panel canvas-panel" aria-labelledby="canvasTitle">
-      <div class="canvas-toolbar">
-        <div>
-          <div class="canvas-title" id="canvasTitle">动态预览画布</div>
-          <div class="canvas-sub" id="canvasSub">婚礼主桌 · 开合动作方案</div>
-        </div>
-        <div class="canvas-actions">
-          <span class="badge green" id="canvasState">可落地</span>
-          <button class="btn small" type="button" id="fitBtn">
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M8 21H3v-5m13 5h5v-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            适配
-          </button>
-        </div>
-      </div>
-      <div class="canvas">
-        <div class="stage-ruler">
-          <span class="badge neutral" id="stageMotion">呼吸 + 开合 + 祝福感</span>
-          <span class="badge neutral" id="stageHide">隐藏：花瓶背后</span>
-        </div>
-        <div class="preview-wrap motion-bloom" id="previewWrap">
-          <svg class="bouquet-svg" viewBox="0 0 600 600" role="img" aria-label="动态花艺预览">
-            <defs>
-              <linearGradient id="stemGradient" x1="0" x2="1">
-                <stop offset="0" stop-color="#9ba48e"/>
-                <stop offset="1" stop-color="#5c6657"/>
-              </linearGradient>
-              <radialGradient id="petalGradient" cx="50%" cy="48%" r="62%">
-                <stop offset="0" stop-color="#ffffff"/>
-                <stop offset="0.72" stop-color="#f5d7dd"/>
-                <stop offset="1" stop-color="#d99aaa"/>
-              </radialGradient>
-            </defs>
-            <g opacity="0.36" stroke="#657065" stroke-width="8" fill="none">
-              <path d="M300 510 C294 410 304 334 294 228"/>
-              <path d="M302 508 C246 426 190 372 128 320"/>
-              <path d="M302 508 C360 426 420 368 484 316"/>
-              <path d="M296 510 C272 424 248 344 222 258"/>
-              <path d="M306 508 C334 421 360 340 386 254"/>
-            </g>
-            <g class="wing left-wing" fill="#fff" stroke="#cdd2ca" stroke-width="3">
-              <path d="M292 234 C201 124 118 113 68 198 C150 214 216 230 292 234Z"/>
-              <path d="M286 286 C188 244 110 255 58 326 C142 346 216 330 286 286Z"/>
-              <path d="M286 338 C196 342 136 396 112 472 C190 450 246 406 286 338Z"/>
-            </g>
-            <g class="wing right-wing" fill="#fff" stroke="#cdd2ca" stroke-width="3">
-              <path d="M308 234 C399 124 482 113 532 198 C450 214 384 230 308 234Z"/>
-              <path d="M314 286 C412 244 490 255 542 326 C458 346 384 330 314 286Z"/>
-              <path d="M314 338 C404 342 464 396 488 472 C410 450 354 406 314 338Z"/>
-            </g>
-            <g fill="url(#petalGradient)" stroke="#e2aebb" stroke-width="3">
-              <ellipse cx="300" cy="268" rx="47" ry="78"/>
-              <ellipse cx="257" cy="318" rx="50" ry="78" transform="rotate(-28 257 318)"/>
-              <ellipse cx="343" cy="318" rx="50" ry="78" transform="rotate(28 343 318)"/>
-              <ellipse cx="300" cy="362" rx="54" ry="82"/>
-            </g>
-            <circle cx="300" cy="326" r="34" fill="#148c4a" opacity="0.90"/>
-            <circle cx="300" cy="326" r="19" fill="#b8efce"/>
-            <path d="M236 528 H364 C390 528 408 546 408 568 V584 H192 V568 C192 546 210 528 236 528Z" fill="#ffffff" stroke="#c7cbd0" stroke-width="3"/>
-            <path d="M248 566 H352" stroke="#d2d7dc" stroke-width="4" stroke-linecap="round"/>
-            <path d="M280 510 V474 H320 V510" stroke="url(#stemGradient)" stroke-width="18" stroke-linecap="round"/>
-          </svg>
-          <span class="zone left">左翼</span>
-          <span class="zone right">右翼</span>
-          <span class="zone top">顶部</span>
-          <span class="zone core">固定</span>
-          <span class="zone base">隐藏</span>
-        </div>
-      </div>
-      <div class="canvas-summary">
-        <div class="summary-cell"><span>动作</span><strong id="summaryMotion">呼吸 + 开合</strong></div>
-        <div class="summary-cell"><span>花材估重</span><strong id="summaryWeight">0g</strong></div>
-        <div class="summary-cell"><span>可动重量</span><strong id="summaryMoving">0g</strong></div>
-        <div class="summary-cell"><span>库存</span><strong id="summaryStock">0%</strong></div>
-      </div>
-    </section>
-
-    <aside class="panel inspector" aria-labelledby="recommendTitle">
-      <div class="panel-head">
-        <div>
-          <div class="panel-title" id="recommendTitle">系统推荐</div>
-          <div class="panel-sub">方案、库存、准备事项</div>
-        </div>
-        <span class="badge amber" id="stockBadge">需补货</span>
-      </div>
-
-      <div class="inspector-body">
-        <section class="recommend-block">
-          <div class="recommend-title">
-            <div>
-              <h2 id="kitTitle">开合动作方案</h2>
-              <p id="kitCopy">适合左右对称、六翼、花瓣层次展开；系统会把缺少的零件放进下单前清单。</p>
-            </div>
-            <div class="score" id="score">92</div>
-          </div>
-          <div class="reason-list" id="reasonList"></div>
-        </section>
-
-        <section class="task-section">
-          <div class="section-bar">
-            <h2>准备清单</h2>
-            <span class="badge blue" id="taskCount">4 项</span>
-          </div>
-          <div class="task-list" id="taskList"></div>
-        </section>
+        </details>
 
         <details class="details">
           <summary>套件参数和备选方案</summary>
@@ -1582,8 +1043,8 @@ summary:focus-visible {
 </div>
 
 <div class="toast" id="toast" role="status" aria-live="polite">
-  <strong id="toastTitle">方案已更新</strong>
-  <span id="toastCopy">系统已重新整理预览和推荐。</span>
+  <strong id="toastTitle">预览已更新</strong>
+  <span id="toastCopy">系统已重新生成建模预览和清单。</span>
 </div>
 
 <script>
@@ -1610,9 +1071,9 @@ const hideLabels = {
 };
 
 const intensityMap = {
-  soft: { label: '克制', ratio: 0.24, cycle: '6.8s', angle: '18°' },
-  clear: { label: '明显', ratio: 0.31, cycle: '5.4s', angle: '24°' },
-  stage: { label: '舞台', ratio: 0.38, cycle: '4.8s', angle: '32°' }
+  soft: { label: '克制', ratio: 0.24, cycle: '6.8s', angle: '18°', bloom: 1 },
+  clear: { label: '明显', ratio: 0.31, cycle: '5.4s', angle: '24°', bloom: 1.18 },
+  stage: { label: '舞台', ratio: 0.38, cycle: '4.8s', angle: '32°', bloom: 1.36 }
 };
 
 const materials = [
@@ -1669,23 +1130,16 @@ const kits = [
 ];
 
 const state = {
-  step: 'idea',
-  source: 'design',
   scene: 'wedding',
   motions: new Set(['breath', 'bloom', 'blessing']),
   intensity: 'soft',
-  priority: 'safe',
   hidePlace: 'back',
-  safeMode: true
+  view: 'front',
+  tick: 0
 };
 
-const stepOrder = ['idea', 'motion', 'materials', 'review'];
-const stepInfo = {
-  idea: ['第 1 步', '先选作品来源'],
-  motion: ['第 2 步', '选择动作与强度'],
-  materials: ['第 3 步', '填写花材数量'],
-  review: ['第 4 步', '查看推荐摘要']
-};
+const canvas = document.getElementById('modelCanvas');
+const ctx = canvas.getContext('2d');
 
 function byId(id) {
   return document.getElementById(id);
@@ -1708,18 +1162,14 @@ function scoreKit(kit) {
   const { moving } = getWeights();
   const motionScore = [...state.motions].reduce((score, motion) => score + (kit.motion.includes(motion) ? 17 : 0), 34);
   const loadPenalty = moving > kit.capacity ? Math.round((moving - kit.capacity) / 4) : 0;
-  const stockPenalty = getMissing(kit).length * (state.priority === 'stock' ? 12 : 7);
-  const effectBonus = state.priority === 'effect' && kit.key === 'bloom' ? 8 : 0;
-  const safeBonus = state.safeMode && moving <= kit.capacity ? 8 : 0;
-  return Math.max(42, Math.min(98, motionScore + effectBonus + safeBonus - loadPenalty - stockPenalty));
+  const stockPenalty = getMissing(kit).length * 7;
+  const safeBonus = moving <= kit.capacity ? 8 : 0;
+  return Math.max(42, Math.min(98, motionScore + safeBonus - loadPenalty - stockPenalty));
 }
 
 function getSortedKits() {
-  return kits.map(kit => ({
-    ...kit,
-    score: scoreKit(kit),
-    missing: getMissing(kit)
-  })).sort((a, b) => b.score - a.score);
+  return kits.map(kit => ({ ...kit, score: scoreKit(kit), missing: getMissing(kit) }))
+    .sort((a, b) => b.score - a.score);
 }
 
 function getKit() {
@@ -1741,25 +1191,172 @@ function showToast(title, copy) {
   byId('toastTitle').textContent = title;
   byId('toastCopy').textContent = copy;
   toast.classList.add('show');
-  window.clearTimeout(showToast.timer);
-  showToast.timer = window.setTimeout(() => toast.classList.remove('show'), 2400);
+  clearTimeout(showToast.timer);
+  showToast.timer = setTimeout(() => toast.classList.remove('show'), 2400);
 }
 
-function setStep(step) {
-  state.step = step;
-  document.querySelectorAll('.step-item').forEach(button => {
-    button.classList.toggle('active', button.dataset.step === step);
+function resizeCanvas() {
+  const rect = canvas.getBoundingClientRect();
+  const scale = window.devicePixelRatio || 1;
+  canvas.width = Math.max(1, Math.round(rect.width * scale));
+  canvas.height = Math.max(1, Math.round(rect.height * scale));
+  ctx.setTransform(scale, 0, 0, scale, 0, 0);
+}
+
+function projectPoint(x, y, z, cx, cy, scale) {
+  let rx = -0.45;
+  let ry = state.view === 'left' ? -0.72 : state.view === 'top' ? -0.08 : -0.36;
+  let rz = state.view === 'left' ? 0.42 : state.view === 'top' ? 0.18 : Math.sin(state.tick * 0.001) * 0.08;
+
+  const cosy = Math.cos(ry), siny = Math.sin(ry);
+  let x1 = x * cosy + z * siny;
+  let z1 = -x * siny + z * cosy;
+
+  const cosx = Math.cos(rx), sinx = Math.sin(rx);
+  let y1 = y * cosx - z1 * sinx;
+  let z2 = y * sinx + z1 * cosx;
+
+  const cosz = Math.cos(rz), sinz = Math.sin(rz);
+  let x2 = x1 * cosz - y1 * sinz;
+  let y2 = x1 * sinz + y1 * cosz;
+
+  return { x: cx + x2 * scale, y: cy - y2 * scale, z: z2 };
+}
+
+function ellipsePetal(cx, cy, rx, ry, rotate, fillA, fillB, stroke) {
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.rotate(rotate);
+  const gradient = ctx.createRadialGradient(-rx * 0.28, -ry * 0.28, 4, 0, 0, Math.max(rx, ry));
+  gradient.addColorStop(0, fillA);
+  gradient.addColorStop(0.65, fillB);
+  gradient.addColorStop(1, '#d89baa');
+  ctx.fillStyle = gradient;
+  ctx.strokeStyle = stroke;
+  ctx.lineWidth = 2;
+  ctx.shadowColor = 'rgba(30,31,34,0.12)';
+  ctx.shadowBlur = 18;
+  ctx.shadowOffsetY = 10;
+  ctx.beginPath();
+  ctx.ellipse(0, 0, rx, ry, 0, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.shadowColor = 'transparent';
+  ctx.stroke();
+  ctx.restore();
+}
+
+function drawStem(a, b) {
+  const grad = ctx.createLinearGradient(a.x, a.y, b.x, b.y);
+  grad.addColorStop(0, '#aab3a4');
+  grad.addColorStop(1, '#52604f');
+  ctx.strokeStyle = grad;
+  ctx.lineWidth = 10;
+  ctx.lineCap = 'round';
+  ctx.beginPath();
+  ctx.moveTo(a.x, a.y);
+  ctx.lineTo(b.x, b.y);
+  ctx.stroke();
+}
+
+function drawModel(time = 0) {
+  const w = canvas.clientWidth;
+  const h = canvas.clientHeight;
+  const cx = w / 2;
+  const cy = h * 0.55;
+  const s = Math.min(w, h) * 0.42;
+  const kit = getKit();
+  const bloom = state.motions.has('bloom') ? Math.sin(time * 0.0012) * 0.08 * intensityMap[state.intensity].bloom : 0;
+  const sway = state.motions.has('sway') ? Math.sin(time * 0.001) * 0.08 : 0;
+  const breath = state.motions.has('breath') ? 1 + Math.sin(time * 0.0014) * 0.018 : 1;
+
+  ctx.clearRect(0, 0, w, h);
+
+  const floor = ctx.createRadialGradient(cx, cy + s * 0.38, 10, cx, cy + s * 0.38, s * 0.7);
+  floor.addColorStop(0, 'rgba(30,31,34,0.13)');
+  floor.addColorStop(0.55, 'rgba(30,31,34,0.05)');
+  floor.addColorStop(1, 'rgba(30,31,34,0)');
+  ctx.fillStyle = floor;
+  ctx.beginPath();
+  ctx.ellipse(cx, cy + s * 0.43, s * 0.55, s * 0.12, 0, 0, Math.PI * 2);
+  ctx.fill();
+
+  const baseTop = projectPoint(0, -0.54, 0, cx, cy, s);
+  const baseBottom = projectPoint(0, -0.78, 0, cx, cy, s);
+
+  const stems = [
+    [[0, -0.62, 0], [-0.62 + sway, 0.06, -0.18]],
+    [[0, -0.62, 0], [0.62 + sway, 0.06, -0.18]],
+    [[0, -0.62, 0], [-0.38 + sway, 0.34, 0.08]],
+    [[0, -0.62, 0], [0.38 + sway, 0.34, 0.08]],
+    [[0, -0.62, 0], [0, 0.62, 0.12]]
+  ];
+  stems.forEach(([from, to]) => drawStem(projectPoint(...from, cx, cy, s), projectPoint(...to, cx, cy, s)));
+
+  const petals = [
+    { p: [-0.58 - bloom, 0.10, -0.1], rx: 0.22, ry: 0.55, r: -1.1, z: -0.1 },
+    { p: [0.58 + bloom, 0.10, -0.1], rx: 0.22, ry: 0.55, r: 1.1, z: -0.1 },
+    { p: [-0.34 - bloom, 0.40, 0.08], rx: 0.18, ry: 0.50, r: -0.6, z: 0.08 },
+    { p: [0.34 + bloom, 0.40, 0.08], rx: 0.18, ry: 0.50, r: 0.6, z: 0.08 },
+    { p: [0, 0.58 + bloom, 0.16], rx: 0.20, ry: 0.46, r: 0, z: 0.16 },
+    { p: [0, 0.20, 0.26], rx: 0.26, ry: 0.48, r: 0, z: 0.26 }
+  ].sort((a, b) => a.z - b.z);
+
+  petals.forEach(petal => {
+    const pt = projectPoint(...petal.p, cx, cy, s * breath);
+    ellipsePetal(pt.x, pt.y, petal.rx * s * breath, petal.ry * s * breath, petal.r, '#fffafd', '#f6d8de', '#dfadc0');
   });
-  document.querySelectorAll('.step-panel').forEach(panel => {
-    panel.classList.toggle('active', panel.dataset.panel === step);
-  });
-  byId('stepBadge').textContent = stepInfo[step][0];
-  byId('setupHint').textContent = stepInfo[step][1];
-  const index = stepOrder.indexOf(step);
-  byId('prevBtn').disabled = index === 0;
-  byId('nextBtn').innerHTML = index === stepOrder.length - 1
-    ? '生成清单 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
-    : '下一步 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  const center = projectPoint(0, 0.2, 0.34, cx, cy, s);
+  const greenGrad = ctx.createRadialGradient(center.x - 12, center.y - 16, 4, center.x, center.y, 42);
+  greenGrad.addColorStop(0, '#c9f8d9');
+  greenGrad.addColorStop(0.48, '#42c47b');
+  greenGrad.addColorStop(1, '#12804b');
+  ctx.fillStyle = greenGrad;
+  ctx.beginPath();
+  ctx.arc(center.x, center.y, s * 0.085, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.strokeStyle = 'rgba(255,255,255,0.75)';
+  ctx.lineWidth = 3;
+  ctx.stroke();
+
+  ctx.save();
+  const baseW = s * 0.38;
+  const baseH = s * 0.16;
+  const baseGrad = ctx.createLinearGradient(baseBottom.x - baseW, baseBottom.y, baseBottom.x + baseW, baseBottom.y);
+  baseGrad.addColorStop(0, '#ffffff');
+  baseGrad.addColorStop(0.5, '#f6f8fa');
+  baseGrad.addColorStop(1, '#e8edf2');
+  ctx.fillStyle = baseGrad;
+  ctx.strokeStyle = '#cfd6de';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.roundRect(baseBottom.x - baseW / 2, baseBottom.y - baseH / 2, baseW, baseH, 18);
+  ctx.fill();
+  ctx.stroke();
+  ctx.fillStyle = '#111315';
+  ctx.fillRect(baseTop.x - 10, baseTop.y + 4, 20, 28);
+  ctx.restore();
+
+  ctx.fillStyle = 'rgba(255,255,255,0.88)';
+  ctx.strokeStyle = state.hidePlace === 'back' ? '#0b6ffb' : '#148c4a';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.roundRect(baseBottom.x - 42, baseBottom.y - 46, 84, 30, 15);
+  ctx.fill();
+  ctx.stroke();
+  ctx.fillStyle = state.hidePlace === 'back' ? '#075ab8' : '#0b6d37';
+  ctx.font = '700 12px ' + getComputedStyle(document.body).fontFamily;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('隐藏结构', baseBottom.x, baseBottom.y - 31);
+
+  byId('focusTitle').textContent = `系统已生成${kit.display}`;
+}
+
+function animate(time) {
+  state.tick = time;
+  drawModel(time);
+  requestAnimationFrame(animate);
 }
 
 function renderMaterials() {
@@ -1767,7 +1364,7 @@ function renderMaterials() {
     <div class="material-row">
       <div>
         <div class="material-name">${item.name}</div>
-        <div class="material-meta">${item.grams}g / 支 · 当前 ${item.grams * item.count}g</div>
+        <div class="material-meta">${item.grams}g / 支 · ${item.grams * item.count}g</div>
       </div>
       <div class="stepper" aria-label="${item.name}数量">
         <button type="button" data-material="${item.key}" data-delta="-1" aria-label="减少${item.name}">−</button>
@@ -1782,22 +1379,19 @@ function renderReasons() {
   const kit = getKit();
   const { moving } = getWeights();
   const reasons = [
-    { title: `适合${sceneLabels[state.scene]}的${motionText()}`, copy: `${kit.display}更符合当前动作组合，预览按${intensityMap[state.intensity].label}强度生成。` },
-    { title: `可动重量约 ${moving}g`, copy: moving <= kit.capacity ? '在套件承载范围内。' : '重量偏高，建议减少可动花材或改用更强套件。' },
+    { title: `${sceneLabels[state.scene]} · ${motionText()}`, copy: `${kit.display}符合当前动感，机电隐藏在${hideLabels[state.hidePlace]}。` },
+    { title: `可动重量 ${moving}g`, copy: moving <= kit.capacity ? '在套件承载范围内。' : '重量偏高，建议减少可动花材。' },
     { title: kit.missing.length ? `需要补 ${kit.missing.length} 类零件` : '库存已满足', copy: kit.missing.length ? kit.missing.map(part => `${part.name} × ${part.missing}`).join('，') : '可以直接进入装配准备。' }
   ];
-
-  const html = reasons.map((item, index) => `
-    <div class="reason-item">
-      <div class="reason-num">${index + 1}</div>
+  byId('reasonList').innerHTML = reasons.map((item, index) => `
+    <div class="plain-item">
+      <div class="plain-num">${index + 1}</div>
       <div>
-        <div class="reason-heading">${item.title}</div>
-        <div class="reason-copy">${item.copy}</div>
+        <div class="plain-title">${item.title}</div>
+        <div class="plain-copy">${item.copy}</div>
       </div>
     </div>
   `).join('');
-  byId('reasonList').innerHTML = html;
-  byId('reviewList').innerHTML = html;
 }
 
 function renderTasks() {
@@ -1806,7 +1400,6 @@ function renderTasks() {
     { title: `${kit.name}装配模板`, meta: `${kit.time} 分钟 · ${hideLabels[state.hidePlace]}`, status: '已准备', tone: 'green' },
     { title: '动作参数', meta: `${intensityMap[state.intensity].cycle} · ${intensityMap[state.intensity].angle} · ${intensityMap[state.intensity].label}`, status: '已同步', tone: 'blue' }
   ];
-
   kit.missing.forEach(part => {
     tasks.push({
       title: `${part.name} × ${part.missing}`,
@@ -1815,11 +1408,9 @@ function renderTasks() {
       tone: 'amber'
     });
   });
-
   if (!kit.missing.length) {
     tasks.push({ title: '库存满足', meta: '无需补货，可进入装配准备。', status: '完成', tone: 'green' });
   }
-
   byId('taskList').innerHTML = tasks.map((task, index) => `
     <div class="task-row">
       <div class="task-index">${index + 1}</div>
@@ -1838,91 +1429,57 @@ function renderKits() {
     const stock = getStock(kit);
     return `
       <tr>
-        <td>
-          <div class="kit-name">${kit.name}</div>
-          <div class="kit-note">${kit.note}</div>
-        </td>
-        <td>
-          <strong>${kit.score}</strong>
-          <div class="bar" style="--value:${kit.score}%"><span></span></div>
-        </td>
-        <td>
-          <span class="badge ${stock >= 90 ? 'green' : 'amber'}">${stock}%</span>
-          <div class="bar ${stock < 90 ? 'warn' : ''}" style="--value:${stock}%"><span></span></div>
-        </td>
+        <td><div class="kit-name">${kit.name}</div><div class="kit-note">${kit.note}</div></td>
+        <td><strong>${kit.score}</strong><div class="bar" style="--value:${kit.score}%"><span></span></div></td>
+        <td><span class="badge ${stock >= 90 ? 'green' : 'amber'}">${stock}%</span><div class="bar ${stock < 90 ? 'warn' : ''}" style="--value:${stock}%"><span></span></div></td>
         <td>${index === 0 ? '推荐' : '备选'}</td>
       </tr>
     `;
   }).join('');
 }
 
-function updatePreviewMotion() {
-  const wrap = byId('previewWrap');
-  wrap.className = 'preview-wrap';
-  const selected = ['bloom', 'sway', 'breath', 'blessing'].find(motion => state.motions.has(motion)) || 'breath';
-  wrap.classList.add(`motion-${selected}`);
-}
-
 function update() {
   const kit = getKit();
   const stock = getStock(kit);
-  const { total, moving } = getWeights();
-  const riskTone = kit.missing.length ? 'amber' : 'green';
+  const { total } = getWeights();
   const riskText = kit.missing.length ? '待补货' : '库存齐';
+  const riskTone = kit.missing.length ? 'amber' : 'green';
 
   byId('projectName').textContent = `${sceneLabels[state.scene]}动态方案`;
-  byId('projectMeta').textContent = `${kit.display} · 库存 ${stock}%`;
+  byId('projectMeta').textContent = `${kit.display.replace('方案', '')} · 库存 ${stock}%`;
   byId('projectState').textContent = riskText;
   byId('projectState').className = `badge ${riskTone}`;
-
-  byId('canvasSub').textContent = `${sceneLabels[state.scene]} · ${kit.display}`;
-  byId('canvasState').textContent = riskText;
-  byId('canvasState').className = `badge ${riskTone}`;
+  byId('stageScene').textContent = sceneLabels[state.scene];
   byId('stageMotion').textContent = motionText();
-  byId('stageHide').textContent = `隐藏：${hideLabels[state.hidePlace]}`;
-
-  byId('summaryMotion').textContent = motionText();
-  byId('summaryWeight').textContent = `${total}g`;
-  byId('summaryMoving').textContent = `${moving}g`;
-  byId('summaryStock').textContent = `${stock}%`;
-  byId('materialHint').textContent = `总重 ${total}g，可动约 ${moving}g`;
-
+  byId('stageWeight').textContent = `${total}g`;
   byId('stockBadge').textContent = kit.missing.length ? '需补货' : '库存齐';
   byId('stockBadge').className = `badge ${riskTone}`;
   byId('kitTitle').textContent = kit.display;
-  byId('kitCopy').textContent = `${kit.note}。${kit.missing.length ? '系统会把缺少的零件放进下单前清单。' : '当前库存满足，可直接进入装配准备。'}`;
+  byId('kitCopy').textContent = `${kit.note}。${kit.missing.length ? '缺少零件已放进下单前清单。' : '当前库存满足，可直接进入装配准备。'}`;
   byId('score').textContent = kit.score;
-
+  byId('focusCopy').textContent = `机电结构隐藏在${hideLabels[state.hidePlace]}，花艺师只需要确认动作情绪和准备清单。`;
   renderMaterials();
   renderReasons();
   renderTasks();
   renderKits();
-  updatePreviewMotion();
 }
 
 function bindEvents() {
-  document.querySelectorAll('.step-item').forEach(button => {
-    button.addEventListener('click', () => setStep(button.dataset.step));
-  });
-
-  document.querySelectorAll('.choice-card').forEach(button => {
-    button.addEventListener('click', () => {
-      state.source = button.dataset.source;
-      document.querySelectorAll('.choice-card').forEach(item => item.classList.toggle('active', item === button));
-    });
-  });
-
   document.querySelectorAll('[data-group="scene"] .chip').forEach(button => {
     button.addEventListener('click', () => {
       state.scene = button.dataset.value;
-      document.querySelectorAll('[data-group="scene"] .chip').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      document.querySelectorAll('[data-group="scene"] .chip').forEach(item => {
+        const active = item === button;
+        item.setAttribute('aria-pressed', String(active));
+        item.classList.toggle('scene-active', active);
+      });
       update();
     });
   });
 
-  document.querySelectorAll('.motion-card').forEach(button => {
+  document.querySelectorAll('[data-group="motion"] .chip').forEach(button => {
     button.addEventListener('click', () => {
-      const value = button.dataset.motion;
+      const value = button.dataset.value;
       if (state.motions.has(value) && state.motions.size > 1) {
         state.motions.delete(value);
       } else {
@@ -1930,6 +1487,13 @@ function bindEvents() {
       }
       button.setAttribute('aria-pressed', String(state.motions.has(value)));
       update();
+    });
+  });
+
+  document.querySelectorAll('[data-view]').forEach(button => {
+    button.addEventListener('click', () => {
+      state.view = button.dataset.view;
+      document.querySelectorAll('[data-view]').forEach(item => item.classList.toggle('active', item === button));
     });
   });
 
@@ -1948,12 +1512,6 @@ function bindEvents() {
     update();
   });
 
-  byId('safeSwitch').addEventListener('click', event => {
-    state.safeMode = !state.safeMode;
-    event.currentTarget.setAttribute('aria-pressed', String(state.safeMode));
-    update();
-  });
-
   byId('materialList').addEventListener('click', event => {
     const button = event.target.closest('button[data-material]');
     if (!button) return;
@@ -1962,72 +1520,62 @@ function bindEvents() {
     update();
   });
 
-  byId('designFile').addEventListener('change', event => {
-    const file = event.target.files && event.target.files[0];
-    if (!file) return;
-    const preview = byId('uploadPreview');
-    preview.src = URL.createObjectURL(file);
-    preview.style.display = 'block';
-    byId('uploadCopy').style.display = 'none';
-    showToast('图片已加入', '系统会把图片作为作品结构参考。');
-  });
-
-  byId('prevBtn').addEventListener('click', () => {
-    const index = stepOrder.indexOf(state.step);
-    if (index > 0) setStep(stepOrder[index - 1]);
-  });
-
-  byId('nextBtn').addEventListener('click', () => {
-    const index = stepOrder.indexOf(state.step);
-    if (index < stepOrder.length - 1) {
-      setStep(stepOrder[index + 1]);
-    } else {
-      byId('taskList').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      showToast('清单已生成', '系统已整理套件、库存和装配准备。');
-    }
+  byId('previewBtn').addEventListener('click', () => {
+    update();
+    showToast('预览已更新', '建模预览、推荐方案和清单已重新生成。');
   });
 
   byId('generateBtn').addEventListener('click', () => {
-    setStep('review');
-    byId('taskList').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    showToast('清单已生成', '系统已整理套件、库存和装配准备。');
-  });
-
-  byId('fitBtn').addEventListener('click', () => {
-    showToast('预览已适配', '画布已按当前作品范围重新居中。');
+    update();
+    showToast('清单已生成', '系统已整理到下单确认前流程。');
   });
 
   byId('resetBtn').addEventListener('click', () => {
-    state.step = 'idea';
-    state.source = 'design';
     state.scene = 'wedding';
     state.motions = new Set(['breath', 'bloom', 'blessing']);
     state.intensity = 'soft';
-    state.priority = 'safe';
     state.hidePlace = 'back';
-    state.safeMode = true;
+    state.view = 'front';
     materials[0].count = 7;
     materials[1].count = 12;
     materials[2].count = 9;
     materials[3].count = 16;
     materials[4].count = 6;
     byId('hidePlace').value = 'back';
-    byId('safeSwitch').setAttribute('aria-pressed', 'true');
-    document.querySelectorAll('.choice-card').forEach(item => item.classList.toggle('active', item.dataset.source === 'design'));
-    document.querySelectorAll('[data-group="scene"] .chip').forEach(item => item.setAttribute('aria-pressed', String(item.dataset.value === 'wedding')));
-    document.querySelectorAll('.motion-card').forEach(item => item.setAttribute('aria-pressed', String(state.motions.has(item.dataset.motion))));
+    document.querySelectorAll('[data-group="scene"] .chip').forEach(item => {
+      const active = item.dataset.value === 'wedding';
+      item.setAttribute('aria-pressed', String(active));
+      item.classList.toggle('scene-active', active);
+    });
+    document.querySelectorAll('[data-group="motion"] .chip').forEach(item => item.setAttribute('aria-pressed', String(state.motions.has(item.dataset.value))));
     document.querySelectorAll('[data-segment="intensity"] button').forEach(item => item.classList.toggle('active', item.dataset.value === 'soft'));
-    document.querySelectorAll('[data-segment="priority"] button').forEach(item => item.classList.toggle('active', item.dataset.value === 'safe'));
-    setStep('idea');
+    document.querySelectorAll('[data-view]').forEach(item => item.classList.toggle('active', item.dataset.view === 'front'));
     update();
-    showToast('已重置', '已恢复默认婚礼主桌样例。');
+    showToast('已重置', '已恢复默认婚礼主桌方案。');
   });
 }
 
-renderMaterials();
+window.addEventListener('resize', () => {
+  resizeCanvas();
+  drawModel(performance.now());
+});
+
+if (!CanvasRenderingContext2D.prototype.roundRect) {
+  CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, r) {
+    const radius = Math.min(r, w / 2, h / 2);
+    this.moveTo(x + radius, y);
+    this.arcTo(x + w, y, x + w, y + h, radius);
+    this.arcTo(x + w, y + h, x, y + h, radius);
+    this.arcTo(x, y + h, x, y, radius);
+    this.arcTo(x, y, x + w, y, radius);
+    return this;
+  };
+}
+
+resizeCanvas();
 bindEvents();
-setStep('idea');
 update();
+requestAnimationFrame(animate);
 </script>
 </body>
 </html>
