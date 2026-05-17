@@ -7,51 +7,41 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d1d1f'/%3E%3Cpath d='M22 46V18h21v7H31v5h10v7H31v9z' fill='white'/%3E%3C/svg%3E">
 <style>
 :root {
-  --bg: #f5f6f8;
+  --bg: #f5f5f7;
   --surface: #ffffff;
-  --surface-2: #fafbfc;
-  --surface-3: #f0f3f6;
+  --surface-soft: #fafafa;
   --ink: #1d1d1f;
-  --text: #3d4249;
-  --muted: #717780;
-  --faint: #9aa1aa;
-  --line: #dde1e7;
-  --line-strong: #c9d0d8;
+  --text: #3c4043;
+  --muted: #6e737a;
+  --faint: #a0a6ad;
+  --line: #dfe3e8;
+  --line-strong: #c8ced6;
   --blue: #0a84ff;
   --blue-soft: #e8f2ff;
   --green: #12a150;
-  --green-soft: #e7f6ee;
-  --rose: #c95f73;
-  --rose-soft: #fff0f3;
-  --amber: #b56a25;
-  --amber-soft: #fff3e6;
+  --green-soft: #e8f6ee;
+  --rose: #c55b72;
+  --rose-soft: #fff1f4;
+  --amber: #ad681f;
+  --amber-soft: #fff3e4;
   --red: #c34235;
   --red-soft: #fff0ee;
-  --shadow-1: 0 1px 2px rgba(29, 29, 31, 0.06);
-  --shadow-2: 0 16px 48px rgba(29, 29, 31, 0.10);
+  --shadow: 0 14px 40px rgba(29,29,31,0.08);
+  --shadow-soft: 0 1px 2px rgba(29,29,31,0.06);
   --radius: 8px;
   --sans: Inter, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif;
   --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 }
 
 * { box-sizing: border-box; }
-html {
-  min-height: 100%;
-  color: var(--ink);
-  background: var(--bg);
-}
-
+html { min-height: 100%; background: var(--bg); color: var(--ink); }
 body {
   margin: 0;
   min-height: 100vh;
   font-family: var(--sans);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.5;
-  background:
-    linear-gradient(rgba(29,29,31,0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(29,29,31,0.03) 1px, transparent 1px),
-    var(--bg);
-  background-size: 96px 96px, 96px 96px, auto;
+  background: var(--bg);
 }
 
 button,
@@ -61,22 +51,19 @@ select {
   font: inherit;
 }
 
-button {
-  cursor: pointer;
-}
+button { cursor: pointer; }
 
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
-select:focus-visible {
+select:focus-visible,
+summary:focus-visible {
   outline: 2px solid var(--blue);
   outline-offset: 2px;
 }
 
 .app {
   min-height: 100vh;
-  display: grid;
-  grid-template-rows: 64px 1fr;
 }
 
 .topbar {
@@ -84,26 +71,26 @@ select:focus-visible {
   top: 0;
   z-index: 30;
   height: 64px;
-  display: grid;
-  grid-template-columns: 260px 1fr auto;
-  gap: 20px;
+  display: flex;
   align-items: center;
-  padding: 0 24px;
-  border-bottom: 1px solid rgba(221,225,231,0.86);
-  background: rgba(255,255,255,0.82);
-  backdrop-filter: blur(22px) saturate(1.55);
+  justify-content: space-between;
+  gap: 18px;
+  padding: 0 28px;
+  border-bottom: 1px solid rgba(223,227,232,0.86);
+  background: rgba(255,255,255,0.86);
+  backdrop-filter: blur(22px) saturate(1.5);
 }
 
 .brand {
-  min-width: 0;
   display: flex;
   align-items: center;
   gap: 12px;
+  min-width: 0;
 }
 
 .brand-mark {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: var(--radius);
   display: grid;
   place-items: center;
@@ -113,33 +100,13 @@ select:focus-visible {
 }
 
 .brand-title {
-  font-size: 15px;
-  font-weight: 760;
+  font-size: 16px;
+  font-weight: 750;
 }
 
 .brand-sub {
   color: var(--muted);
   font-size: 12px;
-}
-
-.project-search {
-  height: 40px;
-  width: min(560px, 100%);
-  justify-self: center;
-  display: grid;
-  grid-template-columns: 20px 1fr auto;
-  gap: 10px;
-  align-items: center;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: rgba(250,251,252,0.84);
-  padding: 0 12px;
-  color: var(--muted);
-}
-
-.project-search strong {
-  color: var(--ink);
-  font-weight: 650;
 }
 
 .top-actions {
@@ -156,8 +123,8 @@ select:focus-visible {
 }
 
 .btn {
-  min-height: 40px;
-  min-width: 40px;
+  min-height: 42px;
+  min-width: 42px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--surface);
@@ -166,25 +133,25 @@ select:focus-visible {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 0 12px;
-  font-weight: 650;
+  padding: 0 14px;
+  font-weight: 680;
   transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
 }
 
 .btn:hover {
-  background: var(--surface-2);
+  background: var(--surface-soft);
   border-color: var(--line-strong);
 }
 
 .btn:active {
-  transform: scale(0.98);
+  transform: scale(0.985);
 }
 
 .btn.primary {
   border-color: var(--blue);
   background: var(--blue);
   color: #fff;
-  box-shadow: 0 10px 26px rgba(10,132,255,0.22);
+  box-shadow: 0 10px 24px rgba(10,132,255,0.22);
 }
 
 .btn.ghost {
@@ -192,83 +159,31 @@ select:focus-visible {
 }
 
 .btn.small {
-  min-height: 34px;
-  padding: 0 10px;
-  font-size: 12px;
+  min-height: 36px;
+  padding: 0 11px;
+  font-size: 13px;
 }
 
-.shell {
-  display: grid;
-  grid-template-columns: 76px 1fr;
-  min-height: calc(100vh - 64px);
-}
-
-.rail {
-  position: sticky;
-  top: 64px;
-  height: calc(100vh - 64px);
-  display: grid;
-  align-content: start;
-  gap: 8px;
-  padding: 16px 10px;
-  border-right: 1px solid rgba(221,225,231,0.9);
-  background: rgba(255,255,255,0.68);
-  backdrop-filter: blur(18px);
-}
-
-.rail-item {
-  width: 56px;
-  min-height: 56px;
-  border: 1px solid transparent;
-  border-radius: var(--radius);
-  background: transparent;
-  color: var(--muted);
-  display: grid;
-  place-items: center;
-  gap: 3px;
-  padding: 6px;
-}
-
-.rail-item svg {
-  width: 20px;
-  height: 20px;
-}
-
-.rail-item span {
-  font-size: 11px;
-  font-weight: 650;
-}
-
-.rail-item.active {
-  background: var(--ink);
-  color: #fff;
-}
-
-.content {
-  width: min(1480px, calc(100vw - 108px));
+.page {
+  width: min(1280px, calc(100% - 48px));
   margin: 0 auto;
-  padding: 24px 24px 34px;
+  padding: 28px 0 42px;
   display: grid;
-  gap: 16px;
+  gap: 18px;
 }
 
-.project-bar {
-  min-height: 86px;
+.hero {
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 20px;
-  align-items: center;
-  border: 1px solid rgba(221,225,231,0.92);
-  border-radius: var(--radius);
-  background: rgba(255,255,255,0.82);
-  box-shadow: var(--shadow-1);
-  padding: 18px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: end;
+  padding: 4px 2px 2px;
 }
 
 .eyebrow {
   color: var(--muted);
-  font-size: 12px;
-  font-weight: 650;
+  font-size: 13px;
+  font-weight: 680;
 }
 
 h1,
@@ -279,252 +194,250 @@ p {
 }
 
 h1 {
-  margin-top: 2px;
-  font-size: 28px;
-  line-height: 1.14;
+  margin-top: 4px;
+  max-width: 760px;
+  font-size: clamp(30px, 4vw, 52px);
+  line-height: 1.08;
   font-weight: 760;
 }
 
-.project-meta {
-  margin-top: 8px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+.hero-copy {
+  margin-top: 10px;
+  max-width: 680px;
+  color: var(--text);
+  font-size: 17px;
 }
 
-.pill {
+.hero-status {
+  min-width: 300px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 14px;
+  box-shadow: var(--shadow-soft);
+}
+
+.status-title {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 680;
+}
+
+.status-main {
+  margin-top: 8px;
+  font-size: 18px;
+  font-weight: 760;
+}
+
+.status-sub {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.badge {
   min-height: 28px;
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  border: 1px solid var(--line);
   border-radius: 999px;
-  background: var(--surface);
   padding: 0 10px;
-  color: var(--text);
   font-size: 12px;
-  font-weight: 650;
+  font-weight: 680;
+  white-space: nowrap;
 }
 
-.pill.green {
-  border-color: rgba(18,161,80,0.22);
-  background: var(--green-soft);
-  color: #08763b;
-}
-
-.pill.blue {
-  border-color: rgba(10,132,255,0.20);
-  background: var(--blue-soft);
-  color: #075db5;
-}
-
-.pill.amber {
-  border-color: rgba(181,106,37,0.22);
-  background: var(--amber-soft);
-  color: #8a4d16;
-}
-
-.summary-metrics {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(86px, 1fr));
-  gap: 8px;
-  min-width: min(520px, 48vw);
-}
-
-.summary-metric {
-  border-left: 1px solid var(--line);
-  padding-left: 14px;
-}
-
-.summary-metric span {
-  display: block;
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.summary-metric strong {
-  display: block;
-  margin-top: 2px;
-  font-family: var(--mono);
-  font-size: 19px;
-  font-weight: 760;
-}
+.badge.blue { background: var(--blue-soft); color: #075db5; }
+.badge.green { background: var(--green-soft); color: #08763b; }
+.badge.amber { background: var(--amber-soft); color: #814a13; }
+.badge.red { background: var(--red-soft); color: var(--red); }
+.badge.neutral { background: #eef0f3; color: var(--text); }
 
 .workspace {
   display: grid;
-  grid-template-columns: minmax(470px, 0.88fr) minmax(520px, 1.12fr);
-  gap: 16px;
-  align-items: stretch;
+  grid-template-columns: minmax(500px, 0.98fr) minmax(460px, 1.02fr);
+  gap: 18px;
+  align-items: start;
 }
 
-.surface {
-  border: 1px solid rgba(221,225,231,0.92);
+.card {
+  border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: rgba(255,255,255,0.88);
-  box-shadow: var(--shadow-1);
+  background: rgba(255,255,255,0.92);
+  box-shadow: var(--shadow-soft);
   overflow: hidden;
 }
 
-.surface-head {
-  min-height: 60px;
+.card-head {
+  min-height: 64px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   gap: 14px;
-  padding: 14px 16px;
+  padding: 16px 18px;
   border-bottom: 1px solid var(--line);
 }
 
-.surface-title {
+.card-title {
+  font-size: 18px;
+  font-weight: 760;
+}
+
+.card-sub {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.creator-card {
+  display: grid;
+}
+
+.progress {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface-soft);
+}
+
+.progress-step {
+  min-height: 48px;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--muted);
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 8px;
+  align-items: center;
+  padding: 8px;
+  text-align: left;
+}
+
+.progress-step.active {
+  border-color: var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow-soft);
+}
+
+.progress-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #eef0f3;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 760;
+}
+
+.progress-step.active .progress-num {
+  background: var(--blue);
+  color: #fff;
+}
+
+.progress-label {
+  font-size: 13px;
+  font-weight: 720;
+}
+
+.step-panel {
+  display: none;
+  padding: 18px;
+  gap: 18px;
+}
+
+.step-panel.active {
+  display: grid;
+}
+
+.section {
+  display: grid;
+  gap: 12px;
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+}
+
+.section-head h2 {
   font-size: 16px;
   font-weight: 760;
 }
 
-.surface-sub {
-  margin-top: 2px;
+.section-head span {
   color: var(--muted);
-  font-size: 12px;
+  font-size: 13px;
 }
 
-.surface-body {
-  padding: 16px;
-  display: grid;
-  gap: 16px;
-}
-
-.step-strip {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 6px;
-  padding: 8px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--surface-2);
-}
-
-.step-button {
-  min-height: 40px;
-  border: 1px solid transparent;
-  border-radius: 6px;
-  background: transparent;
-  color: var(--muted);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  font-weight: 650;
-}
-
-.step-button.active {
-  border-color: var(--line);
-  background: var(--surface);
-  color: var(--ink);
-  box-shadow: var(--shadow-1);
-}
-
-.flow-view {
-  display: none;
-  gap: 16px;
-}
-
-.flow-view.active {
-  display: grid;
-}
-
-.form-section {
-  display: grid;
-  gap: 12px;
-}
-
-.section-title {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 12px;
-}
-
-.section-title h2 {
-  font-size: 15px;
-  font-weight: 760;
-}
-
-.section-title span {
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.source-grid {
+.choice-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
+  gap: 10px;
 }
 
-.source-card {
-  min-height: 92px;
+.choice-card,
+.motion-card {
+  min-height: 108px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--surface);
-  padding: 12px;
+  padding: 14px;
+  color: var(--ink);
   text-align: left;
   display: grid;
   align-content: start;
-  gap: 6px;
+  gap: 8px;
 }
 
-.source-card.active {
+.choice-card.active,
+.motion-card[aria-pressed="true"] {
   border-color: var(--blue);
   background: var(--blue-soft);
 }
 
-.source-card strong {
-  display: block;
-  font-size: 13px;
-}
-
-.source-card span {
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.field {
-  display: grid;
-  gap: 7px;
-}
-
-.field label {
-  color: var(--text);
-  font-size: 12px;
-  font-weight: 650;
-}
-
-.input,
-.textarea,
-.select {
-  width: 100%;
-  border: 1px solid var(--line);
+.choice-icon,
+.motion-icon {
+  width: 34px;
+  height: 34px;
   border-radius: var(--radius);
-  background: var(--surface);
-  color: var(--ink);
-  padding: 11px 12px;
+  display: grid;
+  place-items: center;
+  background: var(--surface-soft);
+  border: 1px solid var(--line);
+  color: var(--blue);
 }
 
-.textarea {
-  min-height: 116px;
-  resize: vertical;
+.choice-card strong,
+.motion-card strong {
+  display: block;
+  font-size: 14px;
 }
 
-.input,
-.select {
-  min-height: 42px;
+.choice-card span,
+.motion-card span {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
 }
 
 .drop {
   min-height: 112px;
   border: 1px dashed var(--line-strong);
   border-radius: var(--radius);
-  background: var(--surface-2);
+  background: var(--surface-soft);
   display: grid;
-  grid-template-columns: 44px 1fr;
+  grid-template-columns: 46px 1fr;
   gap: 12px;
   align-items: center;
   padding: 14px;
@@ -540,35 +453,66 @@ h1 {
 }
 
 .drop-icon {
-  width: 44px;
-  height: 44px;
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   display: grid;
   place-items: center;
   background: var(--surface);
-  border: 1px solid var(--line);
   color: var(--blue);
 }
 
 .drop strong {
   display: block;
-  font-weight: 700;
 }
 
 .drop span {
   display: block;
   margin-top: 2px;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .drop img {
   display: none;
   width: 100%;
-  height: 170px;
+  height: 180px;
   object-fit: cover;
   grid-column: 1 / -1;
   border-radius: 6px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.field label {
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 680;
+}
+
+.textarea,
+.input,
+.select {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink);
+  padding: 12px;
+}
+
+.textarea {
+  min-height: 126px;
+  resize: vertical;
+}
+
+.input,
+.select {
+  min-height: 44px;
 }
 
 .chip-row {
@@ -578,20 +522,26 @@ h1 {
 }
 
 .chip {
-  min-height: 36px;
+  min-height: 38px;
   border: 1px solid var(--line);
   border-radius: 999px;
   background: var(--surface);
   color: var(--text);
-  padding: 0 12px;
-  font-size: 12px;
-  font-weight: 650;
+  padding: 0 13px;
+  font-size: 13px;
+  font-weight: 680;
 }
 
 .chip[aria-pressed="true"] {
   border-color: var(--ink);
   background: var(--ink);
   color: #fff;
+}
+
+.motion-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
 }
 
 .control-grid {
@@ -607,50 +557,51 @@ h1 {
   padding: 4px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: var(--surface-2);
+  background: var(--surface-soft);
 }
 
 .segmented button {
-  min-height: 34px;
+  min-height: 36px;
   border: 1px solid transparent;
   border-radius: 6px;
   background: transparent;
   color: var(--muted);
-  font-size: 12px;
-  font-weight: 650;
+  font-size: 13px;
+  font-weight: 680;
 }
 
 .segmented button.active {
   border-color: var(--line);
   background: var(--surface);
   color: var(--ink);
-  box-shadow: var(--shadow-1);
+  box-shadow: var(--shadow-soft);
 }
 
-.toggle-row {
-  min-height: 52px;
+.safe-row {
+  min-height: 58px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   gap: 12px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 10px 12px;
+  padding: 12px 14px;
+  background: var(--surface);
 }
 
-.toggle-row strong {
+.safe-row strong {
   display: block;
+}
+
+.safe-row span {
+  display: block;
+  color: var(--muted);
   font-size: 13px;
 }
 
-.toggle-row span {
-  color: var(--muted);
-  font-size: 12px;
-}
-
 .switch {
-  width: 42px;
-  height: 24px;
+  width: 44px;
+  height: 26px;
   border: 0;
   border-radius: 999px;
   background: var(--green);
@@ -663,11 +614,11 @@ h1 {
   position: absolute;
   top: 3px;
   right: 3px;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background: #fff;
-  box-shadow: var(--shadow-1);
+  box-shadow: var(--shadow-soft);
 }
 
 .switch[aria-pressed="false"] {
@@ -679,19 +630,19 @@ h1 {
   left: 3px;
 }
 
-.material-table {
+.material-list {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   overflow: hidden;
 }
 
 .material-row {
-  min-height: 58px;
+  min-height: 62px;
   display: grid;
-  grid-template-columns: 1fr 124px;
+  grid-template-columns: 1fr 132px;
   gap: 12px;
   align-items: center;
-  padding: 10px 12px;
+  padding: 12px 14px;
   border-bottom: 1px solid var(--line);
   background: var(--surface);
 }
@@ -701,18 +652,18 @@ h1 {
 }
 
 .material-name {
-  font-weight: 700;
+  font-weight: 720;
 }
 
 .material-meta {
   margin-top: 2px;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .stepper {
   display: grid;
-  grid-template-columns: 34px 1fr 34px;
+  grid-template-columns: 38px 1fr 38px;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 6px;
@@ -720,9 +671,9 @@ h1 {
 }
 
 .stepper button {
-  height: 34px;
+  height: 38px;
   border: 0;
-  background: var(--surface-2);
+  background: var(--surface-soft);
   color: var(--ink);
   font-size: 16px;
 }
@@ -731,22 +682,44 @@ h1 {
   display: grid;
   place-items: center;
   font-family: var(--mono);
-  font-size: 12px;
   font-weight: 760;
 }
 
-.preview-surface {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  min-height: 680px;
+.step-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 4px;
 }
 
-.canvas-toolbar {
+.step-actions .btn.primary {
+  margin-left: auto;
+}
+
+.preview-card {
+  position: sticky;
+  top: 82px;
+}
+
+.preview-top {
+  min-height: 66px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  justify-content: flex-end;
+  gap: 14px;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.preview-title {
+  font-size: 18px;
+  font-weight: 760;
+}
+
+.preview-sub {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 13px;
 }
 
 .canvas {
@@ -762,26 +735,9 @@ h1 {
   background-size: 72px 72px;
 }
 
-.frame-label {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  min-height: 28px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 0 10px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: rgba(255,255,255,0.86);
-  color: var(--text);
-  font-size: 12px;
-  font-weight: 650;
-}
-
 .preview-wrap {
   position: relative;
-  width: min(620px, 82%);
+  width: min(590px, 84%);
   aspect-ratio: 1 / 1;
   display: grid;
   place-items: center;
@@ -790,33 +746,33 @@ h1 {
 .bouquet-svg {
   width: 100%;
   height: 100%;
-  filter: drop-shadow(0 28px 26px rgba(29,29,31,0.14));
+  filter: drop-shadow(0 26px 26px rgba(29,29,31,0.14));
 }
 
 .zone {
   position: absolute;
-  min-width: 64px;
+  min-width: 66px;
   min-height: 30px;
   border: 1px solid rgba(18,161,80,0.72);
   border-radius: 999px;
-  background: rgba(231,246,238,0.82);
+  background: rgba(232,246,238,0.86);
   color: #08763b;
   display: grid;
   place-items: center;
   padding: 0 10px;
-  font-size: 11px;
-  font-weight: 700;
+  font-size: 12px;
+  font-weight: 720;
 }
 
-.zone.left { left: 9%; top: 31%; }
-.zone.right { right: 9%; top: 31%; }
+.zone.left { left: 8%; top: 32%; }
+.zone.right { right: 8%; top: 32%; }
 .zone.top { left: 40%; top: 13%; }
 .zone.core {
   left: 41%;
   top: 45%;
-  border-color: rgba(201,95,115,0.70);
+  border-color: rgba(197,91,114,0.68);
   background: var(--rose-soft);
-  color: #9d4252;
+  color: #9b4252;
 }
 .zone.base {
   left: 39%;
@@ -858,205 +814,145 @@ h1 {
   72% { transform: translateY(2px) scale(0.99); }
 }
 
-.preview-footer {
-  min-height: 78px;
+.preview-summary {
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 16px;
-  align-items: center;
-  padding: 14px 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   border-top: 1px solid var(--line);
 }
 
-.motion-timeline {
-  display: grid;
-  gap: 8px;
+.preview-metric {
+  padding: 14px 16px;
+  border-right: 1px solid var(--line);
 }
 
-.timeline-track {
-  height: 8px;
-  border-radius: 999px;
-  background: var(--surface-3);
-  overflow: hidden;
+.preview-metric:last-child {
+  border-right: 0;
 }
 
-.timeline-track span {
+.preview-metric span {
   display: block;
-  height: 100%;
-  width: 58%;
-  border-radius: inherit;
-  background: linear-gradient(90deg, var(--blue), var(--green), var(--rose));
-  transform-origin: left center;
-  animation: timeline 5.2s ease-in-out infinite;
-}
-
-@keyframes timeline {
-  0%, 100% { transform: scaleX(0.36); }
-  50% { transform: scaleX(1); }
-}
-
-.timeline-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
   color: var(--muted);
   font-size: 12px;
 }
 
-.result-board {
-  display: grid;
-  grid-template-columns: 1fr 1.1fr;
-  gap: 16px;
+.preview-metric strong {
+  display: block;
+  margin-top: 3px;
+  font-size: 16px;
 }
 
-.decision-panel {
+.result-section {
+  display: grid;
+  grid-template-columns: 0.92fr 1.08fr;
+  gap: 18px;
+}
+
+.recommend-card {
+  padding: 18px;
   display: grid;
   gap: 14px;
-  padding: 16px;
 }
 
-.decision-title {
+.recommend-head {
   display: flex;
   justify-content: space-between;
   gap: 14px;
   align-items: flex-start;
 }
 
-.decision-title h2 {
-  font-size: 23px;
-  line-height: 1.16;
+.recommend-head h2 {
+  font-size: 24px;
+  line-height: 1.18;
   font-weight: 760;
 }
 
-.decision-title p {
-  margin-top: 6px;
+.recommend-head p {
+  margin-top: 7px;
   color: var(--text);
 }
 
-.kit-score {
+.score-ring {
   min-width: 82px;
   min-height: 82px;
   border-radius: 50%;
+  border: 8px solid var(--green-soft);
   display: grid;
   place-items: center;
-  border: 8px solid var(--green-soft);
   color: #08763b;
   background: var(--surface);
   font-family: var(--mono);
-  font-weight: 760;
   font-size: 20px;
+  font-weight: 760;
 }
 
-.insight-grid {
+.plain-list {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.plain-item {
+  min-height: 48px;
+  display: grid;
+  grid-template-columns: 28px 1fr;
   gap: 10px;
+  align-items: start;
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
 }
 
-.insight {
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--surface-2);
-  padding: 12px;
-}
-
-.insight span {
-  display: block;
-  color: var(--muted);
+.plain-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--blue-soft);
+  color: #075db5;
+  font-family: var(--mono);
   font-size: 12px;
+  font-weight: 760;
 }
 
-.insight strong {
-  display: block;
-  margin-top: 4px;
-  font-size: 15px;
+.plain-title {
+  font-weight: 720;
 }
 
-.table-panel {
-  overflow: hidden;
+.plain-copy {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 13px;
 }
 
-.table-head {
-  min-height: 52px;
+.system-card {
+  display: grid;
+}
+
+.system-head {
+  min-height: 58px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 0 16px;
+  padding: 14px 16px;
   border-bottom: 1px solid var(--line);
 }
 
-.table-head h2 {
-  font-size: 15px;
+.system-head h2 {
+  font-size: 18px;
   font-weight: 760;
 }
 
-.kit-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.kit-table th,
-.kit-table td {
-  padding: 12px 14px;
-  border-bottom: 1px solid var(--line);
-  text-align: left;
-  vertical-align: top;
-}
-
-.kit-table th {
-  color: var(--muted);
-  background: var(--surface-2);
-  font-size: 12px;
-  font-weight: 650;
-}
-
-.kit-table tr:last-child td {
-  border-bottom: 0;
-}
-
-.kit-name {
-  font-weight: 700;
-}
-
-.kit-note {
-  margin-top: 2px;
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.progress {
-  width: 96px;
-  height: 7px;
-  border-radius: 999px;
-  overflow: hidden;
-  background: var(--surface-3);
-  margin-top: 6px;
-}
-
-.progress span {
-  display: block;
-  height: 100%;
-  background: var(--green);
-  width: var(--value, 50%);
-}
-
-.progress.warn span {
-  background: var(--amber);
-}
-
 .task-list {
-  border-top: 1px solid var(--line);
   display: grid;
 }
 
 .task-row {
-  min-height: 56px;
+  min-height: 62px;
   display: grid;
-  grid-template-columns: 28px 1fr auto;
-  gap: 10px;
+  grid-template-columns: 32px 1fr auto;
+  gap: 12px;
   align-items: center;
-  padding: 10px 16px;
+  padding: 12px 16px;
   border-bottom: 1px solid var(--line);
 }
 
@@ -1065,97 +961,109 @@ h1 {
 }
 
 .task-index {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
   display: grid;
   place-items: center;
-  border-radius: 50%;
-  color: var(--blue);
   background: var(--blue-soft);
+  color: #075db5;
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 760;
 }
 
 .task-title {
-  font-weight: 700;
+  font-weight: 720;
 }
 
 .task-meta {
   margin-top: 2px;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 13px;
 }
 
-.status {
-  display: inline-flex;
-  min-height: 26px;
-  align-items: center;
-  border-radius: 999px;
-  padding: 0 9px;
-  background: var(--surface-3);
-  color: var(--text);
-  font-size: 12px;
-  font-weight: 650;
-  white-space: nowrap;
-}
-
-.status.green {
-  background: var(--green-soft);
-  color: #08763b;
-}
-
-.status.amber {
-  background: var(--amber-soft);
-  color: #8a4d16;
-}
-
-.status.blue {
-  background: var(--blue-soft);
-  color: #075db5;
-}
-
-.parameters {
-  display: none;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
-  padding: 14px 16px 16px;
+.details {
   border-top: 1px solid var(--line);
-  background: var(--surface-2);
+  background: var(--surface-soft);
 }
 
-.parameters.open {
-  display: grid;
+.details summary {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  color: var(--text);
+  font-weight: 720;
+  cursor: pointer;
 }
 
-.param {
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
+.kit-table-wrap {
+  overflow-x: auto;
+}
+
+.kit-table {
+  width: 100%;
+  min-width: 620px;
+  border-collapse: collapse;
   background: var(--surface);
-  padding: 10px;
 }
 
-.param span {
+.kit-table th,
+.kit-table td {
+  padding: 12px 14px;
+  border-top: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.kit-table th {
   color: var(--muted);
   font-size: 12px;
+  font-weight: 680;
+  background: var(--surface-soft);
 }
 
-.param strong {
+.kit-name {
+  font-weight: 720;
+}
+
+.kit-note {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.bar {
+  width: 100px;
+  height: 7px;
+  margin-top: 7px;
+  border-radius: 999px;
+  background: #eceff2;
+  overflow: hidden;
+}
+
+.bar span {
   display: block;
-  margin-top: 4px;
+  height: 100%;
+  width: var(--value, 50%);
+  background: var(--green);
+}
+
+.bar.warn span {
+  background: var(--amber);
 }
 
 .toast {
   position: fixed;
   right: 24px;
   bottom: 24px;
-  z-index: 60;
-  min-width: 280px;
-  max-width: min(420px, calc(100vw - 48px));
+  z-index: 70;
+  width: min(390px, calc(100vw - 48px));
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: rgba(255,255,255,0.96);
-  box-shadow: var(--shadow-2);
+  box-shadow: var(--shadow);
   padding: 14px 16px;
   opacity: 0;
   transform: translateY(12px);
@@ -1176,7 +1084,7 @@ h1 {
   display: block;
   margin-top: 3px;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 13px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1190,103 +1098,81 @@ h1 {
   }
 }
 
-@media (max-width: 1280px) {
-  .topbar {
-    grid-template-columns: 220px 1fr auto;
-  }
-
+@media (max-width: 1120px) {
+  .hero,
   .workspace,
-  .result-board {
+  .result-section {
     grid-template-columns: 1fr;
   }
 
-  .preview-surface {
-    min-height: auto;
+  .hero-status {
+    min-width: 0;
+  }
+
+  .preview-card {
+    position: static;
   }
 }
 
-@media (max-width: 900px) {
-  .app {
-    grid-template-rows: auto 1fr;
+@media (max-width: 760px) {
+  body {
+    font-size: 16px;
   }
 
   .topbar {
     height: auto;
-    grid-template-columns: 1fr;
     padding: 12px 16px;
-  }
-
-  .project-search {
-    justify-self: stretch;
-    width: 100%;
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .top-actions {
-    justify-content: stretch;
+    width: 100%;
   }
 
   .top-actions .btn {
     flex: 1;
   }
 
-  .shell {
-    grid-template-columns: 1fr;
-  }
-
-  .rail {
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    height: auto;
-    grid-auto-flow: column;
-    grid-auto-columns: 1fr;
-    border-right: 0;
-    border-bottom: 1px solid var(--line);
-    padding: 8px;
-  }
-
-  .rail-item {
-    width: auto;
-    min-height: 48px;
-  }
-
-  .content {
+  .page {
     width: 100%;
-    padding: 16px;
+    padding: 18px 16px 32px;
   }
 
-  .project-bar {
+  .choice-grid,
+  .motion-grid,
+  .control-grid,
+  .preview-summary {
     grid-template-columns: 1fr;
   }
 
-  .summary-metrics {
-    min-width: 0;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .summary-metric {
-    border-left: 0;
-    border-top: 1px solid var(--line);
-    padding: 10px 0 0;
-  }
-}
-
-@media (max-width: 640px) {
-  body {
-    font-size: 16px;
-  }
-
-  .brand-sub,
-  .project-search small {
+  .hero-status {
     display: none;
   }
 
-  .source-grid,
-  .control-grid,
-  .step-strip,
-  .insight-grid,
-  .parameters {
+  .progress {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding: 10px;
+    gap: 4px;
+  }
+
+  .progress-step {
+    min-height: 46px;
     grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 4px;
+    padding: 6px 3px;
+  }
+
+  .progress-num {
+    width: 24px;
+    height: 24px;
+    font-size: 11px;
+  }
+
+  .progress-label {
+    font-size: 11px;
+    text-align: center;
   }
 
   .canvas {
@@ -1294,30 +1180,33 @@ h1 {
   }
 
   .preview-wrap {
-    width: 96%;
-  }
-
-  .preview-footer {
-    grid-template-columns: 1fr;
+    width: 98%;
   }
 
   .material-row {
     grid-template-columns: 1fr;
   }
 
-  .kit-table {
-    min-width: 620px;
+  .step-actions {
+    display: grid;
+    grid-template-columns: 1fr;
   }
 
-  .table-panel {
-    overflow-x: auto;
+  .step-actions .btn,
+  .step-actions .btn.primary {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .recommend-head {
+    display: grid;
   }
 
   .task-row {
-    grid-template-columns: 28px 1fr;
+    grid-template-columns: 32px 1fr;
   }
 
-  .task-row .status {
+  .task-row .badge {
     grid-column: 2;
     justify-self: start;
   }
@@ -1331,338 +1220,312 @@ h1 {
       <div class="brand-mark">F</div>
       <div>
         <div class="brand-title">Flora Studio</div>
-        <div class="brand-sub">CyberBloom Dynamic Workspace</div>
+        <div class="brand-sub">动态花艺方案台</div>
       </div>
     </div>
-    <div class="project-search" role="status" aria-live="polite">
-      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5v14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      <div><strong id="projectSummary">婚礼主桌 · 开合套件</strong> <small id="projectSub">库存覆盖 82%</small></div>
-      <span class="status green" id="topStatus">可落地</span>
-    </div>
     <div class="top-actions">
-      <button class="btn ghost small" type="button" id="resetBtn" aria-label="重置方案">
+      <button class="btn ghost small" type="button" id="resetBtn" aria-label="重置">
         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7v5h5M20 17a8 8 0 0 1-13.5-5.8L4 12m16 5v-5h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         重置
       </button>
-      <button class="btn primary small" type="button" id="exportBtn">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        生成方案
+      <button class="btn primary small" type="button" id="topRecommendBtn">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        查看推荐
       </button>
     </div>
   </header>
 
-  <div class="shell">
-    <nav class="rail" aria-label="工作区">
-      <button class="rail-item active" type="button" data-jump="brief" aria-label="项目">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10a2 2 0 0 1 2 2v14H5V6a2 2 0 0 1 2-2Zm2 5h6M9 13h6M9 17h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        <span>项目</span>
-      </button>
-      <button class="rail-item" type="button" data-jump="preview" aria-label="预览">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12s3-6 8-6 8 6 8 6-3 6-8 6-8-6-8-6Zm8 3a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-        <span>预览</span>
-      </button>
-      <button class="rail-item" type="button" data-jump="materials" aria-label="花材">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21V9m0 0C8 8 6 5 6 3c3 0 6 2 6 6Zm0 0c4-1 6-4 6-6-3 0-6 2-6 6ZM5 17c3 0 5-2 7-5 2 3 4 5 7 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span>花材</span>
-      </button>
-      <button class="rail-item" type="button" data-jump="system" aria-label="代办">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        <span>代办</span>
-      </button>
-    </nav>
+  <main class="page">
+    <section class="hero">
+      <div>
+        <div class="eyebrow">给花艺师用的动态花艺工具</div>
+        <h1>先说作品想法，系统再把它变成可落地的动态方案。</h1>
+        <p class="hero-copy">从设计图、场景或现有花材开始，选择希望呈现的动感，马上看到作品预览和准备清单。</p>
+      </div>
+      <aside class="hero-status" aria-live="polite">
+        <div class="status-title"><span>当前推荐</span><span class="badge amber" id="heroRisk">需补货</span></div>
+        <div class="status-main" id="heroKit">开合动作方案</div>
+        <div class="status-sub" id="heroSummary">婚礼主桌 · 呼吸 + 开合 + 祝福感</div>
+      </aside>
+    </section>
 
-    <main class="content">
-      <section class="project-bar" id="brief">
-        <div>
-          <div class="eyebrow">Flora Studio / Creator Mode</div>
-          <h1>把花艺师的想法转成可预览、可采购、可装配的动态方案</h1>
-          <div class="project-meta">
-            <span class="pill blue" id="scenePill">婚礼主桌</span>
-            <span class="pill green" id="motionPill">呼吸 + 开合 + 祝福感</span>
-            <span class="pill amber" id="riskPill">需补货</span>
+    <section class="workspace">
+      <section class="card creator-card" aria-labelledby="creatorTitle">
+        <div class="card-head">
+          <div>
+            <div class="card-title" id="creatorTitle">创建动态花艺方案</div>
+            <div class="card-sub" id="creatorHint">从作品来源开始</div>
           </div>
+          <span class="badge blue" id="stepBadge">第 1 步</span>
         </div>
-        <div class="summary-metrics">
-          <div class="summary-metric"><span>花材总重</span><strong id="metricTotal">0g</strong></div>
-          <div class="summary-metric"><span>可动重量</span><strong id="metricMoving">0g</strong></div>
-          <div class="summary-metric"><span>库存覆盖</span><strong id="metricStock">0%</strong></div>
-          <div class="summary-metric"><span>装配时间</span><strong id="metricTime">45m</strong></div>
-        </div>
-      </section>
 
-      <section class="workspace">
-        <section class="surface" aria-labelledby="flowTitle">
-          <div class="surface-head">
-            <div>
-              <div class="surface-title" id="flowTitle">创作流程</div>
-              <div class="surface-sub">自由输入和明确选项并行</div>
-            </div>
-            <span class="status blue" id="flowStatus">正在匹配</span>
-          </div>
-          <div class="surface-body">
-            <div class="step-strip" role="tablist" aria-label="创作流程">
-              <button class="step-button active" type="button" role="tab" data-step="intent" aria-selected="true">意图</button>
-              <button class="step-button" type="button" role="tab" data-step="motion" aria-selected="false">动作</button>
-              <button class="step-button" type="button" role="tab" data-step="material" aria-selected="false">花材</button>
-              <button class="step-button" type="button" role="tab" data-step="handoff" aria-selected="false">输出</button>
-            </div>
-
-            <div class="flow-view active" data-view="intent">
-              <div class="form-section">
-                <div class="section-title"><h2>创意来源</h2><span>可空白开始</span></div>
-                <div class="source-grid" data-group="source">
-                  <button class="source-card active" type="button" data-value="design">
-                    <strong>已有设计图</strong><span>从草图、照片或客户参考开始</span>
-                  </button>
-                  <button class="source-card" type="button" data-value="scene">
-                    <strong>只有场景</strong><span>从用途和情绪生成结构</span>
-                  </button>
-                  <button class="source-card" type="button" data-value="stock">
-                    <strong>按库存创作</strong><span>优先使用现有花材和套件</span>
-                  </button>
-                </div>
-              </div>
-
-              <div class="drop">
-                <input id="designFile" type="file" accept="image/*" aria-label="上传设计图或实物图">
-                <div class="drop-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14m7-7H5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
-                <div id="uploadCopy"><strong>上传设计图 / 实物照片</strong><span>PNG、JPG、手绘草图、现场照片</span></div>
-                <img id="uploadPreview" alt="上传的设计参考">
-              </div>
-
-              <div class="field">
-                <label for="ideaText">想法描述</label>
-                <textarea class="textarea" id="ideaText">婚礼主桌花艺，希望像被祝福一样缓慢展开，动作要克制，不要太机械，机电尽量藏在花瓶背后。</textarea>
-              </div>
-
-              <div class="form-section">
-                <div class="section-title"><h2>场景</h2><span>单选</span></div>
-                <div class="chip-row" data-group="scene">
-                  <button class="chip" type="button" data-value="wedding" aria-pressed="true">婚礼主桌</button>
-                  <button class="chip" type="button" data-value="window" aria-pressed="false">橱窗陈列</button>
-                  <button class="chip" type="button" data-value="gift" aria-pressed="false">礼物花束</button>
-                  <button class="chip" type="button" data-value="exhibition" aria-pressed="false">展览装置</button>
-                  <button class="chip" type="button" data-value="retail" aria-pressed="false">商业空间</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="flow-view" data-view="motion">
-              <div class="form-section">
-                <div class="section-title"><h2>动感选择</h2><span>可多选</span></div>
-                <div class="chip-row" data-group="motion">
-                  <button class="chip" type="button" data-value="breath" aria-pressed="true">呼吸</button>
-                  <button class="chip" type="button" data-value="sway" aria-pressed="false">摇曳</button>
-                  <button class="chip" type="button" data-value="bloom" aria-pressed="true">开合</button>
-                  <button class="chip" type="button" data-value="blessing" aria-pressed="true">祝福感</button>
-                  <button class="chip" type="button" data-value="light" aria-pressed="false">轻盈</button>
-                </div>
-              </div>
-
-              <div class="control-grid">
-                <div class="field">
-                  <label>动作强度</label>
-                  <div class="segmented" data-segment="intensity">
-                    <button type="button" data-value="soft" class="active">克制</button>
-                    <button type="button" data-value="clear">明显</button>
-                    <button type="button" data-value="stage">舞台</button>
-                  </div>
-                </div>
-                <div class="field">
-                  <label>系统优先级</label>
-                  <div class="segmented" data-segment="priority">
-                    <button type="button" data-value="safe" class="active">稳定</button>
-                    <button type="button" data-value="stock">库存</button>
-                    <button type="button" data-value="effect">效果</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="control-grid">
-                <div class="field">
-                  <label for="sizeInput">作品尺寸</label>
-                  <input class="input" id="sizeInput" value="宽 60cm，高 45cm，桌面主视觉">
-                </div>
-                <div class="field">
-                  <label for="hidePlace">机电隐藏</label>
-                  <select class="select" id="hidePlace">
-                    <option value="back">花瓶背后</option>
-                    <option value="base">底座内部</option>
-                    <option value="center">花丛中心</option>
-                    <option value="branch">枝条后方</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="toggle-row">
-                <div><strong>新手安全模式</strong><span>限制过大幅度和高负载动作</span></div>
-                <button class="switch" type="button" id="safeSwitch" aria-label="新手安全模式" aria-pressed="true"></button>
-              </div>
-            </div>
-
-            <div class="flow-view" data-view="material" id="materials">
-              <div class="form-section">
-                <div class="section-title"><h2>花材数量</h2><span id="materialSummary">自动估重</span></div>
-                <div class="material-table" id="materialTable"></div>
-              </div>
-            </div>
-
-            <div class="flow-view" data-view="handoff">
-              <div class="form-section">
-                <div class="section-title"><h2>系统输出</h2><span>套件、库存、补货、装配</span></div>
-                <div class="task-list" id="miniTasks"></div>
-              </div>
-              <button class="btn primary" type="button" id="prepareBtn">
-                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                进入下单前流程
-              </button>
-            </div>
-          </div>
-        </section>
-
-        <section class="surface preview-surface" id="preview" aria-labelledby="previewTitle">
-          <div class="surface-head">
-            <div>
-              <div class="surface-title" id="previewTitle">动态预览</div>
-              <div class="surface-sub" id="previewSub">3 个可动区 · 1 个固定区 · 1 个隐藏区</div>
-            </div>
-            <div class="canvas-toolbar">
-              <span class="status green" id="previewStatus">实时更新</span>
-              <button class="btn small" id="paramBtn" type="button" aria-expanded="false">
-                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M4 17h16M18 7h2M4 12h3m4 0h9M14 12h-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                参数
-              </button>
-            </div>
-          </div>
-          <div class="canvas">
-            <div class="frame-label" id="frameLabel">婚礼主桌 / 开合套件</div>
-            <div class="preview-wrap motion-bloom" id="previewWrap">
-              <svg class="bouquet-svg" viewBox="0 0 600 600" role="img" aria-label="动态花艺预览">
-                <defs>
-                  <linearGradient id="stemGradient" x1="0" x2="1">
-                    <stop offset="0" stop-color="#9ba48e"/>
-                    <stop offset="1" stop-color="#5c6657"/>
-                  </linearGradient>
-                  <radialGradient id="petalGradient" cx="50%" cy="48%" r="62%">
-                    <stop offset="0" stop-color="#ffffff"/>
-                    <stop offset="0.72" stop-color="#f5d7dd"/>
-                    <stop offset="1" stop-color="#d99aaa"/>
-                  </radialGradient>
-                </defs>
-                <g opacity="0.36" stroke="#657065" stroke-width="8" fill="none">
-                  <path d="M300 510 C294 410 304 334 294 228"/>
-                  <path d="M302 508 C246 426 190 372 128 320"/>
-                  <path d="M302 508 C360 426 420 368 484 316"/>
-                  <path d="M296 510 C272 424 248 344 222 258"/>
-                  <path d="M306 508 C334 421 360 340 386 254"/>
-                </g>
-                <g class="wing left-wing" fill="#fff" stroke="#cdd2ca" stroke-width="3">
-                  <path d="M292 234 C201 124 118 113 68 198 C150 214 216 230 292 234Z"/>
-                  <path d="M286 286 C188 244 110 255 58 326 C142 346 216 330 286 286Z"/>
-                  <path d="M286 338 C196 342 136 396 112 472 C190 450 246 406 286 338Z"/>
-                </g>
-                <g class="wing right-wing" fill="#fff" stroke="#cdd2ca" stroke-width="3">
-                  <path d="M308 234 C399 124 482 113 532 198 C450 214 384 230 308 234Z"/>
-                  <path d="M314 286 C412 244 490 255 542 326 C458 346 384 330 314 286Z"/>
-                  <path d="M314 338 C404 342 464 396 488 472 C410 450 354 406 314 338Z"/>
-                </g>
-                <g fill="url(#petalGradient)" stroke="#e2aebb" stroke-width="3">
-                  <ellipse cx="300" cy="268" rx="47" ry="78"/>
-                  <ellipse cx="257" cy="318" rx="50" ry="78" transform="rotate(-28 257 318)"/>
-                  <ellipse cx="343" cy="318" rx="50" ry="78" transform="rotate(28 343 318)"/>
-                  <ellipse cx="300" cy="362" rx="54" ry="82"/>
-                </g>
-                <circle cx="300" cy="326" r="34" fill="#12a150" opacity="0.90"/>
-                <circle cx="300" cy="326" r="19" fill="#b8efce"/>
-                <path d="M236 528 H364 C390 528 408 546 408 568 V584 H192 V568 C192 546 210 528 236 528Z" fill="#ffffff" stroke="#c7cbd0" stroke-width="3"/>
-                <path d="M248 566 H352" stroke="#d2d7dc" stroke-width="4" stroke-linecap="round"/>
-                <path d="M280 510 V474 H320 V510" stroke="url(#stemGradient)" stroke-width="18" stroke-linecap="round"/>
-              </svg>
-              <span class="zone left">左翼</span>
-              <span class="zone right">右翼</span>
-              <span class="zone top">顶部</span>
-              <span class="zone core">固定</span>
-              <span class="zone base">隐藏</span>
-            </div>
-          </div>
-          <div class="preview-footer">
-            <div class="motion-timeline">
-              <div class="timeline-track"><span></span></div>
-              <div class="timeline-meta">
-                <span id="timelineMotion">呼吸 + 开合 + 祝福感</span>
-                <span id="timelineCycle">周期 6.8s</span>
-                <span id="timelineAngle">幅度 18°</span>
-              </div>
-            </div>
-            <button class="btn primary" type="button" id="previewCta">
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7L8 5Z" fill="currentColor"/></svg>
-              生成匹配
-            </button>
-          </div>
-        </section>
-      </section>
-
-      <section class="result-board" id="system">
-        <section class="surface decision-panel">
-          <div class="decision-title">
-            <div>
-              <h2 id="decisionTitle">推荐开合套件</h2>
-              <p id="decisionCopy">适合左右对称、六翼、花瓣层次展开；当前库存会自动生成补货清单。</p>
-            </div>
-            <div class="kit-score" id="kitScore">92</div>
-          </div>
-          <div class="insight-grid">
-            <div class="insight"><span>结构判断</span><strong id="insightStructure">左右展开 + 底座隐藏</strong></div>
-            <div class="insight"><span>重量判断</span><strong id="insightWeight">可动重量 190g</strong></div>
-            <div class="insight"><span>库存判断</span><strong id="insightStock">需补 2 类零件</strong></div>
-            <div class="insight"><span>新手判断</span><strong id="insightSafety">低速、限幅、模板装配</strong></div>
-          </div>
-          <button class="btn primary" type="button" id="orderBtn">
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6h15l-2 8H8L6 6Zm0 0H3m6 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm9 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            打开下单前流程
+        <div class="progress" role="tablist" aria-label="创建步骤">
+          <button class="progress-step active" type="button" role="tab" data-step="idea" aria-selected="true">
+            <span class="progress-num">1</span><span class="progress-label">作品想法</span>
           </button>
-        </section>
+          <button class="progress-step" type="button" role="tab" data-step="motion" aria-selected="false">
+            <span class="progress-num">2</span><span class="progress-label">动感情绪</span>
+          </button>
+          <button class="progress-step" type="button" role="tab" data-step="materials" aria-selected="false">
+            <span class="progress-num">3</span><span class="progress-label">花材数量</span>
+          </button>
+          <button class="progress-step" type="button" role="tab" data-step="review" aria-selected="false">
+            <span class="progress-num">4</span><span class="progress-label">系统推荐</span>
+          </button>
+        </div>
 
-        <section class="surface table-panel">
-          <div class="table-head">
-            <h2>套件与库存</h2>
-            <span class="status amber" id="stockStatus">库存不足</span>
+        <div class="step-panel active" data-panel="idea">
+          <div class="section">
+            <div class="section-head"><h2>从哪里开始</h2><span>选一个起点</span></div>
+            <div class="choice-grid" data-group="source">
+              <button class="choice-card active" type="button" data-value="design">
+                <span class="choice-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4zM8 13l2-2 3 3 2-2 3 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <strong>我有设计图</strong><span>草图、照片、客户参考图</span>
+              </button>
+              <button class="choice-card" type="button" data-value="scene">
+                <span class="choice-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16M6 20V9l6-5 6 5v11M9 20v-6h6v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <strong>我只有场景</strong><span>婚礼、橱窗、礼物、展览</span>
+              </button>
+              <button class="choice-card" type="button" data-value="stock">
+                <span class="choice-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8 12 3 3 8l9 5 9-5ZM3 8v8l9 5 9-5V8M12 13v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+                <strong>我想用现有库存</strong><span>先看手头花材和零件</span>
+              </button>
+            </div>
           </div>
-          <table class="kit-table">
-            <thead>
-              <tr>
-                <th>方案</th>
-                <th>适配度</th>
-                <th>库存</th>
-                <th>动作</th>
-              </tr>
-            </thead>
-            <tbody id="kitRows"></tbody>
-          </table>
-          <div class="task-list" id="taskRows"></div>
-          <div class="parameters" id="parameters">
-            <div class="param"><span>动作周期</span><strong id="paramCycle">6.8s</strong></div>
-            <div class="param"><span>建议幅度</span><strong id="paramAngle">18°</strong></div>
-            <div class="param"><span>隐藏位置</span><strong id="paramHide">花瓶背后</strong></div>
-            <div class="param"><span>装配时间</span><strong id="paramTime">45 min</strong></div>
+
+          <div class="drop">
+            <input id="designFile" type="file" accept="image/*" aria-label="上传设计图或实物图">
+            <div class="drop-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14m7-7H5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+            <div id="uploadCopy"><strong>上传设计图 / 实物照片</strong><span>没有图片也可以直接往下做</span></div>
+            <img id="uploadPreview" alt="上传的设计参考">
           </div>
-        </section>
+
+          <div class="field">
+            <label for="ideaText">作品描述</label>
+            <textarea class="textarea" id="ideaText">婚礼主桌花艺，希望像被祝福一样缓慢展开，动作要克制，不要太机械，机电尽量藏在花瓶背后。</textarea>
+          </div>
+
+          <div class="section">
+            <div class="section-head"><h2>使用场景</h2><span>单选</span></div>
+            <div class="chip-row" data-group="scene">
+              <button class="chip" type="button" data-value="wedding" aria-pressed="true">婚礼主桌</button>
+              <button class="chip" type="button" data-value="window" aria-pressed="false">橱窗陈列</button>
+              <button class="chip" type="button" data-value="gift" aria-pressed="false">礼物花束</button>
+              <button class="chip" type="button" data-value="exhibition" aria-pressed="false">展览装置</button>
+              <button class="chip" type="button" data-value="retail" aria-pressed="false">商业空间</button>
+            </div>
+          </div>
+
+          <div class="step-actions">
+            <button class="btn primary" type="button" data-next="motion">下一步：选择动感</button>
+          </div>
+        </div>
+
+        <div class="step-panel" data-panel="motion">
+          <div class="section">
+            <div class="section-head"><h2>想让作品怎么动</h2><span>可多选</span></div>
+            <div class="motion-grid" data-group="motion">
+              <button class="motion-card" type="button" data-value="breath" aria-pressed="true">
+                <span class="motion-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12c3-5 6-5 8 0s5 5 8 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+                <strong>呼吸</strong><span>轻微起伏，不抢花艺造型</span>
+              </button>
+              <button class="motion-card" type="button" data-value="sway" aria-pressed="false">
+                <span class="motion-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21V4m0 0c-5 4-6 8-2 11m2-11c5 4 6 8 2 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+                <strong>摇曳</strong><span>枝条或叶片有自然摆动</span>
+              </button>
+              <button class="motion-card" type="button" data-value="bloom" aria-pressed="true">
+                <span class="motion-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21V11m0 0C7 10 5 7 5 4c4 0 7 3 7 7Zm0 0c5-1 7-4 7-7-4 0-7 3-7 7Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <strong>开合</strong><span>花瓣、翅片或层次缓慢展开</span>
+              </button>
+              <button class="motion-card" type="button" data-value="blessing" aria-pressed="true">
+                <span class="motion-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.4 5 5.6.8-4 3.9 1 5.5-5-2.6-5 2.6 1-5.5-4-3.9 5.6-.8L12 3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+                <strong>祝福感</strong><span>慢展开、停顿、再收回</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="control-grid">
+            <div class="field">
+              <label>动作强度</label>
+              <div class="segmented" data-segment="intensity">
+                <button type="button" data-value="soft" class="active">克制</button>
+                <button type="button" data-value="clear">明显</button>
+                <button type="button" data-value="stage">舞台</button>
+              </div>
+            </div>
+            <div class="field">
+              <label for="hidePlace">机电藏在哪里</label>
+              <select class="select" id="hidePlace">
+                <option value="back">花瓶背后</option>
+                <option value="base">底座内部</option>
+                <option value="center">花丛中心</option>
+                <option value="branch">枝条后方</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="safe-row">
+            <div><strong>新手安全模式</strong><span>系统会优先选择低速、稳定、易装配方案</span></div>
+            <button class="switch" type="button" id="safeSwitch" aria-label="新手安全模式" aria-pressed="true"></button>
+          </div>
+
+          <div class="step-actions">
+            <button class="btn" type="button" data-prev="idea">上一步</button>
+            <button class="btn primary" type="button" data-next="materials">下一步：填写花材</button>
+          </div>
+        </div>
+
+        <div class="step-panel" data-panel="materials" id="materials">
+          <div class="section">
+            <div class="section-head"><h2>这件作品用了哪些花</h2><span id="materialHint">系统按数量估重</span></div>
+            <div class="material-list" id="materialList"></div>
+          </div>
+
+          <div class="control-grid">
+            <div class="field">
+              <label for="sizeInput">作品尺寸</label>
+              <input class="input" id="sizeInput" value="宽 60cm，高 45cm，桌面主视觉">
+            </div>
+            <div class="field">
+              <label>系统优先级</label>
+              <div class="segmented" data-segment="priority">
+                <button type="button" data-value="safe" class="active">稳定</button>
+                <button type="button" data-value="stock">库存</button>
+                <button type="button" data-value="effect">效果</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-actions">
+            <button class="btn" type="button" data-prev="motion">上一步</button>
+            <button class="btn primary" type="button" data-next="review">查看系统推荐</button>
+          </div>
+        </div>
+
+        <div class="step-panel" data-panel="review">
+          <div class="section">
+            <div class="section-head"><h2>系统推荐</h2><span id="reviewHint">已根据场景、动作和花材估算</span></div>
+            <div class="plain-list" id="reviewList"></div>
+          </div>
+
+          <div class="step-actions">
+            <button class="btn" type="button" data-prev="materials">上一步</button>
+            <button class="btn primary" type="button" id="goSystemBtn">查看下单前清单</button>
+          </div>
+        </div>
       </section>
-    </main>
-  </div>
+
+      <aside class="card preview-card" aria-labelledby="previewTitle">
+        <div class="preview-top">
+          <div>
+            <div class="preview-title" id="previewTitle">作品预览</div>
+            <div class="preview-sub" id="previewSub">婚礼主桌 · 开合动作方案</div>
+          </div>
+          <span class="badge green" id="previewBadge">可落地</span>
+        </div>
+        <div class="canvas">
+          <div class="preview-wrap motion-bloom" id="previewWrap">
+            <svg class="bouquet-svg" viewBox="0 0 600 600" role="img" aria-label="动态花艺预览">
+              <defs>
+                <linearGradient id="stemGradient" x1="0" x2="1">
+                  <stop offset="0" stop-color="#9ba48e"/>
+                  <stop offset="1" stop-color="#5c6657"/>
+                </linearGradient>
+                <radialGradient id="petalGradient" cx="50%" cy="48%" r="62%">
+                  <stop offset="0" stop-color="#ffffff"/>
+                  <stop offset="0.72" stop-color="#f5d7dd"/>
+                  <stop offset="1" stop-color="#d99aaa"/>
+                </radialGradient>
+              </defs>
+              <g opacity="0.36" stroke="#657065" stroke-width="8" fill="none">
+                <path d="M300 510 C294 410 304 334 294 228"/>
+                <path d="M302 508 C246 426 190 372 128 320"/>
+                <path d="M302 508 C360 426 420 368 484 316"/>
+                <path d="M296 510 C272 424 248 344 222 258"/>
+                <path d="M306 508 C334 421 360 340 386 254"/>
+              </g>
+              <g class="wing left-wing" fill="#fff" stroke="#cdd2ca" stroke-width="3">
+                <path d="M292 234 C201 124 118 113 68 198 C150 214 216 230 292 234Z"/>
+                <path d="M286 286 C188 244 110 255 58 326 C142 346 216 330 286 286Z"/>
+                <path d="M286 338 C196 342 136 396 112 472 C190 450 246 406 286 338Z"/>
+              </g>
+              <g class="wing right-wing" fill="#fff" stroke="#cdd2ca" stroke-width="3">
+                <path d="M308 234 C399 124 482 113 532 198 C450 214 384 230 308 234Z"/>
+                <path d="M314 286 C412 244 490 255 542 326 C458 346 384 330 314 286Z"/>
+                <path d="M314 338 C404 342 464 396 488 472 C410 450 354 406 314 338Z"/>
+              </g>
+              <g fill="url(#petalGradient)" stroke="#e2aebb" stroke-width="3">
+                <ellipse cx="300" cy="268" rx="47" ry="78"/>
+                <ellipse cx="257" cy="318" rx="50" ry="78" transform="rotate(-28 257 318)"/>
+                <ellipse cx="343" cy="318" rx="50" ry="78" transform="rotate(28 343 318)"/>
+                <ellipse cx="300" cy="362" rx="54" ry="82"/>
+              </g>
+              <circle cx="300" cy="326" r="34" fill="#12a150" opacity="0.90"/>
+              <circle cx="300" cy="326" r="19" fill="#b8efce"/>
+              <path d="M236 528 H364 C390 528 408 546 408 568 V584 H192 V568 C192 546 210 528 236 528Z" fill="#ffffff" stroke="#c7cbd0" stroke-width="3"/>
+              <path d="M248 566 H352" stroke="#d2d7dc" stroke-width="4" stroke-linecap="round"/>
+              <path d="M280 510 V474 H320 V510" stroke="url(#stemGradient)" stroke-width="18" stroke-linecap="round"/>
+            </svg>
+            <span class="zone left">左翼</span>
+            <span class="zone right">右翼</span>
+            <span class="zone top">顶部</span>
+            <span class="zone core">固定</span>
+            <span class="zone base">隐藏</span>
+          </div>
+        </div>
+        <div class="preview-summary">
+          <div class="preview-metric"><span>动感</span><strong id="metricMotion">呼吸 + 开合</strong></div>
+          <div class="preview-metric"><span>花材估重</span><strong id="metricWeight">0g</strong></div>
+          <div class="preview-metric"><span>库存</span><strong id="metricStock">0%</strong></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="result-section" id="systemResult">
+      <section class="card recommend-card">
+        <div class="recommend-head">
+          <div>
+            <h2 id="recommendTitle">推荐开合套件</h2>
+            <p id="recommendCopy">适合左右对称、六翼、花瓣层次展开；系统会把缺少的零件放进下单前清单。</p>
+          </div>
+          <div class="score-ring" id="scoreRing">92</div>
+        </div>
+        <div class="plain-list" id="reasonList"></div>
+      </section>
+
+      <section class="card system-card">
+        <div class="system-head">
+          <h2>系统已整理</h2>
+          <span class="badge amber" id="stockBadge">需补货</span>
+        </div>
+        <div class="task-list" id="taskList"></div>
+        <details class="details">
+          <summary>查看套件参数和备选方案</summary>
+          <div class="kit-table-wrap">
+            <table class="kit-table">
+              <thead>
+                <tr>
+                  <th>方案</th>
+                  <th>适配</th>
+                  <th>库存</th>
+                  <th>说明</th>
+                </tr>
+              </thead>
+              <tbody id="kitRows"></tbody>
+            </table>
+          </div>
+        </details>
+      </section>
+    </section>
+  </main>
 </div>
 
 <div class="toast" id="toast" role="status" aria-live="polite">
-  <strong id="toastTitle">已更新方案</strong>
-  <span id="toastCopy">系统已重新匹配套件、库存和代办。</span>
+  <strong id="toastTitle">方案已更新</strong>
+  <span id="toastCopy">系统已重新整理预览和推荐。</span>
 </div>
 
 <script>
-const svgIcon = {
-  check: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 13 4 4L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-  arrow: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
-};
-
 const sceneLabels = {
   wedding: '婚礼主桌',
   window: '橱窗陈列',
@@ -1675,8 +1538,7 @@ const motionLabels = {
   breath: '呼吸',
   sway: '摇曳',
   bloom: '开合',
-  blessing: '祝福感',
-  light: '轻盈'
+  blessing: '祝福感'
 };
 
 const hideLabels = {
@@ -1686,7 +1548,7 @@ const hideLabels = {
   branch: '枝条后方'
 };
 
-const intensity = {
+const intensityMap = {
   soft: { label: '克制', ratio: 0.24, cycle: '6.8s', angle: '18°' },
   clear: { label: '明显', ratio: 0.31, cycle: '5.4s', angle: '24°' },
   stage: { label: '舞台', ratio: 0.38, cycle: '4.8s', angle: '32°' }
@@ -1703,11 +1565,11 @@ const materials = [
 const kits = [
   {
     key: 'bloom',
-    name: 'CyberBrick 开合套件',
-    note: '对称展开、花瓣开合、祝福感',
+    name: '开合套件',
+    note: '花瓣层次展开、祝福感、婚礼主视觉',
     capacity: 360,
-    motion: ['bloom', 'blessing', 'breath'],
     time: 45,
+    motion: ['bloom', 'blessing', 'breath'],
     parts: [
       { name: 'Servo Leaf', need: 2, stock: 3, price: 96 },
       { name: 'Magic Snap', need: 6, stock: 4, price: 38 },
@@ -1716,11 +1578,11 @@ const kits = [
   },
   {
     key: 'sway',
-    name: 'CyberBrick 摇曳套件',
+    name: '摇曳套件',
     note: '枝条摆动、橱窗循环、轻量花束',
     capacity: 280,
-    motion: ['sway', 'breath', 'light'],
     time: 35,
+    motion: ['sway', 'breath'],
     parts: [
       { name: 'Micro Servo', need: 2, stock: 5, price: 72 },
       { name: 'Flex Stem', need: 4, stock: 5, price: 28 },
@@ -1729,11 +1591,11 @@ const kits = [
   },
   {
     key: 'breath',
-    name: 'CyberBrick 呼吸套件',
+    name: '呼吸套件',
     note: '低速起伏、礼物花束、稳定优先',
     capacity: 220,
-    motion: ['breath', 'light'],
     time: 28,
+    motion: ['breath'],
     parts: [
       { name: 'Pulse Motor', need: 1, stock: 2, price: 84 },
       { name: 'Soft Link', need: 5, stock: 7, price: 18 },
@@ -1744,13 +1606,21 @@ const kits = [
 
 const state = {
   source: 'design',
+  step: 'idea',
   scene: 'wedding',
   motions: new Set(['breath', 'bloom', 'blessing']),
   intensity: 'soft',
   priority: 'safe',
   hidePlace: 'back',
-  safeMode: true,
-  step: 'intent'
+  safeMode: true
+};
+
+const stepOrder = ['idea', 'motion', 'materials', 'review'];
+const stepLabels = {
+  idea: ['第 1 步', '从作品来源开始'],
+  motion: ['第 2 步', '选择作品动感'],
+  materials: ['第 3 步', '填写花材数量'],
+  review: ['第 4 步', '查看推荐结果']
 };
 
 function byId(id) {
@@ -1760,11 +1630,11 @@ function byId(id) {
 function getWeights() {
   const raw = materials.reduce((sum, item) => sum + item.grams * item.count, 0);
   const total = Math.round(raw * 1.18);
-  const moving = Math.round(total * intensity[state.intensity].ratio);
+  const moving = Math.round(total * intensityMap[state.intensity].ratio);
   return { raw, total, moving };
 }
 
-function getMissingParts(kit) {
+function getMissing(kit) {
   return kit.parts
     .filter(part => part.stock < part.need)
     .map(part => ({ ...part, missing: part.need - part.stock }));
@@ -1772,27 +1642,34 @@ function getMissingParts(kit) {
 
 function scoreKit(kit) {
   const { moving } = getWeights();
-  const motionScore = [...state.motions].reduce((score, motion) => score + (kit.motion.includes(motion) ? 16 : 0), 34);
+  const motionScore = [...state.motions].reduce((score, motion) => score + (kit.motion.includes(motion) ? 17 : 0), 34);
   const loadPenalty = moving > kit.capacity ? Math.round((moving - kit.capacity) / 4) : 0;
-  const missingPenalty = getMissingParts(kit).length * (state.priority === 'stock' ? 12 : 7);
-  const effectBonus = state.priority === 'effect' && kit.key === 'bloom' ? 10 : 0;
+  const stockPenalty = getMissing(kit).length * (state.priority === 'stock' ? 12 : 7);
+  const effectBonus = state.priority === 'effect' && kit.key === 'bloom' ? 8 : 0;
   const safeBonus = state.safeMode && moving <= kit.capacity ? 8 : 0;
-  return Math.max(42, Math.min(98, motionScore + effectBonus + safeBonus - loadPenalty - missingPenalty));
+  return Math.max(42, Math.min(98, motionScore + effectBonus + safeBonus - loadPenalty - stockPenalty));
 }
 
 function getSortedKits() {
-  return kits.map(kit => ({ ...kit, score: scoreKit(kit), missing: getMissingParts(kit) }))
-    .sort((a, b) => b.score - a.score);
+  return kits.map(kit => ({
+    ...kit,
+    score: scoreKit(kit),
+    missing: getMissing(kit)
+  })).sort((a, b) => b.score - a.score);
 }
 
-function getSelectedKit() {
+function getKit() {
   return getSortedKits()[0];
 }
 
-function getStockCover(kit) {
+function getStock(kit) {
   const need = kit.parts.reduce((sum, part) => sum + part.need, 0);
   const covered = kit.parts.reduce((sum, part) => sum + Math.min(part.need, part.stock), 0);
   return Math.round((covered / need) * 100);
+}
+
+function motionText() {
+  return [...state.motions].map(motion => motionLabels[motion]).join(' + ') || '呼吸';
 }
 
 function showToast(title, copy) {
@@ -1801,15 +1678,29 @@ function showToast(title, copy) {
   byId('toastCopy').textContent = copy;
   toast.classList.add('show');
   window.clearTimeout(showToast.timer);
-  showToast.timer = window.setTimeout(() => toast.classList.remove('show'), 2600);
+  showToast.timer = window.setTimeout(() => toast.classList.remove('show'), 2400);
+}
+
+function setStep(step) {
+  state.step = step;
+  document.querySelectorAll('.progress-step').forEach(button => {
+    const active = button.dataset.step === step;
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-selected', String(active));
+  });
+  document.querySelectorAll('.step-panel').forEach(panel => {
+    panel.classList.toggle('active', panel.dataset.panel === step);
+  });
+  byId('stepBadge').textContent = stepLabels[step][0];
+  byId('creatorHint').textContent = stepLabels[step][1];
 }
 
 function renderMaterials() {
-  byId('materialTable').innerHTML = materials.map(item => `
+  byId('materialList').innerHTML = materials.map(item => `
     <div class="material-row">
       <div>
         <div class="material-name">${item.name}</div>
-        <div class="material-meta">${item.grams}g / 支 · ${item.grams * item.count}g</div>
+        <div class="material-meta">${item.grams}g / 支 · 当前 ${item.grams * item.count}g</div>
       </div>
       <div class="stepper" aria-label="${item.name}数量">
         <button type="button" data-material="${item.key}" data-delta="-1" aria-label="减少${item.name}">−</button>
@@ -1820,156 +1711,146 @@ function renderMaterials() {
   `).join('');
 }
 
-function renderKitRows() {
-  const rows = getSortedKits();
-  byId('kitRows').innerHTML = rows.map((kit, index) => {
-    const stock = getStockCover(kit);
-    const status = kit.missing.length ? '需补货' : '库存齐';
-    const statusClass = kit.missing.length ? 'amber' : 'green';
-    const progressClass = stock < 90 ? 'warn' : '';
+function renderReasons() {
+  const kit = getKit();
+  const { moving } = getWeights();
+  const missing = kit.missing;
+  const reasons = [
+    { title: `适合${sceneLabels[state.scene]}的${motionText()}`, copy: `${kit.name}更适合当前动作组合，预览会按${intensityMap[state.intensity].label}强度生成。` },
+    { title: `可动重量约 ${moving}g`, copy: moving <= kit.capacity ? '在套件承载范围内。' : '重量偏高，建议减少可动花材或改用更强套件。' },
+    { title: missing.length ? `需要补 ${missing.length} 类零件` : '库存已满足', copy: missing.length ? missing.map(part => `${part.name} × ${part.missing}`).join('，') : '可以直接进入装配准备。' }
+  ];
+
+  const html = reasons.map((item, index) => `
+    <div class="plain-item">
+      <div class="plain-dot">${index + 1}</div>
+      <div>
+        <div class="plain-title">${item.title}</div>
+        <div class="plain-copy">${item.copy}</div>
+      </div>
+    </div>
+  `).join('');
+  byId('reasonList').innerHTML = html;
+  byId('reviewList').innerHTML = html;
+}
+
+function renderTasks() {
+  const kit = getKit();
+  const missing = kit.missing;
+  const tasks = [
+    { title: `${kit.name}装配模板`, meta: `${kit.time} 分钟 · ${hideLabels[state.hidePlace]}`, status: '已准备', tone: 'green' },
+    { title: `动作参数`, meta: `${intensityMap[state.intensity].cycle} · ${intensityMap[state.intensity].angle} · ${intensityMap[state.intensity].label}`, status: '已同步', tone: 'blue' }
+  ];
+  missing.forEach(part => {
+    tasks.push({
+      title: `${part.name} × ${part.missing}`,
+      meta: `预计 ¥${part.missing * part.price} · 到订单确认前停止`,
+      status: '待确认',
+      tone: 'amber'
+    });
+  });
+  if (!missing.length) {
+    tasks.push({ title: '库存满足', meta: '无需补货，可进入装配准备。', status: '完成', tone: 'green' });
+  }
+
+  byId('taskList').innerHTML = tasks.map((task, index) => `
+    <div class="task-row">
+      <div class="task-index">${index + 1}</div>
+      <div>
+        <div class="task-title">${task.title}</div>
+        <div class="task-meta">${task.meta}</div>
+      </div>
+      <span class="badge ${task.tone}">${task.status}</span>
+    </div>
+  `).join('');
+}
+
+function renderKits() {
+  byId('kitRows').innerHTML = getSortedKits().map((kit, index) => {
+    const stock = getStock(kit);
+    const stockTone = stock >= 90 ? 'green' : 'amber';
     return `
       <tr>
         <td>
-          <div class="kit-name">${index === 0 ? svgIcon.check : ''}${kit.name}</div>
+          <div class="kit-name">${kit.name}</div>
           <div class="kit-note">${kit.note}</div>
         </td>
         <td>
           <strong>${kit.score}</strong>
-          <div class="progress" style="--value:${kit.score}%"><span></span></div>
+          <div class="bar" style="--value:${kit.score}%"><span></span></div>
         </td>
         <td>
-          <span class="status ${statusClass}">${status}</span>
-          <div class="progress ${progressClass}" style="--value:${stock}%"><span></span></div>
+          <span class="badge ${stockTone}">${stock}%</span>
+          <div class="bar ${stock < 90 ? 'warn' : ''}" style="--value:${stock}%"><span></span></div>
         </td>
-        <td>${index === 0 ? '<span class="status blue">推荐</span>' : '<span class="status">备选</span>'}</td>
+        <td>${index === 0 ? '推荐方案' : '备选方案'}</td>
       </tr>
     `;
   }).join('');
 }
 
-function buildTasks(kit) {
-  const missing = kit.missing;
-  const procurement = missing.length
-    ? missing.map(part => ({
-      title: `${part.name} × ${part.missing}`,
-      meta: `预计 ¥${part.missing * part.price} · 进入订单确认前`,
-      status: '待确认'
-    }))
-    : [{ title: '库存已满足', meta: '可直接进入装配清单', status: '完成' }];
-  return [
-    { title: `${kit.name} 装配模板`, meta: `${kit.time} min · ${hideLabels[state.hidePlace]}`, status: '已生成' },
-    { title: '动作预览参数', meta: `${intensity[state.intensity].cycle} · ${intensity[state.intensity].angle}`, status: '已同步' },
-    ...procurement
-  ];
-}
-
-function renderTasks() {
-  const kit = getSelectedKit();
-  const tasks = buildTasks(kit);
-  const html = tasks.map((task, index) => `
-    <div class="task-row">
-      <div class="task-index">${String(index + 1).padStart(2, '0')}</div>
-      <div>
-        <div class="task-title">${task.title}</div>
-        <div class="task-meta">${task.meta}</div>
-      </div>
-      <span class="status ${task.status === '待确认' ? 'amber' : 'green'}">${task.status}</span>
-    </div>
-  `).join('');
-  byId('taskRows').innerHTML = html;
-  byId('miniTasks').innerHTML = html;
-}
-
-function updatePreviewMotion() {
+function updatePreview() {
   const wrap = byId('previewWrap');
   wrap.className = 'preview-wrap';
-  const order = ['bloom', 'sway', 'breath', 'blessing'];
-  const selected = order.find(motion => state.motions.has(motion)) || 'breath';
+  const selected = ['bloom', 'sway', 'breath', 'blessing'].find(motion => state.motions.has(motion)) || 'breath';
   wrap.classList.add(`motion-${selected}`);
 }
 
-function updateStep(step) {
-  state.step = step;
-  document.querySelectorAll('.step-button').forEach(button => {
-    const active = button.dataset.step === step;
-    button.classList.toggle('active', active);
-    button.setAttribute('aria-selected', String(active));
-  });
-  document.querySelectorAll('.flow-view').forEach(view => {
-    const active = view.dataset.view === step;
-    view.classList.toggle('active', active);
-  });
-}
-
 function update() {
-  const { total, moving } = getWeights();
-  const kit = getSelectedKit();
-  const stock = getStockCover(kit);
+  const kit = getKit();
+  const stock = getStock(kit);
   const missing = kit.missing;
-  const motions = [...state.motions].map(motion => motionLabels[motion]).join(' + ') || '呼吸';
-  const riskText = missing.length ? `需补 ${missing.length} 类零件` : '库存齐备';
-  const riskClass = missing.length ? 'amber' : 'green';
+  const { total, moving } = getWeights();
+  const riskText = missing.length ? '需补货' : '库存齐';
+  const riskTone = missing.length ? 'amber' : 'green';
+  const summary = `${sceneLabels[state.scene]} · ${motionText()}`;
 
-  byId('projectSummary').textContent = `${sceneLabels[state.scene]} · ${kit.name.replace('CyberBrick ', '')}`;
-  byId('projectSub').textContent = `库存覆盖 ${stock}%`;
-  byId('topStatus').textContent = stock >= 90 ? '可落地' : '待补货';
-  byId('topStatus').className = `status ${stock >= 90 ? 'green' : 'amber'}`;
-  byId('scenePill').textContent = sceneLabels[state.scene];
-  byId('motionPill').textContent = motions;
-  byId('riskPill').textContent = riskText;
-  byId('riskPill').className = `pill ${riskClass}`;
+  byId('heroKit').textContent = `${kit.name.replace('套件', '')}动作方案`;
+  byId('heroSummary').textContent = summary;
+  byId('heroRisk').textContent = riskText;
+  byId('heroRisk').className = `badge ${riskTone}`;
 
-  byId('metricTotal').textContent = `${total}g`;
-  byId('metricMoving').textContent = `${moving}g`;
+  byId('previewSub').textContent = `${sceneLabels[state.scene]} · ${kit.name.replace('套件', '')}动作方案`;
+  byId('previewBadge').textContent = stock >= 90 ? '库存齐' : '待补货';
+  byId('previewBadge').className = `badge ${stock >= 90 ? 'green' : 'amber'}`;
+  byId('metricMotion').textContent = motionText();
+  byId('metricWeight').textContent = `${total}g`;
   byId('metricStock').textContent = `${stock}%`;
-  byId('metricTime').textContent = `${kit.time}m`;
-  byId('materialSummary').textContent = `估算 ${total}g / 可动 ${moving}g`;
 
-  byId('frameLabel').textContent = `${sceneLabels[state.scene]} / ${kit.name.replace('CyberBrick ', '')}`;
-  byId('previewSub').textContent = `${motions} · ${hideLabels[state.hidePlace]}`;
-  byId('timelineMotion').textContent = motions;
-  byId('timelineCycle').textContent = `周期 ${intensity[state.intensity].cycle}`;
-  byId('timelineAngle').textContent = `幅度 ${intensity[state.intensity].angle}`;
-
-  byId('decisionTitle').textContent = `推荐${kit.name.replace('CyberBrick ', '')}`;
-  byId('decisionCopy').textContent = `${kit.note}；${missing.length ? '当前库存会自动生成补货清单。' : '当前库存可直接进入装配。'}`;
-  byId('kitScore').textContent = kit.score;
-  byId('insightStructure').textContent = `${state.scene === 'gift' ? '小体量' : '多层结构'} + ${hideLabels[state.hidePlace]}`;
-  byId('insightWeight').textContent = `可动重量 ${moving}g`;
-  byId('insightStock').textContent = missing.length ? `需补 ${missing.length} 类零件` : '库存满足';
-  byId('insightSafety').textContent = state.safeMode ? '低速、限幅、模板装配' : '开放参数、手动校准';
-  byId('stockStatus').textContent = missing.length ? '库存不足' : '库存齐备';
-  byId('stockStatus').className = `status ${missing.length ? 'amber' : 'green'}`;
-
-  byId('paramCycle').textContent = intensity[state.intensity].cycle;
-  byId('paramAngle').textContent = intensity[state.intensity].angle;
-  byId('paramHide').textContent = hideLabels[state.hidePlace];
-  byId('paramTime').textContent = `${kit.time} min`;
+  byId('materialHint').textContent = `总重 ${total}g，可动约 ${moving}g`;
+  byId('recommendTitle').textContent = `推荐${kit.name}`;
+  byId('recommendCopy').textContent = `${kit.note}。${missing.length ? '系统会把缺少的零件放进下单前清单。' : '当前库存满足，可直接进入装配准备。'}`;
+  byId('scoreRing').textContent = kit.score;
+  byId('stockBadge').textContent = riskText;
+  byId('stockBadge').className = `badge ${riskTone}`;
 
   renderMaterials();
-  renderKitRows();
+  renderReasons();
   renderTasks();
-  updatePreviewMotion();
+  renderKits();
+  updatePreview();
 }
 
 function bindEvents() {
-  document.querySelectorAll('.rail-item').forEach(button => {
+  document.querySelectorAll('.progress-step').forEach(button => {
+    button.addEventListener('click', () => setStep(button.dataset.step));
+  });
+
+  document.querySelectorAll('[data-next]').forEach(button => {
     button.addEventListener('click', () => {
-      document.querySelectorAll('.rail-item').forEach(item => item.classList.remove('active'));
-      button.classList.add('active');
-      byId(button.dataset.jump).scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setStep(button.dataset.next);
+      showToast('已进入下一步', stepLabels[button.dataset.next][1]);
     });
   });
 
-  document.querySelectorAll('.step-button').forEach(button => {
-    button.addEventListener('click', () => updateStep(button.dataset.step));
+  document.querySelectorAll('[data-prev]').forEach(button => {
+    button.addEventListener('click', () => setStep(button.dataset.prev));
   });
 
-  document.querySelectorAll('.source-card').forEach(button => {
+  document.querySelectorAll('.choice-card').forEach(button => {
     button.addEventListener('click', () => {
       state.source = button.dataset.value;
-      document.querySelectorAll('.source-card').forEach(item => item.classList.toggle('active', item === button));
-      showToast('创意来源已更新', '系统会按新的起点重新组织输入项。');
+      document.querySelectorAll('.choice-card').forEach(item => item.classList.toggle('active', item === button));
     });
   });
 
@@ -1981,7 +1862,7 @@ function bindEvents() {
     });
   });
 
-  document.querySelectorAll('[data-group="motion"] .chip').forEach(button => {
+  document.querySelectorAll('[data-group="motion"] .motion-card').forEach(button => {
     button.addEventListener('click', () => {
       const value = button.dataset.value;
       if (state.motions.has(value) && state.motions.size > 1) {
@@ -2015,11 +1896,11 @@ function bindEvents() {
     update();
   });
 
-  byId('materialTable').addEventListener('click', event => {
+  byId('materialList').addEventListener('click', event => {
     const button = event.target.closest('button[data-material]');
     if (!button) return;
-    const item = materials.find(material => material.key === button.dataset.material);
-    item.count = Math.max(0, item.count + Number(button.dataset.delta));
+    const material = materials.find(item => item.key === button.dataset.material);
+    material.count = Math.max(0, material.count + Number(button.dataset.delta));
     update();
   });
 
@@ -2030,26 +1911,22 @@ function bindEvents() {
     preview.src = URL.createObjectURL(file);
     preview.style.display = 'block';
     byId('uploadCopy').style.display = 'none';
-    showToast('设计图已接入', '系统会把实物图作为结构和遮挡参考。');
+    showToast('图片已加入', '系统会把图片作为作品结构参考。');
   });
 
-  byId('paramBtn').addEventListener('click', event => {
-    const panel = byId('parameters');
-    const open = !panel.classList.contains('open');
-    panel.classList.toggle('open', open);
-    event.currentTarget.setAttribute('aria-expanded', String(open));
-  });
+  const goReview = () => {
+    setStep('review');
+    byId('systemResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
-  ['prepareBtn', 'previewCta', 'orderBtn', 'exportBtn'].forEach(id => {
-    byId(id).addEventListener('click', () => {
-      updateStep('handoff');
-      byId('system').scrollIntoView({ behavior: 'smooth', block: 'start' });
-      showToast('已生成下单前流程', '补货清单、套件参数和装配模板已整理。');
-    });
+  byId('topRecommendBtn').addEventListener('click', goReview);
+  byId('goSystemBtn').addEventListener('click', () => {
+    byId('systemResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
   byId('resetBtn').addEventListener('click', () => {
     state.source = 'design';
+    state.step = 'idea';
     state.scene = 'wedding';
     state.motions = new Set(['breath', 'bloom', 'blessing']);
     state.intensity = 'soft';
@@ -2063,14 +1940,14 @@ function bindEvents() {
     materials[4].count = 6;
     byId('hidePlace').value = 'back';
     byId('safeSwitch').setAttribute('aria-pressed', 'true');
-    document.querySelectorAll('.source-card').forEach(item => item.classList.toggle('active', item.dataset.value === 'design'));
+    document.querySelectorAll('.choice-card').forEach(item => item.classList.toggle('active', item.dataset.value === 'design'));
     document.querySelectorAll('[data-group="scene"] .chip').forEach(item => item.setAttribute('aria-pressed', String(item.dataset.value === 'wedding')));
-    document.querySelectorAll('[data-group="motion"] .chip').forEach(item => item.setAttribute('aria-pressed', String(state.motions.has(item.dataset.value))));
+    document.querySelectorAll('[data-group="motion"] .motion-card').forEach(item => item.setAttribute('aria-pressed', String(state.motions.has(item.dataset.value))));
     document.querySelectorAll('[data-segment="intensity"] button').forEach(item => item.classList.toggle('active', item.dataset.value === 'soft'));
     document.querySelectorAll('[data-segment="priority"] button').forEach(item => item.classList.toggle('active', item.dataset.value === 'safe'));
-    updateStep('intent');
+    setStep('idea');
     update();
-    showToast('方案已重置', '已恢复为婚礼主桌默认样例。');
+    showToast('已重置', '已恢复默认婚礼主桌样例。');
   });
 }
 
