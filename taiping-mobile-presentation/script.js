@@ -7,8 +7,10 @@
   const chapter = document.getElementById("chapterLabel");
   const progress = document.getElementById("progressBar");
   const slides = Array.from(document.querySelectorAll(".slide"));
+  const coverVisual = document.getElementById("coverVisual");
   const lightCard = document.getElementById("lightCard");
   const lightToggle = document.getElementById("lightToggle");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   let current = 0;
   let locked = false;
@@ -18,6 +20,8 @@
   let holdTimer = 0;
   let holdMode = false;
   let suppressClick = false;
+  let coverIntro = null;
+  let coverFloat = null;
 
   const pad = (value) => String(value).padStart(2, "0");
 
@@ -26,6 +30,7 @@
   }
 
   function setActive(nextIndex) {
+    const previousIndex = current;
     current = Math.max(0, Math.min(slides.length - 1, nextIndex));
     track.style.transform = `translate3d(${-current * 100}%, 0, 0)`;
     counter.textContent = `${pad(current + 1)} / ${pad(slides.length)}`;
@@ -37,6 +42,12 @@
       slide.classList.toggle("is-active", active);
       slide.setAttribute("aria-hidden", active ? "false" : "true");
     });
+
+    if (current === 0 && previousIndex !== 0) {
+      playCoverAnimation();
+    } else if (current !== 0 && coverFloat) {
+      coverFloat.pause();
+    }
   }
 
   function goTo(nextIndex) {
@@ -141,6 +152,77 @@
     });
   }
 
+  function prepareCoverAnimation() {
+    if (!coverVisual || reduceMotion.matches || !window.gsap) return;
+
+    const gsap = window.gsap;
+    const petals = Array.from(coverVisual.querySelectorAll(".cover-petal"));
+    const cord = coverVisual.querySelectorAll(".cover-cord path");
+    const seams = coverVisual.querySelectorAll(".ball-outline, .ball-seam, .ball-knot");
+    const tassel = coverVisual.querySelector(".ball-tassel");
+    const copy = document.querySelectorAll(".cover-copy-reveal");
+    const note = coverVisual.querySelector(".cover-object-note");
+    const ball = coverVisual.querySelector(".animated-ball");
+
+    petals.forEach((petal, index) => {
+      const angle = index * (Math.PI / 6) - Math.PI / 2;
+      const distance = 92 + (index % 3) * 10;
+      gsap.set(petal, {
+        x: Math.cos(angle) * distance,
+        y: Math.sin(angle) * distance,
+        rotation: index % 2 ? 16 : -16,
+        scale: .68,
+        opacity: 0,
+        transformOrigin: "50% 50%"
+      });
+    });
+
+    gsap.set(cord, { strokeDasharray: 90, strokeDashoffset: 90, opacity: 0 });
+    gsap.set(seams, { opacity: 0, scale: .82, transformOrigin: "50% 50%" });
+    gsap.set(tassel, { opacity: 0, scaleY: .3, transformOrigin: "50% 0%" });
+    gsap.set(copy, { opacity: 0, y: 18 });
+    gsap.set(note, { opacity: 0, y: 8 });
+
+    coverIntro = gsap.timeline({
+      paused: true,
+      defaults: { ease: "power3.out" },
+      onComplete: () => coverFloat && coverFloat.restart(true)
+    });
+
+    coverIntro
+      .to(cord, { strokeDashoffset: 0, opacity: 1, duration: .4, stagger: .06 })
+      .to(petals, {
+        x: 0,
+        y: 0,
+        rotation: 0,
+        scale: 1,
+        opacity: 1,
+        duration: .68,
+        stagger: { amount: .42, from: "random" }
+      }, "-=.18")
+      .to(seams, { opacity: 1, scale: 1, duration: .38, stagger: .035 }, "-=.28")
+      .to(tassel, { opacity: 1, scaleY: 1, duration: .34 }, "-=.22")
+      .to(note, { opacity: 1, y: 0, duration: .3 }, "-=.14")
+      .to(copy, { opacity: 1, y: 0, duration: .4, stagger: .09 }, "-=.2");
+
+    coverFloat = gsap.to(ball, {
+      paused: true,
+      y: -6,
+      rotation: -1.2,
+      duration: 2.4,
+      ease: "sine.inOut",
+      repeat: -1,
+      yoyo: true,
+      transformOrigin: "50% 42%"
+    });
+  }
+
+  function playCoverAnimation() {
+    if (!coverIntro || reduceMotion.matches) return;
+    if (coverFloat) coverFloat.pause(0);
+    coverIntro.restart(true);
+  }
+
   function setLight(isLit) {
     if (!lightCard || !lightToggle) return;
     lightCard.classList.toggle("is-lit", isLit);
@@ -189,6 +271,9 @@
   document.addEventListener("keydown", handleKey);
 
   prepareImages();
+  prepareCoverAnimation();
   prepareLightCard();
   setActive(0);
+  playCoverAnimation();
 })();
+
