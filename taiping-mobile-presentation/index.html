@@ -8,334 +8,640 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
+    <svg class="svg-defs" aria-hidden="true" focusable="false">
+      <symbol id="i-ball-addon" viewBox="0 0 64 64">
+        <circle cx="28" cy="32" r="17"></circle>
+        <path d="M28 15v34M11 32h34M16 20l24 24M40 20 16 44"></path>
+        <path d="M44 15c4 0 7 3 7 7s-3 7-7 7"></path>
+        <path d="M47 16 54 9M51 22h8M47 28l7 7"></path>
+      </symbol>
+      <symbol id="i-hand-choice" viewBox="0 0 64 64">
+        <path d="M16 42c6 4 13 6 22 5 4-.4 8-3 10-7l3-6"></path>
+        <path d="M19 41V25c0-3 5-3 5 0v12"></path>
+        <path d="M24 37V20c0-3 5-3 5 0v16"></path>
+        <path d="M29 36V23c0-3 5-3 5 0v13"></path>
+        <path d="M11 15h12M14 9h16M17 21h10"></path>
+        <path d="M43 18h9M48 13l5 5-5 5"></path>
+      </symbol>
+      <symbol id="i-card-light" viewBox="0 0 64 64">
+        <rect x="16" y="17" width="32" height="40" rx="2"></rect>
+        <path d="M24 27h16M24 36h10M24 45h16"></path>
+        <path d="M32 7v6M21 10l3 5M43 10l-3 5M12 22l6 2M52 24l6-2"></path>
+      </symbol>
+      <symbol id="i-ball" viewBox="0 0 64 64">
+        <circle cx="32" cy="32" r="23"></circle>
+        <path d="M32 9v46M9 32h46M16 16l32 32M48 16 16 48"></path>
+        <path d="M23 11c4 7 4 35 0 42M41 11c-4 7-4 35 0 42"></path>
+      </symbol>
+      <symbol id="i-petal" viewBox="0 0 64 64">
+        <circle cx="32" cy="32" r="22"></circle>
+        <path d="M32 10c6 6 6 38 0 44M32 10c-6 6-6 38 0 44M10 32c6-6 38-6 44 0M10 32c6 6 38 6 44 0"></path>
+      </symbol>
+      <symbol id="i-thread" viewBox="0 0 64 64">
+        <path d="M16 47 47 16"></path>
+        <path d="M43 12l9 9"></path>
+        <path d="M18 42c5 8 18 8 28 0"></path>
+        <path d="M15 47c9-2 16 1 21 8"></path>
+      </symbol>
+      <symbol id="i-wish" viewBox="0 0 64 64">
+        <path d="M18 18h28v24H18z"></path>
+        <path d="M18 42l7 8 7-8 7 8 7-8"></path>
+        <path d="M24 27h16M27 34h10"></path>
+      </symbol>
+      <symbol id="i-heart" viewBox="0 0 64 64">
+        <path d="M32 51S14 40 14 25c0-7 9-11 14-5l4 5 4-5c5-6 14-2 14 5 0 15-18 26-18 26z"></path>
+      </symbol>
+      <symbol id="i-static" viewBox="0 0 64 64">
+        <circle cx="32" cy="26" r="17"></circle>
+        <path d="M18 51h28M25 45h14"></path>
+      </symbol>
+      <symbol id="i-many" viewBox="0 0 64 64">
+        <path d="M14 24h25v25H14zM24 15h25v25M33 9h17v17"></path>
+      </symbol>
+      <symbol id="i-flat" viewBox="0 0 64 64">
+        <circle cx="22" cy="33" r="13"></circle>
+        <path d="M37 21h15v24H37zM42 27h5M42 33h5M42 39h5"></path>
+      </symbol>
+      <symbol id="i-half" viewBox="0 0 64 64">
+        <circle cx="29" cy="34" r="17"></circle>
+        <path d="M40 23c8 3 13 9 13 17 0 4-2 8-5 10"></path>
+      </symbol>
+      <symbol id="i-dangle" viewBox="0 0 64 64">
+        <circle cx="32" cy="20" r="13"></circle>
+        <path d="M32 33v8M22 44h20M25 49h14M28 54h8"></path>
+      </symbol>
+      <symbol id="i-chat" viewBox="0 0 64 64">
+        <path d="M16 16h32v24H29L19 50V40h-3z"></path>
+        <path d="M24 25h16M24 32h10"></path>
+      </symbol>
+      <symbol id="i-options" viewBox="0 0 64 64">
+        <path d="M12 18h18v24H12zM23 12h18v24M34 22h18v24H34z"></path>
+      </symbol>
+      <symbol id="i-three-balls" viewBox="0 0 64 64">
+        <circle cx="18" cy="33" r="10"></circle>
+        <circle cx="32" cy="29" r="12"></circle>
+        <circle cx="48" cy="35" r="9"></circle>
+      </symbol>
+      <symbol id="i-hook" viewBox="0 0 64 64">
+        <path d="M34 10c-8 5-8 14-1 19 8 6 9 16 1 22-6 5-16 2-18-6"></path>
+        <path d="M34 10h13M47 10v13"></path>
+      </symbol>
+      <symbol id="i-hand" viewBox="0 0 64 64">
+        <path d="M15 44c8 6 18 8 29 4 4-1 6-5 7-9l1-5"></path>
+        <path d="M20 42V26c0-3 5-3 5 0v13"></path>
+        <path d="M25 39V18c0-3 5-3 5 0v19"></path>
+        <path d="M30 37V22c0-3 5-3 5 0v15"></path>
+        <path d="M35 38V28c0-3 5-3 5 0v11"></path>
+      </symbol>
+    </svg>
+
     <div class="stage" id="stage" aria-label="太平绣球手机竖屏演示">
       <main class="slides" id="slides">
-        <section class="slide slide-cover is-active" data-page="1" aria-label="第01页：封面">
+        <section class="slide slide-cover is-active" data-page="1" data-chapter-label="开场" aria-label="第01页：封面">
           <div class="slide-inner cover-layout">
-            <p class="top-note reveal">2026 山西非遗青年传承人创造营</p>
-            <div class="cover-visual reveal" style="--d: 70ms">
-              <figure class="image-shell hero-ball" data-fit="cover">
+            <div class="cover-visual reveal">
+              <figure class="image-shell hero-ball">
                 <img src="assets/images/太平绣球_主视觉.jpg" alt="单颗太平绣球高清主视觉照片" loading="eager" decoding="async">
                 <span class="image-placeholder" aria-hidden="true"><strong>待补图片</strong><small>太平绣球主视觉</small></span>
               </figure>
             </div>
             <div class="cover-copy">
-              <h1 class="cover-title reveal" style="--d: 180ms">
+              <h1 class="cover-title reveal" style="--d: 120ms">
                 <span>太平，</span>
                 <span>可以怎么玩？</span>
               </h1>
-              <p class="subtitle reveal" style="--d: 300ms">山西太平绣球当代产品与体验共创探索</p>
-              <p class="bottom-note reveal" style="--d: 420ms">阶段研究与概念提案</p>
+              <p class="subtitle reveal" style="--d: 240ms">山西太平绣球当代产品与体验共创探索</p>
             </div>
           </div>
         </section>
 
-        <section class="slide" data-page="2" aria-label="第02页：项目背景">
+        <section class="slide slide-overview" data-page="2" data-chapter-label="方案总览" aria-label="第02页：方案总览">
           <div class="slide-inner">
-            <p class="kicker reveal">01｜为什么要重新研究</p>
+            <p class="kicker reveal">总览</p>
             <h2 class="page-title reveal" style="--d: 60ms">
-              <span>不是只让它</span>
-              <span>被看见。</span>
+              <span>这次，</span>
+              <span>我们想解决</span>
+              <span>三件事</span>
             </h2>
-            <p class="major-claim reveal" style="--d: 130ms">
-              更重要的是：<br>让人愿意把它带回生活。
+            <div class="overview-list reveal" style="--d: 150ms">
+              <article>
+                <svg class="line-icon" aria-hidden="true"><use href="#i-ball-addon"></use></svg>
+                <strong>绣球本身</strong>
+                <span>加什么、怎么变</span>
+              </article>
+              <article>
+                <svg class="line-icon" aria-hidden="true"><use href="#i-hand-choice"></use></svg>
+                <strong>购买过程</strong>
+                <span>怎么让选择更有意思</span>
+              </article>
+              <article>
+                <svg class="line-icon" aria-hidden="true"><use href="#i-card-light"></use></svg>
+                <strong>绣球小卡</strong>
+                <span>把纹样和祝福带走</span>
+              </article>
+            </div>
+            <p class="bottom-thesis reveal" style="--d: 320ms">
+              不是只做一个新造型，<br>而是把产品、选择过程和带走后的体验连起来。
             </p>
-            <p class="body-text reveal" style="--d: 200ms">
-              这次共创不是给非遗换一个包装，而是帮助太平绣球进入真实的产品、消费和长期市场。
-            </p>
-            <div class="document-and-flow reveal" style="--d: 280ms">
+          </div>
+        </section>
+
+        <section class="slide chapter-slide" data-page="3" data-chapter-label="01 为什么要做" aria-label="第03页：为什么要做">
+          <div class="slide-inner">
+            <div class="chapter-marker reveal">
+              <span>01</span>
+              <strong>为什么要做</strong>
+            </div>
+            <h2 class="page-title reveal" style="--d: 90ms">
+              <span>不只是被看见，</span>
+              <span>还要有人愿意带回生活。</span>
+            </h2>
+            <div class="simple-flow reveal" style="--d: 180ms" aria-label="传统技艺到进入生活">
+              <span>传统技艺</span>
+              <i></i>
+              <span>当代产品</span>
+              <i></i>
+              <span>进入生活</span>
+            </div>
+            <div class="document-row reveal" style="--d: 280ms">
               <figure class="image-shell document-shot">
                 <img src="assets/images/创造营_项目文件.jpg" alt="创造营项目文件资料截图" loading="lazy" decoding="async">
                 <span class="image-placeholder" aria-hidden="true"><strong>待补图片</strong><small>项目计划书截图</small></span>
               </figure>
-              <ol class="vertical-flow" aria-label="项目转译路径">
-                <li>传统技艺</li>
-                <li>当代转译</li>
-                <li>产品创新</li>
-                <li>市场验证</li>
-                <li>持续发展</li>
-              </ol>
+              <p>这次共创希望太平绣球不仅被展示，也能成为今天真正会被选择、使用和购买的产品。</p>
             </div>
-            <blockquote class="quiet-quote reveal" style="--d: 380ms">
-              设计不是替代传统，<br>而是给传统一个今天能用的入口。
-            </blockquote>
-            <p class="source reveal" style="--d: 450ms">资料来源：项目计划书</p>
           </div>
         </section>
 
-        <section class="slide" data-page="3" aria-label="第03页：传统基因">
+        <section class="slide" data-page="4" data-chapter-label="01 为什么要做" aria-label="第04页：什么不能动">
           <div class="slide-inner">
-            <p class="kicker reveal">02｜传统基因</p>
-            <h2 class="page-title reveal" style="--d: 60ms">
-              <span>先看清</span>
-              <span>什么不能动。</span>
-            </h2>
-            <p class="body-text tight reveal" style="--d: 130ms">
-              球体、十二瓣、手工拼制和“太平”祝愿，是它被认出来的根。
-            </p>
-            <div class="gene-map reveal" style="--d: 220ms" aria-label="太平绣球传统基因">
-              <figure class="image-shell gene-ball">
-                <img src="assets/images/太平绣球_主视觉.jpg" alt="完整太平绣球照片" loading="lazy" decoding="async">
-                <span class="image-placeholder" aria-hidden="true"><strong>待补图片</strong><small>完整太平绣球</small></span>
-              </figure>
-              <div class="gene-item gene-top">
+            <p class="kicker reveal">01 / 为什么要做</p>
+            <h2 class="page-title compact-title reveal" style="--d: 60ms">什么不能动</h2>
+            <div class="core-map reveal" style="--d: 130ms" aria-label="太平绣球四个传统核心">
+              <div class="core-ball">
+                <svg class="big-ball" aria-hidden="true"><use href="#i-ball"></use></svg>
+              </div>
+              <article class="core-item top">
+                <svg class="mini-icon" aria-hidden="true"><use href="#i-petal"></use></svg>
                 <strong>十二瓣</strong>
                 <span>一年十二个月</span>
-              </div>
-              <div class="gene-item gene-right">
+              </article>
+              <article class="core-item right">
+                <svg class="mini-icon" aria-hidden="true"><use href="#i-ball"></use></svg>
                 <strong>球体</strong>
-                <span>核心视觉识别</span>
-              </div>
-              <div class="gene-item gene-bottom">
+                <span>最直接的识别</span>
+              </article>
+              <article class="core-item bottom">
+                <svg class="mini-icon" aria-hidden="true"><use href="#i-thread"></use></svg>
+                <strong>手工拼制</strong>
+                <span>传统制作方式</span>
+              </article>
+              <article class="core-item left">
+                <svg class="mini-icon" aria-hidden="true"><use href="#i-wish"></use></svg>
                 <strong>太平</strong>
-                <span>平安、吉祥、团圆与祝愿</span>
+                <span>最重要的祝愿</span>
+              </article>
+            </div>
+            <p class="single-line reveal" style="--d: 330ms">不把它改得不像自己。</p>
+          </div>
+        </section>
+
+        <section class="slide case-page" data-page="5" data-chapter-label="01 为什么要做" aria-label="第05页：市场已经证明什么">
+          <div class="slide-inner">
+            <p class="kicker reveal">01 / 为什么要做</p>
+            <h2 class="page-title compact-title reveal" style="--d: 60ms">
+              市场已经证明：<br>绣球可以成为今天的产品
+            </h2>
+            <div class="case-pair reveal" style="--d: 150ms">
+              <article>
+                <figure class="image-shell case-image">
+                  <img src="assets/images/顿喜_产品01.jpg" alt="顿喜绣球产品图" loading="lazy" decoding="async">
+                  <span class="image-placeholder" aria-hidden="true"><strong>待补案例图</strong><small>顿喜产品</small></span>
+                </figure>
+                <div>
+                  <strong>顿喜</strong>
+                  <p>把传统绣球做成东方礼物。</p>
+                  <span>祈福</span><span>随身挂饰</span><span>门店礼赠</span>
+                </div>
+              </article>
+              <article>
+                <figure class="image-shell case-image">
+                  <img src="assets/images/日本手まり_01.jpg" alt="日本手まり产品图" loading="lazy" decoding="async">
+                  <span class="image-placeholder" aria-hidden="true"><strong>待补案例图</strong><small>日本手まり</small></span>
+                </figure>
+                <div>
+                  <strong>日本手まり</strong>
+                  <p>没有改变“球”，而是让球进入陈设、香和收藏。</p>
+                  <span>工艺</span><span>球体</span><span>生活方式</span>
+                </div>
+              </article>
+            </div>
+            <p class="market-gap reveal" style="--d: 340ms">
+              但是，<br>“年轻人为什么每天愿意挂着它”<br>还有空间。
+            </p>
+          </div>
+        </section>
+
+        <section class="slide insight-page" data-page="6" data-chapter-label="01 为什么要做" aria-label="第06页：真正的问题">
+          <div class="slide-inner">
+            <p class="kicker reveal">01 / 为什么要做</p>
+            <h2 class="page-title reveal" style="--d: 60ms">
+              <span>绣球不缺文化，</span>
+              <span>缺的是购买理由。</span>
+            </h2>
+            <div class="insight-list reveal" style="--d: 150ms">
+              <article>
+                <em>01</em>
+                <svg class="mini-icon" aria-hidden="true"><use href="#i-heart"></use></svg>
+                <strong>意义有点重</strong>
+                <p>爱情、定情、婚嫁，普通朋友送有时显得太重。</p>
+              </article>
+              <article>
+                <em>02</em>
+                <svg class="mini-icon" aria-hidden="true"><use href="#i-static"></use></svg>
+                <strong>形态比较固定</strong>
+                <p>好看，但为什么要一直挂在包上？</p>
+              </article>
+              <article>
+                <em>03</em>
+                <svg class="mini-icon" aria-hidden="true"><use href="#i-many"></use></svg>
+                <strong>选择太多</strong>
+                <p>首饰、花、毛绒、香水，都有成熟的送礼理由。</p>
+              </article>
+            </div>
+            <p class="single-line reveal" style="--d: 360ms">所以，重点不只是新造型。</p>
+          </div>
+        </section>
+
+        <section class="slide chapter-slide play-page" data-page="7" data-chapter-label="02 绣球本身怎么玩" aria-label="第07页：绣球本身怎么玩">
+          <div class="slide-inner">
+            <div class="chapter-marker reveal">
+              <span>02</span>
+              <strong>绣球本身怎么玩</strong>
+            </div>
+            <p class="chapter-sub reveal" style="--d: 90ms">先把它看成一颗球。</p>
+            <div class="relation-grid reveal" style="--d: 170ms" aria-label="一颗球还能发生什么">
+              <article>
+                <svg viewBox="0 0 72 72" aria-hidden="true"><circle cx="36" cy="38" r="17"></circle><path d="M18 27c6 5 11 6 18 3M54 27c-6 5-11 6-18 3"></path></svg>
+                <strong>趴</strong>
+              </article>
+              <article>
+                <svg viewBox="0 0 72 72" aria-hidden="true"><circle cx="36" cy="36" r="16"></circle><path d="M17 35c5-9 13-13 19-13M55 35c-5-9-13-13-19-13"></path></svg>
+                <strong>抱</strong>
+              </article>
+              <article>
+                <svg viewBox="0 0 72 72" aria-hidden="true"><circle cx="33" cy="38" r="16"></circle><path d="M47 34l13-5M47 42l13 5"></path></svg>
+                <strong>叼</strong>
+              </article>
+              <article>
+                <svg viewBox="0 0 72 72" aria-hidden="true"><circle cx="36" cy="31" r="16"></circle><path d="M18 50c12 8 25 8 36 0"></path></svg>
+                <strong>托</strong>
+              </article>
+              <article>
+                <svg viewBox="0 0 72 72" aria-hidden="true"><circle cx="36" cy="41" r="16"></circle><path d="M25 25l-5-12 13 7M47 25l5-12-13 7"></path></svg>
+                <strong>戴</strong>
+              </article>
+              <article>
+                <svg viewBox="0 0 72 72" aria-hidden="true"><circle cx="36" cy="36" r="15"></circle><path d="M16 42c11 16 40 11 40-6 0-15-23-15-24-1"></path></svg>
+                <strong>绕</strong>
+              </article>
+            </div>
+            <p class="single-line reveal" style="--d: 340ms">不改球，只增加球和小配件之间的关系。</p>
+          </div>
+        </section>
+
+        <section class="slide" data-page="8" data-chapter-label="02 绣球本身怎么玩" aria-label="第08页：可以加什么">
+          <div class="slide-inner">
+            <p class="kicker reveal">02 / 绣球本身怎么玩</p>
+            <h2 class="page-title reveal" style="--d: 60ms">
+              <span>配件要轻，</span>
+              <span>球还是主角。</span>
+            </h2>
+            <div class="accessory-types reveal" style="--d: 150ms">
+              <article>
+                <svg class="line-icon" aria-hidden="true"><use href="#i-flat"></use></svg>
+                <strong>平面件</strong>
+                <span>耳朵 / 爪 / 佛手 / 花</span>
+              </article>
+              <article>
+                <svg class="line-icon" aria-hidden="true"><use href="#i-half"></use></svg>
+                <strong>半立体件</strong>
+                <span>轻填充的小动物部分</span>
+              </article>
+              <article>
+                <svg class="line-icon" aria-hidden="true"><use href="#i-dangle"></use></svg>
+                <strong>垂饰件</strong>
+                <span>流苏 / 小珠 / 小挂件</span>
+              </article>
+            </div>
+            <div class="ratio-panel reveal" style="--d: 300ms" aria-label="绣球与配件比例">
+              <div class="ratio-line">
+                <span style="width: 80%">太平绣球 约 75-85%</span>
+                <span>小配件 约 15-25%</span>
               </div>
-              <div class="gene-item gene-left">
-                <strong>传统拼制</strong>
-                <span>成熟手工体系</span>
+              <p>贵的是绣球，配件负责让它多一点变化。</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide" data-page="9" data-chapter-label="02 绣球本身怎么玩" aria-label="第09页：山西文化怎么放">
+          <div class="slide-inner">
+            <p class="kicker reveal">02 / 绣球本身怎么玩</p>
+            <h2 class="page-title reveal" style="--d: 60ms">
+              <span>山西元素，</span>
+              <span>不要压过绣球。</span>
+            </h2>
+            <div class="sketch-grid reveal" style="--d: 150ms">
+              <article>
+                <svg viewBox="0 0 120 82" aria-hidden="true"><path d="M19 58c18 11 39 11 61 0"></path><circle cx="60" cy="39" r="18"></circle><path d="M24 57V39c0-7 10-7 10 0v12M34 51V31c0-7 10-7 10 0v19"></path></svg>
+                <strong>佛手托太平</strong>
+                <p>一只简化手势托着球。</p>
+              </article>
+              <article>
+                <svg viewBox="0 0 120 82" aria-hidden="true"><path d="M18 24h84M24 24l10-10h52l10 10M31 25v12M45 25v8M59 25v12M73 25v8M87 25v12"></path><circle cx="72" cy="53" r="16"></circle></svg>
+                <strong>檐下月</strong>
+                <p>屋檐下，绣球像月亮。</p>
+              </article>
+              <article>
+                <svg viewBox="0 0 120 82" aria-hidden="true"><path d="M60 16v22M46 38c8-17 20-17 28 0M41 49c13-15 25-15 38 0M36 58h48"></path><circle cx="60" cy="20" r="6"></circle></svg>
+                <strong>佛意小件</strong>
+                <p>莲、盘长结、法轮做小型垂饰。</p>
+              </article>
+            </div>
+            <p class="single-line reveal" style="--d: 340ms">不是堆符号，而是找到一个和球真正有关系的画面。</p>
+          </div>
+        </section>
+
+        <section class="slide compare-page" data-page="10" data-chapter-label="03 系列怎么成立" aria-label="第10页：先有意义再有造型">
+          <div class="slide-inner">
+            <div class="chapter-marker reveal">
+              <span>03</span>
+              <strong>系列怎么成立</strong>
+            </div>
+            <div class="compare-flow reveal" style="--d: 120ms">
+              <article class="wrong">
+                <em>×</em>
+                <h3>先有产品，<br>再补意义</h3>
+                <p>现成绣球</p>
+                <i></i>
+                <p>说它属于某个星座</p>
+                <i></i>
+                <p>最后补一句寓意</p>
+              </article>
+              <article class="right">
+                <em>✓</em>
+                <h3>先有意义，<br>再做造型</h3>
+                <p>先确定想表达什么</p>
+                <i></i>
+                <p>找到对应视觉特征</p>
+                <i></i>
+                <p>再决定配件和组合</p>
+              </article>
+            </div>
+            <p class="single-line reveal" style="--d: 340ms">系列不是给现有绣球贴标签。</p>
+          </div>
+        </section>
+
+        <section class="slide twelve-page" data-page="11" data-chapter-label="03 系列怎么成立" aria-label="第11页：十二只是一个框架">
+          <div class="slide-inner">
+            <p class="kicker reveal">03 / 系列怎么成立</p>
+            <h2 class="page-title reveal" style="--d: 60ms">
+              <span>“十二”</span>
+              <span>可以有很多答案。</span>
+            </h2>
+            <div class="twelve-grid reveal" style="--d: 150ms">
+              <article>
+                <strong>十二生肖</strong>
+                <p>动物的耳、角、爪、尾、动作</p>
+                <span>兔耳 / 虎爪 / 猴子趴住</span>
+              </article>
+              <article>
+                <strong>十二星座</strong>
+                <p>最容易认出的星座特征</p>
+                <span>白羊角 / 巨蟹钳 / 天蝎尾</span>
+              </article>
+              <article>
+                <strong>十二种小太平</strong>
+                <p>今天真正想顺一点的小事</p>
+                <span>睡得着 / 赶得上 / 早点回</span>
+              </article>
+            </div>
+            <p class="single-line reveal" style="--d: 330ms">重点不是选哪一种“十二”，而是每一套都先有自己的理由。</p>
+          </div>
+        </section>
+
+        <section class="slide formula-page" data-page="12" data-chapter-label="03 系列怎么成立" aria-label="第12页：系列的视觉原则">
+          <div class="slide-inner">
+            <p class="kicker reveal">03 / 系列怎么成立</p>
+            <h2 class="page-title compact-title reveal" style="--d: 60ms">系列的视觉原则</h2>
+            <div class="formula reveal" style="--d: 140ms" aria-label="系列公式">
+              <span>系列主题</span>
+              <b>+</b>
+              <span>对应特征</span>
+              <b>+</b>
+              <span>太平绣球</span>
+              <b>=</b>
+              <strong>完整一款</strong>
+            </div>
+            <div class="formula-examples reveal" style="--d: 260ms">
+              <p><span>十二生肖</span><i>+</i><span>兔耳</span><i>+</i><span>绣球</span><i>=</i><strong>兔款</strong></p>
+              <p><span>星座</span><i>+</i><span>白羊角</span><i>+</i><span>绣球</span><i>=</i><strong>白羊款</strong></p>
+              <p><span>小太平</span><i>+</i><span>跑路腿</span><i>+</i><span>绣球</span><i>=</i><strong>赶得上</strong></p>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide chapter-slide process-lead" data-page="13" data-chapter-label="04 买绣球的过程怎么玩" aria-label="第13页：买绣球的过程怎么玩">
+          <div class="slide-inner">
+            <div class="chapter-marker reveal">
+              <span>04</span>
+              <strong>怎么买，也可以成为体验。</strong>
+            </div>
+            <p class="chapter-sub reveal" style="--d: 90ms">不只是“看到、付款、带走”。</p>
+            <div class="two-flow reveal" style="--d: 190ms">
+              <article>
+                <strong>现在</strong>
+                <p>看到</p><i></i><p>挑一个</p><i></i><p>付款</p><i></i><p>带走</p>
+              </article>
+              <article>
+                <strong>我们希望</strong>
+                <p>想一想</p><i></i><p>选一选</p><i></i><p>自己完成一下</p><i></i><p>带走</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide flow-page" data-page="14" data-chapter-label="04 买绣球的过程怎么玩" aria-label="第14页：完整体验流程">
+          <div class="slide-inner">
+            <p class="kicker reveal">04 / 买绣球的过程怎么玩</p>
+            <h2 class="page-title reveal" style="--d: 60ms">
+              <span>一颗太平，</span>
+              <span>可以这样被得到。</span>
+            </h2>
+            <ol class="experience-flow reveal" style="--d: 150ms">
+              <li><svg class="mini-icon" aria-hidden="true"><use href="#i-chat"></use></svg><span>今天想要什么？</span></li>
+              <li><svg class="mini-icon" aria-hidden="true"><use href="#i-options"></use></svg><span>找到几个方向</span></li>
+              <li><svg class="mini-icon" aria-hidden="true"><use href="#i-three-balls"></use></svg><span>选择绣球</span></li>
+              <li><svg class="mini-icon" aria-hidden="true"><use href="#i-ball-addon"></use></svg><span>选一个小配件</span></li>
+              <li><svg class="mini-icon" aria-hidden="true"><use href="#i-hand"></use></svg><span>自己完成最后一下</span></li>
+              <li><svg class="mini-icon" aria-hidden="true"><use href="#i-card-light"></use></svg><span>得到对应小卡</span></li>
+            </ol>
+            <p class="time-note reveal" style="--d: 360ms">整个过程控制在 1-3 分钟，不做复杂测试，不做长时间手作。</p>
+          </div>
+        </section>
+
+        <section class="slide choice-page" data-page="15" data-chapter-label="04 买绣球的过程怎么玩" aria-label="第15页：先选我现在想要什么">
+          <div class="slide-inner">
+            <p class="kicker reveal">04 / 买绣球的过程怎么玩</p>
+            <h2 class="page-title reveal" style="--d: 60ms">
+              <span>先有一个理由，</span>
+              <span>再开始挑球。</span>
+            </h2>
+            <div class="reason-grid reveal" style="--d: 150ms">
+              <span>顺一点</span>
+              <span>睡好一点</span>
+              <span>早点回</span>
+              <span>见得到</span>
+              <span>有点好运</span>
+              <span>随便来一个</span>
+            </div>
+            <p class="single-line reveal" style="--d: 320ms">
+              给自己，选“我现在想要什么”。<br>送别人，选“我想祝他什么”。
+            </p>
+          </div>
+        </section>
+
+        <section class="slide combo-page" data-page="16" data-chapter-label="04 买绣球的过程怎么玩" aria-label="第16页：再选这一颗长什么样">
+          <div class="slide-inner">
+            <p class="kicker reveal">04 / 买绣球的过程怎么玩</p>
+            <h2 class="page-title reveal" style="--d: 60ms">
+              <span>再选</span>
+              <span>这一颗长什么样。</span>
+            </h2>
+            <div class="combo-diagram reveal" style="--d: 150ms">
+              <article><svg class="line-icon" aria-hidden="true"><use href="#i-ball"></use></svg><span>球</span></article>
+              <b>+</b>
+              <article><svg class="line-icon" aria-hidden="true"><use href="#i-ball-addon"></use></svg><span>系列小配件</span></article>
+              <b>+</b>
+              <article><svg class="line-icon" aria-hidden="true"><use href="#i-hook"></use></svg><span>流苏 / 挂扣</span></article>
+              <i></i>
+              <strong>我的这一颗</strong>
+            </div>
+            <p class="single-line reveal" style="--d: 330ms">不是随便乱搭。每套系列提前设计好几组合理组合。</p>
+          </div>
+        </section>
+
+        <section class="slide action-page" data-page="17" data-chapter-label="04 买绣球的过程怎么玩" aria-label="第17页：最后一下由用户完成">
+          <div class="slide-inner">
+            <p class="kicker reveal">04 / 买绣球的过程怎么玩</p>
+            <h2 class="page-title reveal" style="--d: 60ms">
+              <span>最后一下，</span>
+              <span>留给自己。</span>
+            </h2>
+            <div class="action-visual reveal" style="--d: 150ms">
+              <svg viewBox="0 0 260 260" aria-hidden="true">
+                <circle class="soft-circle" cx="136" cy="118" r="54"></circle>
+                <path d="M82 178c38 30 92 31 129 0"></path>
+                <path d="M93 171V97c0-13 19-13 19 0v54"></path>
+                <path d="M112 151V72c0-13 19-13 19 0v75"></path>
+                <path d="M131 148V86c0-13 19-13 19 0v62"></path>
+                <path d="M150 152v-43c0-13 19-13 19 0v50"></path>
+                <path class="accent-stroke" d="M136 172v38M118 211h36M126 226h20"></path>
+              </svg>
+            </div>
+            <p class="single-line reveal" style="--d: 330ms">不用复杂手作。一个小动作，就会让人记住：这是我完成的。</p>
+          </div>
+        </section>
+
+        <section class="slide light-page" data-page="18" data-chapter-label="05 买完以后还能留下什么" aria-label="第18页：透光小卡">
+          <div class="slide-inner">
+            <div class="chapter-marker reveal">
+              <span>05</span>
+              <strong>除了绣球，还能带走什么？</strong>
+            </div>
+            <h2 class="page-title compact-title reveal" style="--d: 90ms">
+              每一颗球，<br>可以有一张自己的卡。
+            </h2>
+            <div class="light-demo reveal" style="--d: 170ms">
+              <div class="light-card" id="lightCard" data-no-slide>
+                <span class="card-label normal">普通状态</span>
+                <span class="card-label lit">光照以后</span>
+                <svg viewBox="0 0 180 236" aria-hidden="true">
+                  <rect x="18" y="18" width="144" height="200" rx="6"></rect>
+                  <path class="card-lines" d="M48 67h84M48 91h58M48 160h84M48 183h58"></path>
+                  <g class="hidden-pattern">
+                    <circle cx="90" cy="119" r="34"></circle>
+                    <path d="M90 85v68M56 119h68M66 95l48 48M114 95l-48 48"></path>
+                    <path d="M90 73c24 20 24 72 0 92M90 73c-24 20-24 72 0 92"></path>
+                  </g>
+                </svg>
               </div>
+              <button class="light-control" type="button" id="lightToggle" aria-pressed="false">照亮</button>
             </div>
-            <div class="closing-thesis reveal" style="--d: 360ms">
-              <strong>不要把它改得不像自己。</strong>
-              <span>真正要更新的，是它进入今天生活的方式。</span>
-            </div>
+            <p class="single-line reveal" style="--d: 330ms">纹样来自这颗绣球，不是一张通用说明卡。</p>
           </div>
         </section>
 
-        <section class="slide" data-page="4" aria-label="第04页：市场研究">
+        <section class="slide story-page" data-page="19" data-chapter-label="05 买完以后还能留下什么" aria-label="第19页：这张卡还能装什么">
           <div class="slide-inner">
-            <p class="kicker reveal">03｜市场研究</p>
+            <p class="kicker reveal">05 / 买完以后还能留下什么</p>
             <h2 class="page-title reveal" style="--d: 60ms">
-              <span>现在的绣球，</span>
-              <span>大多还是“礼物”。</span>
+              <span>把这一颗的故事，</span>
+              <span>一起带走。</span>
             </h2>
-            <p class="body-text tight reveal" style="--d: 130ms">
-              市场已经证明它可以被购买，但购买理由仍集中在民俗、祈福和礼赠。
-            </p>
-            <div class="market-spectrum reveal" style="--d: 220ms" aria-label="绣球市场谱系">
+            <div class="story-levels reveal" style="--d: 150ms">
               <article>
-                <h3>传统民俗</h3>
-                <p>婚嫁｜吉祥｜地方伴手礼</p>
+                <strong>固定款</strong>
+                <span>一句固定祝福</span>
               </article>
               <article>
-                <h3>东方礼赠</h3>
-                <p>祈福｜香｜新中式｜礼盒</p>
+                <strong>系列款</strong>
+                <span>对应生肖 / 星座 / 小太平</span>
               </article>
               <article>
-                <h3>工艺收藏</h3>
-                <p>高工艺｜高客单｜陈设收藏</p>
-              </article>
-              <article>
-                <h3>年轻随身表达</h3>
-                <p>包挂｜配饰｜自由组合｜状态表达</p>
+                <strong>定制款</strong>
+                <span>送人时加入一句自己的话</span>
               </article>
             </div>
-            <div class="interest-block reveal" style="--d: 380ms">
-              <p>真正还没有被充分占据的，是</p>
-              <strong>日常随身表达</strong>
-              <span>可带出门、可替换、可玩，也能表达状态。</span>
+            <div class="quote-stack reveal" style="--d: 300ms">
+              <p>“小事顺一点，也算太平。”</p>
+              <p>“今天早点回。”</p>
+              <p>“第一次去新的城市，也要平平安安。”</p>
             </div>
           </div>
         </section>
 
-        <section class="slide" data-page="5" aria-label="第05页：顿喜案例研究">
+        <section class="slide final-page" data-page="20" data-chapter-label="05 买完以后还能留下什么" aria-label="第20页：整套方案收束">
           <div class="slide-inner">
-            <p class="kicker reveal">案例研究 01</p>
-            <h2 class="page-title case-title reveal" style="--d: 60ms">
-              <span>顿喜 Suddenjoy：</span>
-              <span>把绣球做成一份东方礼物</span>
-            </h2>
-            <p class="major-claim small reveal" style="--d: 130ms">
-              它先把购买理由说清楚：送礼、祈福、体面。
-            </p>
-            <div class="case-strip reveal" style="--d: 220ms">
-              <figure class="image-shell case-main">
-                <img src="assets/images/顿喜_产品01.jpg" alt="顿喜产品图" loading="lazy" decoding="async">
-                <span class="image-placeholder" aria-hidden="true"><strong>待补图片</strong><small>顿喜产品图</small></span>
-              </figure>
-              <figure class="image-shell case-mini">
-                <img src="assets/images/顿喜_门店.jpg" alt="顿喜门店图" loading="lazy" decoding="async">
-                <span class="image-placeholder" aria-hidden="true"><strong>待补图片</strong><small>顿喜门店</small></span>
-              </figure>
-              <figure class="image-shell case-mini">
-                <img src="assets/images/顿喜_社交媒体截图.jpg" alt="顿喜社交媒体截图" loading="lazy" decoding="async">
-                <span class="image-placeholder" aria-hidden="true"><strong>待补图片</strong><small>社交媒体截图</small></span>
-              </figure>
-            </div>
-            <div class="logic-tags reveal" style="--d: 300ms" aria-label="顿喜转译逻辑">
-              <span>非遗手工</span>
-              <span>原创设计</span>
-              <span>祈福意义</span>
-              <span>随身挂饰</span>
-              <span>门店展售</span>
-            </div>
-            <p class="accent-question reveal" style="--d: 390ms">
-              但它更接近“好看的礼物”。对于年轻人长期挂在身上、每天想换着玩的理由，仍然有空间。
-            </p>
-            <p class="source reveal" style="--d: 460ms">资料来源：品牌公开资料</p>
-          </div>
-        </section>
-
-        <section class="slide" data-page="6" aria-label="第06页：日本手まり案例研究">
-          <div class="slide-inner temari-layout">
-            <p class="kicker reveal">案例研究 02</p>
+            <p class="kicker reveal">05 / 买完以后还能留下什么</p>
             <h2 class="page-title reveal" style="--d: 60ms">
-              <span>球本身，</span>
-              <span>也可以是一件作品。</span>
+              <span>最后，</span>
+              <span>我们想做的是这一整套。</span>
             </h2>
-            <figure class="image-shell temari-image reveal" style="--d: 150ms">
-              <img src="assets/images/日本手まり_01.jpg" alt="日本传统手まり或讃岐手まり照片" loading="lazy" decoding="async">
-              <span class="image-placeholder" aria-hidden="true"><strong>待补图片</strong><small>日本传统手まり</small></span>
-            </figure>
-            <div class="keyword-row reveal" style="--d: 240ms">
-              <span>工艺就是价值</span>
-              <span>球体就是识别</span>
-              <span>使用场景可以改变</span>
-            </div>
-            <div class="temari-conclusion reveal" style="--d: 350ms">
-              <strong>它没有重新发明“球”。</strong>
-              <span>它重新设计了球进入生活的方式。</span>
-            </div>
-            <p class="source reveal" style="--d: 430ms">资料来源：官方文化机构资料 / 公开图片资料</p>
-          </div>
-        </section>
-
-        <section class="slide" data-page="7" aria-label="第07页：机会定位">
-          <div class="slide-inner">
-            <p class="kicker reveal">04｜机会定位</p>
-            <h2 class="page-title reveal" style="--d: 60ms">
-              <span>机会不在</span>
-              <span>更贵的礼物。</span>
-            </h2>
-            <p class="question-line reveal" style="--d: 130ms">而在更轻、更日常的关系。</p>
-            <div class="opportunity-matrix reveal" style="--d: 220ms" aria-label="太平绣球机会定位图">
-              <span class="axis-label axis-left">传统</span>
-              <span class="axis-label axis-right">当代</span>
-              <span class="axis-label axis-top">收藏 / 礼赠</span>
-              <span class="axis-label axis-bottom">玩乐 / 自我表达</span>
-              <span class="matrix-point point-a">传统地方绣球</span>
-              <span class="matrix-point point-b">顿喜</span>
-              <span class="matrix-point point-c">日本手まり</span>
-              <span class="matrix-point point-d">包挂 / 配饰 / 可替换挂件</span>
-              <div class="opportunity-ring" aria-hidden="true"></div>
-              <div class="matrix-target">
+            <div class="system-map reveal" style="--d: 150ms">
+              <div class="system-center">
+                <svg class="big-ball" aria-hidden="true"><use href="#i-ball"></use></svg>
                 <strong>太平绣球</strong>
-                <span>传统工艺<br>× 可玩球体<br>× 日常表达</span>
               </div>
+              <article class="sys-a"><span>小配件</span><p>让球有变化</p></article>
+              <article class="sys-b"><span>购买体验</span><p>让选择更有参与感</p></article>
+              <article class="sys-c"><span>透光小卡</span><p>留下纹样与祝福</p></article>
             </div>
-          </div>
-        </section>
-
-        <section class="slide" data-page="8" aria-label="第08页：问题洞察">
-          <div class="slide-inner">
-            <p class="kicker reveal">05｜问题洞察</p>
-            <h2 class="page-title insight-title reveal" style="--d: 60ms">
-              <span>问题不是</span>
-              <span>大家不懂文化。</span>
-            </h2>
-            <p class="major-claim reveal" style="--d: 130ms">
-              问题是：<br>今天为什么要买？
+            <p class="final-thesis reveal" style="--d: 320ms">
+              不是让绣球变复杂，<br>而是让人多几个喜欢它、选择它、带走它的理由。
             </p>
-            <div class="problem-stack reveal" style="--d: 230ms">
-              <article>
-                <p class="problem-index">01｜意义</p>
-                <h3>太重</h3>
-                <p>很多人会先想到<strong>爱情、定情、婚嫁</strong>。普通朋友之间，这个意义有时太重。</p>
-              </article>
-              <article>
-                <p class="problem-index">02｜形态</p>
-                <h3>太固定</h3>
-                <p>年轻人会问：“很好看，但我为什么要挂？”它还缺少即时趣味和个人表达。</p>
-              </article>
-              <article>
-                <p class="problem-index">03｜竞争</p>
-                <h3>可选礼物太多</h3>
-                <p>首饰、花、香水、毛绒、纪念产品，都已经有非常清楚的购买理由。</p>
-              </article>
+            <div class="next-step reveal" style="--d: 410ms">
+              <strong>下一步</strong>
+              <span>产品小样 + 体验流程 + 透光卡</span>
+              <p>先做一套完整样机，再判断哪些最适合继续发展。</p>
             </div>
-            <p class="bottom-thesis reveal" style="--d: 410ms">文化价值清楚，<br>购买理由不足。</p>
-          </div>
-        </section>
-
-        <section class="slide" data-page="9" aria-label="第09页：田野沟通">
-          <div class="slide-inner">
-            <p class="kicker reveal">06｜田野沟通</p>
-            <h2 class="page-title reveal" style="--d: 60ms">
-              <span>限制不是阻碍，</span>
-              <span>是设计边界。</span>
-            </h2>
-            <p class="field-note reveal" style="--d: 130ms">这些判断来自与传承人的实际沟通，不是设计师单方面想象。</p>
-            <p class="major-claim small reveal" style="--d: 210ms">
-              主体保持稳定，<br>外围变轻、低成本、可替换。
-            </p>
-            <div class="constraint-grid reveal" style="--d: 300ms">
-              <section>
-                <h3>不宜大改</h3>
-                <ul>
-                  <li>绣球主体</li>
-                  <li>十二瓣结构</li>
-                  <li>成熟制作工艺</li>
-                  <li>整体球形</li>
-                </ul>
-              </section>
-              <section>
-                <h3>现实条件</h3>
-                <ul>
-                  <li>原创定制布需要较大批量和资金</li>
-                  <li>当前用布更适合市面现货采购</li>
-                  <li>绣球本身已有较高手工成本</li>
-                  <li>外围设计必须轻、低成本、易替换</li>
-                </ul>
-              </section>
-            </div>
-            <div class="change-space reveal" style="--d: 380ms">
-              <p>可以改变的是球之外。</p>
-              <div class="change-words" aria-label="可改变的设计空间">
-                <span>配件</span>
-                <span>流苏</span>
-                <span>挂扣</span>
-                <span>外围关系</span>
-                <span>体验</span>
-                <span>意义</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="slide slide-final" data-page="10" aria-label="第10页：重新定义问题">
-          <div class="slide-inner final-layout">
-            <p class="kicker reveal">07｜重新定义问题</p>
-            <p class="old-question reveal" style="--d: 100ms">
-              原来的问题：<br>
-              <del>怎样重新设计一颗绣球？</del>
-            </p>
-            <div class="final-question reveal" style="--d: 220ms">
-              <h2>
-                <span>怎样让同一颗</span>
-                <span>太平绣球，</span>
-                <strong>在今天产生</strong>
-                <strong>更多关系？</strong>
-              </h2>
-            </div>
-            <div class="verb-row" aria-label="后续设计方向">
-              <span style="--d: 420ms">挂</span>
-              <span style="--d: 570ms">玩</span>
-              <span style="--d: 720ms">换</span>
-              <span style="--d: 870ms">赋义</span>
-            </div>
-            <p class="final-thesis reveal" style="--d: 1040ms">
-              固定的是非遗，<br>变化的是人与它的关系。
-            </p>
-            <figure class="image-shell corner-ball" aria-hidden="true">
-              <img src="assets/images/太平绣球_主视觉.jpg" alt="" loading="lazy" decoding="async">
-              <span class="image-placeholder" aria-hidden="true"><strong>待补图片</strong><small>太平绣球</small></span>
-            </figure>
           </div>
         </section>
       </main>
 
       <footer class="deck-footer" aria-label="页面进度">
-        <span class="page-count" id="pageCount">01 / 10</span>
+        <span class="chapter-label" id="chapterLabel">开场</span>
+        <span class="page-count" id="pageCount">01 / 20</span>
         <span class="progress-track" aria-hidden="true">
           <span class="progress-bar" id="progressBar"></span>
         </span>
