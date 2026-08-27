@@ -8,6 +8,8 @@
   const progress = document.getElementById("progressBar");
   const slides = Array.from(document.querySelectorAll(".slide"));
   const coverVisual = document.getElementById("coverVisual");
+  const comboMotion = document.querySelector('[data-motion="combo"]');
+  const actionMotion = document.querySelector('[data-motion="action"]');
   const lightCard = document.getElementById("lightCard");
   const lightToggle = document.getElementById("lightToggle");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -22,6 +24,8 @@
   let suppressClick = false;
   let coverIntro = null;
   let coverFloat = null;
+  let comboTimeline = null;
+  let actionTimeline = null;
 
   const pad = (value) => String(value).padStart(2, "0");
 
@@ -48,6 +52,8 @@
     } else if (current !== 0 && coverFloat) {
       coverFloat.pause();
     }
+
+    playSlideAnimation(current);
   }
 
   function goTo(nextIndex) {
@@ -223,11 +229,79 @@
     coverIntro.restart(true);
   }
 
+  function prepareSlideAnimations() {
+    if (reduceMotion.matches || !window.gsap) return;
+
+    const gsap = window.gsap;
+
+    if (comboMotion) {
+      const parts = Array.from(comboMotion.querySelectorAll(".combo-part"));
+      const pluses = Array.from(comboMotion.querySelectorAll(".combo-plus"));
+      const sequence = [parts[0], pluses[0], parts[1], pluses[1], parts[2]];
+      const connector = comboMotion.querySelector(".combo-connector");
+      const result = comboMotion.querySelector(".combo-result");
+      const resultProduct = comboMotion.querySelector(".result-product");
+
+      gsap.set(sequence, { opacity: 0, y: 12, scale: .96, transformOrigin: "50% 50%" });
+      gsap.set(connector, { opacity: 0, scaleY: 0, transformOrigin: "50% 0%" });
+      gsap.set(result, { opacity: 0, y: 14 });
+      gsap.set(resultProduct, { rotation: -12, scale: .72, transformOrigin: "50% 50%" });
+
+      comboTimeline = gsap.timeline({ paused: true, defaults: { ease: "power3.out" } });
+      comboTimeline
+        .to(sequence, { opacity: 1, y: 0, scale: 1, duration: .2, stagger: .045 })
+        .to(connector, { opacity: 1, scaleY: 1, duration: .16 }, "-=.06")
+        .to(result, { opacity: 1, y: 0, duration: .22 }, "-=.08")
+        .to(resultProduct, { rotation: 0, scale: 1, duration: .28, ease: "back.out(1.3)" }, "-=.2")
+        .to(parts, { opacity: .62, duration: .15 }, "-=.08");
+    }
+
+    if (actionMotion) {
+      const hand = actionMotion.querySelector(".action-hand");
+      const connector = actionMotion.querySelector(".action-connector");
+      const confirm = actionMotion.querySelector(".action-confirm");
+      const status = actionMotion.querySelector(".action-status");
+
+      gsap.set(hand, { y: -10, opacity: .72 });
+      gsap.set(connector, { y: 24, opacity: 0 });
+      gsap.set(confirm, { opacity: 0 });
+      gsap.set(status, { opacity: 0, y: 8 });
+
+      actionTimeline = gsap.timeline({ paused: true, defaults: { ease: "power3.out" } });
+      actionTimeline
+        .to(hand, { y: 0, opacity: 1, duration: .24 })
+        .to(connector, { y: 0, opacity: 1, duration: .24 }, "-=.14")
+        .to(confirm, { opacity: 1, duration: .14 }, "-=.04")
+        .to(confirm, { opacity: .28, duration: .18, ease: "power2.out" })
+        .to(status, { opacity: 1, y: 0, duration: .2 }, "-=.14");
+    }
+  }
+
+  function playSlideAnimation(index) {
+    if (reduceMotion.matches) return;
+
+    if (comboTimeline) {
+      if (index === 15) {
+        comboTimeline.restart(true);
+      } else {
+        comboTimeline.pause();
+      }
+    }
+
+    if (actionTimeline) {
+      if (index === 16) {
+        actionTimeline.restart(true);
+      } else {
+        actionTimeline.pause();
+      }
+    }
+  }
+
   function setLight(isLit) {
     if (!lightCard || !lightToggle) return;
     lightCard.classList.toggle("is-lit", isLit);
     lightToggle.setAttribute("aria-pressed", isLit ? "true" : "false");
-    lightToggle.textContent = isLit ? "恢复" : "照亮";
+    lightToggle.textContent = isLit ? "�ָ�" : "����";
   }
 
   function prepareLightCard() {
@@ -272,6 +346,7 @@
 
   prepareImages();
   prepareCoverAnimation();
+  prepareSlideAnimations();
   prepareLightCard();
   setActive(0);
   playCoverAnimation();
