@@ -1,20 +1,20 @@
 :root {
-  --ֽ��: #F4F1EB;
-  --ů��: #FAF9F6;
-  --����: #EEE9DF;
-  --̿��: #171717;
-  --���: #2C2A27;
-  --�л�: #878178;
-  --ǳ��: #D9D2C6;
-  --̫ƽ��: #A83B30;
-  --paper: var(--ֽ��);
-  --warm: var(--ů��);
-  --soft: var(--����);
-  --ink: var(--̿��);
-  --ink-soft: var(--���);
-  --muted: var(--�л�);
-  --line: var(--ǳ��);
-  --accent: var(--̫ƽ��);
+  --纸白: #F4F1EB;
+  --暖白: #FAF9F6;
+  --淡米: #EEE9DF;
+  --炭黑: #171717;
+  --深灰: #2C2A27;
+  --中灰: #878178;
+  --浅灰: #D9D2C6;
+  --太平朱: #A83B30;
+  --paper: var(--纸白);
+  --warm: var(--暖白);
+  --soft: var(--淡米);
+  --ink: var(--炭黑);
+  --ink-soft: var(--深灰);
+  --muted: var(--中灰);
+  --line: var(--浅灰);
+  --accent: var(--太平朱);
   --serif: "Songti SC", "STSong", "SimSun", serif;
   --sans: "PingFang SC", "Microsoft YaHei", sans-serif;
   --num: "Helvetica Neue", Arial, sans-serif;
@@ -2729,4 +2729,3 @@ noscript {
     transform: none !important;
   }
 }
-

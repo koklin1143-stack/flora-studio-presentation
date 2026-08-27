@@ -301,7 +301,7 @@
     if (!lightCard || !lightToggle) return;
     lightCard.classList.toggle("is-lit", isLit);
     lightToggle.setAttribute("aria-pressed", isLit ? "true" : "false");
-    lightToggle.textContent = isLit ? "�ָ�" : "����";
+    lightToggle.textContent = isLit ? "恢复" : "照亮";
   }
 
   function prepareLightCard() {
@@ -351,4 +351,3 @@
   setActive(0);
   playCoverAnimation();
 })();
-
