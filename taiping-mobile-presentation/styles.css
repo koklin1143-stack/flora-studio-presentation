@@ -512,6 +512,48 @@ button {
   color: var(--ink-soft);
 }
 
+.chapter-reason {
+  display: grid;
+  gap: 0;
+  margin-top: 42px;
+  margin-bottom: 18px;
+}
+
+.chapter-reason article {
+  padding: 18px 0;
+  border-top: 1px solid rgba(23, 23, 23, .15);
+}
+
+.chapter-reason article:last-child {
+  border-bottom: 1px solid rgba(23, 23, 23, .15);
+}
+
+.chapter-reason em {
+  display: block;
+  font-family: var(--num), var(--sans);
+  font-size: 12px;
+  font-style: normal;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.chapter-reason strong {
+  display: block;
+  margin-top: 9px;
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.28;
+}
+
+.chapter-reason i {
+  display: block;
+  width: 1px;
+  height: 24px;
+  margin-left: 18px;
+  background: var(--accent);
+}
+
 .core-map {
   position: relative;
   flex: 1;
@@ -599,8 +641,26 @@ button {
 }
 
 .case-image {
-  width: 112px;
-  height: 132px;
+  width: 128px;
+  height: 128px;
+}
+
+.case-page .case-pair article {
+  grid-template-columns: 128px 1fr;
+  align-items: center;
+}
+
+.case-page .case-image {
+  width: 128px;
+  height: 128px;
+}
+
+.case-fit-dunxi {
+  object-position: 50% 54%;
+}
+
+.case-fit-temari {
+  object-position: 50% 56%;
 }
 
 .case-pair strong {
