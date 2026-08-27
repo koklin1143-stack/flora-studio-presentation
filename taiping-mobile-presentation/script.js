@@ -12,6 +12,8 @@
   const actionMotion = document.querySelector('[data-motion="action"]');
   const lightCard = document.getElementById("lightCard");
   const lightToggle = document.getElementById("lightToggle");
+  const randomWish = document.getElementById("randomWish");
+  const randomWishResult = document.getElementById("randomWishResult");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   let current = 0;
@@ -26,6 +28,16 @@
   let coverFloat = null;
   let comboTimeline = null;
   let actionTimeline = null;
+  let randomIndex = 0;
+
+  const randomWishes = [
+    "比如：今天别下雨",
+    "比如：手机一直有电",
+    "比如：方案一次过",
+    "比如：早点回家",
+    "比如：一路都有座",
+    "比如：少一点烦心事"
+  ];
 
   const pad = (value) => String(value).padStart(2, "0");
 
@@ -301,7 +313,7 @@
     if (!lightCard || !lightToggle) return;
     lightCard.classList.toggle("is-lit", isLit);
     lightToggle.setAttribute("aria-pressed", isLit ? "true" : "false");
-    lightToggle.textContent = isLit ? "恢复" : "照亮";
+    lightToggle.textContent = isLit ? "恢复" : "透光看纹样";
   }
 
   function prepareLightCard() {
@@ -339,6 +351,24 @@
     });
   }
 
+  function prepareRandomWish() {
+    if (!randomWish || !randomWishResult) return;
+
+    randomWish.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      let nextIndex = Math.floor(Math.random() * randomWishes.length);
+      if (nextIndex === randomIndex) {
+        nextIndex = (nextIndex + 1) % randomWishes.length;
+      }
+      randomIndex = nextIndex;
+      randomWishResult.textContent = randomWishes[randomIndex];
+      randomWishResult.classList.remove("is-changing");
+      void randomWishResult.offsetWidth;
+      randomWishResult.classList.add("is-changing");
+    });
+  }
+
   stage.addEventListener("click", handleTap);
   stage.addEventListener("touchstart", handleTouchStart, { passive: true });
   stage.addEventListener("touchend", handleTouchEnd, { passive: true });
@@ -348,6 +378,7 @@
   prepareCoverAnimation();
   prepareSlideAnimations();
   prepareLightCard();
+  prepareRandomWish();
   setActive(0);
   playCoverAnimation();
 })();
