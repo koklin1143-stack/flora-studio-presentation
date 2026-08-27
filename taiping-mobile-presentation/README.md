@@ -20,6 +20,7 @@ https://koklin1143-stack.github.io/flora-studio-presentation/taiping-mobile-pres
 index.html
 styles.css
 script.js
+vendor/gsap.min.js
 assets/images/
 ```
 
@@ -50,7 +51,7 @@ assets/images/
 
 新版围绕 4 个问题展开：为什么值得重新做、绣球本身怎么玩、购买过程怎么更有意思、买完以后留下些什么
 
-首屏使用 GSAP 驱动十二瓣绣片拼合为绣球的动画
+首屏使用本地 GSAP 文件驱动十二瓣绣片拼合为绣球的动画，减少外部 CDN 加载失败的风险
 
 封面增加轻量阅读提示，后续页码保留左右箭头，方便现场自行翻页
 
